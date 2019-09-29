@@ -1,0 +1,74 @@
+{
+  "version":1,
+  "pages":[
+    {
+      "id":1,
+      "name":"Page 1"
+    },
+    {
+      "id":2,
+      "name":"Page 2"
+    },
+    {
+      "id":3,
+      "name":"Page 3"
+    },
+    {
+      "id":4,
+      "name":"Page 4"
+    },
+    {
+      "id":5,
+      "name":"Page 5"
+    },
+    {
+      "id":6,
+      "name":"Page 6"
+    }
+  ],
+  "devices":[
+    {
+      "id":1,
+      "port":1,
+      "channel":1,
+      "instrument":"tb3",
+      "name":"TB3"
+    },
+    {
+      "id":2,
+      "port":0,
+      "channel":0,
+      "instrument":"",
+      "name":""
+    },
+    {
+      "id":3,
+      "port":0,
+      "channel":0,
+      "instrument":"",
+      "name":""
+    },
+    {
+      "id":4,
+      "port":0,
+      "channel":0,
+      "instrument":"",
+      "name":""
+    }
+  ],
+  "controls":[
+    {
+      "id":1,
+      "parameterId":74,
+      "type":"fader",
+      "name":"FILTER CUTOFF",
+      "pageId":1,
+      "sectionId":1,
+      "potId":1,
+      "deviceId":1,
+      "nameColor":1,
+      "min":0,
+      "max":127
+    }
+  ]
+}
