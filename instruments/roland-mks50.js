@@ -242,7 +242,9 @@ export default {
       'name': 'DCO env mode',
       'overlayId': 1,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '00', '$V' ]
     },
     {
       'id': 1,
@@ -250,7 +252,9 @@ export default {
       'name': 'VCF env mode',
       'overlayId': 2,
       'defaultValue': 0,
-      'categoryId': 'vcf'
+      'categoryId': 'vcf',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '01', '$V' ]
     },
     {
       'id': 2,
@@ -258,7 +262,9 @@ export default {
       'name': 'VCA env mode',
       'overlayId': 3,
       'defaultValue': 0,
-      'categoryId': 'vca'
+      'categoryId': 'vca',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '02', '$V' ]
     },
     {
       'id': 3,
@@ -266,7 +272,9 @@ export default {
       'name': 'Waveform pulse',
       'overlayId': 4,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '03', '$V' ]
     },
     {
       'id': 4,
@@ -274,7 +282,9 @@ export default {
       'name': 'Waveform saw',
       'overlayId': 5,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '04', '$V' ]
     },
     {
       'id': 5,
@@ -282,7 +292,9 @@ export default {
       'name': 'Waveform sub',
       'overlayId': 6,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '05', '$V' ]
     },
     {
       'id': 6,
@@ -290,7 +302,9 @@ export default {
       'name': 'Range',
       'overlayId': 7,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '06', '$V' ]
     },
     {
       'id': 7,
@@ -299,7 +313,9 @@ export default {
       'min': 0,
       'max': 3,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '07', '$V' ]
     },
     {
       'id': 8,
@@ -308,7 +324,9 @@ export default {
       'min': 0,
       'max': 3,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '08', '$V' ]
     },
     {
       'id': 9,
@@ -317,7 +335,9 @@ export default {
       'min': 0,
       'max': 3,
       'defaultValue': 0,
-      'categoryId': 'vcf'
+      'categoryId': 'vcf',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '09', '$V' ]
     },
     {
       'id': 10,
@@ -325,7 +345,9 @@ export default {
       'name': 'Chorus',
       'overlayId': 8,
       'defaultValue': 0,
-      'categoryId': 'effect'
+      'categoryId': 'effect',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '0A', '$V' ]
     },
     {
       'id': 11,
@@ -334,7 +356,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '0B', '$V' ]
     },
     {
       'id': 12,
@@ -343,7 +367,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '0C', '$V' ]
     },
     {
       'id': 13,
@@ -352,7 +378,9 @@ export default {
       'min': 0,
       'max': 15,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '0D', '$V' ]
     },
     {
       'id': 14,
@@ -361,7 +389,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '0E', '$V' ]
     },
     {
       'id': 15,
@@ -370,7 +400,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '0F', '$V' ]
     },
     {
       'id': 16,
@@ -379,7 +411,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'vcf'
+      'categoryId': 'vcf',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '10', '$V' ]
     },
     {
       'id': 17,
@@ -388,7 +422,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'vcf'
+      'categoryId': 'vcf',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '11', '$V' ]
     },
     {
       'id': 18,
@@ -397,7 +433,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'vcf'
+      'categoryId': 'vcf',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '12', '$V' ]
     },
     {
       'id': 19,
@@ -406,7 +444,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'vcf'
+      'categoryId': 'vcf',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '13', '$V' ]
     },
     {
       'id': 20,
@@ -415,7 +455,9 @@ export default {
       'min': 0,
       'max': 15,
       'defaultValue': 0,
-      'categoryId': 'vcf'
+      'categoryId': 'vcf',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '14', '$V' ]
     },
     {
       'id': 21,
@@ -424,7 +466,9 @@ export default {
       'min': 0,
       'max': 15,
       'defaultValue': 0,
-      'categoryId': 'vcf'
+      'categoryId': 'vcf',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '15', '$V' ]
     },
     {
       'id': 22,
@@ -433,7 +477,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'vca'
+      'categoryId': 'vca',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '16', '$V' ]
     },
     {
       'id': 23,
@@ -442,7 +488,9 @@ export default {
       'min': 0,
       'max': 15,
       'defaultValue': 0,
-      'categoryId': 'vca'
+      'categoryId': 'vca',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '17', '$V' ]
     },
     {
       'id': 24,
@@ -451,7 +499,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'lfo'
+      'categoryId': 'lfo',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '18', '$V' ]
     },
     {
       'id': 25,
@@ -460,7 +510,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'lfo'
+      'categoryId': 'lfo',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '19', '$V' ]
     },
     {
       'id': 26,
@@ -469,7 +521,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'adsr'
+      'categoryId': 'adsr',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '1A', '$V' ]
     },
     {
       'id': 27,
@@ -478,7 +532,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'adsr'
+      'categoryId': 'adsr',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '1B', '$V' ]
     },
     {
       'id': 28,
@@ -487,7 +543,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'adsr'
+      'categoryId': 'adsr',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '1C', '$V' ]
     },
     {
       'id': 29,
@@ -496,7 +554,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'adsr'
+      'categoryId': 'adsr',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '1D', '$V' ]
     },
     {
       'id': 30,
@@ -505,7 +565,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'adsr'
+      'categoryId': 'adsr',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '1E', '$V' ]
     },
     {
       'id': 31,
@@ -514,7 +576,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'adsr'
+      'categoryId': 'adsr',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '1F', '$V' ]
     },
     {
       'id': 32,
@@ -523,7 +587,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'adsr'
+      'categoryId': 'adsr',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '20', '$V' ]
     },
     {
       'id': 33,
@@ -532,7 +598,9 @@ export default {
       'min': 0,
       'max': 15,
       'defaultValue': 0,
-      'categoryId': 'adsr'
+      'categoryId': 'adsr',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '21', '$V' ]
     },
     {
       'id': 34,
@@ -541,7 +609,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'effect'
+      'categoryId': 'effect',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '22', '$V' ]
     },
     {
       'id': 35,
@@ -550,7 +620,9 @@ export default {
       'min': 0,
       'max': 12,
       'defaultValue': 0,
-      'categoryId': 'setup'
+      'categoryId': 'setup',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '20', '01', '23', '$V' ]
     },
     {
       'id': 39,
@@ -559,7 +631,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'effect'
+      'categoryId': 'effect',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '30', '01', '03', '$V' ]
     },
     {
       'id': 40,
@@ -567,7 +641,9 @@ export default {
       'name': 'Portamento',
       'overlayId': 8,
       'defaultValue': 0,
-      'categoryId': 'effect'
+      'categoryId': 'effect',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '30', '01', '04', '$V' ]
     },
     {
       'id': 41,
@@ -576,7 +652,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'setup'
+      'categoryId': 'setup',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '30', '01', '05', '$V' ]
     },
     {
       'id': 42,
@@ -585,7 +663,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'setup'
+      'categoryId': 'setup',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '30', '01', '06', '$V' ]
     },
     {
       'id': 43,
@@ -594,7 +674,9 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'setup'
+      'categoryId': 'setup',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '30', '01', '07', '$V' ]
     },
     {
       'id': 44,
@@ -603,7 +685,9 @@ export default {
       'min': -63,
       'max': 64,
       'defaultValue': 0,
-      'categoryId': 'dco'
+      'categoryId': 'dco',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '30', '01', '08', '$V' ]
     },
     {
       'id': 46,
@@ -612,7 +696,9 @@ export default {
       'min': 0,
       'max': 12,
       'defaultValue': 0,
-      'categoryId': 'setup'
+      'categoryId': 'setup',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '30', '01', '0A', '$V' ]
     },
     {
       'id': 48,
@@ -620,7 +706,9 @@ export default {
       'name': 'Key assigment',
       'overlayId': 9,
       'defaultValue': 0,
-      'categoryId': 'setup'
+      'categoryId': 'setup',
+      'msg': 'sysex',
+      'data': ['41', '36', '00', '23', '30', '01', '0C', '$V' ]
     }
   ]
 }
