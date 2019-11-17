@@ -1,33 +1,33 @@
-{  
+{
    "version":1,
-   "pages":[  
-      {  
+   "pages":[
+      {
          "id":1,
          "name":"Page 1"
       },
-      {  
+      {
          "id":2,
          "name":"Page 2"
       },
-      {  
+      {
          "id":3,
          "name":"Page 3"
       },
-      {  
+      {
          "id":4,
          "name":"Page 4"
       },
-      {  
+      {
          "id":5,
          "name":"Page 5"
       },
-      {  
+      {
          "id":6,
          "name":"Page 6"
       }
    ],
-   "groups":[  
-      {  
+   "groups":[
+      {
          "id":0,
          "pageId":1,
          "name":"DCO",
@@ -35,7 +35,7 @@
          "position":1,
          "color":"FFFF"
       },
-      {  
+      {
          "id":3,
          "pageId":1,
          "name":"vcf",
@@ -43,7 +43,7 @@
          "position":4,
          "color":"FFFF"
       },
-      {  
+      {
          "id":5,
          "pageId":1,
          "name":"vca",
@@ -51,7 +51,7 @@
          "position":6,
          "color":"FFFF"
       },
-      {  
+      {
          "id":36,
          "pageId":2,
          "name":"lfo 1",
@@ -59,7 +59,7 @@
          "position":1,
          "color":"FFFF"
       },
-      {  
+      {
          "id":39,
          "pageId":2,
          "name":"lfo 2",
@@ -67,7 +67,7 @@
          "position":4,
          "color":"FFFF"
       },
-      {  
+      {
          "id":60,
          "pageId":2,
          "name":"Setup",
@@ -76,620 +76,622 @@
          "color":"FFFF"
       }
    ],
-   "devices":[  
-      {  
+   "devices":[
+      {
          "id":1,
          "name":"Crumar Bit99",
          "instrument":"bit99",
          "port":1,
          "channel":1,
-         "patch":[  
-            {  
-               "request":[  
+         "patch":[
+            {
+               "program":0,
+               "request":[
                   "25",
                   "20",
                   "09",
                   "20",
                   "00"
                ],
-               "responses":[  
-                  {  
-                     "header":[  
+               "responses":[
+                  {
+                     "length":78,
+                     "header":[
                         "25",
                         "20",
                         "07",
                         "00"
                      ],
-                     "rules":[  
-                        {  
+                     "rules":[
+                        {
                            "id":12,
                            "pPos":0,
                            "byte":0,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":12,
                            "pPos":2,
                            "byte":1,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":11,
                            "pPos":0,
                            "byte":2,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":11,
                            "pPos":2,
                            "byte":3,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":10,
                            "pPos":0,
                            "byte":4,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":10,
                            "pPos":2,
                            "byte":5,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":63,
                            "pPos":0,
                            "byte":6,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":63,
                            "pPos":2,
                            "byte":7,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":62,
                            "pPos":0,
                            "byte":8,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":62,
                            "pPos":2,
                            "byte":9,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":45,
                            "pPos":0,
                            "byte":10,
                            "bPos":1,
                            "size":3
                         },
-                        {  
+                        {
                            "id":45,
                            "pPos":3,
                            "byte":11,
                            "bPos":0,
                            "size":3
                         },
-                        {  
+                        {
                            "id":48,
                            "pPos":0,
                            "byte":12,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":48,
                            "pPos":2,
                            "byte":13,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":34,
                            "pPos":0,
                            "byte":14,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":34,
                            "pPos":2,
                            "byte":15,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":33,
                            "pPos":0,
                            "byte":16,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":33,
                            "pPos":2,
                            "byte":17,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":44,
                            "pPos":0,
                            "byte":18,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":44,
                            "pPos":2,
                            "byte":19,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":24,
                            "pPos":0,
                            "byte":20,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":24,
                            "pPos":0,
                            "byte":21,
                            "bPos":0,
                            "size":3
                         },
-                        {  
+                        {
                            "id":35,
                            "pPos":0,
                            "byte":22,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":35,
                            "pPos":0,
                            "byte":23,
                            "bPos":0,
                            "size":3
                         },
-                        {  
+                        {
                            "id":32,
                            "pPos":0,
                            "byte":24,
                            "bPos":3,
                            "size":1
                         },
-                        {  
+                        {
                            "id":32,
                            "pPos":1,
                            "byte":25,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":43,
                            "pPos":0,
                            "byte":26,
                            "bPos":3,
                            "size":1
                         },
-                        {  
+                        {
                            "id":43,
                            "pPos":1,
                            "byte":27,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":19,
                            "pPos":0,
                            "byte":28,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":19,
                            "pPos":2,
                            "byte":29,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":20,
                            "pPos":0,
                            "byte":30,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":20,
                            "pPos":2,
                            "byte":31,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":15,
                            "pPos":0,
                            "byte":32,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":15,
                            "pPos":2,
                            "byte":33,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":21,
                            "pPos":0,
                            "byte":34,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":21,
                            "pPos":2,
                            "byte":35,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":18,
                            "pPos":0,
                            "byte":36,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":18,
                            "pPos":2,
                            "byte":37,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":17,
                            "pPos":0,
                            "byte":38,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":17,
                            "pPos":2,
                            "byte":39,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":22,
                            "pPos":0,
                            "byte":40,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":22,
                            "pPos":2,
                            "byte":41,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":51,
                            "pPos":0,
                            "byte":42,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":51,
                            "pPos":2,
                            "byte":43,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":46,
                            "pPos":0,
                            "byte":44,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":46,
                            "pPos":2,
                            "byte":45,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":47,
                            "pPos":0,
                            "byte":46,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":47,
                            "pPos":2,
                            "byte":47,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":13,
                            "pPos":0,
                            "byte":48,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":13,
                            "pPos":4,
                            "byte":49,
                            "bPos":0,
                            "size":2
                         },
-                        {  
+                        {
                            "id":14,
                            "pPos":0,
                            "byte":50,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":14,
                            "pPos":4,
                            "byte":51,
                            "bPos":0,
                            "size":2
                         },
-                        {  
+                        {
                            "id":16,
                            "pPos":0,
                            "byte":52,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":16,
                            "pPos":4,
                            "byte":53,
                            "bPos":0,
                            "size":2
                         },
-                        {  
+                        {
                            "id":49,
                            "pPos":0,
                            "byte":54,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":49,
                            "pPos":4,
                            "byte":55,
                            "bPos":0,
                            "size":2
                         },
-                        {  
+                        {
                            "id":50,
                            "pPos":0,
                            "byte":56,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":50,
                            "pPos":4,
                            "byte":57,
                            "bPos":0,
                            "size":2
                         },
-                        {  
+                        {
                            "id":52,
                            "pPos":0,
                            "byte":58,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":52,
                            "pPos":4,
                            "byte":59,
                            "bPos":0,
                            "size":2
                         },
-                        {  
+                        {
                            "id":8,
                            "pPos":0,
                            "byte":60,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":8,
                            "pPos":4,
                            "byte":61,
                            "bPos":0,
                            "size":2
                         },
-                        {  
+                        {
                            "id":60,
                            "pPos":0,
                            "byte":62,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":60,
                            "pPos":4,
                            "byte":63,
                            "bPos":0,
                            "size":2
                         },
-                        {  
+                        {
                            "id":9,
                            "pPos":0,
                            "byte":64,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":9,
                            "pPos":4,
                            "byte":65,
                            "bPos":0,
                            "size":2
                         },
-                        {  
+                        {
                            "id":61,
                            "pPos":0,
                            "byte":66,
                            "bPos":0,
                            "size":4
                         },
-                        {  
+                        {
                            "id":61,
                            "pPos":4,
                            "byte":67,
                            "bPos":0,
                            "size":2
                         },
-                        {  
+                        {
                            "id":59,
                            "pPos":0,
                            "byte":69,
                            "bPos":3,
                            "size":1
                         },
-                        {  
+                        {
                            "id":58,
                            "pPos":0,
                            "byte":69,
                            "bPos":2,
                            "size":1
                         },
-                        {  
+                        {
                            "id":57,
                            "pPos":0,
                            "byte":69,
                            "bPos":1,
                            "size":1
                         },
-                        {  
+                        {
                            "id":56,
                            "pPos":0,
                            "byte":69,
                            "bPos":0,
                            "size":1
                         },
-                        {  
+                        {
                            "id":7,
                            "pPos":0,
                            "byte":68,
                            "bPos":3,
                            "size":1
                         },
-                        {  
+                        {
                            "id":6,
                            "pPos":0,
                            "byte":68,
                            "bPos":2,
                            "size":1
                         },
-                        {  
+                        {
                            "id":5,
                            "pPos":0,
                            "byte":68,
                            "bPos":1,
                            "size":1
                         },
-                        {  
+                        {
                            "id":4,
                            "pPos":0,
                            "byte":68,
                            "bPos":0,
                            "size":1
                         },
-                        {  
+                        {
                            "id":1,
                            "pPos":0,
                            "byte":70,
                            "bPos":0,
                            "size":2
                         },
-                        {  
+                        {
                            "id":53,
                            "pPos":0,
                            "byte":70,
                            "bPos":2,
                            "size":2
                         },
-                        {  
+                        {
                            "id":23,
                            "pPos":0,
                            "byte":71,
                            "bPos":3,
                            "size":1
                         },
-                        {  
+                        {
                            "id":30,
                            "pPos":0,
                            "byte":72,
                            "bPos":0,
                            "size":1
                         },
-                        {  
+                        {
                            "id":41,
                            "pPos":0,
                            "byte":72,
                            "bPos":1,
                            "size":1
                         },
-                        {  
+                        {
                            "id":29,
                            "pPos":0,
                            "byte":72,
                            "bPos":2,
                            "size":1
                         },
-                        {  
+                        {
                            "id":40,
                            "pPos":0,
                            "byte":72,
                            "bPos":3,
                            "size":1
                         },
-                        {  
+                        {
                            "id":28,
                            "pPos":0,
                            "byte":73,
                            "bPos":0,
                            "size":1
                         },
-                        {  
+                        {
                            "id":39,
                            "pPos":0,
                            "byte":73,
@@ -702,7 +704,7 @@
             }
          ]
       },
-      {  
+      {
          "id":2,
          "name":"Generic MIDI",
          "instrument":"cc",
@@ -710,55 +712,56 @@
          "channel":1
       }
    ],
-   "controls":[  
-      {  
+   "controls":[
+      {
          "id":1,
          "parameterId":29,
          "type":"list",
+         "msg":"patch",
          "name":"DCO1 SAWTOOTH",
          "pageId":1,
          "sectionId":1,
          "potId":1,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":2,
          "parameterId":40,
          "type":"list",
+         "msg":"patch",
          "name":"DCO2 SAWTOOTH",
          "pageId":1,
          "sectionId":1,
          "potId":2,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":3,
          "parameterId":45,
          "type":"fader",
+         "msg":"patch",
          "name":"DETUNE",
          "pageId":1,
          "sectionId":1,
@@ -767,13 +770,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"FFFF",
-         "msg":"patch"
+         "fgColor":"FFFF"
       },
-      {  
+      {
          "id":4,
          "parameterId":19,
          "type":"fader",
+         "msg":"patch",
          "name":"CUTOFF",
          "pageId":1,
          "sectionId":1,
@@ -782,13 +785,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"12D3",
-         "msg":"patch"
+         "fgColor":"12D3"
       },
-      {  
+      {
          "id":5,
          "parameterId":20,
          "type":"fader",
+         "msg":"patch",
          "name":"RESONANCE",
          "pageId":1,
          "sectionId":1,
@@ -797,13 +800,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"12D3",
-         "msg":"patch"
+         "fgColor":"12D3"
       },
-      {  
+      {
          "id":6,
          "parameterId":49,
          "type":"fader",
+         "msg":"patch",
          "name":"ATTACK",
          "pageId":1,
          "sectionId":1,
@@ -812,57 +815,57 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"0512",
-         "msg":"patch"
+         "fgColor":"0512"
       },
-      {  
+      {
          "id":7,
          "parameterId":28,
          "type":"list",
+         "msg":"patch",
          "name":"DCO1 TRIANGLE",
          "pageId":1,
          "sectionId":1,
          "potId":7,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":8,
          "parameterId":39,
          "type":"list",
+         "msg":"patch",
          "name":"DCO2 TRIANGLE",
          "pageId":1,
          "sectionId":1,
          "potId":8,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":9,
          "parameterId":34,
          "type":"fader",
+         "msg":"patch",
          "name":"NOISE",
          "pageId":1,
          "sectionId":1,
@@ -871,13 +874,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"FFFF",
-         "msg":"patch"
+         "fgColor":"FFFF"
       },
-      {  
+      {
          "id":10,
          "parameterId":21,
          "type":"fader",
+         "msg":"patch",
          "name":"ENV AMOUNT",
          "pageId":1,
          "sectionId":1,
@@ -886,13 +889,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"12D3",
-         "msg":"patch"
+         "fgColor":"12D3"
       },
-      {  
+      {
          "id":11,
          "parameterId":18,
          "type":"fader",
+         "msg":"patch",
          "name":"TRACKING",
          "pageId":1,
          "sectionId":1,
@@ -901,13 +904,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"12D3",
-         "msg":"patch"
+         "fgColor":"12D3"
       },
-      {  
+      {
          "id":12,
          "parameterId":50,
          "type":"fader",
+         "msg":"patch",
          "name":"DECAY",
          "pageId":1,
          "sectionId":1,
@@ -916,57 +919,57 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"0512",
-         "msg":"patch"
+         "fgColor":"0512"
       },
-      {  
+      {
          "id":13,
          "parameterId":30,
          "type":"list",
+         "msg":"patch",
          "name":"DCO1 PULSE",
          "pageId":1,
          "sectionId":2,
          "potId":1,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":14,
          "parameterId":41,
          "type":"list",
+         "msg":"patch",
          "name":"DCO2 PULSE",
          "pageId":1,
          "sectionId":2,
          "potId":2,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":15,
          "parameterId":48,
          "type":"fader",
+         "msg":"patch",
          "name":"VOLUME",
          "pageId":1,
          "sectionId":2,
@@ -975,13 +978,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"FFFF",
-         "msg":"patch"
+         "fgColor":"FFFF"
       },
-      {  
+      {
          "id":16,
          "parameterId":13,
          "type":"fader",
+         "msg":"patch",
          "name":"ATTACK",
          "pageId":1,
          "sectionId":2,
@@ -990,13 +993,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"12D3",
-         "msg":"patch"
+         "fgColor":"12D3"
       },
-      {  
+      {
          "id":17,
          "parameterId":14,
          "type":"fader",
+         "msg":"patch",
          "name":"DECAY",
          "pageId":1,
          "sectionId":2,
@@ -1005,13 +1008,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"12D3",
-         "msg":"patch"
+         "fgColor":"12D3"
       },
-      {  
+      {
          "id":18,
          "parameterId":51,
          "type":"fader",
+         "msg":"patch",
          "name":"SUSTAIN",
          "pageId":1,
          "sectionId":2,
@@ -1020,13 +1023,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"0512",
-         "msg":"patch"
+         "fgColor":"0512"
       },
-      {  
+      {
          "id":19,
          "parameterId":32,
          "type":"fader",
+         "msg":"patch",
          "name":"DCO1 PW",
          "pageId":1,
          "sectionId":2,
@@ -1035,13 +1038,13 @@
          "overlay":null,
          "min":0,
          "max":31,
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":20,
          "parameterId":43,
          "type":"fader",
+         "msg":"patch",
          "name":"DCO2 PW",
          "pageId":1,
          "sectionId":2,
@@ -1050,13 +1053,13 @@
          "overlay":null,
          "min":0,
          "max":31,
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":22,
          "parameterId":15,
          "type":"fader",
+         "msg":"patch",
          "name":"SUSTAIN",
          "pageId":1,
          "sectionId":2,
@@ -1065,13 +1068,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"12D3",
-         "msg":"patch"
+         "fgColor":"12D3"
       },
-      {  
+      {
          "id":23,
          "parameterId":16,
          "type":"fader",
+         "msg":"patch",
          "name":"RELEASE",
          "pageId":1,
          "sectionId":2,
@@ -1080,13 +1083,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"12D3",
-         "msg":"patch"
+         "fgColor":"12D3"
       },
-      {  
+      {
          "id":24,
          "parameterId":52,
          "type":"fader",
+         "msg":"patch",
          "name":"RELEASE",
          "pageId":1,
          "sectionId":2,
@@ -1095,13 +1098,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"0512",
-         "msg":"patch"
+         "fgColor":"0512"
       },
-      {  
+      {
          "id":25,
          "parameterId":33,
          "type":"fader",
+         "msg":"patch",
          "name":"DCO1 DYN PWM",
          "pageId":1,
          "sectionId":3,
@@ -1110,13 +1113,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":26,
          "parameterId":44,
          "type":"fader",
+         "msg":"patch",
          "name":"DCO2 DYN PWM",
          "pageId":1,
          "sectionId":3,
@@ -1125,13 +1128,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":28,
          "parameterId":17,
          "type":"fader",
+         "msg":"patch",
          "name":"DYN ATTACK",
          "pageId":1,
          "sectionId":3,
@@ -1140,13 +1143,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"12D3",
-         "msg":"patch"
+         "fgColor":"12D3"
       },
-      {  
+      {
          "id":29,
          "parameterId":22,
          "type":"fader",
+         "msg":"patch",
          "name":"DYN ENVELOPE",
          "pageId":1,
          "sectionId":3,
@@ -1155,13 +1158,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"12D3",
-         "msg":"patch"
+         "fgColor":"12D3"
       },
-      {  
+      {
          "id":30,
          "parameterId":46,
          "type":"fader",
+         "msg":"patch",
          "name":"DYN ATTACK",
          "pageId":1,
          "sectionId":3,
@@ -1170,95 +1173,95 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"0512",
-         "msg":"patch"
+         "fgColor":"0512"
       },
-      {  
+      {
          "id":31,
          "parameterId":24,
          "type":"list",
+         "msg":"patch",
          "name":"DCO1 OCTAVE",
          "pageId":1,
          "sectionId":3,
          "potId":7,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"32'"
             },
-            {  
+            {
                "value":12,
                "label":"16'"
             },
-            {  
+            {
                "value":9,
                "label":"8'"
             },
-            {  
+            {
                "value":6,
                "label":"4'"
             }
          ],
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":32,
          "parameterId":35,
          "type":"list",
+         "msg":"patch",
          "name":"DCO2 OCTAVE",
          "pageId":1,
          "sectionId":3,
          "potId":8,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"32'"
             },
-            {  
+            {
                "value":12,
                "label":"16'"
             },
-            {  
+            {
                "value":9,
                "label":"8'"
             },
-            {  
+            {
                "value":6,
                "label":"4'"
             }
          ],
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":34,
          "parameterId":23,
          "type":"list",
+         "msg":"patch",
          "name":"INVERT",
          "pageId":1,
          "sectionId":3,
          "potId":10,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"12D3",
-         "msg":"patch"
+         "fgColor":"12D3"
       },
-      {  
+      {
          "id":36,
          "parameterId":47,
          "type":"fader",
+         "msg":"patch",
          "name":"DYN VOLUME",
          "pageId":1,
          "sectionId":3,
@@ -1267,43 +1270,43 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"0512",
-         "msg":"patch"
+         "fgColor":"0512"
       },
-      {  
+      {
          "id":37,
          "parameterId":1,
          "type":"list",
+         "msg":"patch",
          "name":"LFO1 WAVEFORM",
          "pageId":2,
          "sectionId":1,
          "potId":1,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"None"
             },
-            {  
+            {
                "value":1,
                "label":"Triangle"
             },
-            {  
+            {
                "value":2,
                "label":"Sawtooth"
             },
-            {  
+            {
                "value":3,
                "label":"Pulse"
             }
          ],
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":38,
          "parameterId":9,
          "type":"fader",
+         "msg":"patch",
          "name":"LFO1 RATE",
          "pageId":2,
          "sectionId":1,
@@ -1312,13 +1315,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":39,
          "parameterId":8,
          "type":"fader",
+         "msg":"patch",
          "name":"LFO1 DELAY",
          "pageId":2,
          "sectionId":1,
@@ -1327,43 +1330,43 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":40,
          "parameterId":53,
          "type":"list",
+         "msg":"patch",
          "name":"LFO2 WAVEFORM",
          "pageId":2,
          "sectionId":1,
          "potId":4,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"None"
             },
-            {  
+            {
                "value":1,
                "label":"Triangle"
             },
-            {  
+            {
                "value":2,
                "label":"Sawtooth"
             },
-            {  
+            {
                "value":3,
                "label":"Pulse"
             }
          ],
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":41,
          "parameterId":61,
          "type":"fader",
+         "msg":"patch",
          "name":"LFO2 RATE",
          "pageId":2,
          "sectionId":1,
@@ -1372,13 +1375,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":42,
          "parameterId":60,
          "type":"fader",
+         "msg":"patch",
          "name":"LFO2 DELAY",
          "pageId":2,
          "sectionId":1,
@@ -1387,13 +1390,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":43,
          "parameterId":10,
          "type":"fader",
+         "msg":"patch",
          "name":"LFO1 DYN RANGE",
          "pageId":2,
          "sectionId":1,
@@ -1402,13 +1405,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":44,
          "parameterId":11,
          "type":"fader",
+         "msg":"patch",
          "name":"LFO1 DEPTH",
          "pageId":2,
          "sectionId":1,
@@ -1417,13 +1420,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":46,
          "parameterId":62,
          "type":"fader",
+         "msg":"patch",
          "name":"LFO2 DYN RANGE",
          "pageId":2,
          "sectionId":1,
@@ -1432,13 +1435,13 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":47,
          "parameterId":63,
          "type":"fader",
+         "msg":"patch",
          "name":"LFO2 DEPTH",
          "pageId":2,
          "sectionId":1,
@@ -1447,189 +1450,189 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":49,
          "parameterId":7,
          "type":"list",
+         "msg":"patch",
          "name":"LFO1 VCA",
          "pageId":2,
          "sectionId":2,
          "potId":1,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":50,
          "parameterId":6,
          "type":"list",
+         "msg":"patch",
          "name":"LFO1 VCF",
          "pageId":2,
          "sectionId":2,
          "potId":2,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":52,
          "parameterId":59,
          "type":"list",
+         "msg":"patch",
          "name":"LFO2 VCA",
          "pageId":2,
          "sectionId":2,
          "potId":4,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":53,
          "parameterId":58,
          "type":"list",
+         "msg":"patch",
          "name":"LFO2 VCF",
          "pageId":2,
          "sectionId":2,
          "potId":5,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":55,
          "parameterId":4,
          "type":"list",
+         "msg":"patch",
          "name":"LFO1 DCO1",
          "pageId":2,
          "sectionId":2,
          "potId":7,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":56,
          "parameterId":5,
          "type":"list",
+         "msg":"patch",
          "name":"LFO1 DCO2",
          "pageId":2,
          "sectionId":2,
          "potId":8,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EAC9",
-         "msg":"patch"
+         "fgColor":"EAC9"
       },
-      {  
+      {
          "id":58,
          "parameterId":56,
          "type":"list",
+         "msg":"patch",
          "name":"LFO2 DCO1",
          "pageId":2,
          "sectionId":2,
          "potId":10,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":59,
          "parameterId":57,
          "type":"list",
+         "msg":"patch",
          "name":"LFO2 DCO2",
          "pageId":2,
          "sectionId":2,
          "potId":11,
          "deviceId":1,
-         "overlay":[  
-            {  
+         "overlay":[
+            {
                "value":0,
                "label":"Off"
             },
-            {  
+            {
                "value":1,
                "label":"On"
             }
          ],
-         "fgColor":"EC80",
-         "msg":"patch"
+         "fgColor":"EC80"
       },
-      {  
+      {
          "id":61,
          "parameterId":12,
          "type":"fader",
+         "msg":"patch",
          "name":"LFO WHEEL AMOUNT",
          "pageId":2,
          "sectionId":3,
@@ -1638,8 +1641,7 @@
          "overlay":null,
          "min":0,
          "max":63,
-         "fgColor":"FFFF",
-         "msg":"patch"
+         "fgColor":"FFFF"
       }
    ]
 }
