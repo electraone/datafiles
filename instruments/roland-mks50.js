@@ -710,5 +710,19 @@ export default {
       'msg': 'sysex',
       'data': ['41', '36', '00', '23', '30', '01', '0C', '$V' ]
     }
+  ],
+  "patch": [
+    {
+      "request": [],
+      "responses": [
+        {
+          "header": ["41", "35", "00", "23", "20", "01"],
+          "rules": [
+            { "id": 1, "pPos": 0, "byte": 0, "bPos": 0, "size": 2 },
+            { "id": 2, "pPos": 0, "byte": 1, "bPos": 0, "size": 2 }
+          ]
+        }
+      ]
+    }
   ]
 }

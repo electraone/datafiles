@@ -164,10 +164,23 @@ export default {
       'min': 0,
       'max': 127,
       'defaultValue': 0,
-      'categoryId': 'setup'
+      'categoryId': 'setup',
+      'type':'list',
+      'overlayId': 3,
+      'msg':'sysex',
+      'data': ['43', '10', '01', '1B',
+        { 'type' : 'value',
+          'rules': [
+            {'id': 155, 'bPos': 5, 'size': 1 },
+            {'id': 156, 'bPos': 4, 'size': 1 },
+            {'id': 157, 'bPos': 3, 'size': 1 },
+            {'id': 158, 'bPos': 2, 'size': 1 },
+            {'id': 159, 'bPos': 1, 'size': 1 },
+            {'id': 160, 'bPos': 0, 'size': 1 }
+          ]
+        }
+      ]
     },
-
-
     {
       'id': 142,
       'type': 'list',

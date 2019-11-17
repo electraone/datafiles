@@ -90,20 +90,6 @@
       "channel":0,
       "instrument":"",
       "name":""
-    },
-    {
-      "id":3,
-      "port":0,
-      "channel":0,
-      "instrument":"",
-      "name":""
-    },
-    {
-      "id":4,
-      "port":0,
-      "channel":0,
-      "instrument":"",
-      "name":""
     }
   ],
   "controls":[
@@ -116,7 +102,7 @@
       "sectionId":1,
       "potId":1,
       "deviceId":1,
-      "nameColor":1,
+      "fgColor": "f800",
       "overlay":[
         {
           "value":0,
