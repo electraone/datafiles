@@ -702,7 +702,7 @@
                "label":"On"
             }
          ],
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -744,7 +744,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -786,7 +786,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF",
+         "fgColor":"12D3",
          "data":[
             "41",
             "10",
@@ -828,7 +828,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF"
+         "fgColor":"EC80"
       },
       {
          "id":5,
@@ -942,7 +942,7 @@
                "label":"Muff fuzz"
             }
          ],
-         "fgColor":"FFFF",
+         "fgColor":"BA32",
          "data":[
             "41",
             "10",
@@ -984,7 +984,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF"
+         "fgColor":"0512"
       },
       {
          "id":7,
@@ -1006,7 +1006,7 @@
                "label":"On"
             }
          ],
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -1048,7 +1048,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -1090,7 +1090,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF"
+         "fgColor":"12D3"
       },
       {
          "id":10,
@@ -1105,7 +1105,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF"
+         "fgColor":"EC80"
       },
       {
          "id":11,
@@ -1120,7 +1120,7 @@
          "overlay":null,
          "min":0,
          "max":120,
-         "fgColor":"FFFF",
+         "fgColor":"BA32",
          "data":[
             "41",
             "10",
@@ -1205,7 +1205,7 @@
                "label":"Equalizer"
             }
          ],
-         "fgColor":"FFFF",
+         "fgColor":"0512",
          "data":[
             "41",
             "10",
@@ -1254,7 +1254,7 @@
                "label":"On"
             }
          ],
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -1296,7 +1296,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -1338,7 +1338,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF",
+         "fgColor":"12D3",
          "data":[
             "41",
             "10",
@@ -1387,7 +1387,7 @@
                "label":"On"
             }
          ],
-         "fgColor":"FFFF",
+         "fgColor":"BA32",
          "data":[
             "41",
             "10",
@@ -1429,7 +1429,7 @@
          "overlay":null,
          "min":-50,
          "max":50,
-         "fgColor":"FFFF",
+         "fgColor":"BA32",
          "data":[
             "41",
             "10",
@@ -1478,7 +1478,7 @@
                "label":"On"
             }
          ],
-         "fgColor":"FFFF",
+         "fgColor":"0512",
          "data":[
             "41",
             "10",
@@ -1528,7 +1528,7 @@
                "label":"On"
             }
          ],
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -1570,7 +1570,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -1612,7 +1612,7 @@
          "overlay":null,
          "min":0,
          "max":100,
-         "fgColor":"FFFF",
+         "fgColor":"BA32",
          "data":[
             "41",
             "10",
@@ -1693,7 +1693,7 @@
                "label":"Reverb"
             }
          ],
-         "fgColor":"FFFF",
+         "fgColor":"0512",
          "data":[
             "41",
             "10",
@@ -1735,7 +1735,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF"
+         "fgColor":"EAC9"
       },
       {
          "id":29,
@@ -1750,7 +1750,7 @@
          "overlay":null,
          "min":0,
          "max":100,
-         "fgColor":"FFFF",
+         "fgColor":"BA32",
          "data":[
             "41",
             "10",
@@ -1799,7 +1799,7 @@
                "label":"On"
             }
          ],
-         "fgColor":"FFFF",
+         "fgColor":"0512",
          "data":[
             "41",
             "10",
@@ -1842,7 +1842,7 @@
          "overlay":null,
          "min":0,
          "max":100,
-         "fgColor":"FFFF",
+         "fgColor":"BA32",
          "data":[
             "41",
             "10",
@@ -1884,7 +1884,7 @@
          "overlay":null,
          "min":0,
          "max":124,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -1937,7 +1937,7 @@
          "overlay":null,
          "min":0,
          "max":124,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -1990,7 +1990,7 @@
          "overlay":null,
          "min":0,
          "max":40,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -2043,7 +2043,7 @@
          "overlay":null,
          "min":0,
          "max":13,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -2096,7 +2096,7 @@
          "overlay":null,
          "min":0,
          "max":9,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -2149,7 +2149,7 @@
          "overlay":null,
          "min":0,
          "max":80,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -2202,7 +2202,7 @@
          "overlay":null,
          "min":0,
          "max":100,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -2255,7 +2255,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -2308,7 +2308,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -2361,7 +2361,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -2414,7 +2414,7 @@
          "overlay":null,
          "min":0,
          "max":127,
-         "fgColor":"FFFF",
+         "fgColor":"EAC9",
          "data":[
             "41",
             "10",
@@ -2494,7 +2494,7 @@
                "label":"Modulation"
             }
          ],
-         "fgColor":"FFFF",
+         "fgColor":"EC80",
          "data":[
             "41",
             "10",
@@ -2547,7 +2547,7 @@
          "overlay":null,
          "min":0,
          "max":99,
-         "fgColor":"FFFF",
+         "fgColor":"EC80",
          "data":[
             "41",
             "10",
@@ -2600,7 +2600,7 @@
          "overlay":null,
          "min":0,
          "max":100,
-         "fgColor":"FFFF",
+         "fgColor":"EC80",
          "data":[
             "41",
             "10",
@@ -2653,7 +2653,7 @@
          "overlay":null,
          "min":0,
          "max":17,
-         "fgColor":"FFFF",
+         "fgColor":"EC80",
          "data":[
             "41",
             "10",
@@ -2706,7 +2706,7 @@
          "overlay":null,
          "min":0,
          "max":14,
-         "fgColor":"FFFF",
+         "fgColor":"EC80",
          "data":[
             "41",
             "10",
@@ -2759,7 +2759,7 @@
          "overlay":null,
          "min":0,
          "max":10,
-         "fgColor":"FFFF",
+         "fgColor":"EC80",
          "data":[
             "41",
             "10",
@@ -2812,7 +2812,7 @@
          "overlay":null,
          "min":0,
          "max":100,
-         "fgColor":"FFFF",
+         "fgColor":"EC80",
          "data":[
             "41",
             "10",
@@ -2865,7 +2865,7 @@
          "overlay":null,
          "min":0,
          "max":100,
-         "fgColor":"FFFF",
+         "fgColor":"EC80",
          "data":[
             "41",
             "10",
@@ -2918,7 +2918,7 @@
          "overlay":null,
          "min":0,
          "max":100,
-         "fgColor":"FFFF",
+         "fgColor":"EC80",
          "data":[
             "41",
             "10",
