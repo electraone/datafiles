@@ -1,0 +1,866 @@
+{
+  "id": "elektron-digitone",
+  "name": "Elektron Digitone",
+  "manufacturer": "Elektron",
+  "manufacturerId": "elektron",
+  "categories": [
+    {
+      "id": "track",
+      "label": "Track"
+    },
+    {
+      "id": "synth",
+      "label": "Synth"
+    },
+    {
+      "id": "filter",
+      "label": "Filter"
+    },
+    {
+      "id": "amp",
+      "label": "Amplifier"
+    },
+    {
+      "id": "lfo1",
+      "label": "LFO 1"
+    },
+    {
+      "id": "lfo2",
+      "label": "LFO 2"
+    }
+  ],
+  "overlays": [
+    {
+      "id": 1,
+      "name": "On / Off",
+      "items": [
+        {
+          "value": 0,
+          "label": "Off"
+        },
+        {
+          "value": 1,
+          "label": "On"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Algorithms",
+      "items": [
+        {
+          "value": 0,
+          "label": "Algorithm 1"
+        },
+        {
+          "value": 1,
+          "label": "Algorithm 2"
+        },
+        {
+          "value": 2,
+          "label": "Algorithm 3"
+        },
+        {
+          "value": 3,
+          "label": "Algorithm 4"
+        },
+        {
+          "value": 4,
+          "label": "Algorithm 5"
+        },
+        {
+          "value": 5,
+          "label": "Algorithm 6"
+        },
+        {
+          "value": 6,
+          "label": "Algorithm 7"
+        },
+        {
+          "value": 7,
+          "label": "Algorithm 8"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Filter types",
+      "items": [
+        {
+          "value": 0,
+          "label": "Off"
+        },
+        {
+          "value": 1,
+          "label": "Low pass 2"
+        },
+        {
+          "value": 2,
+          "label": "High pass"
+        },
+        {
+          "value": 3,
+          "label": "Low pass 4"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Lfo multiplier",
+      "items": [
+        {
+          "value": 0,
+          "label": "BMP 1"
+        },
+        {
+          "value": 1,
+          "label": "BMP 2"
+        },
+        {
+          "value": 2,
+          "label": "BMP 4"
+        },
+        {
+          "value": 3,
+          "label": "BMP 8"
+        },
+        {
+          "value": 4,
+          "label": "BMP 16"
+        },
+        {
+          "value": 5,
+          "label": "BMP 32"
+        },
+        {
+          "value": 6,
+          "label": "BMP 64"
+        },
+        {
+          "value": 7,
+          "label": "BMP 128"
+        },
+        {
+          "value": 8,
+          "label": "BMP 256"
+        },
+        {
+          "value": 9,
+          "label": "BMP 512"
+        },
+        {
+          "value": 10,
+          "label": "BMP 1K"
+        },
+        {
+          "value": 11,
+          "label": "BMP 2K"
+        },
+        {
+          "value": 12,
+          "label": "1"
+        },
+        {
+          "value": 13,
+          "label": "2"
+        },
+        {
+          "value": 14,
+          "label": "4"
+        },
+        {
+          "value": 15,
+          "label": "8"
+        },
+        {
+          "value": 16,
+          "label": "16"
+        },
+        {
+          "value": 17,
+          "label": "32"
+        },
+        {
+          "value": 18,
+          "label": "64"
+        },
+        {
+          "value": 19,
+          "label": "128"
+        },
+        {
+          "value": 20,
+          "label": "256"
+        },
+        {
+          "value": 21,
+          "label": "512"
+        },
+        {
+          "value": 22,
+          "label": "1K"
+        },
+        {
+          "value": 23,
+          "label": "2K"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "LFO destination",
+      "items": [
+        {
+          "value": 0,
+          "label": "None"
+        },
+        {
+          "value": 1,
+          "label": "SYN: Algorithm"
+        },
+        {
+          "value": 2,
+          "label": "SYN: Ratio C"
+        },
+        {
+          "value": 3,
+          "label": "SYN: Ratio A"
+        },
+        {
+          "value": 4,
+          "label": "SYN: Ratio B"
+        },
+        {
+          "value": 5,
+          "label": "SYN: Harmonics"
+        },
+        {
+          "value": 6,
+          "label": "SYN: Detune"
+        },
+        {
+          "value": 7,
+          "label": "SYN: Feedback"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "LFO waveforms",
+      "items": [
+        {
+          "value": 0,
+          "label": "Triangle"
+        },
+        {
+          "value": 1,
+          "label": "Sine"
+        },
+        {
+          "value": 2,
+          "label": "Square"
+        },
+        {
+          "value": 3,
+          "label": "Saw"
+        },
+        {
+          "value": 4,
+          "label": "Exponential"
+        },
+        {
+          "value": 5,
+          "label": "Ramp"
+        },
+        {
+          "value": 6,
+          "label": "Random"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "LFO trig mode",
+      "items": [
+        {
+          "value": 0,
+          "label": "Free"
+        },
+        {
+          "value": 1,
+          "label": "Trigger"
+        },
+        {
+          "value": 2,
+          "label": "Hold"
+        },
+        {
+          "value": 3,
+          "label": "One"
+        },
+        {
+          "value": 4,
+          "label": "Half"
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "id": 229,
+      "type": "list",
+      "name": "Mute",
+      "overlayId": 1,
+      "msg": "nrpn",
+      "categoryId": "track"
+    },
+    {
+      "id": 228,
+      "type": "fader",
+      "name": "Track level",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "track"
+    },
+    {
+      "id": 200,
+      "type": "list",
+      "name": "Algorithm",
+      "overlayId": 2,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 201,
+      "type": "fader",
+      "name": "Ratio C",
+      "min": 0,
+      "max": 18,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 202,
+      "type": "fader",
+      "name": "Ratio A",
+      "min": 0,
+      "max": 36,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 203,
+      "type": "fader",
+      "name": "Ratio B",
+      "min": 0,
+      "max": 384,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 204,
+      "type": "fader",
+      "name": "Harmonics",
+      "min": -64,
+      "max": 63,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 205,
+      "type": "fader",
+      "name": "Detune",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 206,
+      "type": "fader",
+      "name": "Feedback",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 207,
+      "type": "fader",
+      "name": "Mix",
+      "min": -64,
+      "max": 63,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 208,
+      "type": "fader",
+      "name": "A Env Attack",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 209,
+      "type": "fader",
+      "name": "A Env Decay",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 210,
+      "type": "fader",
+      "name": "A Env End",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 211,
+      "type": "fader",
+      "name": "A Level",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 212,
+      "type": "fader",
+      "name": "B Env Attack",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 213,
+      "type": "fader",
+      "name": "B Env Decay",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 214,
+      "type": "fader",
+      "name": "B Env End",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 215,
+      "type": "fader",
+      "name": "B Level",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 216,
+      "type": "fader",
+      "name": "A delay",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 217,
+      "type": "list",
+      "name": "A trigger",
+      "overlayId": 1,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 218,
+      "type": "list",
+      "name": "A env reset",
+      "overlayId": 1,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 219,
+      "type": "fader",
+      "name": "B delay",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 220,
+      "type": "list",
+      "name": "B trigger",
+      "overlayId": 1,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 221,
+      "type": "list",
+      "name": "B env reset",
+      "overlayId": 1,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 222,
+      "type": "list",
+      "name": "Phase reset",
+      "overlayId": 1,
+      "msg": "nrpn",
+      "categoryId": "synth"
+    },
+    {
+      "id": 148,
+      "type": "fader",
+      "name": "Cutoff",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "filter"
+    },
+    {
+      "id": 149,
+      "type": "fader",
+      "name": "Resonance",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "filter"
+    },
+    {
+      "id": 150,
+      "type": "list",
+      "name": "Filter type",
+      "overlayId": 3,
+      "msg": "nrpn",
+      "categoryId": "filter"
+    },
+    {
+      "id": 144,
+      "type": "fader",
+      "name": "Attack",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "filter"
+    },
+    {
+      "id": 145,
+      "type": "fader",
+      "name": "Decay",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "filter"
+    },
+    {
+      "id": 146,
+      "type": "fader",
+      "name": "Sustain",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "filter"
+    },
+    {
+      "id": 147,
+      "type": "fader",
+      "name": "Release",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "filter"
+    },
+    {
+      "id": 151,
+      "type": "fader",
+      "name": "Env amount",
+      "min": -64,
+      "max": 63,
+      "msg": "nrpn",
+      "categoryId": "filter"
+    },
+    {
+      "id": 152,
+      "type": "fader",
+      "name": "Base",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "filter"
+    },
+    {
+      "id": 153,
+      "type": "fader",
+      "name": "Width",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "filter"
+    },
+    {
+      "id": 160,
+      "type": "fader",
+      "name": "Attack",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "amp"
+    },
+    {
+      "id": 161,
+      "type": "fader",
+      "name": "Decay",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "amp"
+    },
+    {
+      "id": 162,
+      "type": "fader",
+      "name": "Sustain",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "amp"
+    },
+    {
+      "id": 163,
+      "type": "fader",
+      "name": "Release",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "amp"
+    },
+    {
+      "id": 164,
+      "type": "fader",
+      "name": "Drive",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "amp"
+    },
+    {
+      "id": 165,
+      "type": "fader",
+      "name": "Pan",
+      "min": -64,
+      "max": 63,
+      "msg": "nrpn",
+      "categoryId": "amp"
+    },
+    {
+      "id": 166,
+      "type": "fader",
+      "name": "Volume",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "amp"
+    },
+    {
+      "id": 169,
+      "type": "fader",
+      "name": "Chorus send",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "amp"
+    },
+    {
+      "id": 168,
+      "type": "fader",
+      "name": "Delay send",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "amp"
+    },
+    {
+      "id": 167,
+      "type": "fader",
+      "name": "Reverb send",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "amp"
+    },
+    {
+      "id": 170,
+      "type": "list",
+      "name": "Amp env reset",
+      "overlayId": 1,
+      "msg": "nrpn",
+      "categoryId": "amp"
+    },
+    {
+      "id": 176,
+      "type": "fader",
+      "name": "Lfo 1 speed",
+      "min": -64,
+      "max": 63,
+      "msg": "nrpn",
+      "categoryId": "lfo1"
+    },
+    {
+      "id": 177,
+      "type": "list",
+      "name": "Lfo 1 multiplier",
+      "overlayId": 4,
+      "msg": "nrpn",
+      "categoryId": "lfo1"
+    },
+    {
+      "id": 178,
+      "type": "fader",
+      "name": "Lfo 1 fade",
+      "min": -64,
+      "max": 63,
+      "msg": "nrpn",
+      "categoryId": "lfo1"
+    },
+    {
+      "id": 179,
+      "type": "list",
+      "name": "Lfo 1 destination",
+      "overlayId": 5,
+      "msg": "nrpn",
+      "categoryId": "lfo1"
+    },
+    {
+      "id": 180,
+      "type": "list",
+      "name": "Lfo 1 waveform",
+      "overlayId": 6,
+      "msg": "nrpn",
+      "categoryId": "lfo1"
+    },
+    {
+      "id": 181,
+      "type": "fader",
+      "name": "Lfo 1 start phase",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "lfo1"
+    },
+    {
+      "id": 182,
+      "type": "list",
+      "name": "Lfo 1 trig mode",
+      "overlayId": 7,
+      "msg": "nrpn",
+      "categoryId": "lfo1"
+    },
+    {
+      "id": 183,
+      "type": "fader",
+      "name": "Lfo 1 depth",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "lfo1"
+    },
+    {
+      "id": 185,
+      "type": "fader",
+      "name": "Lfo 2 speed",
+      "min": -64,
+      "max": 63,
+      "msg": "nrpn",
+      "categoryId": "lfo2"
+    },
+    {
+      "id": 186,
+      "type": "list",
+      "name": "Lfo 2 multiplier",
+      "overlayId": 4,
+      "msg": "nrpn",
+      "categoryId": "lfo2"
+    },
+    {
+      "id": 187,
+      "type": "fader",
+      "name": "Lfo 2 fade",
+      "min": -64,
+      "max": 63,
+      "msg": "nrpn",
+      "categoryId": "lfo2"
+    },
+    {
+      "id": 188,
+      "type": "list",
+      "name": "Lfo 2 destination",
+      "overlayId": 5,
+      "msg": "nrpn",
+      "categoryId": "lfo2"
+    },
+    {
+      "id": 189,
+      "type": "list",
+      "name": "Lfo 2 waveform",
+      "overlayId": 6,
+      "msg": "nrpn",
+      "categoryId": "lfo2"
+    },
+    {
+      "id": 190,
+      "type": "fader",
+      "name": "Lfo 2 start phase",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "lfo2"
+    },
+    {
+      "id": 191,
+      "type": "list",
+      "name": "Lfo 2 trig mode",
+      "overlayId": 7,
+      "msg": "nrpn",
+      "categoryId": "lfo2"
+    },
+    {
+      "id": 192,
+      "type": "fader",
+      "name": "Lfo 2 depth",
+      "min": 0,
+      "max": 127,
+      "msg": "nrpn",
+      "categoryId": "lfo2"
+    }
+  ],
+  "patch": [
+    {
+      "request": ["00", "20", "3C", "0D", "00", "6B", "01", "01", "01", "00", "00", "00", "05"],
+      "responses": [
+        {
+          "header": ["00", "20", "3C", "0D", "00", "5B"],
+          "rules": [
+            { "id": 205, "pPos": 0, "byte": 84, "bPos": 3, "size": 1 },
+            { "id": 205, "pPos": 7, "byte": 85, "bPos": 0, "size": 7 },
+            { "id": 205, "pPos": 0, "byte": 86, "bPos": 0, "size": 7 }
+          ]
+        }
+      ]
+    }
+  ]
+}

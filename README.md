@@ -6,8 +6,6 @@ Welcome to the public repository of the Electra One MIDI Controller project. The
 
 Folder 1 | Description
 ---|---
-firmware-loader | Mac OS X applications for flashing a new firmware
-firmware | Electra firmware files, come here reguraly to get the latest version
 instruments | Definitions of MIDI implementations for MIDI synthesizers, DPSs, soft synths
 presets | Electra presets aimed for programming of specific synthesizers
 

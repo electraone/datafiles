@@ -1,0 +1,629 @@
+{
+  "id": "crumar-bit99",
+  "name": "Crumar Bit99",
+  "manufacturer": "Crumar",
+  "manufacturerId": "crumar",
+  "categories": [
+    {
+      "id": "general",
+      "label": "General"
+    },
+    {
+      "id": "lfo",
+      "label": "LFO"
+    },
+    {
+      "id": "dco",
+      "label": "DCO"
+    },
+    {
+      "id": "vcf",
+      "label": "VCF"
+    },
+    {
+      "id": "vca",
+      "label": "VCA"
+    }
+  ],
+  "overlays": [
+    {
+      "id": 1,
+      "name": "Octaves",
+      "items": [
+        {
+          "value": 0,
+          "label": "32"
+        },
+        {
+          "value": 12,
+          "label": "16"
+        },
+        {
+          "value": 9,
+          "label": "8"
+        },
+        {
+          "value": 6,
+          "label": "4"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "On / Off",
+      "items": [
+        {
+          "value": 0,
+          "label": "Off"
+        },
+        {
+          "value": 1,
+          "label": "On"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "LFO waveforms",
+      "items": [
+        {
+          "value": 0,
+          "label": "None"
+        },
+        {
+          "value": 1,
+          "label": "Triangle"
+        },
+        {
+          "value": 2,
+          "label": "Sawtooth"
+        },
+        {
+          "value": 3,
+          "label": "Pulse"
+        }
+      ]
+    }
+  ],
+  "patch": [
+    {
+      "program": 0,
+      "request": ["25", "20", "09", "20", "00"],
+      "responses": [
+        {
+          "length": 80,
+          "header": ["25", "20", "07", "00"],
+          "rules": [
+            { "id": 12, "pPos": 0, "byte": 0, "bPos": 2, "size": 2 },
+            { "id": 12, "pPos": 2, "byte": 1, "bPos": 0, "size": 4 },
+            { "id": 11, "pPos": 0, "byte": 2, "bPos": 2, "size": 2 },
+            { "id": 11, "pPos": 2, "byte": 3, "bPos": 0, "size": 4 },
+            { "id": 10, "pPos": 0, "byte": 4, "bPos": 2, "size": 2 },
+            { "id": 10, "pPos": 2, "byte": 5, "bPos": 0, "size": 4 },
+            { "id": 63, "pPos": 0, "byte": 6, "bPos": 2, "size": 2 },
+            { "id": 63, "pPos": 2, "byte": 7, "bPos": 0, "size": 4 },
+            { "id": 62, "pPos": 0, "byte": 8, "bPos": 2, "size": 2 },
+            { "id": 62, "pPos": 2, "byte": 9, "bPos": 0, "size": 4 },
+            { "id": 45, "pPos": 0, "byte": 10, "bPos": 1, "size": 3 },
+            { "id": 45, "pPos": 3, "byte": 11, "bPos": 0, "size": 3 },
+            { "id": 48, "pPos": 0, "byte": 12, "bPos": 2, "size": 2 },
+            { "id": 48, "pPos": 2, "byte": 13, "bPos": 0, "size": 4 },
+            { "id": 34, "pPos": 0, "byte": 14, "bPos": 2, "size": 2 },
+            { "id": 34, "pPos": 2, "byte": 15, "bPos": 0, "size": 4 },
+            { "id": 33, "pPos": 0, "byte": 16, "bPos": 2, "size": 2 },
+            { "id": 33, "pPos": 2, "byte": 17, "bPos": 0, "size": 4 },
+            { "id": 44, "pPos": 0, "byte": 18, "bPos": 2, "size": 2 },
+            { "id": 44, "pPos": 2, "byte": 19, "bPos": 0, "size": 4 },
+            { "id": 24, "pPos": 0, "byte": 20, "bPos": 0, "size": 4 },
+            { "id": 24, "pPos": 0, "byte": 21, "bPos": 0, "size": 3 },
+            { "id": 35, "pPos": 0, "byte": 22, "bPos": 0, "size": 4 },
+            { "id": 35, "pPos": 0, "byte": 23, "bPos": 0, "size": 3 },
+            { "id": 32, "pPos": 0, "byte": 24, "bPos": 3, "size": 1 },
+            { "id": 32, "pPos": 1, "byte": 25, "bPos": 0, "size": 4 },
+            { "id": 43, "pPos": 0, "byte": 26, "bPos": 3, "size": 1 },
+            { "id": 43, "pPos": 1, "byte": 27, "bPos": 0, "size": 4 },
+            { "id": 19, "pPos": 0, "byte": 28, "bPos": 2, "size": 2 },
+            { "id": 19, "pPos": 2, "byte": 29, "bPos": 0, "size": 4 },
+            { "id": 20, "pPos": 0, "byte": 30, "bPos": 2, "size": 2 },
+            { "id": 20, "pPos": 2, "byte": 31, "bPos": 0, "size": 4 },
+            { "id": 15, "pPos": 0, "byte": 32, "bPos": 2, "size": 2 },
+            { "id": 15, "pPos": 2, "byte": 33, "bPos": 0, "size": 4 },
+            { "id": 21, "pPos": 0, "byte": 34, "bPos": 2, "size": 2 },
+            { "id": 21, "pPos": 2, "byte": 35, "bPos": 0, "size": 4 },
+            { "id": 18, "pPos": 0, "byte": 36, "bPos": 2, "size": 2 },
+            { "id": 18, "pPos": 2, "byte": 37, "bPos": 0, "size": 4 },
+            { "id": 17, "pPos": 0, "byte": 38, "bPos": 2, "size": 2 },
+            { "id": 17, "pPos": 2, "byte": 39, "bPos": 0, "size": 4 },
+            { "id": 22, "pPos": 0, "byte": 40, "bPos": 2, "size": 2 },
+            { "id": 22, "pPos": 2, "byte": 41, "bPos": 0, "size": 4 },
+            { "id": 51, "pPos": 0, "byte": 42, "bPos": 2, "size": 2 },
+            { "id": 51, "pPos": 2, "byte": 43, "bPos": 0, "size": 4 },
+            { "id": 46, "pPos": 0, "byte": 44, "bPos": 2, "size": 2 },
+            { "id": 46, "pPos": 2, "byte": 45, "bPos": 0, "size": 4 },
+            { "id": 47, "pPos": 0, "byte": 46, "bPos": 2, "size": 2 },
+            { "id": 47, "pPos": 2, "byte": 47, "bPos": 0, "size": 4 },
+            { "id": 13, "pPos": 0, "byte": 48, "bPos": 0, "size": 4 },
+            { "id": 13, "pPos": 4, "byte": 49, "bPos": 0, "size": 2 },
+            { "id": 14, "pPos": 0, "byte": 50, "bPos": 0, "size": 4 },
+            { "id": 14, "pPos": 4, "byte": 51, "bPos": 0, "size": 2 },
+            { "id": 16, "pPos": 0, "byte": 52, "bPos": 0, "size": 4 },
+            { "id": 16, "pPos": 4, "byte": 53, "bPos": 0, "size": 2 },
+            { "id": 49, "pPos": 0, "byte": 54, "bPos": 0, "size": 4 },
+            { "id": 49, "pPos": 4, "byte": 55, "bPos": 0, "size": 2 },
+            { "id": 50, "pPos": 0, "byte": 56, "bPos": 0, "size": 4 },
+            { "id": 50, "pPos": 4, "byte": 57, "bPos": 0, "size": 2 },
+            { "id": 52, "pPos": 0, "byte": 58, "bPos": 0, "size": 4 },
+            { "id": 52, "pPos": 4, "byte": 59, "bPos": 0, "size": 2 },
+            { "id": 8, "pPos": 0, "byte": 60, "bPos": 0, "size": 4 },
+            { "id": 8, "pPos": 4, "byte": 61, "bPos": 0, "size": 2 },
+            { "id": 60, "pPos": 0, "byte": 62, "bPos": 0, "size": 4 },
+            { "id": 60, "pPos": 4, "byte": 63, "bPos": 0, "size": 2 },
+            { "id": 9, "pPos": 0, "byte": 64, "bPos": 0, "size": 4 },
+            { "id": 9, "pPos": 4, "byte": 65, "bPos": 0, "size": 2 },
+            { "id": 61, "pPos": 0, "byte": 66, "bPos": 0, "size": 4 },
+            { "id": 61, "pPos": 4, "byte": 67, "bPos": 0, "size": 2 },
+            { "id": 59, "pPos": 0, "byte": 69, "bPos": 3, "size": 1 },
+            { "id": 58, "pPos": 0, "byte": 69, "bPos": 2, "size": 1 },
+            { "id": 57, "pPos": 0, "byte": 69, "bPos": 1, "size": 1 },
+            { "id": 56, "pPos": 0, "byte": 69, "bPos": 0, "size": 1 },
+            { "id": 7, "pPos": 0, "byte": 68, "bPos": 3, "size": 1 },
+            { "id": 6, "pPos": 0, "byte": 68, "bPos": 2, "size": 1 },
+            { "id": 5, "pPos": 0, "byte": 68, "bPos": 1, "size": 1 },
+            { "id": 4, "pPos": 0, "byte": 68, "bPos": 0, "size": 1 },
+            { "id": 1, "pPos": 0, "byte": 70, "bPos": 0, "size": 2 },
+            { "id": 53, "pPos": 0, "byte": 70, "bPos": 2, "size": 2 },
+            { "id": 23, "pPos": 0, "byte": 71, "bPos": 3, "size": 1 },
+            { "id": 30, "pPos": 0, "byte": 72, "bPos": 0, "size": 1 },
+            { "id": 41, "pPos": 0, "byte": 72, "bPos": 1, "size": 1 },
+            { "id": 29, "pPos": 0, "byte": 72, "bPos": 2, "size": 1 },
+            { "id": 40, "pPos": 0, "byte": 72, "bPos": 3, "size": 1 },
+            { "id": 28, "pPos": 0, "byte": 73, "bPos": 0, "size": 1 },
+            { "id": 39, "pPos": 0, "byte": 73, "bPos": 1, "size": 1 }
+          ]
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "id": 12,
+      "name": "LFO Wheel amount",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 11,
+      "name": "LFO1 Depth",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 10,
+      "name": "LFO1 Dyn Range",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 63,
+      "name": "LFO2 Depth",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 62,
+      "name": "LFO2 Dyn Range",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 45,
+      "name": "Detune",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 48,
+      "name": "Volume",
+      "categoryId": "vca",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 34,
+      "name": "Noise",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 33,
+      "name": "DCO1 dyn PWM",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 44,
+      "name": "DCO2 dyn PWM",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 24,
+      "name": "DCO1 Octave",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 1
+    },
+    {
+      "id": 35,
+      "name": "DCO2 Octave",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 1
+    },
+    {
+      "id": 32,
+      "name": "DCO1 PW",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 31
+    },
+    {
+      "id": 43,
+      "name": "DCO2 PW",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 31
+    },
+    {
+      "id": 19,
+      "name": "Cutoff",
+      "categoryId": "vcf",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 20,
+      "name": "Resonance",
+      "categoryId": "vcf",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 15,
+      "name": "Sustain",
+      "categoryId": "vcf",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 21,
+      "name": "Env amount",
+      "categoryId": "vcf",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 18,
+      "name": "Tracking",
+      "categoryId": "vcf",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 17,
+      "name": "Dyn attack",
+      "categoryId": "vcf",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 22,
+      "name": "Dyn envelope",
+      "categoryId": "vcf",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 51,
+      "name": "Sustain",
+      "categoryId": "vca",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 46,
+      "name": "Dyn attack",
+      "categoryId": "vca",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 47,
+      "name": "Dyn volume",
+      "categoryId": "vca",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 13,
+      "name": "Attack",
+      "categoryId": "vcf",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 14,
+      "name": "Decay",
+      "categoryId": "vcf",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 16,
+      "name": "Release",
+      "categoryId": "vcf",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 49,
+      "name": "Attack",
+      "categoryId": "vca",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 50,
+      "name": "Decay",
+      "categoryId": "vca",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 52,
+      "name": "Release",
+      "categoryId": "vca",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 8,
+      "name": "lfo1 delay",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 60,
+      "name": "lfo2 delay",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 9,
+      "name": "lfo1 rate",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 61,
+      "name": "lfo2 rate",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "fader",
+      "min": 0,
+      "max": 63
+    },
+    {
+      "id": 59,
+      "name": "LFO2 VCA",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 58,
+      "name": "LFO2 VCF",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 57,
+      "name": "LFO2 DCO2",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 56,
+      "name": "LFO2 DCO1",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 7,
+      "name": "LFO1 VCA",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 6,
+      "name": "LFO1 VCF",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 5,
+      "name": "LFO1 DCO2",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 4,
+      "name": "LFO1 DCO1",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 1,
+      "name": "LFO1 Waveform",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 3
+    },
+    {
+      "id": 53,
+      "name": "LFO2 Waveform",
+      "categoryId": "lfo",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 3
+    },
+    {
+      "id": 23,
+      "name": "Invert",
+      "categoryId": "vcf",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 30,
+      "name": "DCO1 pulse",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 41,
+      "name": "DCO2 pulse",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 29,
+      "name": "DCO1 sawtooth",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 40,
+      "name": "DCO2 sawtooth",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 28,
+      "name": "DCO1 triangle",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    },
+    {
+      "id": 39,
+      "name": "DCO2 triangle",
+      "categoryId": "dco",
+      "msg": "patch",
+      "type": "list",
+      "overlayId": 2
+    }
+  ]
+}
