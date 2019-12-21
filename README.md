@@ -8,6 +8,7 @@ Folder 1 | Description
 ---|---
 instruments | Definitions of MIDI implementations for MIDI synthesizers, DPSs, soft synths
 presets | Electra presets aimed for programming of specific synthesizers
+sysex | A collection of files for upgrading and Electra maintanance
 
 
 ## Bug reports and feature requests
