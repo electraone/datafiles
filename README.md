@@ -15,6 +15,8 @@ Electra does not need to be connected to a computer to work. The connection to c
 
 The Electra Editor is a web application. Chrome browser is required, because it fully supports WebMIDI standard. It works on all common platforms, ie. Windows, Mac OS X, and Linux.
 
+To run the Electra Editor, visit [editor.electra.one](https://editor.electra.one/)
+
 Electra is fully programmed with SysEx call. We are very happy to share the Electra's SysEx implementation with you. This allows other people to develop their own editors.
 
 
