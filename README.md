@@ -24,7 +24,7 @@ The [Electra User Guide](https://docs.google.com/document/d/1KDwv20wwwJdlct1m_r8
 ## Firmware updates
 Electra's firmware is under development. We publish releases of new firmware on regular basis. We made the update procedure very simple to encourage users to update their firmware frequently. The new firmware releases consists of both: new features and bug fixes.
 
-![image](https://github.com/martinpavlas/electra.one/raw/master/docs/ElectraOneEditor.png)
+![image](https://github.com/martinpavlas/electra.one/raw/master/docs/ElectraOneConsole.png)
 
 The Firmware is uploaded to electra with Electra One Console application. The application allows users to easily upload firmware to Electra. It also displays Electra's internal log messages in real-time. This is meant to give you a chance to share information about your Electra in case of problems.
 
