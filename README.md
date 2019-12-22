@@ -23,6 +23,9 @@ Electra is fully programmed with SysEx call. We are very happy to share the Elec
 ## Electra User Guide
 The [Electra User Guide](https://docs.google.com/document/d/1KDwv20wwwJdlct1m_r8IaG3PLbulb8RHOebviEDO6mM/edit?usp=sharing) is available at Google Docs. The User Guide is still under development, feel free to attach your comments and questions to it. We are updating it on regular basis as new features are added.
 
+## Documentation of technically oriented users
+[Electra One Github Wiki](https://github.com/martinpavlas/electra.one/wiki) pages provide detailed information about programming presets, instrument files, and other more technically oriented information about Electra One controller.
+
 ## Firmware updates
 We publish releases of new firmware on regular basis. We made the update procedure very simple to encourage users to update their firmware frequently. The new firmware releases consists of both: new features and bug fixes.
 
