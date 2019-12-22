@@ -9,11 +9,11 @@ We would like encourage people to share their work - their presets and instrumen
 Also, we would like to ask you to share your ideas and frustrations with us. We will do our best to reflect them in future releases of both Electra One firmware and Electra Editor.
 
 ## Electra Editor
-Electra does not need to be connected to a computer to work. The connection to computer, however, ias required when you want to upload or edit presets.
+Electra does not need to be connected to a computer to work. The connection to computer, however, is required when you want to upload or edit presets.
 
 ![image](https://github.com/martinpavlas/electra.one/raw/master/docs/electra-editor.png)
 
-The Electra Editor is a web application. Chrome browser is required, because it fully supports WebMIDI standard. It works on all common platforms, ie. Windows, Mac OS X, and Linux.
+The Electra Editor is a web application. You must use Chrome browser, because it fully supports WebMIDI standard. As long as you are using Chrome, it works on all common platforms, ie. Windows, Mac OS X, and Linux. There are users who successfully use Opera browser too.
 
 To run the Electra Editor, visit [editor.electra.one](https://editor.electra.one/)
 
@@ -21,14 +21,16 @@ Electra is fully programmed with SysEx call. We are very happy to share the Elec
 
 
 ## Electra User Guide
-The [Electra User Guide](https://docs.google.com/document/d/1KDwv20wwwJdlct1m_r8IaG3PLbulb8RHOebviEDO6mM/edit?usp=sharing) is available at Google Docs. The User Guide is still under developmen t, feel free to attach your comments and questions to it. We are updating it on regular basis as new features are added.
+The [Electra User Guide](https://docs.google.com/document/d/1KDwv20wwwJdlct1m_r8IaG3PLbulb8RHOebviEDO6mM/edit?usp=sharing) is available at Google Docs. The User Guide is still under development, feel free to attach your comments and questions to it. We are updating it on regular basis as new features are added.
 
 ## Firmware updates
-Electra's firmware is under development. We publish releases of new firmware on regular basis. We made the update procedure very simple to encourage users to update their firmware frequently. The new firmware releases consists of both: new features and bug fixes.
+We publish releases of new firmware on regular basis. We made the update procedure very simple to encourage users to update their firmware frequently. The new firmware releases consists of both: new features and bug fixes.
 
 ![image](https://github.com/martinpavlas/electra.one/raw/master/docs/ElectraOneConsole.png)
 
-The Firmware is uploaded to electra with Electra One Console application. The application allows users to easily upload firmware to Electra. It also displays Electra's internal log messages in real-time. This is meant to give you a chance to share information about your Electra in case of problems.
+The firmware is uploaded to Electra with an Electra One Console application. The application allows users to easily upload firmware to Electra. The update is a very simple and fast procedure.
+
+The application also displays Electra's internal log messages in real-time. This is meant to give you a chance to share information about your Electra in case of problems and to help you when writing more complex SysEx templates and SysEx patch parsers.
 
 The description of how to update Electra firmware is available at [Firmware Update Guide](https://github.com/martinpavlas/electra.one/wiki/Updating-firmware).
 
