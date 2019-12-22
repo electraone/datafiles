@@ -13,11 +13,25 @@ Electra does not need to be connected to a computer to work. The connection to c
 
 ![image](https://github.com/martinpavlas/electra.one/raw/master/docs/electra-editor.png)
 
-The Electra Editor is a web application. Chrome browser is required, because it fully supports WebMIDI standard.
+The Electra Editor is a web application. Chrome browser is required, because it fully supports WebMIDI standard. It works on all common platforms, ie. Windows, Mac OS X, and Linux.
+
+Electra is fully programmed with SysEx call. We are very happy to share the Electra's SysEx implementation with you. This allows other people to develop their own editors.
 
 
-## Folders
+## Electra User Guide
+The [Electra User Guide](https://docs.google.com/document/d/1KDwv20wwwJdlct1m_r8IaG3PLbulb8RHOebviEDO6mM/edit?usp=sharing) is available at Google Docs. The User Guide is still under developmen t, feel free to attach your comments and questions to it. We are updating it on regular basis as new features are added.
 
+## Firmware updates
+Electra's firmware is under development. We publish releases of new firmware on regular basis. We made the update procedure very simple to encourage users to update their firmware frequently. The new firmware releases consists of both: new features and bug fixes.
+
+![image](https://github.com/martinpavlas/electra.one/raw/master/docs/ElectraOneEditor.png)
+
+The Firmware is uploaded to electra with Electra One Console application. The application allows users to easily upload firmware to Electra. It also displays Electra's internal log messages in real-time. This is meant to give you a chance to share information about your Electra in case of problems.
+
+The description of how to update Electra firmware is available at [Firmware Update Guide](https://github.com/martinpavlas/electra.one/wiki/Updating-firmware).
+
+
+## Repository folders
 Folder | Description
 ---|---
 apps | Electra One Console application binaries
@@ -26,21 +40,12 @@ instruments | Definitions of MIDI implementations for MIDI synthesizers, DPSs, a
 presets | Electra presets aimed for controlling of specific synthesizers
 sysex | A collection of files for upgrading and Electra maintanance
 
-## Electra User Guide
-
-The [Electra User Guide](https://docs.google.com/document/d/1KDwv20wwwJdlct1m_r8IaG3PLbulb8RHOebviEDO6mM/edit?usp=sharing) is available at Google Docs. The User Guide is still under developmen t, feel free to attach your comments and questions to it. We are updating it on regular basis as new features are added.
-
-## Firmware updates
-Electra's firmware is under development. We publish releases of new firmware on regular basis. We made the update procedure very simple to encourage users to update their firmware frequently. The new firmware releases consists of both: new features and bug fixes.
-
-The description of how to update Electra firmware is available at [Firmware Update Guide](https://github.com/martinpavlas/electra.one/wiki/Updating-firmware).
 
 
 ## Bug reports and feature requests
 Please use the Issues tab (above) to report or review problems you are experiencing with Electra One and Electra Editor. You can also use Issue to suggest new features.
 
 [Report a new Issue](https://github.com/martinpavlas/electra.one/issues/new)
-
 
 
 
