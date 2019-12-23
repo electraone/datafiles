@@ -4,7 +4,7 @@
 
 Welcome to the public repository of the Electra One MIDI Controller project. The repository is meant for people who want to help with development of synthesizer definitions (Electra Instrument Files) and Electra presets.
 
-We would like encourage people to share their work - their presets and instrument files. That is the way to make Electra One a very useful device and it will make synthesizer programming very accesible to people without deeper knowledge of MIDI.
+We would like encourage people to share their work - their presets and instrument files. That is the way to make Electra One a very useful device and it will make synthesizer programming accesible to people without deeper knowledge of MIDI.
 
 Also, we would like to ask you to share your ideas and frustrations with us. We will do our best to reflect them in future releases of both Electra One firmware and Electra Editor.
 
@@ -24,16 +24,16 @@ Electra is fully programmed with SysEx call. We are very happy to share the Elec
 The [Electra User Guide](https://docs.google.com/document/d/1KDwv20wwwJdlct1m_r8IaG3PLbulb8RHOebviEDO6mM/edit?usp=sharing) is available at Google Docs. The User Guide is still under development, feel free to attach your comments and questions to it. We are updating it on regular basis as new features are added.
 
 ## Documentation for technically oriented users
-[Electra One Github Wiki](https://github.com/martinpavlas/electra.one/wiki) pages provide detailed information about programming presets, instrument files, and other more technically oriented information about Electra One controller.
+[Electra One Github Wiki](https://github.com/martinpavlas/electra.one/wiki) pages provide detailed information about programming presets, instrument files, and other technical information about Electra One controller.
 
 ## Firmware updates
 We publish releases of new firmware on regular basis. We made the update procedure very simple to encourage users to update their firmware frequently. The new firmware releases consists of both: new features and bug fixes.
 
 ![image](https://github.com/martinpavlas/electra.one/raw/master/docs/ElectraOneConsole.png)
 
-The firmware is uploaded to Electra with an Electra One Console application. The application allows users to easily upload firmware to Electra. The update is a very simple and fast procedure.
+The firmware is uploaded to the Electra with an Electra One Console application. The update is a very simple and fast procedure.
 
-The application also displays Electra's internal log messages in real-time. This is meant to give you a chance to share information about your Electra in case of problems and to help you when writing more complex SysEx templates and SysEx patch parsers.
+The application also displays Electra's internal log messages in real-time. This is meant to give you a chance to share information about your Electra in case of problems and to help you when writing more complex SysEx templates and SysEx patch parsers - log message show what is Electra exactly doing and what is happening inside it.
 
 The description of how to update Electra firmware is available at [Firmware Update Guide](https://github.com/martinpavlas/electra.one/wiki/Updating-firmware).
 
@@ -50,7 +50,7 @@ sysex | A collection of files for upgrading and Electra maintanance
 
 
 ## Bug reports and feature requests
-Please use the Issues tab (above) to report or review problems you are experiencing with Electra One and Electra Editor. You can also use Issue to suggest new features.
+Please use the Issues tab (above) to report or review problems you are experiencing with Electra One or Electra Editor. You can also use Issues to suggest new features.
 
 [Report a new Issue](https://github.com/martinpavlas/electra.one/issues/new)
 
