@@ -5,6 +5,8 @@ A two pages preset that covers all MKS-50 parameters.
 
 [Preset file](https://github.com/martinpavlas/electra.one/raw/master/presets/roland-mks50.json)
 
+![Roland MKS-50 preset](https://github.com/martinpavlas/electra.one/raw/master/docs/synths/Roland/mks-50-preset.png)
+
 
 ## Instrument file
 Fully implementation of MKS-50 SysEx. The instrument file supports changing parameters as well as reading of the patches stored in the MKS-50.
@@ -32,3 +34,7 @@ All three options can be reached by:
 once your MKS-50 is configured, if you select a new patch on MKS-50 panel, the patch values will be automatically picked by the Electra one.
 
 MKS-50 does not keep this settings after powering off. Therefore, the settings must be adjusted always after you power MKS-50 on.
+
+## Preset in action
+
+[![Roland MKS-50 preset](https://github.com/martinpavlas/electra.one/raw/master/docs/synths/Roland/mks-50-demo.png)](https://www.youtube.com/watch?v=QdbkWXKy0sI)
