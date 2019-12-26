@@ -3,7 +3,7 @@
 ## Preset file
 A demo preset made just for the purpose of this tutorial
 
-[Preset file](https://github.com/martinpavlas/electra.one/raw/master/presets/apple-logic-x-demo.json)
+[Preset file](https://github.com/martinpavlas/electra.one/raw/master/presets/logic-x-demo.json)
 
 ![Logic X demo](https://github.com/martinpavlas/electra.one/raw/master/docs/synths/Apple/logic-x-preset.png)
 
@@ -38,7 +38,7 @@ When you done everything correctly, you should see something like this.
 
 
 ### Load preset file to Electra
-Load [Logic X demo](https://github.com/martinpavlas/electra.one/raw/master/presets/apple-logic-x-demo.json) preset file to Electra. To do so, use "IMPORT PRESET FILE" button in [Electra Editor](https://editor.electra.one/). Once it is loaded in the editor, upload it to Electra by pressing "SEND TO ELECTRA" button. Make sure you are using **Chrome** browser.
+Load [Logic X demo](https://github.com/martinpavlas/electra.one/raw/master/presets/logic-x-demo.json) preset file to Electra. To do so, use "IMPORT PRESET FILE" button in [Electra Editor](https://editor.electra.one/). Once it is loaded in the editor, upload it to Electra by pressing "SEND TO ELECTRA" button. Make sure you are using **Chrome** browser.
 
 
 ### Assign plugin parameters to Electra One Controls
