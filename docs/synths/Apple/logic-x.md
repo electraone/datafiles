@@ -49,7 +49,7 @@ CMD + L
 
 The MIDI Learn window will show up. 
 
-![Logic X Plugin](https://github.com/martinpavlas/electra.one/raw/master/docs/synths/Apple/logic-plugin.png)
+![Logic X Plugin](https://github.com/martinpavlas/electra.one/raw/master/docs/synths/Apple/logic-learn-window.png)
 
 Click on the "GLIDE" parameter of the plugin. the MIDI Learn window should reflect. Now, twist the "GLIDE" knob on Electra. If you have done everything correctly, you will be will be able to change GLIDE with the knob on Electra One.
 
