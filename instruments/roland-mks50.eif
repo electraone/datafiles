@@ -1,6 +1,8 @@
 {
-  "name": "Roland MKS-50",
-  "id": "mks50",
+  "id": "roland-mks50",
+  "name": "Roland MKS50",
+  "manufacturer": "Roland",
+  "manufacturerId": "roland",
   "categories": [
     {
       "id": "dco",

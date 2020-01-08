@@ -1,6 +1,8 @@
 {
-  "name": "TB3",
-  "id": "tb3",
+  "id": "roland-tb3",
+  "name": "Roland TB3",
+  "manufacturer": "Roland",
+  "manufacturerId": "roland",
   "categories": [
     {
       "id": "controls",

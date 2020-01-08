@@ -1,6 +1,8 @@
 {
-  "name": "Mopho",
-  "id": "mopho",
+  "id": "dsi-mopho",
+  "name": "DSI mopho",
+  "manufacturer": "DSI",
+  "manufacturerId": "dsi",
   "categories": [
     {
       "id": "setup",
