@@ -1201,6 +1201,10 @@
          "nameColor":1,
          "overlay":[
             {
+               "value":0,
+               "label":"Polyphonic"
+            },
+            {
                "value":1,
                "label":"Pitch order"
             },
