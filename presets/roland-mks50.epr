@@ -1,5 +1,7 @@
 {
    "version":1,
+   "name":"Roland MKS50",
+   "projectId":"9030e9bd-c421-4f3d-8225-3ea6f8e86e7a",
    "pages":[
       {
          "id":1,
@@ -24,11 +26,35 @@
       {
          "id":6,
          "name":"Page 6"
+      },
+      {
+         "id":7,
+         "name":"Page 7"
+      },
+      {
+         "id":8,
+         "name":"Page 8"
+      },
+      {
+         "id":9,
+         "name":"Page 9"
+      },
+      {
+         "id":10,
+         "name":"Page 10"
+      },
+      {
+         "id":11,
+         "name":"Page 11"
+      },
+      {
+         "id":12,
+         "name":"Page 12"
       }
    ],
    "groups":[
       {
-         "id":0,
+         "id":1,
          "pageId":1,
          "name":"DCO",
          "span":3,
@@ -36,7 +62,7 @@
          "position":1
       },
       {
-         "id":3,
+         "id":4,
          "pageId":1,
          "name":"VCF",
          "span":2,
@@ -44,7 +70,7 @@
          "color":"FFFF"
       },
       {
-         "id":26,
+         "id":27,
          "pageId":1,
          "name":"ADSR",
          "span":4,
@@ -52,7 +78,7 @@
          "color":"FFFF"
       },
       {
-         "id":30,
+         "id":31,
          "pageId":1,
          "name":"Portamento",
          "span":2,
@@ -60,7 +86,7 @@
          "color":"FFFF"
       },
       {
-         "id":5,
+         "id":6,
          "pageId":1,
          "name":"Chorus",
          "span":1,
@@ -68,7 +94,7 @@
          "color":"FFFF"
       },
       {
-         "id":17,
+         "id":18,
          "pageId":1,
          "name":"LFO",
          "span":1,
@@ -80,7 +106,6 @@
       {
          "id":1,
          "name":"Roland MKS-50",
-         "instrument":"mks50",
          "port":1,
          "channel":1,
          "patch":[
@@ -423,28 +448,91 @@
                   }
                ]
             }
-         ]
+         ],
+         "instrumentId":"mks50"
       },
       {
          "id":2,
          "name":"Generic MIDI",
-         "instrument":"cc",
+         "port":2,
+         "channel":1,
+         "instrumentId":"generic-midi"
+      },
+      {
+         "id":3,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":1,
+         "channel":3
+      },
+      {
+         "id":4,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":1,
+         "channel":4
+      },
+      {
+         "id":5,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":1,
+         "channel":5
+      },
+      {
+         "id":6,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":1,
+         "channel":6
+      },
+      {
+         "id":7,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
          "port":2,
          "channel":1
+      },
+      {
+         "id":8,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":2
+      },
+      {
+         "id":9,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":3
+      },
+      {
+         "id":10,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":4
+      },
+      {
+         "id":11,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":5
+      },
+      {
+         "id":12,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":6
       }
    ],
-   "controls":[
+   "overlays":[
       {
          "id":1,
-         "parameterId":4,
-         "type":"list",
-         "msg":"sysex",
-         "name":"WAVEFORM PULSE",
-         "pageId":1,
-         "sectionId":1,
-         "potId":1,
-         "deviceId":1,
-         "overlay":[
+         "items":[
             {
                "value":0,
                "label":"None"
@@ -461,8 +549,162 @@
                "value":3,
                "label":"PWM"
             }
-         ],
+         ]
+      },
+      {
+         "id":2,
+         "items":[
+            {
+               "value":0,
+               "label":"Normal"
+            },
+            {
+               "value":1,
+               "label":"Inverted"
+            },
+            {
+               "value":2,
+               "label":"Normal with dynamics"
+            },
+            {
+               "value":3,
+               "label":"Dynamics"
+            }
+         ]
+      },
+      {
+         "id":3,
+         "items":[
+            {
+               "value":0,
+               "label":"Off"
+            },
+            {
+               "value":1,
+               "label":"On"
+            }
+         ]
+      },
+      {
+         "id":4,
+         "items":[
+            {
+               "value":0,
+               "label":"None"
+            },
+            {
+               "value":1,
+               "label":"Pefect saw"
+            },
+            {
+               "value":2,
+               "label":"50:50"
+            },
+            {
+               "value":3,
+               "label":"PWM"
+            },
+            {
+               "value":4,
+               "label":"Comb"
+            },
+            {
+               "value":5,
+               "label":"50:50 Comb"
+            }
+         ]
+      },
+      {
+         "id":5,
+         "items":[
+            {
+               "value":0,
+               "label":"50:50"
+            },
+            {
+               "value":1,
+               "label":"25:75"
+            },
+            {
+               "value":2,
+               "label":"Two peaks"
+            },
+            {
+               "value":3,
+               "label":"Four peaks"
+            },
+            {
+               "value":4,
+               "label":"50:50 -1 oct"
+            },
+            {
+               "value":5,
+               "label":"25:75 -1 oct"
+            }
+         ]
+      },
+      {
+         "id":6,
+         "items":[
+            {
+               "value":0,
+               "label":"Manual"
+            }
+         ]
+      },
+      {
+         "id":7,
+         "items":[
+            {
+               "value":0,
+               "label":"4'"
+            },
+            {
+               "value":1,
+               "label":"8'"
+            },
+            {
+               "value":2,
+               "label":"16'"
+            },
+            {
+               "value":3,
+               "label":"32'"
+            }
+         ]
+      },
+      {
+         "id":8,
+         "items":[
+            {
+               "value":0,
+               "label":"Normal"
+            },
+            {
+               "value":1,
+               "label":"Inverted"
+            },
+            {
+               "value":2,
+               "label":"Normal with dynamics"
+            },
+            {
+               "value":3,
+               "label":"Inverted with dynamics"
+            }
+         ]
+      }
+   ],
+   "controls":[
+      {
+         "id":1,
+         "parameterId":4,
+         "type":"list",
+         "msg":"sysex",
+         "name":"WAVEFORM PULSE",
+         "deviceId":1,
          "fgColor":"EC80",
+         "overlayId":1,
          "data":[
             "41",
             "36",
@@ -489,14 +731,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"NOISE LEVEL",
-         "pageId":1,
-         "sectionId":1,
-         "potId":2,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
          "max":3,
-         "fgColor":"EC80",
          "data":[
             "41",
             "36",
@@ -523,14 +761,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"PW/PWM MOD DEPTH",
-         "pageId":1,
-         "sectionId":1,
-         "potId":3,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
          "max":127,
-         "fgColor":"EC80",
          "data":[
             "41",
             "36",
@@ -557,14 +791,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"CUTOFF FREQ",
-         "pageId":1,
-         "sectionId":1,
-         "potId":4,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
          "max":127,
-         "fgColor":"12D3",
          "data":[
             "41",
             "36",
@@ -591,29 +821,9 @@
          "type":"list",
          "msg":"sysex",
          "name":"VCF ENV MODE",
-         "pageId":1,
-         "sectionId":1,
-         "potId":5,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Normal"
-            },
-            {
-               "value":1,
-               "label":"Inverted"
-            },
-            {
-               "value":2,
-               "label":"Normal with dynamics"
-            },
-            {
-               "value":3,
-               "label":"Dynamics"
-            }
-         ],
          "fgColor":"12D3",
+         "overlayId":2,
          "data":[
             "41",
             "36",
@@ -640,21 +850,9 @@
          "type":"list",
          "msg":"sysex",
          "name":"CHORUS",
-         "pageId":1,
-         "sectionId":1,
-         "potId":6,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
          "fgColor":"0512",
+         "overlayId":3,
          "data":[
             "41",
             "36",
@@ -681,37 +879,9 @@
          "type":"list",
          "msg":"sysex",
          "name":"WAVEFORM SAW",
-         "pageId":1,
-         "sectionId":1,
-         "potId":7,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"None"
-            },
-            {
-               "value":1,
-               "label":"Pefect saw"
-            },
-            {
-               "value":2,
-               "label":"50:50"
-            },
-            {
-               "value":3,
-               "label":"PWM"
-            },
-            {
-               "value":4,
-               "label":"Comb"
-            },
-            {
-               "value":5,
-               "label":"50:50 Comb"
-            }
-         ],
          "fgColor":"EC80",
+         "overlayId":4,
          "data":[
             "41",
             "36",
@@ -738,14 +908,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"LEVEL",
-         "pageId":1,
-         "sectionId":1,
-         "potId":8,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
          "max":127,
-         "fgColor":"EC80",
          "data":[
             "41",
             "36",
@@ -772,14 +938,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"ENV MOD DEPTH",
-         "pageId":1,
-         "sectionId":1,
-         "potId":9,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
          "max":127,
-         "fgColor":"EC80",
          "data":[
             "41",
             "36",
@@ -806,14 +968,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"RESONANCE",
-         "pageId":1,
-         "sectionId":1,
-         "potId":10,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
          "max":127,
-         "fgColor":"12D3",
          "data":[
             "41",
             "36",
@@ -840,14 +998,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"ENV MOD DEPTH",
-         "pageId":1,
-         "sectionId":1,
-         "potId":11,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
          "max":127,
-         "fgColor":"12D3",
          "data":[
             "41",
             "36",
@@ -874,14 +1028,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"CHORUS RATE",
-         "pageId":1,
-         "sectionId":1,
-         "potId":12,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"0512",
          "min":0,
          "max":127,
-         "fgColor":"0512",
          "data":[
             "41",
             "36",
@@ -908,37 +1058,9 @@
          "type":"list",
          "msg":"sysex",
          "name":"WAVEFORM SUB",
-         "pageId":1,
-         "sectionId":2,
-         "potId":1,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"50:50"
-            },
-            {
-               "value":1,
-               "label":"25:75"
-            },
-            {
-               "value":2,
-               "label":"Two peaks"
-            },
-            {
-               "value":3,
-               "label":"Four peaks"
-            },
-            {
-               "value":4,
-               "label":"50:50 -1 oct"
-            },
-            {
-               "value":5,
-               "label":"25:75 -1 oct"
-            }
-         ],
          "fgColor":"EC80",
+         "overlayId":5,
          "data":[
             "41",
             "36",
@@ -965,14 +1087,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"SUB LEVEL",
-         "pageId":1,
-         "sectionId":2,
-         "potId":2,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
          "max":3,
-         "fgColor":"EC80",
          "data":[
             "41",
             "36",
@@ -999,14 +1117,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"LFO MOD DEPTH",
-         "pageId":1,
-         "sectionId":2,
-         "potId":3,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
          "max":127,
-         "fgColor":"EC80",
          "data":[
             "41",
             "36",
@@ -1033,14 +1147,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"KEY FOLLOW",
-         "pageId":1,
-         "sectionId":2,
-         "potId":4,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
          "max":15,
-         "fgColor":"12D3",
          "data":[
             "41",
             "36",
@@ -1067,14 +1177,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"LFO MOD DEPTH",
-         "pageId":1,
-         "sectionId":2,
-         "potId":5,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
          "max":127,
-         "fgColor":"12D3",
          "data":[
             "41",
             "36",
@@ -1101,14 +1207,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"DELAY TIME",
-         "pageId":1,
-         "sectionId":2,
-         "potId":6,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"0512",
          "min":0,
          "max":127,
-         "fgColor":"0512",
          "data":[
             "41",
             "36",
@@ -1135,19 +1237,11 @@
          "type":"fader",
          "msg":"sysex",
          "name":"PWM RATE",
-         "pageId":1,
-         "sectionId":2,
-         "potId":7,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Manual"
-            }
-         ],
+         "fgColor":"EC80",
          "min":0,
          "max":127,
-         "fgColor":"EC80",
+         "overlayId":6,
          "data":[
             "41",
             "36",
@@ -1174,29 +1268,9 @@
          "type":"list",
          "msg":"sysex",
          "name":"RANGE",
-         "pageId":1,
-         "sectionId":2,
-         "potId":8,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"4'"
-            },
-            {
-               "value":1,
-               "label":"8'"
-            },
-            {
-               "value":2,
-               "label":"16'"
-            },
-            {
-               "value":3,
-               "label":"32'"
-            }
-         ],
          "fgColor":"EC80",
+         "overlayId":7,
          "data":[
             "41",
             "36",
@@ -1223,14 +1297,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"AFTERTOUCH DEPTH",
-         "pageId":1,
-         "sectionId":2,
-         "potId":9,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
          "max":15,
-         "fgColor":"EC80",
          "data":[
             "41",
             "36",
@@ -1257,14 +1327,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"HPF CUTOFF",
-         "pageId":1,
-         "sectionId":2,
-         "potId":10,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
          "max":3,
-         "fgColor":"12D3",
          "data":[
             "41",
             "36",
@@ -1291,14 +1357,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"AFTERTOUCH DEPTH",
-         "pageId":1,
-         "sectionId":2,
-         "potId":11,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
          "max":15,
-         "fgColor":"12D3",
          "data":[
             "41",
             "36",
@@ -1325,14 +1387,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"RATE",
-         "pageId":1,
-         "sectionId":2,
-         "potId":12,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"0512",
          "min":0,
          "max":127,
-         "fgColor":"0512",
          "data":[
             "41",
             "36",
@@ -1359,29 +1417,9 @@
          "type":"list",
          "msg":"sysex",
          "name":"DCO ENV MODE",
-         "pageId":1,
-         "sectionId":3,
-         "potId":1,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Normal"
-            },
-            {
-               "value":1,
-               "label":"Inverted"
-            },
-            {
-               "value":2,
-               "label":"Normal with dynamics"
-            },
-            {
-               "value":3,
-               "label":"Inverted with dynamics"
-            }
-         ],
          "fgColor":"EC80",
+         "overlayId":8,
          "data":[
             "41",
             "36",
@@ -1408,14 +1446,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"DETUNE",
-         "pageId":1,
-         "sectionId":3,
-         "potId":2,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":-63,
          "max":64,
-         "fgColor":"EC80",
          "data":[
             "41",
             "36",
@@ -1442,14 +1476,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"ATTACK LEVEL",
-         "pageId":1,
-         "sectionId":3,
-         "potId":3,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"BA32",
          "min":0,
          "max":127,
-         "fgColor":"BA32",
          "data":[
             "41",
             "36",
@@ -1476,14 +1506,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"DECAY 1 LEVEL",
-         "pageId":1,
-         "sectionId":3,
-         "potId":4,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"BA32",
          "min":0,
          "max":127,
-         "fgColor":"BA32",
          "data":[
             "41",
             "36",
@@ -1510,14 +1536,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"SUSTAIN LEVEL",
-         "pageId":1,
-         "sectionId":3,
-         "potId":5,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"BA32",
          "min":0,
          "max":127,
-         "fgColor":"BA32",
          "data":[
             "41",
             "36",
@@ -1544,14 +1566,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"RELEASE TIME",
-         "pageId":1,
-         "sectionId":3,
-         "potId":6,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"BA32",
          "min":0,
          "max":127,
-         "fgColor":"BA32",
          "data":[
             "41",
             "36",
@@ -1578,21 +1596,9 @@
          "type":"list",
          "msg":"sysex",
          "name":"PORTAMENTO",
-         "pageId":1,
-         "sectionId":3,
-         "potId":7,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
          "fgColor":"EC80",
+         "overlayId":3,
          "data":[
             "41",
             "36",
@@ -1619,14 +1625,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"PORTAMENTO TIME",
-         "pageId":1,
-         "sectionId":3,
-         "potId":8,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
          "max":127,
-         "fgColor":"EC80",
          "data":[
             "41",
             "36",
@@ -1653,14 +1655,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"ATTACK TIME",
-         "pageId":1,
-         "sectionId":3,
-         "potId":9,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"BA32",
          "min":0,
          "max":127,
-         "fgColor":"BA32",
          "data":[
             "41",
             "36",
@@ -1687,14 +1685,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"DECAY 1 TIME",
-         "pageId":1,
-         "sectionId":3,
-         "potId":10,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"BA32",
          "min":0,
          "max":127,
-         "fgColor":"BA32",
          "data":[
             "41",
             "36",
@@ -1721,14 +1715,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"DECAY 2 TIME",
-         "pageId":1,
-         "sectionId":3,
-         "potId":11,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"BA32",
          "min":0,
          "max":127,
-         "fgColor":"BA32",
          "data":[
             "41",
             "36",
@@ -1755,14 +1745,10 @@
          "type":"fader",
          "msg":"sysex",
          "name":"KEY FOLLOW",
-         "pageId":1,
-         "sectionId":3,
-         "potId":12,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"BA32",
          "min":0,
          "max":15,
-         "fgColor":"BA32",
          "data":[
             "41",
             "36",

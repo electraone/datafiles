@@ -1,5 +1,7 @@
 {
    "version":1,
+   "name":"Crumar Bit99",
+   "projectId":"b8e7c4b0-8671-4bba-a370-2498d1cc2bef",
    "pages":[
       {
          "id":1,
@@ -24,11 +26,35 @@
       {
          "id":6,
          "name":"Page 6"
+      },
+      {
+         "id":7,
+         "name":"Page 7"
+      },
+      {
+         "id":8,
+         "name":"Page 8"
+      },
+      {
+         "id":9,
+         "name":"Page 9"
+      },
+      {
+         "id":10,
+         "name":"Page 10"
+      },
+      {
+         "id":11,
+         "name":"Page 11"
+      },
+      {
+         "id":12,
+         "name":"Page 12"
       }
    ],
    "groups":[
       {
-         "id":0,
+         "id":1,
          "pageId":1,
          "name":"DCO",
          "span":3,
@@ -36,7 +62,7 @@
          "color":"FFFF"
       },
       {
-         "id":3,
+         "id":4,
          "pageId":1,
          "name":"vcf",
          "span":2,
@@ -44,7 +70,7 @@
          "color":"FFFF"
       },
       {
-         "id":5,
+         "id":6,
          "pageId":1,
          "name":"vca",
          "span":1,
@@ -52,7 +78,7 @@
          "color":"FFFF"
       },
       {
-         "id":36,
+         "id":37,
          "pageId":2,
          "name":"lfo 1",
          "span":3,
@@ -60,7 +86,7 @@
          "color":"FFFF"
       },
       {
-         "id":39,
+         "id":40,
          "pageId":2,
          "name":"lfo 2",
          "span":3,
@@ -68,7 +94,7 @@
          "color":"FFFF"
       },
       {
-         "id":60,
+         "id":61,
          "pageId":2,
          "name":"Setup",
          "span":6,
@@ -80,7 +106,6 @@
       {
          "id":1,
          "name":"Crumar Bit99",
-         "instrument":"bit99",
          "port":1,
          "channel":1,
          "patch":[
@@ -95,7 +120,7 @@
                ],
                "responses":[
                   {
-                     "length":78,
+                     "length":80,
                      "header":[
                         "25",
                         "20",
@@ -702,14 +727,142 @@
                   }
                ]
             }
-         ]
+         ],
+         "instrumentId":"bit99"
       },
       {
          "id":2,
          "name":"Generic MIDI",
-         "instrument":"cc",
+         "port":2,
+         "channel":1,
+         "instrumentId":"generic-midi"
+      },
+      {
+         "id":3,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":1,
+         "channel":3
+      },
+      {
+         "id":4,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":1,
+         "channel":4
+      },
+      {
+         "id":5,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":1,
+         "channel":5
+      },
+      {
+         "id":6,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":1,
+         "channel":6
+      },
+      {
+         "id":7,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
          "port":2,
          "channel":1
+      },
+      {
+         "id":8,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":2
+      },
+      {
+         "id":9,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":3
+      },
+      {
+         "id":10,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":4
+      },
+      {
+         "id":11,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":5
+      },
+      {
+         "id":12,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":6
+      }
+   ],
+   "overlays":[
+      {
+         "id":1,
+         "items":[
+            {
+               "value":0,
+               "label":"Off"
+            },
+            {
+               "value":1,
+               "label":"On"
+            }
+         ]
+      },
+      {
+         "id":2,
+         "items":[
+            {
+               "value":0,
+               "label":"32'"
+            },
+            {
+               "value":12,
+               "label":"16'"
+            },
+            {
+               "value":9,
+               "label":"8'"
+            },
+            {
+               "value":6,
+               "label":"4'"
+            }
+         ]
+      },
+      {
+         "id":3,
+         "items":[
+            {
+               "value":0,
+               "label":"None"
+            },
+            {
+               "value":1,
+               "label":"Triangle"
+            },
+            {
+               "value":2,
+               "label":"Sawtooth"
+            },
+            {
+               "value":3,
+               "label":"Pulse"
+            }
+         ]
       }
    ],
    "controls":[
@@ -719,21 +872,9 @@
          "type":"list",
          "msg":"patch",
          "name":"DCO1 SAWTOOTH",
-         "pageId":1,
-         "sectionId":1,
-         "potId":1,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EAC9"
+         "fgColor":"EAC9",
+         "overlayId":1
       },
       {
          "id":2,
@@ -741,21 +882,9 @@
          "type":"list",
          "msg":"patch",
          "name":"DCO2 SAWTOOTH",
-         "pageId":1,
-         "sectionId":1,
-         "potId":2,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EC80"
+         "fgColor":"EC80",
+         "overlayId":1
       },
       {
          "id":3,
@@ -763,14 +892,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"DETUNE",
-         "pageId":1,
-         "sectionId":1,
-         "potId":3,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"FFFF",
          "min":0,
-         "max":63,
-         "fgColor":"FFFF"
+         "max":63
       },
       {
          "id":4,
@@ -778,14 +903,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"CUTOFF",
-         "pageId":1,
-         "sectionId":1,
-         "potId":4,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
-         "max":63,
-         "fgColor":"12D3"
+         "max":63
       },
       {
          "id":5,
@@ -793,14 +914,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"RESONANCE",
-         "pageId":1,
-         "sectionId":1,
-         "potId":5,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
-         "max":63,
-         "fgColor":"12D3"
+         "max":63
       },
       {
          "id":6,
@@ -808,14 +925,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"ATTACK",
-         "pageId":1,
-         "sectionId":1,
-         "potId":6,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"0512",
          "min":0,
-         "max":63,
-         "fgColor":"0512"
+         "max":63
       },
       {
          "id":7,
@@ -823,21 +936,9 @@
          "type":"list",
          "msg":"patch",
          "name":"DCO1 TRIANGLE",
-         "pageId":1,
-         "sectionId":1,
-         "potId":7,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EAC9"
+         "fgColor":"EAC9",
+         "overlayId":1
       },
       {
          "id":8,
@@ -845,21 +946,9 @@
          "type":"list",
          "msg":"patch",
          "name":"DCO2 TRIANGLE",
-         "pageId":1,
-         "sectionId":1,
-         "potId":8,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EC80"
+         "fgColor":"EC80",
+         "overlayId":1
       },
       {
          "id":9,
@@ -867,14 +956,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"NOISE",
-         "pageId":1,
-         "sectionId":1,
-         "potId":9,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"FFFF",
          "min":0,
-         "max":63,
-         "fgColor":"FFFF"
+         "max":63
       },
       {
          "id":10,
@@ -882,14 +967,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"ENV AMOUNT",
-         "pageId":1,
-         "sectionId":1,
-         "potId":10,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
-         "max":63,
-         "fgColor":"12D3"
+         "max":63
       },
       {
          "id":11,
@@ -897,14 +978,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"TRACKING",
-         "pageId":1,
-         "sectionId":1,
-         "potId":11,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
-         "max":63,
-         "fgColor":"12D3"
+         "max":63
       },
       {
          "id":12,
@@ -912,14 +989,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"DECAY",
-         "pageId":1,
-         "sectionId":1,
-         "potId":12,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"0512",
          "min":0,
-         "max":63,
-         "fgColor":"0512"
+         "max":63
       },
       {
          "id":13,
@@ -927,21 +1000,9 @@
          "type":"list",
          "msg":"patch",
          "name":"DCO1 PULSE",
-         "pageId":1,
-         "sectionId":2,
-         "potId":1,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EAC9"
+         "fgColor":"EAC9",
+         "overlayId":1
       },
       {
          "id":14,
@@ -949,21 +1010,9 @@
          "type":"list",
          "msg":"patch",
          "name":"DCO2 PULSE",
-         "pageId":1,
-         "sectionId":2,
-         "potId":2,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EC80"
+         "fgColor":"EC80",
+         "overlayId":1
       },
       {
          "id":15,
@@ -971,14 +1020,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"VOLUME",
-         "pageId":1,
-         "sectionId":2,
-         "potId":3,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"FFFF",
          "min":0,
-         "max":63,
-         "fgColor":"FFFF"
+         "max":63
       },
       {
          "id":16,
@@ -986,14 +1031,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"ATTACK",
-         "pageId":1,
-         "sectionId":2,
-         "potId":4,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
-         "max":63,
-         "fgColor":"12D3"
+         "max":63
       },
       {
          "id":17,
@@ -1001,14 +1042,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"DECAY",
-         "pageId":1,
-         "sectionId":2,
-         "potId":5,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
-         "max":63,
-         "fgColor":"12D3"
+         "max":63
       },
       {
          "id":18,
@@ -1016,14 +1053,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"SUSTAIN",
-         "pageId":1,
-         "sectionId":2,
-         "potId":6,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"0512",
          "min":0,
-         "max":63,
-         "fgColor":"0512"
+         "max":63
       },
       {
          "id":19,
@@ -1031,14 +1064,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"DCO1 PW",
-         "pageId":1,
-         "sectionId":2,
-         "potId":7,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EAC9",
          "min":0,
-         "max":31,
-         "fgColor":"EAC9"
+         "max":31
       },
       {
          "id":20,
@@ -1046,14 +1075,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"DCO2 PW",
-         "pageId":1,
-         "sectionId":2,
-         "potId":8,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
-         "max":31,
-         "fgColor":"EC80"
+         "max":31
       },
       {
          "id":22,
@@ -1061,14 +1086,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"SUSTAIN",
-         "pageId":1,
-         "sectionId":2,
-         "potId":10,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
-         "max":63,
-         "fgColor":"12D3"
+         "max":63
       },
       {
          "id":23,
@@ -1076,14 +1097,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"RELEASE",
-         "pageId":1,
-         "sectionId":2,
-         "potId":11,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
-         "max":63,
-         "fgColor":"12D3"
+         "max":63
       },
       {
          "id":24,
@@ -1091,14 +1108,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"RELEASE",
-         "pageId":1,
-         "sectionId":2,
-         "potId":12,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"0512",
          "min":0,
-         "max":63,
-         "fgColor":"0512"
+         "max":63
       },
       {
          "id":25,
@@ -1106,14 +1119,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"DCO1 DYN PWM",
-         "pageId":1,
-         "sectionId":3,
-         "potId":1,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EAC9",
          "min":0,
-         "max":63,
-         "fgColor":"EAC9"
+         "max":63
       },
       {
          "id":26,
@@ -1121,14 +1130,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"DCO2 DYN PWM",
-         "pageId":1,
-         "sectionId":3,
-         "potId":2,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
-         "max":63,
-         "fgColor":"EC80"
+         "max":63
       },
       {
          "id":28,
@@ -1136,14 +1141,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"DYN ATTACK",
-         "pageId":1,
-         "sectionId":3,
-         "potId":4,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
-         "max":63,
-         "fgColor":"12D3"
+         "max":63
       },
       {
          "id":29,
@@ -1151,14 +1152,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"DYN ENVELOPE",
-         "pageId":1,
-         "sectionId":3,
-         "potId":5,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"12D3",
          "min":0,
-         "max":63,
-         "fgColor":"12D3"
+         "max":63
       },
       {
          "id":30,
@@ -1166,14 +1163,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"DYN ATTACK",
-         "pageId":1,
-         "sectionId":3,
-         "potId":6,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"0512",
          "min":0,
-         "max":63,
-         "fgColor":"0512"
+         "max":63
       },
       {
          "id":31,
@@ -1181,29 +1174,9 @@
          "type":"list",
          "msg":"patch",
          "name":"DCO1 OCTAVE",
-         "pageId":1,
-         "sectionId":3,
-         "potId":7,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"32'"
-            },
-            {
-               "value":12,
-               "label":"16'"
-            },
-            {
-               "value":9,
-               "label":"8'"
-            },
-            {
-               "value":6,
-               "label":"4'"
-            }
-         ],
-         "fgColor":"EAC9"
+         "fgColor":"EAC9",
+         "overlayId":2
       },
       {
          "id":32,
@@ -1211,29 +1184,9 @@
          "type":"list",
          "msg":"patch",
          "name":"DCO2 OCTAVE",
-         "pageId":1,
-         "sectionId":3,
-         "potId":8,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"32'"
-            },
-            {
-               "value":12,
-               "label":"16'"
-            },
-            {
-               "value":9,
-               "label":"8'"
-            },
-            {
-               "value":6,
-               "label":"4'"
-            }
-         ],
-         "fgColor":"EC80"
+         "fgColor":"EC80",
+         "overlayId":2
       },
       {
          "id":34,
@@ -1241,21 +1194,9 @@
          "type":"list",
          "msg":"patch",
          "name":"INVERT",
-         "pageId":1,
-         "sectionId":3,
-         "potId":10,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"12D3"
+         "fgColor":"12D3",
+         "overlayId":1
       },
       {
          "id":36,
@@ -1263,14 +1204,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"DYN VOLUME",
-         "pageId":1,
-         "sectionId":3,
-         "potId":12,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"0512",
          "min":0,
-         "max":63,
-         "fgColor":"0512"
+         "max":63
       },
       {
          "id":37,
@@ -1278,29 +1215,9 @@
          "type":"list",
          "msg":"patch",
          "name":"LFO1 WAVEFORM",
-         "pageId":2,
-         "sectionId":1,
-         "potId":1,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"None"
-            },
-            {
-               "value":1,
-               "label":"Triangle"
-            },
-            {
-               "value":2,
-               "label":"Sawtooth"
-            },
-            {
-               "value":3,
-               "label":"Pulse"
-            }
-         ],
-         "fgColor":"EAC9"
+         "fgColor":"EAC9",
+         "overlayId":3
       },
       {
          "id":38,
@@ -1308,14 +1225,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"LFO1 RATE",
-         "pageId":2,
-         "sectionId":1,
-         "potId":2,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EAC9",
          "min":0,
-         "max":63,
-         "fgColor":"EAC9"
+         "max":63
       },
       {
          "id":39,
@@ -1323,14 +1236,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"LFO1 DELAY",
-         "pageId":2,
-         "sectionId":1,
-         "potId":3,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EAC9",
          "min":0,
-         "max":63,
-         "fgColor":"EAC9"
+         "max":63
       },
       {
          "id":40,
@@ -1338,29 +1247,9 @@
          "type":"list",
          "msg":"patch",
          "name":"LFO2 WAVEFORM",
-         "pageId":2,
-         "sectionId":1,
-         "potId":4,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"None"
-            },
-            {
-               "value":1,
-               "label":"Triangle"
-            },
-            {
-               "value":2,
-               "label":"Sawtooth"
-            },
-            {
-               "value":3,
-               "label":"Pulse"
-            }
-         ],
-         "fgColor":"EC80"
+         "fgColor":"EC80",
+         "overlayId":3
       },
       {
          "id":41,
@@ -1368,14 +1257,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"LFO2 RATE",
-         "pageId":2,
-         "sectionId":1,
-         "potId":5,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
-         "max":63,
-         "fgColor":"EC80"
+         "max":63
       },
       {
          "id":42,
@@ -1383,14 +1268,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"LFO2 DELAY",
-         "pageId":2,
-         "sectionId":1,
-         "potId":6,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
-         "max":63,
-         "fgColor":"EC80"
+         "max":63
       },
       {
          "id":43,
@@ -1398,14 +1279,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"LFO1 DYN RANGE",
-         "pageId":2,
-         "sectionId":1,
-         "potId":7,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EAC9",
          "min":0,
-         "max":63,
-         "fgColor":"EAC9"
+         "max":63
       },
       {
          "id":44,
@@ -1413,14 +1290,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"LFO1 DEPTH",
-         "pageId":2,
-         "sectionId":1,
-         "potId":8,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EAC9",
          "min":0,
-         "max":63,
-         "fgColor":"EAC9"
+         "max":63
       },
       {
          "id":46,
@@ -1428,14 +1301,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"LFO2 DYN RANGE",
-         "pageId":2,
-         "sectionId":1,
-         "potId":10,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
-         "max":63,
-         "fgColor":"EC80"
+         "max":63
       },
       {
          "id":47,
@@ -1443,14 +1312,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"LFO2 DEPTH",
-         "pageId":2,
-         "sectionId":1,
-         "potId":11,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"EC80",
          "min":0,
-         "max":63,
-         "fgColor":"EC80"
+         "max":63
       },
       {
          "id":49,
@@ -1458,21 +1323,9 @@
          "type":"list",
          "msg":"patch",
          "name":"LFO1 VCA",
-         "pageId":2,
-         "sectionId":2,
-         "potId":1,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EAC9"
+         "fgColor":"EAC9",
+         "overlayId":1
       },
       {
          "id":50,
@@ -1480,21 +1333,9 @@
          "type":"list",
          "msg":"patch",
          "name":"LFO1 VCF",
-         "pageId":2,
-         "sectionId":2,
-         "potId":2,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EAC9"
+         "fgColor":"EAC9",
+         "overlayId":1
       },
       {
          "id":52,
@@ -1502,21 +1343,9 @@
          "type":"list",
          "msg":"patch",
          "name":"LFO2 VCA",
-         "pageId":2,
-         "sectionId":2,
-         "potId":4,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EC80"
+         "fgColor":"EC80",
+         "overlayId":1
       },
       {
          "id":53,
@@ -1524,21 +1353,9 @@
          "type":"list",
          "msg":"patch",
          "name":"LFO2 VCF",
-         "pageId":2,
-         "sectionId":2,
-         "potId":5,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EC80"
+         "fgColor":"EC80",
+         "overlayId":1
       },
       {
          "id":55,
@@ -1546,21 +1363,9 @@
          "type":"list",
          "msg":"patch",
          "name":"LFO1 DCO1",
-         "pageId":2,
-         "sectionId":2,
-         "potId":7,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EAC9"
+         "fgColor":"EAC9",
+         "overlayId":1
       },
       {
          "id":56,
@@ -1568,21 +1373,9 @@
          "type":"list",
          "msg":"patch",
          "name":"LFO1 DCO2",
-         "pageId":2,
-         "sectionId":2,
-         "potId":8,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EAC9"
+         "fgColor":"EAC9",
+         "overlayId":1
       },
       {
          "id":58,
@@ -1590,21 +1383,9 @@
          "type":"list",
          "msg":"patch",
          "name":"LFO2 DCO1",
-         "pageId":2,
-         "sectionId":2,
-         "potId":10,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EC80"
+         "fgColor":"EC80",
+         "overlayId":1
       },
       {
          "id":59,
@@ -1612,21 +1393,9 @@
          "type":"list",
          "msg":"patch",
          "name":"LFO2 DCO2",
-         "pageId":2,
-         "sectionId":2,
-         "potId":11,
          "deviceId":1,
-         "overlay":[
-            {
-               "value":0,
-               "label":"Off"
-            },
-            {
-               "value":1,
-               "label":"On"
-            }
-         ],
-         "fgColor":"EC80"
+         "fgColor":"EC80",
+         "overlayId":1
       },
       {
          "id":61,
@@ -1634,14 +1403,10 @@
          "type":"fader",
          "msg":"patch",
          "name":"LFO WHEEL AMOUNT",
-         "pageId":2,
-         "sectionId":3,
-         "potId":1,
          "deviceId":1,
-         "overlay":null,
+         "fgColor":"FFFF",
          "min":0,
-         "max":63,
-         "fgColor":"FFFF"
+         "max":63
       }
    ]
 }
