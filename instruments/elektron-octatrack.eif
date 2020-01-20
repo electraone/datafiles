@@ -1,0 +1,765 @@
+{
+  "id": "elektron-octatrack",
+  "name": "Elektron Octatrack",
+  "manufacturer": "Elektron",
+  "manufacturerId": "elektron",
+  "categories": [
+    {
+      "id": "track",
+      "label": "Track"
+    },
+    {
+      "id": "source",
+      "label": "Source"
+    },
+    {
+      "id": "amp",
+      "label": "AMP"
+    },
+    {
+      "id": "lfo",
+      "label": "LFO"
+    },
+    {
+      "id": "fx1",
+      "label": "FX1"
+    },
+    {
+      "id": "fx2",
+      "label": "FX2"
+    },
+    {
+      "id": "lfo",
+      "label": "LFO"
+    },
+    {
+      "id": "mute",
+      "label": "MUTE"
+    },
+    {
+      "id": "global",
+      "label": "GLOBAL"
+    },
+    {
+      "id": "mmute",
+      "label": "MIDI MUTE"
+    },
+    {
+      "id": "msolo",
+      "label": "MIDI SOLO"
+    }
+  ],
+  "overlays": [
+    {
+      "id": 1,
+      "name": "MUTE",
+      "items": [
+        {
+          "value": 0,
+          "label": "off"
+        },
+        {
+          "value": 127,
+          "label": "mute on"
+        }
+        ]
+    },
+    {
+      "id": 2,
+      "name": "SOLO",
+      "items": [
+        {
+          "value": 0,
+          "label": "off"
+        },
+        {
+          "value": 127,
+          "label": "solo"
+          }
+        ]
+    },
+    {
+      "id": 3,
+      "name": "CUE",
+      "items": [
+        {
+          "value": 0,
+          "label": "off"
+        },
+        {
+          "value": 127,
+          "label": "CUE ON"
+          }
+        ]
+    },
+    {
+      "id": 4,
+      "name": "REC",
+      "items": [
+        {
+          "value": 0,
+          "label": "DISARMED"
+        },
+        {
+          "value": 127,
+          "label": "ARMED"
+          }
+        ]
+    },
+    {
+      "id": 5,
+      "name": "SCESELECT",
+      "items": [
+        {
+          "value": 0,
+          "label": "SCN 1"
+        },
+        {
+          "value": 1,
+          "label": "SCN 2"
+          },
+        {
+          "value": 2,
+          "label": "SCN 3"
+          },
+        {
+          "value": 3,
+          "label": "SCN 4"
+          },
+        {
+          "value": 4,
+          "label": "SCN 5"
+          },
+        {
+          "value": 5,
+          "label": "SCN 6"
+          },
+        {
+          "value": 6,
+          "label": "SCN 7"
+          },
+        {
+          "value": 7,
+          "label": "SCN 8"
+          },
+        {
+          "value": 8,
+          "label": "SCN 9"
+          },
+        {
+          "value": 9,
+          "label": "SCN 10"
+          },
+        {
+          "value": 10,
+          "label": "SCN 11"
+          },
+        {
+          "value": 11,
+          "label": "SCN 12"
+          },
+        {
+          "value": 12,
+          "label": "SCN 13"
+          },
+        {
+          "value": 13,
+          "label": "SCN 14"
+          },
+        {
+          "value": 14,
+          "label": "SCN 15"
+          },
+        {
+          "value": 15,
+          "label": "SCN 16"
+          }
+        ]
+    }
+  ],
+  "parameters": [
+    {
+      "id": 7,
+      "type": "fader",
+      "name": "Track Level",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "track"
+    },
+    {
+      "id": 8,
+      "type": "fader",
+      "name": "Track Balance",
+      "msg": "cc7",
+      "min": -64,
+      "max": 63,
+      "categoryId": "track"
+    },
+    {
+      "id": 16,
+      "type": "fader",
+      "name": "Pitch",
+      "msg": "cc7",
+      "min": -63,
+      "max": 64,
+      "categoryId": "source"
+    },
+    {
+      "id": 17,
+      "type": "fader",
+      "name": "start",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "source"
+    },
+    {
+      "id": 18,
+      "type": "fader",
+      "name": "len",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "source"
+    },
+    {
+      "id": 19,
+      "type": "fader",
+      "name": "rate",
+      "msg": "cc7",
+      "min": -63,
+      "max": 64,
+      "categoryId": "source"
+    },
+    {
+      "id": 20,
+      "type": "fader",
+      "name": "rtrg",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "source"
+    },
+    {
+      "id": 21,
+      "type": "fader",
+      "name": "rtim",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "source"
+    },
+    {
+      "id": 22,
+      "type": "fader",
+      "name": "ATK",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "amp"
+    },
+    {
+      "id": 23,
+      "type": "fader",
+      "name": "HOLD",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "amp"
+    },
+    {
+      "id": 24,
+      "type": "fader",
+      "name": "REL",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "amp"
+    },
+    {
+      "id": 25,
+      "type": "fader",
+      "name": "VOLUME",
+      "msg": "cc7",
+      "min": -63,
+      "max": 64,
+      "categoryId": "amp"
+    },
+    {
+      "id": 26,
+      "type": "fader",
+      "name": "BALANCE",
+      "msg": "cc7",
+      "min": -63,
+      "max": 64,
+      "categoryId": "amp"
+    },
+    {
+      "id": 28,
+      "type": "fader",
+      "name": "SPD 1",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "lfo"
+    },
+    {
+      "id": 29,
+      "type": "fader",
+      "name": "SPD 2",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "lfo"
+    },
+    {
+      "id": 30,
+      "type": "fader",
+      "name": "SPD 3",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "lfo"
+    },
+    {
+      "id": 31,
+      "type": "fader",
+      "name": "DEP 1",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "lfo"
+    },
+    {
+      "id": 32,
+      "type": "fader",
+      "name": "DEP 2",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "lfo"
+    },
+    {
+      "id": 33,
+      "type": "fader",
+      "name": "DEP 3",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "lfo"
+    },
+    {
+      "id": 34,
+      "type": "fader",
+      "name": "FX1 1",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "fx1"
+    },
+    {
+      "id": 35,
+      "type": "fader",
+      "name": "FX1 2",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "fx1"
+    },
+    {
+      "id": 36,
+      "type": "fader",
+      "name": "FX1 3",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "fx1"
+    },
+    {
+      "id": 37,
+      "type": "fader",
+      "name": "FX1 4",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "fx1"
+    },
+    {
+      "id": 38,
+      "type": "fader",
+      "name": "FX1 5",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "fx1"
+    },
+    {
+      "id": 39,
+      "type": "fader",
+      "name": "FX1 6",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "fx1"
+    },
+    {
+      "id": 40,
+      "type": "fader",
+      "name": "FX2 1",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "fx2"
+    },
+    {
+      "id": 41,
+      "type": "fader",
+      "name": "FX2 2",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "fx2"
+    },
+    {
+      "id": 42,
+      "type": "fader",
+      "name": "FX2 3",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "fx2"
+    },
+    {
+      "id": 43,
+      "type": "fader",
+      "name": "FX2 4",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "fx2"
+    },
+    {
+      "id": 44,
+      "type": "fader",
+      "name": "FX2 5",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "fx2"
+    },
+    {
+      "id": 45,
+      "type": "fader",
+      "name": "FX2 6",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "fx2"
+    },
+    {
+      "id": 47,
+      "type": "fader",
+      "name": "CUE LEVEL",
+      "msg": "cc7",
+      "min": 0,
+      "max": 127,
+      "categoryId": "global"
+    },
+    {
+      "id": 48,
+      "type": "fader",
+      "name": "X fader",
+      "msg": "cc7",
+      "min": -64,
+      "max": 63,
+      "categoryId": "global"
+    },
+    {
+      "id": 55,
+      "type": "list",
+      "name": "SCENE A",
+      "overlayId": 5,
+      "msg": "cc7",
+      "min": 0,
+      "max": 16,
+      "categoryId": "global"
+    },
+    {
+      "id": 56,
+      "type": "list",
+      "name": "SCENE B",
+      "overlayId": 5,
+      "msg": "cc7",
+      "min": 0,
+      "max": 16,
+      "categoryId": "global"
+    },
+    {
+      "id": 49,
+      "type": "list",
+      "name": "TRACK MUTE",
+      "overlayId": 1,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "track"
+    },
+    {
+      "id": 50,
+      "type": "list",
+      "name": "TRACK SOLO",
+      "overlayId": 2,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "track"
+    },
+    {
+      "id": 51,
+      "type": "list",
+      "name": "TRACK CUE",
+      "overlayId": 3,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "track"
+    },
+    {
+      "id": 52,
+      "type": "list",
+      "name": "TRACK ARM",
+      "overlayId": 4,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "track"
+    },
+    {
+      "id": 53,
+      "type": "list",
+      "name": "REC ARM",
+      "overlayId": 4,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "track"
+    },
+    {
+      "id": 112,
+      "type": "list",
+      "name": "MUTE TRK 1",
+      "overlayId": 1,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "mmute"
+    },
+    {
+      "id": 113,
+      "type": "list",
+      "name": "MUTE TRK 2",
+      "overlayId": 1,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "mmute"
+    },
+    {
+      "id": 114,
+      "type": "list",
+      "name": "MUTE TRK 3",
+      "overlayId": 1,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "mmute"
+    },
+    {
+      "id": 115,
+      "type": "list",
+      "name": "MUTE TRK 4",
+      "overlayId": 1,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "mmute"
+    },
+    {
+      "id": 116,
+      "type": "list",
+      "name": "MUTE TRK 5",
+      "overlayId": 1,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "mmute"
+    },
+    {
+      "id": 117,
+      "type": "list",
+      "name": "MUTE TRK 6",
+      "overlayId": 1,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "mmute"
+    },
+    {
+      "id": 118,
+      "type": "list",
+      "name": "MUTE TRK 7",
+      "overlayId": 1,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "mmute"
+    },
+    {
+      "id": 119,
+      "type": "list",
+      "name": "MUTE TRK 8",
+      "overlayId": 1,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "mmute"
+    },
+    {
+      "id": 120,
+      "type": "list",
+      "name": "SOLO TRK 1",
+      "overlayId": 2,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "msolo"
+    },
+    {
+      "id": 121,
+      "type": "list",
+      "name": "SOLO TRK 2",
+      "overlayId": 2,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "msolo"
+    },
+    {
+      "id": 122,
+      "type": "list",
+      "name": "SOLO TRK 3",
+      "overlayId": 2,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "msolo"
+    },
+    {
+      "id": 123,
+      "type": "list",
+      "name": "SOLO TRK 4",
+      "overlayId": 2,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "msolo"
+    },
+    {
+      "id": 124,
+      "type": "list",
+      "name": "SOLO TRK 5",
+      "overlayId": 2,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "msolo"
+    },
+    {
+      "id": 125,
+      "type": "list",
+      "name": "SOLO TRK 6",
+      "overlayId": 2,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "msolo"
+    },
+    {
+      "id": 126,
+      "type": "list",
+      "name": "SOLO TRK 7",
+      "overlayId": 2,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "msolo"
+    },
+    {
+      "id": 127,
+      "type": "list",
+      "name": "SOLO TRK 8",
+      "overlayId": 2,
+      "msg": "cc7",
+       "min": 0,
+      "max": 127,
+      "categoryId": "msolo"
+    }
+
+
+  ],
+  "patch": [
+    {
+      "request": [
+        "00",
+        "20",
+        "3C",
+        "0D",
+        "00",
+        "6B",
+        "01",
+        "01",
+        "01",
+        "00",
+        "00",
+        "00",
+        "05"
+      ],
+      "responses": [
+        {
+          "header": [
+            "00",
+            "20",
+            "3C",
+            "0D",
+            "00",
+            "5B"
+          ],
+          "rules": [
+            {
+              "id": 205,
+              "pPos": 0,
+              "byte": 84,
+              "bPos": 3,
+              "size": 1
+            },
+            {
+              "id": 205,
+              "pPos": 7,
+              "byte": 85,
+              "bPos": 0,
+              "size": 7
+            },
+            {
+              "id": 205,
+              "pPos": 0,
+              "byte": 86,
+              "bPos": 0,
+              "size": 7
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
