@@ -1,0 +1,97 @@
+{
+  "id": "yamaha-tx7",
+  "name": "Yamaha TX7",
+  "manufacturer": "Yamaha",
+  "manufacturerId": "yamaha",
+  "categories": [
+    {
+      "id": "op1",
+      "label": "Operator 1"
+    }
+  ],
+  "overlays": [
+    {
+      "id": 1,
+      "name": "Op Modes",
+      "items": [
+        {
+          "value": 0,
+          "label": "Fixed"
+        },
+        {
+          "value": 1,
+          "label": "Ratio"
+        }
+      ]
+    }
+  ],
+  "parameters": [
+    {
+      "id": 1,
+      "type": "fader",
+      "name": "Rate 2",
+      "min": 0,
+      "max": 99,
+      "categoryId": "op6",
+      "msg": "sysex",
+      "data": ["43", "10", "00", "01",
+        { "type": "value",
+          "rules": [
+            { "id": 1, "bPos": 0, "size": 7 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 161,
+      "name": "Keyboard mode",
+      "categoryId": "setup",
+      "type": "list",
+      "overlayId": 3,
+      "msg": "sysex",
+      "data": ["43", "10", "04", "02",
+        { "type": "value",
+          "rules": [
+            { "id": 161, "bPos": 0, "size": 7 }
+          ]
+        }
+      ]
+    }
+  ],
+  "patch": [
+    {
+      "request": ["43", "20", "00"],
+      "responses": [
+        {
+          "header": ["43", "00", "00", "01", "1B"],
+          "rules": [
+            {
+              "id": 1,
+              "pPos": 0,
+              "byte": 1,
+              "bPos": 0,
+              "size": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "request": ["43", "20", "01"],
+      "responses": [
+        {
+          "header": ["43", "00", "01", "00", "5E"],
+          "rules": [
+            {
+              "id": 161,
+              "pPos": 0,
+              "byte": 2,
+              "bPos": 0,
+              "size": 7
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
