@@ -299,6 +299,39 @@
          "fgColor":"12D3",
          "min":0,
          "max":127
+      },
+      {
+         "id":13,
+         "parameterId":13,
+         "type":"list",
+         "msg":"cc7",
+         "name":"LIST",
+         "deviceId":1,
+         "fgColor":"12D3",
+         "min":0,
+         "max":127
+      },
+      {
+         "id":14,
+         "parameterId":14,
+         "type":"pad",
+         "msg":"cc7",
+         "name":"PAD",
+         "deviceId":1,
+         "fgColor":"12D3",
+         "min":0,
+         "max":127
+      },
+      {
+         "id":15,
+         "parameterId":15,
+         "type":"adsr",
+         "msg":"cc7",
+         "name":"ENVELOPE",
+         "deviceId":1,
+         "fgColor":"12D3",
+         "min":0,
+         "max":127
       }
    ]
 }

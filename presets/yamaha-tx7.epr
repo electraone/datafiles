@@ -56,7 +56,7 @@
       {
          "id":1,
          "pageId":1,
-         "name":"Opertaor 1",
+         "name":"Operator 1",
          "span":1,
          "position":1,
          "color":"FFFF"
@@ -298,1057 +298,1208 @@
                            "pPos":0,
                            "byte":136,
                            "bPos":0,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":144,
                            "pPos":0,
                            "byte":144,
                            "bPos":0,
-                           "size":6
+                           "size":6,
+                           "msg":"sysex"
                         },
                         {
                            "id":143,
                            "pPos":0,
                            "byte":143,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":126,
                            "pPos":0,
                            "byte":126,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":127,
                            "pPos":0,
                            "byte":127,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":128,
                            "pPos":0,
                            "byte":128,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":129,
                            "pPos":0,
                            "byte":129,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":130,
                            "pPos":0,
                            "byte":130,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":131,
                            "pPos":0,
                            "byte":131,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":132,
                            "pPos":0,
                            "byte":132,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":133,
                            "pPos":0,
                            "byte":133,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":137,
                            "pPos":0,
                            "byte":137,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":138,
                            "pPos":0,
                            "byte":138,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":139,
                            "pPos":0,
                            "byte":139,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":140,
                            "pPos":0,
                            "byte":140,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":141,
                            "pPos":0,
                            "byte":141,
                            "bPos":0,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":142,
                            "pPos":0,
                            "byte":142,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":135,
                            "pPos":0,
                            "byte":135,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":113,
                            "pPos":0,
                            "byte":113,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":114,
                            "pPos":0,
                            "byte":114,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":115,
                            "pPos":0,
                            "byte":115,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":116,
                            "pPos":0,
                            "byte":116,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":117,
                            "pPos":0,
                            "byte":117,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":118,
                            "pPos":0,
                            "byte":118,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":119,
                            "pPos":0,
                            "byte":119,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":120,
                            "pPos":0,
                            "byte":120,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":92,
                            "pPos":0,
                            "byte":92,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":93,
                            "pPos":0,
                            "byte":93,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":94,
                            "pPos":0,
                            "byte":94,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":95,
                            "pPos":0,
                            "byte":95,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":96,
                            "pPos":0,
                            "byte":96,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":97,
                            "pPos":0,
                            "byte":97,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":98,
                            "pPos":0,
                            "byte":98,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":99,
                            "pPos":0,
                            "byte":99,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":71,
                            "pPos":0,
                            "byte":71,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":72,
                            "pPos":0,
                            "byte":72,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":73,
                            "pPos":0,
                            "byte":73,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":74,
                            "pPos":0,
                            "byte":74,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":75,
                            "pPos":0,
                            "byte":75,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":76,
                            "pPos":0,
                            "byte":76,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":77,
                            "pPos":0,
                            "byte":77,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":78,
                            "pPos":0,
                            "byte":78,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":50,
                            "pPos":0,
                            "byte":50,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":51,
                            "pPos":0,
                            "byte":51,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":52,
                            "pPos":0,
                            "byte":52,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":53,
                            "pPos":0,
                            "byte":53,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":54,
                            "pPos":0,
                            "byte":54,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":55,
                            "pPos":0,
                            "byte":55,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":56,
                            "pPos":0,
                            "byte":56,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":57,
                            "pPos":0,
                            "byte":57,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":29,
                            "pPos":0,
                            "byte":29,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":30,
                            "pPos":0,
                            "byte":30,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":31,
                            "pPos":0,
                            "byte":31,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":32,
                            "pPos":0,
                            "byte":32,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":33,
                            "pPos":0,
                            "byte":33,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":34,
                            "pPos":0,
                            "byte":34,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":35,
                            "pPos":0,
                            "byte":35,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":36,
                            "pPos":0,
                            "byte":36,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":8,
                            "pPos":0,
                            "byte":8,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":9,
                            "pPos":0,
                            "byte":9,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":10,
                            "pPos":0,
                            "byte":10,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":11,
                            "pPos":0,
                            "byte":11,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":12,
                            "pPos":0,
                            "byte":12,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":13,
                            "pPos":0,
                            "byte":13,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":14,
                            "pPos":0,
                            "byte":14,
                            "bPos":0,
-                           "size":2
+                           "size":2,
+                           "msg":"sysex"
                         },
                         {
                            "id":15,
                            "pPos":0,
                            "byte":15,
                            "bPos":0,
-                           "size":3
+                           "size":3,
+                           "msg":"sysex"
                         },
                         {
                            "id":105,
                            "pPos":0,
                            "byte":105,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":106,
                            "pPos":0,
                            "byte":106,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":107,
                            "pPos":0,
                            "byte":107,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":108,
                            "pPos":0,
                            "byte":108,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":109,
                            "pPos":0,
                            "byte":109,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":110,
                            "pPos":0,
                            "byte":110,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":111,
                            "pPos":0,
                            "byte":111,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":112,
                            "pPos":0,
                            "byte":112,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":84,
                            "pPos":0,
                            "byte":84,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":85,
                            "pPos":0,
                            "byte":85,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":86,
                            "pPos":0,
                            "byte":86,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":87,
                            "pPos":0,
                            "byte":87,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":88,
                            "pPos":0,
                            "byte":88,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":89,
                            "pPos":0,
                            "byte":89,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":90,
                            "pPos":0,
                            "byte":90,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":91,
                            "pPos":0,
                            "byte":91,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":63,
                            "pPos":0,
                            "byte":63,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":64,
                            "pPos":0,
                            "byte":64,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":65,
                            "pPos":0,
                            "byte":65,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":66,
                            "pPos":0,
                            "byte":66,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":67,
                            "pPos":0,
                            "byte":67,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":68,
                            "pPos":0,
                            "byte":68,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":69,
                            "pPos":0,
                            "byte":69,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":70,
                            "pPos":0,
                            "byte":70,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":42,
                            "pPos":0,
                            "byte":42,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":43,
                            "pPos":0,
                            "byte":43,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":44,
                            "pPos":0,
                            "byte":44,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":45,
                            "pPos":0,
                            "byte":45,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":46,
                            "pPos":0,
                            "byte":46,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":47,
                            "pPos":0,
                            "byte":47,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":48,
                            "pPos":0,
                            "byte":48,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":49,
                            "pPos":0,
                            "byte":49,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":21,
                            "pPos":0,
                            "byte":21,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":22,
                            "pPos":0,
                            "byte":22,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":23,
                            "pPos":0,
                            "byte":23,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":24,
                            "pPos":0,
                            "byte":24,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":25,
                            "pPos":0,
                            "byte":25,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":26,
                            "pPos":0,
                            "byte":26,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":27,
                            "pPos":0,
                            "byte":27,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":28,
                            "pPos":0,
                            "byte":28,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":0,
                            "pPos":0,
                            "byte":0,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":1,
                            "pPos":0,
                            "byte":1,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":2,
                            "pPos":0,
                            "byte":2,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":3,
                            "pPos":0,
                            "byte":3,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":4,
                            "pPos":0,
                            "byte":4,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":5,
                            "pPos":0,
                            "byte":5,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":6,
                            "pPos":0,
                            "byte":6,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":7,
                            "pPos":0,
                            "byte":7,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":134,
                            "pPos":0,
                            "byte":134,
                            "bPos":0,
-                           "size":5
+                           "size":5,
+                           "msg":"sysex"
                         },
                         {
                            "id":125,
                            "pPos":0,
                            "byte":125,
                            "bPos":0,
-                           "size":4
+                           "size":4,
+                           "msg":"sysex"
                         },
                         {
                            "id":104,
                            "pPos":0,
                            "byte":104,
                            "bPos":0,
-                           "size":4
+                           "size":4,
+                           "msg":"sysex"
                         },
                         {
                            "id":83,
                            "pPos":0,
                            "byte":83,
                            "bPos":0,
-                           "size":4
+                           "size":4,
+                           "msg":"sysex"
                         },
                         {
                            "id":62,
                            "pPos":0,
                            "byte":62,
                            "bPos":0,
-                           "size":4
+                           "size":4,
+                           "msg":"sysex"
                         },
                         {
                            "id":41,
                            "pPos":0,
                            "byte":41,
                            "bPos":0,
-                           "size":4
+                           "size":4,
+                           "msg":"sysex"
                         },
                         {
                            "id":20,
                            "pPos":0,
                            "byte":20,
                            "bPos":0,
-                           "size":4
+                           "size":4,
+                           "msg":"sysex"
                         },
                         {
                            "id":124,
                            "pPos":0,
                            "byte":124,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":103,
                            "pPos":0,
                            "byte":103,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":82,
                            "pPos":0,
                            "byte":82,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":61,
                            "pPos":0,
                            "byte":61,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":40,
                            "pPos":0,
                            "byte":40,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":19,
                            "pPos":0,
                            "byte":19,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":123,
                            "pPos":0,
                            "byte":123,
                            "bPos":0,
-                           "size":5
+                           "size":5,
+                           "msg":"sysex"
                         },
                         {
                            "id":102,
                            "pPos":0,
                            "byte":102,
                            "bPos":0,
-                           "size":5
+                           "size":5,
+                           "msg":"sysex"
                         },
                         {
                            "id":81,
                            "pPos":0,
                            "byte":81,
                            "bPos":0,
-                           "size":5
+                           "size":5,
+                           "msg":"sysex"
                         },
                         {
                            "id":60,
                            "pPos":0,
                            "byte":60,
                            "bPos":0,
-                           "size":5
+                           "size":5,
+                           "msg":"sysex"
                         },
                         {
                            "id":39,
                            "pPos":0,
                            "byte":39,
                            "bPos":0,
-                           "size":5
+                           "size":5,
+                           "msg":"sysex"
                         },
                         {
                            "id":18,
                            "pPos":0,
                            "byte":18,
                            "bPos":0,
-                           "size":5
+                           "size":5,
+                           "msg":"sysex"
                         },
                         {
                            "id":122,
                            "pPos":0,
                            "byte":122,
                            "bPos":0,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":101,
                            "pPos":0,
                            "byte":101,
                            "bPos":0,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":80,
                            "pPos":0,
                            "byte":80,
                            "bPos":0,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":59,
                            "pPos":0,
                            "byte":59,
                            "bPos":0,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":38,
                            "pPos":0,
                            "byte":38,
                            "bPos":0,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":17,
                            "pPos":0,
                            "byte":17,
                            "bPos":0,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":121,
                            "pPos":0,
                            "byte":121,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":100,
                            "pPos":0,
                            "byte":100,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":79,
                            "pPos":0,
                            "byte":79,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":58,
                            "pPos":0,
                            "byte":58,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":37,
                            "pPos":0,
                            "byte":37,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":16,
                            "pPos":0,
                            "byte":16,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         },
                         {
                            "id":155,
                            "pPos":0,
                            "byte":155,
                            "bPos":0,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":156,
                            "pPos":0,
                            "byte":155,
                            "bPos":1,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":157,
                            "pPos":0,
                            "byte":155,
                            "bPos":2,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":158,
                            "pPos":0,
                            "byte":155,
                            "bPos":3,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":159,
                            "pPos":0,
                            "byte":155,
                            "bPos":4,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         },
                         {
                            "id":160,
                            "pPos":0,
                            "byte":155,
                            "bPos":5,
-                           "size":1
+                           "size":1,
+                           "msg":"sysex"
                         }
                      ]
                   }
@@ -1375,7 +1526,8 @@
                            "pPos":0,
                            "byte":2,
                            "bPos":0,
-                           "size":7
+                           "size":7,
+                           "msg":"sysex"
                         }
                      ]
                   }
@@ -1460,6 +1612,34 @@
          "instrumentId":"generic-midi",
          "port":2,
          "channel":6
+      },
+      {
+         "id":13,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":5
+      },
+      {
+         "id":14,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":6
+      },
+      {
+         "id":15,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":7
+      },
+      {
+         "id":16,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":8
       }
    ],
    "overlays":[
@@ -2013,6 +2193,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":31,
+         "midiMax":31,
          "data":[
             "43",
             "10",
@@ -2040,6 +2221,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":31,
+         "midiMax":31,
          "data":[
             "43",
             "10",
@@ -2067,6 +2249,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":31,
+         "midiMax":31,
          "data":[
             "43",
             "10",
@@ -2094,6 +2277,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":31,
+         "midiMax":31,
          "data":[
             "43",
             "10",
@@ -2121,6 +2305,7 @@
          "fgColor":"0512",
          "min":0,
          "max":31,
+         "midiMax":31,
          "data":[
             "43",
             "10",
@@ -2148,6 +2333,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":31,
+         "midiMax":31,
          "data":[
             "43",
             "10",
@@ -2175,6 +2361,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2202,6 +2389,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2229,6 +2417,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2256,6 +2445,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2283,6 +2473,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2310,6 +2501,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2337,6 +2529,7 @@
          "fgColor":"FFFF",
          "min":-7,
          "max":7,
+         "midiMax":14,
          "data":[
             "43",
             "10",
@@ -2364,6 +2557,7 @@
          "fgColor":"EAC9",
          "min":-7,
          "max":7,
+         "midiMax":14,
          "data":[
             "43",
             "10",
@@ -2391,6 +2585,7 @@
          "fgColor":"EC80",
          "min":-7,
          "max":7,
+         "midiMax":14,
          "data":[
             "43",
             "10",
@@ -2418,6 +2613,7 @@
          "fgColor":"12D3",
          "min":-7,
          "max":7,
+         "midiMax":14,
          "data":[
             "43",
             "10",
@@ -2445,6 +2641,7 @@
          "fgColor":"0512",
          "min":-7,
          "max":7,
+         "midiMax":14,
          "data":[
             "43",
             "10",
@@ -2472,6 +2669,7 @@
          "fgColor":"BA32",
          "min":-7,
          "max":7,
+         "midiMax":14,
          "data":[
             "43",
             "10",
@@ -2499,6 +2697,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2526,6 +2725,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2553,6 +2753,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2580,6 +2781,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2607,6 +2809,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2634,6 +2837,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2661,6 +2865,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2688,6 +2893,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2715,6 +2921,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2742,6 +2949,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2769,6 +2977,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2796,6 +3005,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2823,6 +3033,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2850,6 +3061,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2877,6 +3089,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2904,6 +3117,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2931,6 +3145,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2958,6 +3173,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -2985,6 +3201,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3012,6 +3229,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3039,6 +3257,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3066,6 +3285,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3093,6 +3313,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3120,6 +3341,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3147,6 +3369,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3174,6 +3397,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3201,6 +3425,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3228,6 +3453,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3255,6 +3481,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3282,6 +3509,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3309,6 +3537,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3336,6 +3565,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3363,6 +3593,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3390,6 +3621,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3417,6 +3649,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3444,6 +3677,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3627,6 +3861,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3654,6 +3889,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3681,6 +3917,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3708,6 +3945,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3735,6 +3973,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3762,6 +4001,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3789,6 +4029,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3816,6 +4057,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3843,6 +4085,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3870,6 +4113,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3897,6 +4141,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3924,6 +4169,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3951,6 +4197,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -3978,6 +4225,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4005,6 +4253,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4032,6 +4281,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4059,6 +4309,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4086,6 +4337,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4113,6 +4365,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4140,6 +4393,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4167,6 +4421,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4194,6 +4449,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4221,6 +4477,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4248,6 +4505,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4275,6 +4533,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4302,6 +4561,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4329,6 +4589,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4356,6 +4617,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4383,6 +4645,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4410,6 +4673,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4593,6 +4857,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4620,6 +4885,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4647,6 +4913,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4674,6 +4941,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4701,6 +4969,7 @@
          "fgColor":"0512",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4728,6 +4997,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -4755,6 +5025,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -4782,6 +5053,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -4809,6 +5081,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -4836,6 +5109,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -4863,6 +5137,7 @@
          "fgColor":"0512",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -4890,6 +5165,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -4917,6 +5193,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -4944,6 +5221,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -4971,6 +5249,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -4998,6 +5277,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -5025,6 +5305,7 @@
          "fgColor":"0512",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -5052,6 +5333,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -5079,6 +5361,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":3,
+         "midiMax":3,
          "data":[
             "43",
             "10",
@@ -5106,6 +5389,7 @@
          "fgColor":"EAC9",
          "min":0,
          "max":3,
+         "midiMax":3,
          "data":[
             "43",
             "10",
@@ -5133,6 +5417,7 @@
          "fgColor":"EC80",
          "min":0,
          "max":3,
+         "midiMax":3,
          "data":[
             "43",
             "10",
@@ -5160,6 +5445,7 @@
          "fgColor":"12D3",
          "min":0,
          "max":3,
+         "midiMax":3,
          "data":[
             "43",
             "10",
@@ -5187,6 +5473,7 @@
          "fgColor":"0512",
          "min":0,
          "max":3,
+         "midiMax":3,
          "data":[
             "43",
             "10",
@@ -5214,6 +5501,7 @@
          "fgColor":"BA32",
          "min":0,
          "max":3,
+         "midiMax":3,
          "data":[
             "43",
             "10",
@@ -5241,6 +5529,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -5268,6 +5557,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -5321,6 +5611,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -5348,6 +5639,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":31,
+         "midiMax":31,
          "data":[
             "43",
             "10",
@@ -5375,6 +5667,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
@@ -5402,6 +5695,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -5429,6 +5723,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -5456,6 +5751,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -5483,6 +5779,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -5562,6 +5859,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -5589,6 +5887,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -5616,6 +5915,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -5669,6 +5969,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":48,
+         "midiMax":48,
          "data":[
             "43",
             "10",
@@ -5696,6 +5997,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -5723,6 +6025,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":99,
+         "midiMax":99,
          "data":[
             "43",
             "10",
@@ -5750,6 +6053,7 @@
          "fgColor":"FFFF",
          "min":0,
          "max":7,
+         "midiMax":7,
          "data":[
             "43",
             "10",
