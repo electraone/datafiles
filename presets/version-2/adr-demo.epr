@@ -73,7 +73,7 @@
                }
             },
             {
-               "id":"release2",
+               "id":"release",
                "min":0,
                "max":127,
                "message":{
