@@ -101,6 +101,325 @@ No response
 
 Electra responds with the sysex message that has exactly the same format as the Preset upload messsage (see above). Thus a Sysex message downloaded with a preset download call can directly used to upload the preset to Electra later.
 
+## Brief description of the preset JSON
+
+### Top level objects
+
+```
+{
+  "version":2,
+  "name":"ADSR Test",
+  "projectId":"d8WjdwYrP3lRyyx8nEMF",
+  "pages":[
+  ],
+  "devices":[
+  ],
+  "overlays":[
+  ],
+  "groups":[
+  ],
+  "controls":[
+  ]
+}
+
+```
+
+#### version
+Provides information about the version of the preset file. Electra controller uses version information to distinguish between various preset file formats.
+
+- mandatory
+- numeric
+
+#### name
+A name of the preset. The name will be shown to the user on the screen in the status bar.
+
+- mandatory
+- string
+- minLength 1
+- maxLength 20
+
+#### projectId
+An identifier of the Electra Editor project. The identifier is used to associate a preset with an Electra Editor project.
+
+- optional - used only by the editor
+- string
+
+#### Pages
+An array of pages. Electra supports up to 12 pages, identified with id 1 .. 12. A page is a collection of controls and graphic objects shown on the screen at once. Each page has a name to make it easier to switch between pages. The page name is shown in the status bar.
+
+- mandatory
+- array
+
+example:
+
+```
+  "pages":[
+    {
+      "id":1,
+      "name":"OSCILLATORS"
+    },
+    {
+      "id":2,
+      "name":"FILTER"
+    }   
+  ]
+```
+
+#### overlays
+Overlays are lists of text values. Typically they are assigned to Selection list controls or to faders. Overlays are referred by its identifier. Overlay items can be both text labels or bitmap images.
+
+- optional
+- array
+- 
+example:
+
+```
+ "overlays":[
+      {
+         "id":1,
+         "items":[
+            {
+               "value":0,
+               "label":"SAW"
+            },
+            {
+               "value":1,
+               "label":"SQUARE"
+            },
+            {
+               "value":2,
+               "label":"WHITE NOISE"
+            },
+            {
+               "value":3,
+               "label":"PINK NOISE"
+            }
+         ]
+      },
+      {
+         "id":2,
+         "items":[
+            {
+               "value":0,
+               "label":"Morph (P6)"
+            },
+            {
+               "value":1,
+               "label":"Sinus"
+            },
+            {
+               "value":2,
+               "label":"Triangle"
+            }
+       }
+   ]
+```
+
+#### groups
+Graphical separators used to organize controls to groups by meaning. For example a group "Envelope 1" can be created for controls "Attack", "Decay", "Sustain", and "Release". Groups do not provide any other functionlity then the visual grouping of controls.
+
+- optional
+- array
+
+example:
+
+```
+   "groups":[
+      {
+         "pageId":1,
+         "name":"ATTRIBUTES",
+         "bounds":[
+            170,
+            16,
+            485,
+            16
+         ],
+         "color":"FFFFFF"
+      }
+   ]
+```
+
+#### controls
+Controls represent means to visualize and change values of MIDI parameters. A controls is for example a fader, knob, pad, or ADSR envelope. A control consits of information about values that are mapped to particular MIDI messages.
+
+- mandatory
+- array
+
+example:
+
+```
+   "controls":[
+      {
+         "id":1,
+         "type":"fader",
+         "name":"WHITE",
+         "color":"FFFFFF",
+         "bounds":[
+            0, 40, 146, 56
+         ],
+         "pageId":1,
+         "controlSetId":1,
+         "potId":1,
+         "values":[
+            {
+               "id":"value",
+               "message":{
+                  "deviceId":1,
+                  "type":"cc7",
+                  "parameterNumber":1,
+                  "min":0,
+                  "max":127
+               },
+               "min":0,
+               "max":127
+            }
+         ]
+      },
+      {
+         "id":2,
+         "type":"fader",
+         "name":"RED",
+         "color":"F45C51",
+         "bounds":[
+            170, 40, 146, 56
+         ],
+         "pageId":1,
+         "controlSetId":1,
+         "potId":2,
+         "values":[
+            {
+               "id":"value",
+               "message":{
+                  "deviceId":1,
+                  "type":"cc7",
+                  "parameterNumber":2,
+                  "min":0,
+                  "max":127
+               },
+               "min":0,
+               "max":127
+            }
+         ]
+      }
+   ]
+```
+
+### Control
+
+```
+      {
+         "id":1,
+         "type":"fader",
+         "name":"CUTOFF",
+         "color":"FFFFFF",
+         "bounds":[
+            0, 40, 146, 56
+         ],
+         "pageId":1,
+         "controlSetId":1,
+         "potId":1,
+         "values":[
+         ]
+      }
+```
+
+#### id
+An identifier of the control. Electra uses the id to uniquely identify each control.
+
+- mandatory
+- numeric
+- min = 1
+- max = 432
+
+#### type
+A type of functional and visual representation of the control.
+
+- mandatory
+- enum
+  - fader
+  - list
+  - pad
+  - vfader
+  - dial
+  - adsr
+  - adr
+  - dx7envelope
+  
+#### name
+A name of the control. The name is usually shown underneath the control. When the control receives touch event via the physical knob, the name is highlighted. If a name is an empty string or the attribute is omitted, name is not shown and touch indication is disabled.
+
+- optional
+- string
+- minLength = 0
+- maxLength = 14
+
+#### color
+A 24-bit RGB code of the control's color. The colors are limited to six predefined colors.
+
+- optional
+- string
+- default = FFFFFF
+- enum
+  - FFFFFF (white)
+  - F45C51 (red)
+  - F49500 (orange)
+  - 529DEC (blue)
+  - 03A598 (green)
+  - C44795 (pink)
+
+#### bounds
+A bounding box of the control, ie. the definition of the control's position on the screen and its size. The bounding box is represented as an array of [x, y, width, height]
+
+- mandatory
+- array with fixed items
+
+#### pageId
+A reference to a page identifier. Each control must belong to exactly one page and the page must be defined withing the pages array.
+
+- mandatory
+- numeric
+- min = 1
+- max = 12
+
+#### controlSetId
+Controls placed on one page can be further divided in to control sets. The control sets are used t assign controls to pots (knobs). Users may switch between controls sets by pressing the hardware buttons or by sending MIDI messages to Electra. Only one control set can be active at the time. The controls of the activite control sets are highlighted.
+
+- optional
+- numeric
+- default = 0
+- min = 0
+- max 12
+
+#### potId
+An identifier of the physical pot (knob). There are 12 pots on Electra, identified as 1 (top-left) to 12 (bottom-right) pot. A control with an assigned pot, can be controlled by turning the physical knob. Providing given control set is active.
+
+- optional
+- numeric
+- default = 0
+- min = 0
+- max = 12
+
+#### values
+An array of values associated with the control. The values represent an instance of value of certain MIDI paramater. Actions made with the control (turning assigned pot, touch events) effectivaly change associated values.
+
+```
+"values":[
+   {
+      "id":"value",
+      "min":0,
+      "max":127,
+      "message":{
+         "deviceId":1,
+         "type":"cc7",
+         "parameterNumber":1,
+         "min":0,
+         "max":127
+      }
+   }
+]
+```
+
+
 
 
 ## Demos
