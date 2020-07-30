@@ -20,13 +20,10 @@ If you wish to take part of testing and help us with fine tuning the format of v
 
 We will be happy if any of you decides to develop their own tools for creating and managing presets. Again, if you have ideas, just contact us.
 
-## JSON schema
-This is a WIP (work-in-progress) version of JSON schema of [Electra preset file format version 2](https://github.com/martinpavlas/electra.one/blob/master/presets/version-2/schema.json)
-
 ## Sysex primer
 Electra can be configured / programmed with two different interfaces: Sysex MIDI messages and low-level USB Raw HID. Following lines describe the essential preset exchange using the Sysex message format.
 
-### Getting info about connect Electra
+### Getting info about connected Electra
 Electra can provide info about itself on a request. This call comes in handy if you need to find out if connected Electra is working correctly and get information about the firmware it runs.
 
 #### Request
@@ -80,7 +77,7 @@ Preset upload call is meant to upload a new preset to Electra. The preset is alw
 No response
 
 
-### Downloading current preser from Electra
+### Downloading current preset from Electra
 
 
 #### Request
@@ -102,6 +99,9 @@ No response
 Electra responds with the sysex message that has exactly the same format as the Preset upload messsage (see above). Thus a Sysex message downloaded with a preset download call can directly used to upload the preset to Electra later.
 
 ## Brief description of the preset JSON
+
+### JSON schema
+This is a WIP (work-in-progress) version of JSON schema of [Electra preset file format version 2](https://github.com/martinpavlas/electra.one/blob/master/presets/version-2/schema.json)
 
 ### Top level objects
 
@@ -150,7 +150,7 @@ An array of pages. Electra supports up to 12 pages, identified with id 1 .. 12. 
 - mandatory
 - array
 
-example:
+##### example:
 
 ```
   "pages":[
@@ -165,13 +165,39 @@ example:
   ]
 ```
 
+#### devices
+A device is a MIDI hardware or software instrument connected to one of the Electra's ports. It can be a hardware synth connected to a MIDI IO port, hardware sequencer connected to Electra's USB host port or a software plugin attached to Electra's USB device ports. Electra can handle up to 16 simultaneously connected devices. When working with Electra, you always need to define your connected devices, you never send ot receive MIDI messages to port and channel.
+
+- mandatory
+- array
+
+##### example:
+```
+   "devices":[
+      {
+         "id":1,
+         "name":"My MKS-50",
+         "instrumentId":"roland-mks50",
+         "port":1,
+         "channel":1
+      },
+      {
+         "id":2,
+         "name":"BeatFX plugin",
+         "instrumentId":"generic-midi",
+         "port":2,
+         "channel":1
+      }
+   ]
+```
+
 #### overlays
 Overlays are lists of text values. Typically they are assigned to Selection list controls or to faders. Overlays are referred by its identifier. Overlay items can be both text labels or bitmap images.
 
 - optional
 - array
 - 
-example:
+##### example:
 
 ```
  "overlays":[
@@ -221,7 +247,7 @@ Graphical separators used to organize controls to groups by meaning. For example
 - optional
 - array
 
-example:
+##### example:
 
 ```
    "groups":[
@@ -240,12 +266,14 @@ example:
 ```
 
 #### controls
-Controls represent means to visualize and change values of MIDI parameters. A controls is for example a fader, knob, pad, or ADSR envelope. A control consits of information about values that are mapped to particular MIDI messages.
+Controls represent means to visualize and change values of MIDI parameters. A controls is for example a fader, knob, pad, or ADSR envelope. A control consists of information about values that are mapped to particular MIDI messages.
 
 - mandatory
 - array
 
-example:
+##### examples:
+
+A simple control with one value assigned.
 
 ```
    "controls":[
@@ -288,7 +316,6 @@ example:
          "potId":2,
          "values":[
             {
-               "id":"value",
                "message":{
                   "deviceId":1,
                   "type":"cc7",
@@ -304,13 +331,201 @@ example:
    ]
 ```
 
-### Control
+
+### Device
+A device represents an instance of hardware or software MIDI device connected to a particular MIDI port and channel.
+
+##### example:
+
+```
+    {
+      "id":1,
+      "name":"Generic MIDI",
+      "instrumentId":"generic-midi",
+      "port":1,
+      "channel":1
+    }
+```
+
+#### id
+A unique identifier of the device. The identifier is used in other objects to refer to a particular device.
+
+- mandatory
+- numeric
+- min = 1
+- max = 16
+
+#### name
+A user defined name of the device. The name makes it easier for users to remember and identify devices.
+
+- mandatory
+- string
+- minLength = 1
+- maxLength = 20
+
+#### instrumentId
+An identifier of the type of the device. The instrumentId tells Electra what type of device is connected and allows Electra to exchange device specific MIDI messages.
+
+- optional
+- enum
+  - general-midi
+  - roland-mks50
+  - roland-tb3
+  - rhodes-chroma
+  - yamaha-tx7
+  - dsi-mopho
+  - elektron-digitone
+  - elektron-octatrack
+  - toraizas1
+- default = general-midi 
+
+#### port
+A port number that represents the MIDI bus inside the Electra. Port 1 interconnects MIDI IO port 1, USB Host port 1, USB device port 1. Port 2 interconnects MIDI IO 2, USB Host port 2, and USB device port 2.
+
+- mandatory
+- numeric
+- min = 1
+- max = 16
+
+#### channel
+A MIDI channel
+
+- mandatory
+- numeric
+- min = 1
+- max = 16
+
+
+### Overlay
+A list of text or bitmap labels that can be assigned to list or fader controls.
+
+##### example:
 
 ```
       {
          "id":1,
+         "items":[
+            {
+               "value":0,
+               "label":"SAW"
+            },
+            {
+               "value":1,
+               "label":"SQUARE"
+            },
+            {
+               "value":2,
+               "label":"WHITE NOISE"
+            },
+            {
+               "value":3,
+               "label":"PINK NOISE"
+            }
+         ]
+      }
+```
+
+#### id
+A unique identifier of the overlay. List and fader controls use the identifier to refer to a particular overlay.
+
+- mandatory
+- numeric
+- min = 1
+- max = 128
+
+#### items
+An array of value - label pairs.
+
+- mandatory
+- array
+
+#### value
+A MIDI value assigned to the label.
+
+- mandatory
+- numeric
+- min = 0
+- max = 16383
+
+#### label
+A text label assigned to the MIDI value. The control displays the text labels to the users.
+
+- mandatory
+- string
+- minlength = 1
+- maxLength = 14
+
+#### bitmap
+An array of bytes that represent the bitmap data. Data is in XBM format, ie. each bit represent one pixel. The dimensions of the bitmap are 48x18 pixels.
+
+- mandatory
+- array of 108 bytes
+
+
+### Group
+
+##### example:
+
+```
+      {
+         "pageId":1,
+         "name":"DETAIL ON RIGHT",
+         "bounds":[
+            0, 16, 486, 16
+         ],
+         "color":"FFFFFF"
+      }
+```
+
+#### pageId
+A reference to a page identifier. Each control must belong to exactly one page and the page must be defined withing the pages array.
+
+- mandatory
+- numeric
+- min = 1
+- max = 12
+
+#### name
+A name of the group. The name is shown to the user inside the group graphics.
+
+- mandatory
+- string
+- minLength = 1
+- maxLength = 20
+
+#### bounds
+A bounding box of the control, ie. the definition of the control's position on the screen and its size. The bounding box is represented as an array of [x, y, width, height]
+
+- mandatory
+- array with fixed items
+
+#### color
+A 24-bit RGB code of the control's color. The colors are limited to six predefined colors.
+
+- optional
+- string
+- default = FFFFFF
+- enum
+  - FFFFFF (white)
+  - F45C51 (red)
+  - F49500 (orange)
+  - 529DEC (blue)
+  - 03A598 (green)
+  - C44795 (pink)
+  
+
+### Control
+
+##### examples:
+
+A simple control with one value assigned.
+
+```
+   "controls":[
+      {
+         "id":1,
          "type":"fader",
-         "name":"CUTOFF",
+         "name":"WHITE",
          "color":"FFFFFF",
          "bounds":[
             0, 40, 146, 56
@@ -319,12 +534,122 @@ example:
          "controlSetId":1,
          "potId":1,
          "values":[
+            {
+               "id":"value",
+               "message":{
+                  "deviceId":1,
+                  "type":"cc7",
+                  "parameterNumber":1,
+                  "min":0,
+                  "max":127
+               },
+               "min":0,
+               "max":127
+            }
+         ]
+      },
+      {
+         "id":2,
+         "type":"fader",
+         "name":"RED",
+         "color":"F45C51",
+         "bounds":[
+            170, 40, 146, 56
+         ],
+         "pageId":1,
+         "controlSetId":1,
+         "potId":2,
+         "values":[
+            {
+               "message":{
+                  "deviceId":1,
+                  "type":"cc7",
+                  "parameterNumber":2,
+                  "min":0,
+                  "max":127
+               },
+               "min":0,
+               "max":127
+            }
          ]
       }
+   ]
+```
+
+
+an ADSR control with multiple values assigned
+
+```
+    {
+      "id":1,
+      "pageId":1,
+      "bounds":[
+        10,
+        40,
+        158,
+        73
+      ],
+      "controlSetId":1,
+      "potId":1,
+      "type":"adsr",
+      "name":"ADSR",
+      "color":"F49500",
+      "defaultValueId":"attack",
+      "values":[
+        {
+          "id":"attack",
+          "min":0,
+          "max":127,
+          "message":{
+            "deviceId":1,
+            "type":"cc7",
+            "parameterNumber":1,
+            "min":0,
+            "max":127
+          }
+        },
+        {
+          "id":"decay",
+          "min":0,
+          "max":127,
+          "message":{
+            "deviceId":1,
+            "type":"cc7",
+            "parameterNumber":2,
+            "min":0,
+            "max":127
+          }
+        },
+        {
+          "id":"sustain",
+          "min":0,
+          "max":127,
+          "message":{
+            "deviceId":1,
+            "type":"cc7",
+            "parameterNumber":3,
+            "min":0,
+            "max":127
+          }
+        },
+        {
+          "id":"release",
+          "min":0,
+          "max":127,
+          "message":{
+            "deviceId":1,
+            "type":"cc7",
+            "parameterNumber":4,
+            "min":0,
+            "max":127
+          }
+        }
+      ]
+    }
 ```
 
 #### id
-An identifier of the control. Electra uses the id to uniquely identify each control.
+A unique identifier of the control. Electra uses the id to uniquely identify each control.
 
 - mandatory
 - numeric
@@ -417,6 +742,67 @@ An array of values associated with the control. The values represent an instance
       }
    }
 ]
+```
+
+### Value
+
+##### examples:
+
+```
+   {
+      "id":"value",
+      "min":0,
+      "max":127,
+      "message":{
+         "deviceId":1,
+         "type":"cc7",
+         "parameterNumber":1,
+         "min":0,
+         "max":127
+      }
+   }
+```
+
+### Message
+
+##### examples:
+
+A simple CC7 message
+```
+      "message":{
+         "deviceId":1,
+         "type":"cc7",
+         "parameterNumber":1,
+         "min":0,
+         "max":127
+      }
+```
+
+A message with a sysex template
+```
+      "message": {
+         "deviceId": 1,
+         "type": "sysex",
+         "parameterNumber": 6,
+         "min": 0,
+         "max": 127,
+         "data":[
+            67,
+            16,
+            1,
+            15,
+            {
+               "type":"value",
+               "rules":[
+                  {
+                     "parameterNumber":40,
+                     "bitPosition":0,
+                     "bitWidth":3
+                  }
+               ]
+            }
+         ]
+      }
 ```
 
 
