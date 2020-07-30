@@ -727,12 +727,13 @@ An identifier of the physical pot (knob). There are 12 pots on Electra, identifi
 #### values
 An array of values associated with the control. The values represent an instance of value of certain MIDI paramater. Actions made with the control (turning assigned pot, touch events) effectivaly change associated values.
 
+examples:
 ```
 "values":[
    {
       "id":"value",
-      "min":0,
-      "max":127,
+      "min":-64,
+      "max":63,
       "message":{
          "deviceId":1,
          "type":"cc7",
@@ -744,15 +745,28 @@ An array of values associated with the control. The values represent an instance
 ]
 ```
 
+#### defaultValueId
+Controls with multiple values may have one value set as a default. When a multi-value control is assigned to a pot, the default value is modified when the pot is turned.
+
+- optional
+- string
+- default = value
+- minLength = 1
+- maxLength = 20
+
+
 ### Value
+A value represents a parameter value of given control. A value is mapped to a value of a MIDI parameter / message. The value object allows translation of MIDI values to user friendly display values. 
 
 ##### examples:
+
+a continuous value
 
 ```
    {
       "id":"value",
-      "min":0,
-      "max":127,
+      "min":-64,
+      "max":63,
       "message":{
          "deviceId":1,
          "type":"cc7",
@@ -762,6 +776,61 @@ An array of values associated with the control. The values represent an instance
       }
    }
 ```
+
+value with a list of discrete values (an overlay)
+```
+   {
+      "id":"value",
+      "overlayId":2, 
+      "message":{
+         "deviceId":1,
+         "type":"cc7",
+         "parameterNumber":2
+       }        
+    }
+```
+
+#### id
+An identifier of the value. This identifier is a text string. This is to make it easier for the programmers to get oriented. The identifier expresses the meaning of the value, eg. attack, rate, or value.
+
+- optional
+- string
+- default = value
+- minLength = 1
+- maxLength = 20
+
+#### min
+A minimum value that the control can display. Note this is not the MIDI value, it is the minimum value that can be displayed by the control.
+
+- optional
+- numeric
+- default = 0
+- min = -16383
+- max = 16383
+
+#### max
+A maximum value that the control can display. Note this is not the MIDI value, it is the maximum value that can be displayed by the control.
+
+- optional
+- numeric
+- default = 0
+- min = -16383
+- max = 16383
+
+#### overlayid
+A reference to an overlay identifier defined in the array of overlays. The list control will use the overlay items as the list items. Fader control will show overlay labels for matching values.
+
+- optional
+- numeric
+- min = 1
+- max = 128
+
+#### message
+An object that describes a MIDI message that will be sent when the value of the control is changed by the touch or turning the knobs. The message is also use to parse incoming MIDI messages. When incoming midi data matches the message object, the value of the control is adjusted accordingly.
+
+- mandatory
+- object
+
 
 ### Message
 
@@ -805,6 +874,17 @@ A message with a sysex template
       }
 ```
 
+#### deviceId
+
+#### type
+
+#### parameterNumber
+
+#### min
+
+#### max
+
+#### data
 
 
 
