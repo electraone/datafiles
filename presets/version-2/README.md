@@ -135,17 +135,20 @@ A name of the preset. The name will be shown to the user on the screen in the st
 
 - mandatory
 - string
-- minLength 1
-- maxLength 20
+- minLength = 1
+- maxLength = 20
 
 #### projectId
 An identifier of the Electra Editor project. The identifier is used to associate a preset with an Electra Editor project.
 
 - optional - used only by the editor
 - string
+- minLength = 20
+- maxLength = 20
+
 
 #### Pages
-An array of pages. Electra supports up to 12 pages, identified with id 1 .. 12. A page is a collection of controls and graphic objects shown on the screen at once. Each page has a name to make it easier to switch between pages. The page name is shown in the status bar.
+An array of pages. Electra supports up to 12 pages, identified with ids 1 .. 12. A page is a collection of controls and graphic objects shown on the screen at once. Each page has a name to make it easier to switch between pages. The page name is shown in the status bar.
 
 - mandatory
 - array
@@ -166,7 +169,7 @@ An array of pages. Electra supports up to 12 pages, identified with id 1 .. 12. 
 ```
 
 #### devices
-A device is a MIDI hardware or software instrument connected to one of the Electra's ports. It can be a hardware synth connected to a MIDI IO port, hardware sequencer connected to Electra's USB host port or a software plugin attached to Electra's USB device ports. Electra can handle up to 16 simultaneously connected devices. When working with Electra, you always need to define your connected devices, you never send ot receive MIDI messages to port and channel.
+A device is a MIDI hardware or software instrument connected to one of the Electra's ports. It can be a hardware synth connected to a MIDI IO port, hardware sequencer connected to Electra's USB host port or a software plugin attached to Electra's USB device ports. Electra can handle up to 16 simultaneously connected devices. When working with Electra, you always need to define your connected devices, you never send or receive MIDI messages from port and channel directly.
 
 - mandatory
 - array
@@ -192,12 +195,13 @@ A device is a MIDI hardware or software instrument connected to one of the Elect
 ```
 
 #### overlays
-Overlays are lists of text values. Typically they are assigned to Selection list controls or to faders. Overlays are referred by its identifier. Overlay items can be both text labels or bitmap images.
+Overlays are lists of text labels linked to particular values. Typically they are assigned to selection list controls or to faders. Overlays are referred by its identifier. Overlay items can be both text labels or bitmap images.
 
 - optional
 - array
 - 
-##### example:
+##### examples:
+
 
 ```
  "overlays":[
@@ -237,9 +241,88 @@ Overlays are lists of text values. Typically they are assigned to Selection list
                "value":2,
                "label":"Triangle"
             }
-       }
+       },
+       {
+         "id":3,
+         "items":[
+            {
+               "value":0,
+               "label":"Small",
+               "bitmap":[
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  255, 255, 255, 255, 255, 255,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  255, 255, 255, 255, 255, 255
+               ]
+            },
+            {
+               "value":1,
+               "label":"Medium",
+               "bitmap":[
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  255, 255, 255, 255, 255, 255,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  255, 255, 255, 255, 255, 255
+               ]
+            },
+            {
+               "value":2,
+               "label":"Large",
+               "bitmap":[
+                  255, 255, 255, 255, 255, 255,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  255, 255, 255, 255, 255, 255
+               ]
+            }
+         ]
+      }
    ]
 ```
+
+
 
 #### groups
 Graphical separators used to organize controls to groups by meaning. For example a group "Envelope 1" can be created for controls "Attack", "Decay", "Sustain", and "Release". Groups do not provide any other functionlity then the visual grouping of controls.
@@ -399,7 +482,9 @@ A MIDI channel
 ### Overlay
 A list of text or bitmap labels that can be assigned to list or fader controls.
 
-##### example:
+##### examples:
+
+an overlay with text labels only
 
 ```
       {
@@ -424,6 +509,89 @@ A list of text or bitmap labels that can be assigned to list or fader controls.
          ]
       }
 ```
+
+an overlay with the bitmap data
+
+```
+       {
+         "id":3,
+         "items":[
+            {
+               "value":0,
+               "label":"Small",
+               "bitmap":[
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  255, 255, 255, 255, 255, 255,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  255, 255, 255, 255, 255, 255
+               ]
+            },
+            {
+               "value":1,
+               "label":"Medium",
+               "bitmap":[
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  0, 0, 0, 0, 0, 0,
+                  255, 255, 255, 255, 255, 255,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  255, 255, 255, 255, 255, 255
+               ]
+            },
+            {
+               "value":2,
+               "label":"Large",
+               "bitmap":[
+                  255, 255, 255, 255, 255, 255,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  128, 0, 0, 0, 0, 1,
+                  255, 255, 255, 255, 255, 255
+               ]
+            }
+         ]
+      }
+```
+
 
 #### id
 A unique identifier of the overlay. List and fader controls use the identifier to refer to a particular overlay.
@@ -456,7 +624,7 @@ A text label assigned to the MIDI value. The control displays the text labels to
 - maxLength = 14
 
 #### bitmap
-An array of bytes that represent the bitmap data. Data is in XBM format, ie. each bit represent one pixel. The dimensions of the bitmap are 48x18 pixels.
+An array of bytes that represent the bitmap data. Data is in XBM format, ie. each bit represent one pixel. The dimensions of the bitmap are 48x18 pixels. Note, this attribute will be soon transformed to the base64 encoded string.
 
 - mandatory
 - array of 108 bytes
@@ -469,7 +637,7 @@ An array of bytes that represent the bitmap data. Data is in XBM format, ie. eac
 ```
       {
          "pageId":1,
-         "name":"DETAIL ON RIGHT",
+         "name":"ENVELOPE",
          "bounds":[
             0, 16, 486, 16
          ],
@@ -818,7 +986,7 @@ A maximum value that the control can display. Note this is not the MIDI value, i
 - max = 16383
 
 #### overlayid
-A reference to an overlay identifier defined in the array of overlays. The list control will use the overlay items as the list items. Fader control will show overlay labels for matching values.
+A reference to the overlay identifier defined in the array of overlays. The list control will use the overlay items as the list items. Fader control will show overlay labels for matching values.
 
 - optional
 - numeric
@@ -875,17 +1043,54 @@ A message with a sysex template
 ```
 
 #### deviceId
+A reference to the device identifier defined in the array of devices. The message will be sent to the referenced device. Also messages received from this device that match the message definition will modify the value accordingly.
 
 #### type
+A type of the MIDI message. The type is not limited to basic MIDI messages, but supports their higher level implementation, such as NRPN, etc.
+
+- mandatory
+- enum
+  - cc7
+  - cc14
+  - nrpn
+  - rpn
+  - sysex
+  - note
+  - program
+  - start
+  - stop
 
 #### parameterNumber
+A parameter number of the message. The parameterNumber is used to specify the parameter number, note number, program number. To fully support NRPN and sysex, a parameterNumber is a 14-bit number. 
+
+- optional
+- numeric
+- min = 0
+- max = 16383
 
 #### min
+A MIDI minimum value to be transfered. This minimum MIDI value is mapped to the display value minimum defined in the value object.
+
+- optional
+- numeric
+- default = 0
+- min = 0
+- max = 16383
 
 #### max
+A MIDI maximum value to be transfered. This maximum MIDI value is mapped to the display value maximum defined in the value object.
+
+- optional
+- numeric
+- default = 0
+- min = 0
+- max = 16383
 
 #### data
+An array of bytes and placeholder variables to be sent and parsed for sysex messages.
 
+- optional
+- array
 
 
 ## Demos
