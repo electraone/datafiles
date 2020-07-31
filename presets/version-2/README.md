@@ -2,6 +2,10 @@
 
 A collection of presets to test new features of Electra firmware version 2. The presets are not compatible with current version of the Editor - **do not load them to Electra with firmware 0.9.x**
 
+![image](https://github.com/martinpavlas/electra.one/blob/master/docs/images/v2/adsr.png?raw=true)
+
+More pics available below...
+
 ## Reasons for version 2
 
 Elecra has been used by real users for about over 6 months now. We have listened to the feedback from our users as well as we have come up with number of new features we wanted to implement. It has become obvious that the format of Electra preset file is rather limiting. This document is a proposal on a new format to be used in near future. The format is designed to address following feature requests:
@@ -199,7 +203,7 @@ Overlays are lists of text labels linked to particular values. Typically they ar
 
 - optional
 - array
-- 
+-
 ##### examples:
 
 
@@ -460,7 +464,7 @@ An identifier of the type of the device. The instrumentId tells Electra what typ
   - elektron-digitone
   - elektron-octatrack
   - toraizas1
-- default = general-midi 
+- default = general-midi
 
 #### port
 A port number that represents the MIDI bus inside the Electra. Port 1 interconnects MIDI IO port 1, USB Host port 1, USB device port 1. Port 2 interconnects MIDI IO 2, USB Host port 2, and USB device port 2.
@@ -680,7 +684,7 @@ A 24-bit RGB code of the control's color. The colors are limited to six predefin
   - 529DEC (blue)
   - 03A598 (green)
   - C44795 (pink)
-  
+
 
 ### Control
 
@@ -837,7 +841,7 @@ A type of functional and visual representation of the control.
   - adsr
   - adr
   - dx7envelope
-  
+
 #### name
 A name of the control. The name is usually shown underneath the control. When the control receives touch event via the physical knob, the name is highlighted. If a name is an empty string or the attribute is omitted, name is not shown and touch indication is disabled.
 
@@ -924,7 +928,7 @@ Controls with multiple values may have one value set as a default. When a multi-
 
 
 ### Value
-A value represents a parameter value of given control. A value is mapped to a value of a MIDI parameter / message. The value object allows translation of MIDI values to user friendly display values. 
+A value represents a parameter value of given control. A value is mapped to a value of a MIDI parameter / message. The value object allows translation of MIDI values to user friendly display values.
 
 ##### examples:
 
@@ -949,7 +953,7 @@ value with a list of discrete values (an overlay)
 ```
    {
       "id":"value",
-      "overlayId":2, 
+      "overlayId":2,
       "message":{
          "deviceId":1,
          "type":"cc7",
@@ -1061,7 +1065,7 @@ A type of the MIDI message. The type is not limited to basic MIDI messages, but 
   - stop
 
 #### parameterNumber
-A parameter number of the message. The parameterNumber is used to specify the parameter number, note number, program number. To fully support NRPN and sysex, a parameterNumber is a 14-bit number. 
+A parameter number of the message. The parameterNumber is used to specify the parameter number, note number, program number. To fully support NRPN and sysex, a parameterNumber is a 14-bit number.
 
 - optional
 - numeric
