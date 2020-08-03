@@ -43,7 +43,7 @@
                "min":0,
                "max":64,
                "message":{
-                  "deviceId":0,
+                  "deviceId":1,
                   "type":"cc7",
                   "parameterNumber":1,
                   "min":0,
@@ -71,7 +71,7 @@
                "min":0,
                "max":64,
                "message":{
-                  "deviceId":0,
+                  "deviceId":1,
                   "type":"cc7",
                   "parameterNumber":2,
                   "min":0,
@@ -99,7 +99,7 @@
                "min":0,
                "max":64,
                "message":{
-                  "deviceId":0,
+                  "deviceId":1,
                   "type":"cc7",
                   "parameterNumber":3,
                   "min":0,
@@ -127,7 +127,7 @@
                "min":0,
                "max":64,
                "message":{
-                  "deviceId":0,
+                  "deviceId":1,
                   "type":"cc7",
                   "parameterNumber":4,
                   "min":0,
