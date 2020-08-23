@@ -17,7 +17,20 @@
          "name":"YAMAHA DX7",
          "instrument":"generic",
          "port":1,
-         "channel":1
+         "channel":1,
+         "patch": [
+           {
+             "request": ["43", "20", "00"],
+             "responses": [
+               {
+                 "header": ["43", "00", "00", "01", "1B"],
+                 "rules": [
+                   { "id": 136, "pPos": 0, "byte": 136, "bPos": 0, "size": 1 }
+                 ]
+               }
+            ]
+          }
+        ]
       }
    ],
    "overlays":[
