@@ -374,7 +374,12 @@ A simple control with one value assigned.
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":1,
+         "inputs": [
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -400,7 +405,12 @@ A simple control with one value assigned.
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":2,
+         "inputs": [
+            {
+               "potId":2,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "message":{
@@ -704,7 +714,12 @@ A simple control with one value assigned.
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":1,
+         "inputs": [
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -730,7 +745,12 @@ A simple control with one value assigned.
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":2,
+         "inputs": [
+            {
+               "potId":2,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "message":{
@@ -762,11 +782,19 @@ an ADSR control with multiple values assigned
         73
       ],
       "controlSetId":1,
-      "potId":1,
+      "inputs": [
+         {
+            "potId":1,
+            "valueId":"attack"
+         },
+         {
+            "potId":2,
+            "valueId":"decay"
+         }
+      ],
       "type":"adsr",
       "name":"ADSR",
       "color":"F49500",
-      "defaultValueId":"attack",
       "values":[
         {
           "id":"attack",
@@ -887,15 +915,6 @@ Controls placed on one page can be further divided in to control sets. The contr
 - min = 0
 - max 12
 
-#### potId
-An identifier of the physical pot (knob). There are 12 pots on Electra, identified as 1 (top-left) to 12 (bottom-right) pot. A control with an assigned pot, can be controlled by turning the physical knob. Providing given control set is active.
-
-- optional
-- numeric
-- default = 0
-- min = 0
-- max = 12
-
 #### values
 An array of values associated with the control. The values represent an instance of value of certain MIDI paramater. Actions made with the control (turning assigned pot, touch events) effectivaly change associated values.
 
@@ -917,15 +936,34 @@ examples:
 ]
 ```
 
-#### defaultValueId
-Controls with multiple values may have one value set as a default. When a multi-value control is assigned to a pot, the default value is modified when the pot is turned.
+### Input
+An Input provides information about an assignment of a physical control/gesture to a value. An example is assigning a knob to a value of the control.
+
+examples:
+```
+{
+   "potId":1,
+   "valueId":"attack"
+}
+```
+
+#### potId
+An identifier of the physical pot (knob). There are 12 pots on Electra, identified as 1 (top-left) to 12 (bottom-right) pot. A control with an assigned pot, can be controlled by turning the physical knob. Providing given control set is active.
+
+- optional
+- numeric
+- default = 0
+- min = 0
+- max = 12
+
+#### valueId
+An identifier of the value within the "values" array.
 
 - optional
 - string
 - default = value
 - minLength = 1
 - maxLength = 20
-
 
 ### Value
 A value represents a parameter value of given control. A value is mapped to a value of a MIDI parameter / message. The value object allows translation of MIDI values to user friendly display values.

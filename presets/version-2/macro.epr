@@ -78,7 +78,12 @@
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":2,
+         "inputs": [
+            {
+               "potId":2,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -106,7 +111,12 @@
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":3,
+         "inputs": [
+            {
+               "potId":3,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -134,7 +144,12 @@
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":4,
+         "inputs": [
+            {
+               "potId":4,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -162,7 +177,12 @@
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":5,
+         "inputs": [
+            {
+               "potId":5,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -191,7 +211,12 @@
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":2,
+         "inputs": [
+            {
+               "potId":2,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -220,7 +245,12 @@
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":3,
+         "inputs": [
+            {
+               "potId":3,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -249,7 +279,12 @@
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":4,
+         "inputs": [
+            {
+               "potId":4,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -278,7 +313,12 @@
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":5,
+         "inputs": [
+            {
+               "potId":5,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",

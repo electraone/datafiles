@@ -9,13 +9,36 @@
       }
    ],
    "devices":[
-      {
-         "id":1,
-         "name":"Yamaha DX7",
-         "instrumentId":"generic-midi",
-         "port":1,
-         "channel":1
-      }
+   {
+      "id":1,
+      "name":"YAMAHA DX7",
+      "instrument":"generic",
+      "port":1,
+      "channel":1,
+      "patch":[
+         {
+            "request":[
+               67,
+               32,
+               0
+            ],
+            "responses":[
+               {
+                  "id":1,
+                  "header":[
+                     67,
+                     0,
+                     0,
+                     1,
+                     27
+                  ],
+                  "rules":[
+                  ]
+               }
+            ]
+         }
+      ]
+   }
    ],
    "overlays":[
    ],
@@ -69,6 +92,15 @@
                            }
                         ]
                      }
+                  ],
+                  "parser":[
+                     {
+                        "responseId":1,
+                        "parameterBitPosition":0,
+                        "byte":126,
+                        "byteBitPosition":0,
+                        "bitWidth":7
+                     }
                   ]
                }
             },
@@ -98,6 +130,15 @@
                               "type":"sysex"
                            }
                         ]
+                     }
+                  ],
+                  "parser":[
+                     {
+                        "responseId":1,
+                        "parameterBitPosition":0,
+                        "byte":127,
+                        "byteBitPosition":0,
+                        "bitWidth":7
                      }
                   ]
                }
@@ -129,6 +170,15 @@
                            }
                         ]
                      }
+                  ],
+                  "parser":[
+                     {
+                        "responseId":1,
+                        "parameterBitPosition":0,
+                        "byte":128,
+                        "byteBitPosition":0,
+                        "bitWidth":7
+                     }
                   ]
                }
             },
@@ -158,6 +208,15 @@
                               "type":"sysex"
                            }
                         ]
+                     }
+                  ],
+                  "parser":[
+                     {
+                        "responseId":1,
+                        "parameterBitPosition":0,
+                        "byte":129,
+                        "byteBitPosition":0,
+                        "bitWidth":7
                      }
                   ]
                }
@@ -189,6 +248,15 @@
                            }
                         ]
                      }
+                  ],
+                  "parser":[
+                     {
+                        "responseId":1,
+                        "parameterBitPosition":0,
+                        "byte":130,
+                        "byteBitPosition":0,
+                        "bitWidth":7
+                     }
                   ]
                }
             },
@@ -218,6 +286,15 @@
                               "type":"sysex"
                            }
                         ]
+                     }
+                  ],
+                  "parser":[
+                     {
+                        "responseId":1,
+                        "parameterBitPosition":0,
+                        "byte":131,
+                        "byteBitPosition":0,
+                        "bitWidth":7
                      }
                   ]
                }
@@ -249,6 +326,15 @@
                            }
                         ]
                      }
+                  ],
+                  "parser":[
+                     {
+                        "responseId":1,
+                        "parameterBitPosition":0,
+                        "byte":132,
+                        "byteBitPosition":0,
+                        "bitWidth":7
+                     }
                   ]
                }
             },
@@ -278,6 +364,15 @@
                               "type":"sysex"
                            }
                         ]
+                     }
+                  ],
+                  "parser":[
+                     {
+                        "responseId":1,
+                        "parameterBitPosition":0,
+                        "byte":133,
+                        "byteBitPosition":0,
+                        "bitWidth":7
                      }
                   ]
                }

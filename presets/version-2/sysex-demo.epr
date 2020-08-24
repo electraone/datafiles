@@ -75,7 +75,12 @@
             56
          ],
          "controlSetId":1,
-         "potId":1,
+         "inputs": [
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
          "type":"fader",
          "name":"SYSEX",
          "color":"F45C51",
@@ -151,7 +156,12 @@
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":2,
+         "inputs": [
+            {
+               "potId":2,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",

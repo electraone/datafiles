@@ -56,7 +56,12 @@
          ],
          "pageId":1,
          "controlSetId":1,
-         "potId":1,
+         "inputs": [
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -85,7 +90,12 @@
          ],
          "pageId":2,
          "controlSetId":1,
-         "potId":1,
+         "inputs": [
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -114,7 +124,12 @@
          ],
          "pageId":3,
          "controlSetId":1,
-         "potId":1,
+         "inputs": [
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -143,7 +158,12 @@
          ],
          "pageId":4,
          "controlSetId":1,
-         "potId":1,
+         "inputs": [
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -172,7 +192,12 @@
          ],
          "pageId":5,
          "controlSetId":1,
-         "potId":1,
+         "inputs": [
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",
@@ -201,7 +226,12 @@
          ],
          "pageId":6,
          "controlSetId":1,
-         "potId":1,
+         "inputs": [
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
          "values":[
             {
                "id":"value",

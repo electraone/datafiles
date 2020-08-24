@@ -34,7 +34,12 @@
             166
          ],
          "controlSetId":1,
-         "potId":1,
+         "inputs": [
+            {
+               "potId":2,
+               "valueId":"value"
+            }
+         ],
          "type":"vfader",
          "name":"ATTACK",
          "color":"F45C51",
@@ -62,7 +67,12 @@
             166
          ],
          "controlSetId":1,
-         "potId":2,
+         "inputs": [
+            {
+               "potId":3,
+               "valueId":"value"
+            }
+         ],
          "type":"vfader",
          "name":"DECAY",
          "color":"F49500",
@@ -90,7 +100,12 @@
             166
          ],
          "controlSetId":1,
-         "potId":3,
+         "inputs": [
+            {
+               "potId":4,
+               "valueId":"value"
+            }
+         ],
          "type":"vfader",
          "name":"SUSTAIN",
          "color":"529DEC",
@@ -118,7 +133,12 @@
             166
          ],
          "controlSetId":1,
-         "potId":4,
+         "inputs": [
+            {
+               "potId":5,
+               "valueId":"value"
+            }
+         ],
          "type":"vfader",
          "name":"RELEASE",
          "color":"03A598",
