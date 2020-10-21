@@ -1,6 +1,6 @@
 # Electra One Repository
 
-[![image](https://github.com/martinpavlas/electra.one/raw/master/docs/electra-banner.jpg)](https://electra.one)
+[![image](https://github.com/martinpavlas/electra.one/raw/master/docs/electra-banner.png)](https://electra.one)
 
 Welcome to the public repository of the Electra One MIDI Controller project.
 

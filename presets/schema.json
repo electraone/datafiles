@@ -1,0 +1,1261 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "Electra One preset format",
+    "description": "Full description of the Electra One preset format version 2",
+    "default": {},
+    "examples": [
+        {
+            "version": 2,
+            "name": "Example Preset",
+            "projectId": "tdz2SHUCM1tHfIsb95ZQ",
+            "pages": [
+                {
+                    "id": 1,
+                    "name": "Page 1"
+                }
+            ],
+            "groups": [
+                {
+                    "pageId": 1,
+                    "name": "GROUP 1",
+                    "bounds": [
+                        0,
+                        16,
+                        996,
+                        16
+                    ],
+                    "color": "FFFFFF"
+                },
+                {
+                    "pageId": 1,
+                    "name": "GROUP 2",
+                    "color": "F49500",
+                    "bounds": [
+                        0,
+                        104,
+                        486,
+                        16
+                    ]
+                },
+                {
+                    "pageId": 1,
+                    "name": "GROUP 3",
+                    "bounds": [
+                        0,
+                        192,
+                        146,
+                        16
+                    ],
+                    "color": "FFFFFF"
+                }
+            ],
+            "devices": [
+                {
+                    "id": 1,
+                    "name": "Generic MIDI",
+                    "port": 1,
+                    "channel": 1
+                }
+            ],
+            "overlays": [
+                {
+                    "id": 1,
+                    "items": [
+                        {
+                            "value": 0,
+                            "label": "SAW"
+                        },
+                        {
+                            "value": 1,
+                            "label": "SQUARE"
+                        },
+                        {
+                            "value": 2,
+                            "label": "NOISE"
+                        }
+                    ]
+                }
+            ],
+            "controls": [
+                {
+                    "id": 1,
+                    "type": "fader",
+                    "name": "CUTOFF",
+                    "color": "FFFFFF",
+                    "bounds": [
+                        0,
+                        40,
+                        146,
+                        56
+                    ],
+                    "pageId": 1,
+                    "controlSetId": 1,
+                    "potId": 1,
+                    "values": [
+                        {
+                            "id": "value",
+                            "message": {
+                                "deviceId": 1,
+                                "type": "cc7",
+                                "parameterNumber": 1,
+                                "min": 0,
+                                "max": 127
+                            },
+                            "min": 0,
+                            "max": 127
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "type": "list",
+                    "name": "WAVE",
+                    "color": "F45C51",
+                    "bounds": [
+                        170,
+                        40,
+                        146,
+                        56
+                    ],
+                    "pageId": 1,
+                    "controlSetId": 1,
+                    "potId": 2,
+                    "values": [
+                        {
+                            "id": "value",
+                            "message": {
+                                "deviceId": 1,
+                                "type": "cc7",
+                                "parameterNumber": 2
+                            },
+                            "overlayId": 1
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "type": "fader",
+                    "name": "CC14",
+                    "color": "F49500",
+                    "bounds": [
+                        340,
+                        40,
+                        146,
+                        56
+                    ],
+                    "pageId": 1,
+                    "controlSetId": 1,
+                    "potId": 3,
+                    "values": [
+                        {
+                            "id": "value",
+                            "message": {
+                                "deviceId": 1,
+                                "type": "cc14",
+                                "parameterNumber": 3,
+                                "min": 0,
+                                "max": 512
+                            },
+                            "min": 0,
+                            "max": 512
+                        }
+                    ]
+                },
+                {
+                    "id": 4,
+                    "type": "fader",
+                    "name": "NRPN",
+                    "color": "529DEC",
+                    "bounds": [
+                        510,
+                        40,
+                        146,
+                        56
+                    ],
+                    "pageId": 1,
+                    "controlSetId": 1,
+                    "potId": 4,
+                    "values": [
+                        {
+                            "id": "value",
+                            "message": {
+                                "deviceId": 1,
+                                "type": "nrpn",
+                                "parameterNumber": 4,
+                                "min": 0,
+                                "max": 512
+                            },
+                            "min": 0,
+                            "max": 512
+                        }
+                    ]
+                },
+                {
+                    "id": 5,
+                    "type": "fader",
+                    "name": "RPN",
+                    "color": "03A598",
+                    "bounds": [
+                        680,
+                        40,
+                        146,
+                        56
+                    ],
+                    "pageId": 1,
+                    "controlSetId": 1,
+                    "potId": 5,
+                    "values": [
+                        {
+                            "id": "value",
+                            "message": {
+                                "deviceId": 1,
+                                "type": "rpn",
+                                "parameterNumber": 5,
+                                "min": 0,
+                                "max": 512
+                            },
+                            "min": 0,
+                            "max": 512
+                        }
+                    ]
+                },
+                {
+                    "id": 6,
+                    "type": "fader",
+                    "name": "SYSEX MESSAGE",
+                    "color": "C44795",
+                    "bounds": [
+                        850,
+                        40,
+                        146,
+                        56
+                    ],
+                    "pageId": 1,
+                    "controlSetId": 1,
+                    "potId": 6,
+                    "values": [
+                        {
+                            "id": "value",
+                            "message": {
+                                "deviceId": 1,
+                                "type": "sysex",
+                                "parameterNumber": 6,
+                                "min": 0,
+                                "max": 127
+                            },
+                            "min": 0,
+                            "max": 127
+                        }
+                    ]
+                },
+                {
+                    "id": 7,
+                    "type": "fader",
+                    "name": "PARAMETER 7",
+                    "color": "F45C51",
+                    "bounds": [
+                        0,
+                        128,
+                        146,
+                        56
+                    ],
+                    "pageId": 1,
+                    "controlSetId": 1,
+                    "potId": 7,
+                    "values": [
+                        {
+                            "id": "value",
+                            "message": {
+                                "deviceId": 1,
+                                "type": "cc7",
+                                "parameterNumber": 7,
+                                "min": 0,
+                                "max": 127
+                            },
+                            "min": 0,
+                            "max": 127
+                        }
+                    ]
+                },
+                {
+                    "id": 13,
+                    "type": "fader",
+                    "name": "PARAMETER 8",
+                    "color": "F49500",
+                    "bounds": [
+                        0,
+                        216,
+                        146,
+                        56
+                    ],
+                    "pageId": 1,
+                    "controlSetId": 2,
+                    "potId": 1,
+                    "values": [
+                        {
+                            "id": "value",
+                            "message": {
+                                "deviceId": 1,
+                                "type": "cc7",
+                                "parameterNumber": 8,
+                                "min": 0,
+                                "max": 127
+                            },
+                            "min": 0,
+                            "max": 127
+                        }
+                    ]
+                },
+                {
+                    "id": 19,
+                    "type": "fader",
+                    "name": "PARAMETER 9",
+                    "color": "529DEC",
+                    "bounds": [
+                        0,
+                        304,
+                        146,
+                        56
+                    ],
+                    "pageId": 1,
+                    "controlSetId": 2,
+                    "potId": 7,
+                    "values": [
+                        {
+                            "id": "value",
+                            "message": {
+                                "deviceId": 1,
+                                "type": "cc7",
+                                "parameterNumber": 9,
+                                "min": 0,
+                                "max": 127
+                            },
+                            "min": 0,
+                            "max": 127
+                        }
+                    ]
+                },
+                {
+                    "id": 25,
+                    "type": "fader",
+                    "name": "PARAMETER 10",
+                    "color": "03A598",
+                    "bounds": [
+                        0,
+                        392,
+                        146,
+                        56
+                    ],
+                    "pageId": 1,
+                    "controlSetId": 3,
+                    "potId": 1,
+                    "values": [
+                        {
+                            "id": "value",
+                            "message": {
+                                "deviceId": 1,
+                                "type": "cc7",
+                                "parameterNumber": 10,
+                                "min": 0,
+                                "max": 127
+                            },
+                            "min": 0,
+                            "max": 127
+                        }
+                    ]
+                },
+                {
+                    "id": 31,
+                    "type": "fader",
+                    "name": "PARAMETER 11",
+                    "color": "C44795",
+                    "bounds": [
+                        0,
+                        480,
+                        146,
+                        56
+                    ],
+                    "pageId": 1,
+                    "controlSetId": 3,
+                    "potId": 7,
+                    "values": [
+                        {
+                            "id": "value",
+                            "message": {
+                                "deviceId": 1,
+                                "type": "cc7",
+                                "parameterNumber": 11,
+                                "min": 0,
+                                "max": 127
+                            },
+                            "min": 0,
+                            "max": 127
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "required": [
+        "version",
+        "name",
+        "pages",
+        "devices",
+        "controls"
+    ],
+    "properties": {
+        "version": {
+            "$id": "#/properties/version",
+            "type": "integer",
+            "title": "The version of the preset format",
+            "description": "A numeric representation of the preset file format.",
+            "default": 2,
+            "examples": [
+                2
+            ]
+        },
+        "name": {
+            "$id": "#/properties/name",
+            "type": "string",
+            "title": "The preset name",
+            "description": "A name of the preset as it will be shown on Electra's status bar.",
+            "default": "My preset",
+            "maxLength": 20,
+            "examples": [
+                "My Preset"
+            ]
+        },
+        "projectId": {
+            "$id": "#/properties/projectId",
+            "type": "string",
+            "title": "The project identifier",
+            "description": "Identifier used by the Electra One editor to associate preset with an Editor project.",
+            "default": "",
+            "examples": [
+                "tdz2SHUCM1tHfIsb95ZQ"
+            ]
+        },
+        "pages": {
+            "$id": "#/properties/pages",
+            "type": "array",
+            "title": "The pages",
+            "description": "A list of individual pages of the preset. A page is a collection of controls that are shown on the screen at one moment.",
+            "default": [
+              [
+                  {
+                      "id": 1,
+                      "name": "Page 1"
+                  }
+              ]
+            ],
+            "examples": [
+                [
+                    {
+                        "id": 1,
+                        "name": "Oscillators"
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/pages/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/pages/items/anyOf/0",
+                        "type": "object",
+                        "title": "The typical page",
+                        "description": "A page associate a a page name with an identifier. The page identifier is then used in other objects to include them on a specific page.",
+                        "default": {
+                          "id": 1,
+                          "name": "Page 1"
+                        },
+                        "examples": [
+                            {
+                                "id": 1,
+                                "name": "Oscillators"
+                            }
+                        ],
+                        "required": [
+                            "id",
+                            "name"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$id": "#/properties/pages/items/anyOf/0/properties/id",
+                                "type": "integer",
+                                "title": "The page identifier",
+                                "description": "A unique identifier of the page. The identifier actually represent particular page within the array of 12 pages that Electra One can display.",
+                                "default": 1,
+                                "minimum": 1,
+                                "maximum": 12,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "name": {
+                                "$id": "#/properties/pages/items/anyOf/0/properties/name",
+                                "type": "string",
+                                "title": "The page name",
+                                "description": "A name of the page as it will be shown to the user on the status bar and on the page selection screen.",
+                                "default": "Page 1",
+                                "examples": [
+                                    "Oscillators"
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "groups": {
+            "$id": "#/properties/groups",
+            "type": "array",
+            "title": "The groups schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "pageId": 1,
+                        "name": "GROUP 1",
+                        "bounds": [
+                            0,
+                            16,
+                            996,
+                            16
+                        ],
+                        "color": "FFFFFF"
+                    },
+                    {
+                        "pageId": 1,
+                        "name": "GROUP 2",
+                        "color": "F49500",
+                        "bounds": [
+                            0,
+                            104,
+                            486,
+                            16
+                        ]
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/groups/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/groups/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "pageId": 1,
+                                "name": "GROUP 1",
+                                "bounds": [
+                                    0,
+                                    16,
+                                    996,
+                                    16
+                                ],
+                                "color": "FFFFFF"
+                            }
+                        ],
+                        "required": [
+                            "pageId",
+                            "name",
+                            "bounds",
+                            "color"
+                        ],
+                        "properties": {
+                            "pageId": {
+                                "$id": "#/properties/groups/items/anyOf/0/properties/pageId",
+                                "type": "integer",
+                                "title": "The pageId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "name": {
+                                "$id": "#/properties/groups/items/anyOf/0/properties/name",
+                                "type": "string",
+                                "title": "The name schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "GROUP 1"
+                                ]
+                            },
+                            "bounds": {
+                                "$id": "#/properties/groups/items/anyOf/0/properties/bounds",
+                                "type": "array",
+                                "title": "The bounds schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": [],
+                                "examples": [
+                                    [
+                                        0,
+                                        16
+                                    ]
+                                ],
+                                "additionalItems": true,
+                                "items": {
+                                    "$id": "#/properties/groups/items/anyOf/0/properties/bounds/items",
+                                    "anyOf": [
+                                        {
+                                            "$id": "#/properties/groups/items/anyOf/0/properties/bounds/items/anyOf/0",
+                                            "type": "integer",
+                                            "title": "The first anyOf schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": 0,
+                                            "examples": [
+                                                0,
+                                                16
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "color": {
+                                "$id": "#/properties/groups/items/anyOf/0/properties/color",
+                                "type": "string",
+                                "title": "The color schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "FFFFFF"
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "devices": {
+            "$id": "#/properties/devices",
+            "type": "array",
+            "title": "The devices schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "id": 1,
+                        "name": "Generic MIDI",
+                        "port": 1,
+                        "channel": 1
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/devices/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/devices/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "id": 1,
+                                "name": "Generic MIDI",
+                                "port": 1,
+                                "channel": 1
+                            }
+                        ],
+                        "required": [
+                            "id",
+                            "name",
+                            "port",
+                            "channel"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$id": "#/properties/devices/items/anyOf/0/properties/id",
+                                "type": "integer",
+                                "title": "The id schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "name": {
+                                "$id": "#/properties/devices/items/anyOf/0/properties/name",
+                                "type": "string",
+                                "title": "The name schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "Generic MIDI"
+                                ]
+                            },
+                            "port": {
+                                "$id": "#/properties/devices/items/anyOf/0/properties/port",
+                                "type": "integer",
+                                "title": "The port schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "channel": {
+                                "$id": "#/properties/devices/items/anyOf/0/properties/channel",
+                                "type": "integer",
+                                "title": "The channel schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "overlays": {
+            "$id": "#/properties/overlays",
+            "type": "array",
+            "title": "The overlays schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "id": 1,
+                        "items": [
+                            {
+                                "value": 0,
+                                "label": "SAW"
+                            },
+                            {
+                                "value": 1,
+                                "label": "SQUARE"
+                            },
+                            {
+                                "value": 2,
+                                "label": "NOISE"
+                            }
+                        ]
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/overlays/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/overlays/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "id": 1,
+                                "items": [
+                                    {
+                                        "value": 0,
+                                        "label": "SAW"
+                                    },
+                                    {
+                                        "value": 1,
+                                        "label": "SQUARE"
+                                    },
+                                    {
+                                        "value": 2,
+                                        "label": "NOISE"
+                                    }
+                                ]
+                            }
+                        ],
+                        "required": [
+                            "id",
+                            "items"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$id": "#/properties/overlays/items/anyOf/0/properties/id",
+                                "type": "integer",
+                                "title": "The id schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "items": {
+                                "$id": "#/properties/overlays/items/anyOf/0/properties/items",
+                                "type": "array",
+                                "title": "The items schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": [],
+                                "examples": [
+                                    [
+                                        {
+                                            "value": 0,
+                                            "label": "SAW"
+                                        },
+                                        {
+                                            "value": 1,
+                                            "label": "SQUARE"
+                                        }
+                                    ]
+                                ],
+                                "additionalItems": true,
+                                "items": {
+                                    "$id": "#/properties/overlays/items/anyOf/0/properties/items/items",
+                                    "anyOf": [
+                                        {
+                                            "$id": "#/properties/overlays/items/anyOf/0/properties/items/items/anyOf/0",
+                                            "type": "object",
+                                            "title": "The first anyOf schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": {},
+                                            "examples": [
+                                                {
+                                                    "value": 0,
+                                                    "label": "SAW"
+                                                }
+                                            ],
+                                            "required": [
+                                                "value",
+                                                "label"
+                                            ],
+                                            "properties": {
+                                                "value": {
+                                                    "$id": "#/properties/overlays/items/anyOf/0/properties/items/items/anyOf/0/properties/value",
+                                                    "type": "integer",
+                                                    "title": "The value schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": 0,
+                                                    "examples": [
+                                                        0
+                                                    ]
+                                                },
+                                                "label": {
+                                                    "$id": "#/properties/overlays/items/anyOf/0/properties/items/items/anyOf/0/properties/label",
+                                                    "type": "string",
+                                                    "title": "The label schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "SAW"
+                                                    ]
+                                                }
+                                            },
+                                            "additionalProperties": true
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "controls": {
+            "$id": "#/properties/controls",
+            "type": "array",
+            "title": "The controls schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "id": 1,
+                        "type": "fader",
+                        "name": "CUTOFF",
+                        "color": "FFFFFF",
+                        "bounds": [
+                            0,
+                            40,
+                            146,
+                            56
+                        ],
+                        "pageId": 1,
+                        "controlSetId": 1,
+                        "potId": 1,
+                        "values": [
+                            {
+                                "id": "value",
+                                "message": {
+                                    "deviceId": 1,
+                                    "type": "cc7",
+                                    "parameterNumber": 1,
+                                    "min": 0,
+                                    "max": 127
+                                },
+                                "min": 0,
+                                "max": 127
+                            }
+                        ]
+                    },
+                    {
+                        "id": 2,
+                        "type": "list",
+                        "name": "WAVE",
+                        "color": "F45C51",
+                        "bounds": [
+                            170,
+                            40,
+                            146,
+                            56
+                        ],
+                        "pageId": 1,
+                        "controlSetId": 1,
+                        "potId": 2,
+                        "values": [
+                            {
+                                "id": "value",
+                                "message": {
+                                    "deviceId": 1,
+                                    "type": "cc7",
+                                    "parameterNumber": 2
+                                },
+                                "overlayId": 1
+                            }
+                        ]
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/controls/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/controls/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "id": 1,
+                                "type": "fader",
+                                "name": "CUTOFF",
+                                "color": "FFFFFF",
+                                "bounds": [
+                                    0,
+                                    40,
+                                    146,
+                                    56
+                                ],
+                                "pageId": 1,
+                                "controlSetId": 1,
+                                "potId": 1,
+                                "values": [
+                                    {
+                                        "id": "value",
+                                        "message": {
+                                            "deviceId": 1,
+                                            "type": "cc7",
+                                            "parameterNumber": 1,
+                                            "min": 0,
+                                            "max": 127
+                                        },
+                                        "min": 0,
+                                        "max": 127
+                                    }
+                                ]
+                            }
+                        ],
+                        "required": [
+                            "id",
+                            "type",
+                            "name",
+                            "color",
+                            "bounds",
+                            "pageId",
+                            "controlSetId",
+                            "potId",
+                            "values"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$id": "#/properties/controls/items/anyOf/0/properties/id",
+                                "type": "integer",
+                                "title": "The id schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "type": {
+                                "$id": "#/properties/controls/items/anyOf/0/properties/type",
+                                "type": "string",
+                                "title": "The type schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "fader"
+                                ]
+                            },
+                            "name": {
+                                "$id": "#/properties/controls/items/anyOf/0/properties/name",
+                                "type": "string",
+                                "title": "The name schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "CUTOFF"
+                                ]
+                            },
+                            "color": {
+                                "$id": "#/properties/controls/items/anyOf/0/properties/color",
+                                "type": "string",
+                                "title": "The color schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "FFFFFF"
+                                ]
+                            },
+                            "bounds": {
+                                "$id": "#/properties/controls/items/anyOf/0/properties/bounds",
+                                "type": "array",
+                                "title": "The bounds schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": [],
+                                "examples": [
+                                    [
+                                        0,
+                                        40
+                                    ]
+                                ],
+                                "additionalItems": true,
+                                "items": {
+                                    "$id": "#/properties/controls/items/anyOf/0/properties/bounds/items",
+                                    "anyOf": [
+                                        {
+                                            "$id": "#/properties/controls/items/anyOf/0/properties/bounds/items/anyOf/0",
+                                            "type": "integer",
+                                            "title": "The first anyOf schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": 0,
+                                            "examples": [
+                                                0,
+                                                40
+                                            ]
+                                        }
+                                    ]
+                                }
+                            },
+                            "pageId": {
+                                "$id": "#/properties/controls/items/anyOf/0/properties/pageId",
+                                "type": "integer",
+                                "title": "The pageId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "controlSetId": {
+                                "$id": "#/properties/controls/items/anyOf/0/properties/controlSetId",
+                                "type": "integer",
+                                "title": "The controlSetId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "potId": {
+                                "$id": "#/properties/controls/items/anyOf/0/properties/potId",
+                                "type": "integer",
+                                "title": "The potId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "values": {
+                                "$id": "#/properties/controls/items/anyOf/0/properties/values",
+                                "type": "array",
+                                "title": "The values schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": [],
+                                "examples": [
+                                    [
+                                        {
+                                            "id": "value",
+                                            "message": {
+                                                "deviceId": 1,
+                                                "type": "cc7",
+                                                "parameterNumber": 1,
+                                                "min": 0,
+                                                "max": 127
+                                            },
+                                            "min": 0,
+                                            "max": 127
+                                        }
+                                    ]
+                                ],
+                                "additionalItems": true,
+                                "items": {
+                                    "$id": "#/properties/controls/items/anyOf/0/properties/values/items",
+                                    "anyOf": [
+                                        {
+                                            "$id": "#/properties/controls/items/anyOf/0/properties/values/items/anyOf/0",
+                                            "type": "object",
+                                            "title": "The first anyOf schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": {},
+                                            "examples": [
+                                                {
+                                                    "id": "value",
+                                                    "message": {
+                                                        "deviceId": 1,
+                                                        "type": "cc7",
+                                                        "parameterNumber": 1,
+                                                        "min": 0,
+                                                        "max": 127
+                                                    },
+                                                    "min": 0,
+                                                    "max": 127
+                                                }
+                                            ],
+                                            "required": [
+                                                "id",
+                                                "message",
+                                                "min",
+                                                "max"
+                                            ],
+                                            "properties": {
+                                                "id": {
+                                                    "$id": "#/properties/controls/items/anyOf/0/properties/values/items/anyOf/0/properties/id",
+                                                    "type": "string",
+                                                    "title": "The id schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "value"
+                                                    ]
+                                                },
+                                                "message": {
+                                                    "$id": "#/properties/controls/items/anyOf/0/properties/values/items/anyOf/0/properties/message",
+                                                    "type": "object",
+                                                    "title": "The message schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": {},
+                                                    "examples": [
+                                                        {
+                                                            "deviceId": 1,
+                                                            "type": "cc7",
+                                                            "parameterNumber": 1,
+                                                            "min": 0,
+                                                            "max": 127
+                                                        }
+                                                    ],
+                                                    "required": [
+                                                        "deviceId",
+                                                        "type",
+                                                        "parameterNumber",
+                                                        "min",
+                                                        "max"
+                                                    ],
+                                                    "properties": {
+                                                        "deviceId": {
+                                                            "$id": "#/properties/controls/items/anyOf/0/properties/values/items/anyOf/0/properties/message/properties/deviceId",
+                                                            "type": "integer",
+                                                            "title": "The deviceId schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": 0,
+                                                            "examples": [
+                                                                1
+                                                            ]
+                                                        },
+                                                        "type": {
+                                                            "$id": "#/properties/controls/items/anyOf/0/properties/values/items/anyOf/0/properties/message/properties/type",
+                                                            "type": "string",
+                                                            "title": "The type schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": "",
+                                                            "examples": [
+                                                                "cc7"
+                                                            ]
+                                                        },
+                                                        "parameterNumber": {
+                                                            "$id": "#/properties/controls/items/anyOf/0/properties/values/items/anyOf/0/properties/message/properties/parameterNumber",
+                                                            "type": "integer",
+                                                            "title": "The parameterNumber schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": 0,
+                                                            "examples": [
+                                                                1
+                                                            ]
+                                                        },
+                                                        "min": {
+                                                            "$id": "#/properties/controls/items/anyOf/0/properties/values/items/anyOf/0/properties/message/properties/min",
+                                                            "type": "integer",
+                                                            "title": "The min schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": 0,
+                                                            "examples": [
+                                                                0
+                                                            ]
+                                                        },
+                                                        "max": {
+                                                            "$id": "#/properties/controls/items/anyOf/0/properties/values/items/anyOf/0/properties/message/properties/max",
+                                                            "type": "integer",
+                                                            "title": "The max schema",
+                                                            "description": "An explanation about the purpose of this instance.",
+                                                            "default": 0,
+                                                            "examples": [
+                                                                127
+                                                            ]
+                                                        }
+                                                    },
+                                                    "additionalProperties": true
+                                                },
+                                                "min": {
+                                                    "$id": "#/properties/controls/items/anyOf/0/properties/values/items/anyOf/0/properties/min",
+                                                    "type": "integer",
+                                                    "title": "The min schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": 0,
+                                                    "examples": [
+                                                        0
+                                                    ]
+                                                },
+                                                "max": {
+                                                    "$id": "#/properties/controls/items/anyOf/0/properties/values/items/anyOf/0/properties/max",
+                                                    "type": "integer",
+                                                    "title": "The max schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": 0,
+                                                    "examples": [
+                                                        127
+                                                    ]
+                                                }
+                                            },
+                                            "additionalProperties": true
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": true
+}

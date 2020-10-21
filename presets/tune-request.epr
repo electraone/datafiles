@@ -1,0 +1,44 @@
+{
+  "version":2,
+  "name":"Tune Request demo",
+  "projectId":"d8WjdwYrP3lRyyx8nEMF",
+  "pages":[
+    {
+      "id":0,
+      "name":"FIRST PAGE"
+    }
+  ],
+  "groups":[
+  ],
+  "devices":[
+    {
+      "id":1,
+      "name":"Generic MIDI",
+      "instrumentId":"generic-midi",
+      "port":1,
+      "channel":1
+    }
+  ],
+  "overlays":[
+  ],
+  "controls":[
+    {
+       "id":1,
+       "pageId": 1,
+       "bounds": [ 0, 40, 158, 73 ],
+       "controlSetId": 1,
+       "type":"pad",
+       "mode":"momentary",
+       "name":"TUNE REQUEST",
+       "color":"FFFFFF",
+       "values":[
+          {
+             "message":{
+                "deviceId":1,
+                "type":"tune"
+             }
+          }
+       ]
+    }
+  ]
+}
