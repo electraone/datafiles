@@ -63,75 +63,18 @@
          "items":[
             {
                "value":0,
-               "label":"Small",
-               "bitmap":[
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  255, 255, 255, 255, 255, 255,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  255, 255, 255, 255, 255, 255
-               ]
+               "label":"Square",
+               "bitmap":"AAAAAAAA/P//AQAA/P//AQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACA//8/DACA//8/AAAAAAAAAAAAAAAA"
             },
             {
                "value":1,
-               "label":"Medium",
-               "bitmap":[
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  0, 0, 0, 0, 0, 0,
-                  255, 255, 255, 255, 255, 255,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  255, 255, 255, 255, 255, 255
-               ]
+               "label":"Triangle",
+               "bitmap":"AAAAAAAAAADgAAAAAADwAQAAAAAYAwAAAAAMBgAAAAAGDAAAAAADGAAAAIABMAAgAMAAYAAwAGAAwAAYBDAAgAEMDBgAAAMGGAwAAAYDMAYAAIwB4AMAAPgAwAEAAHAAAAAAAAAAAAAAAAAA"
             },
             {
                "value":2,
-               "label":"Large",
-               "bitmap":[
-                  255, 255, 255, 255, 255, 255,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  128, 0, 0, 0, 0, 1,
-                  255, 255, 255, 255, 255, 255
-               ]
+               "label":"Saw",
+               "bitmap":"AAAAAAAAAAAAwAEAAAAA8AEAAAAAnAEAAAAAhwEAAADAgQEAAABwgAEAAAAcgAEAAAAHgAEAAMABgAE4AHAAgAEOABwAgIEDAAcAgOEAwAEAgDkAcAAAgA8AHAAAgAMAAAAAAAAAAAAAAAAA"
             }
          ]
       }
