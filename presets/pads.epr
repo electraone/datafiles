@@ -87,6 +87,7 @@
          "mode":"momentary",
          "values":[
             {
+               "defaultValue":127,
                "message":{
                   "deviceId":1,
                   "type":"cc7",
@@ -108,7 +109,7 @@
          ],
          "controlSetId":1,
          "type":"pad",
-         "name":"PROGRAM #1",
+         "name":"PROGRAM #2",
          "color":"C44795",
          "mode":"momentary",
          "values":[
@@ -116,7 +117,7 @@
                "message":{
                   "deviceId":1,
                   "type":"program",
-                  "parameterNumber":0
+                  "parameterNumber":1
                }
             }
          ]
