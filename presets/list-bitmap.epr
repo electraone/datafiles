@@ -77,6 +77,26 @@
                "bitmap":"AAAAAAAAAAAAwAEAAAAA8AEAAAAAnAEAAAAAhwEAAADAgQEAAABwgAEAAAAcgAEAAAAHgAEAAMABgAE4AHAAgAEOABwAgIEDAAcAgOEAwAEAgDkAcAAAgA8AHAAAgAMAAAAAAAAAAAAAAAAA"
             }
          ]
+      },
+      {
+         "id":4,
+         "items":[
+            {
+               "value":0,
+               "label":"Algorithm #1",
+               "bitmap":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAfAAAAAAAR+Hw+n88XiEQikUgUiEQikUgciEQikUgEiEQikUgE+Hw+n88HIBAIBAIBIBAIBAIB4P////8BAACAAAAAAACAAAAAAAAAAAAAAAAAAAAA"
+            },
+            {
+               "value":1,
+               "label":"Triangle",
+               "bitmap":"AAAAAAAAAADgAAAAAADwAQAAAAAYAwAAAAAMBgAAAAAGDAAAAAADGAAAAIABMAAgAMAAYAAwAGAAwAAYBDAAgAEMDBgAAAMGGAwAAAYDMAYAAIwB4AMAAPgAwAEAAHAAAAAAAAAAAAAAAAAA"
+            },
+            {
+               "value":2,
+               "label":"Saw",
+               "bitmap":"AAAAAAAAAAAAwAEAAAAA8AEAAAAAnAEAAAAAhwEAAADAgQEAAABwgAEAAAAcgAEAAAAHgAEAAMABgAE4AHAAgAEOABwAgIEDAAcAgOEAwAEAgDkAcAAAgA8AHAAAgAMAAAAAAAAAAAAAAAAA"
+            }
+         ]
       }
    ],
    "controls":[
@@ -102,6 +122,37 @@
                   "type":"cc7",
                   "parameterNumber":1
                }
+            }
+         ]
+      },
+      {
+         "id":2,
+         "type":"list",
+         "name":"Algorithm",
+         "color":"529DEC",
+         "bounds":[
+            170,
+            40,
+            146,
+            56
+         ],
+         "pageId":1,
+         "controlSetId":1,
+         "inputs": [
+            {
+               "potId":2,
+               "valueId":"value"
+            }
+         ],
+         "values":[
+            {
+               "id":"value",
+               "message":{
+                  "deviceId":1,
+                  "type":"cc7",
+                  "parameterNumber":2
+               },
+               "overlayId":4
             }
          ]
       }
