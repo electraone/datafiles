@@ -9,7 +9,17 @@
       }
    ],
    "groups":[
-
+      {
+         "pageId":1,
+         "name":"POT 2",
+         "bounds":[
+            170,
+            192,
+            146,
+            16
+         ],
+         "color":"FFFFFF"
+      }
    ],
    "devices":[
       {
@@ -34,7 +44,7 @@
             166
          ],
          "controlSetId":1,
-         "inputs": [
+         "inputs":[
             {
                "potId":2,
                "valueId":"value"
@@ -67,7 +77,7 @@
             166
          ],
          "controlSetId":1,
-         "inputs": [
+         "inputs":[
             {
                "potId":3,
                "valueId":"value"
@@ -100,7 +110,7 @@
             166
          ],
          "controlSetId":1,
-         "inputs": [
+         "inputs":[
             {
                "potId":4,
                "valueId":"value"
@@ -133,7 +143,7 @@
             166
          ],
          "controlSetId":1,
-         "inputs": [
+         "inputs":[
             {
                "potId":5,
                "valueId":"value"
