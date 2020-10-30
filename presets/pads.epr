@@ -4,7 +4,7 @@
    "projectId":"d8WjdwYrP3lRyyx8nEMF",
    "pages":[
       {
-         "id":0,
+         "id":1,
          "name":"FIRST PAGE"
       }
    ],
@@ -58,15 +58,20 @@
          ],
          "controlSetId":1,
          "type":"pad",
-         "name":"MOMENTARY",
+         "name":"FIXED SYSEX",
          "color":"F45C51",
-         "mode":"momentary",
          "values":[
             {
                "message":{
                   "deviceId":1,
-                  "type":"note",
-                  "parameterNumber":72
+                  "type":"sysex",
+                  "parameterNumber":1,
+                  "data":[
+                     67,
+                     16,
+                     0,
+                     110
+                  ]
                }
             }
          ]
@@ -183,20 +188,15 @@
          ],
          "controlSetId":1,
          "type":"pad",
-         "name":"FIXED SYSEX",
+         "name":"MOMENTARY",
          "color":"FFFFFF",
+         "mode":"momentary",
          "values":[
             {
                "message":{
                   "deviceId":1,
-                  "type":"sysex",
-                  "parameterNumber":1,
-                  "data":[
-                     67,
-                     16,
-                     0,
-                     110
-                  ]
+                  "type":"note",
+                  "parameterNumber":72
                }
             }
          ]
@@ -213,7 +213,7 @@
          "controlSetId":1,
          "type":"pad",
          "name":"VAR SYSEX",
-         "color":"FFFFFF",
+         "color":"F45C51",
          "values":[
             {
                "message":{

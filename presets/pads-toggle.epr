@@ -1,0 +1,52 @@
+{
+   "version":2,
+   "name":"Pads demo",
+   "projectId":"d8WjdwYrP3lRyyx8nEMF",
+   "pages":[
+      {
+         "id":1,
+         "name":"FIRST PAGE"
+      }
+   ],
+   "groups":[
+
+   ],
+   "devices":[
+      {
+         "id":1,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":1,
+         "channel":1
+      }
+   ],
+   "overlays":[
+
+   ],
+   "controls":[
+      {
+         "id":1,
+         "pageId":1,
+         "bounds":[
+            443,
+            169,
+            158,
+            158
+         ],
+         "controlSetId":1,
+         "type":"pad",
+         "name":"Note A4#",
+         "color":"529DEC",
+         "mode":"toggle",
+         "values":[
+            {
+               "message":{
+                  "deviceId":1,
+                  "type":"note",
+                  "parameterNumber":70
+               }
+            }
+         ]
+      }
+   ]
+}

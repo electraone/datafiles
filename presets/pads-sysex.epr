@@ -1,0 +1,72 @@
+{
+   "version":2,
+   "name":"Pads demo",
+   "projectId":"d8WjdwYrP3lRyyx8nEMF",
+   "pages":[
+      {
+         "id":1,
+         "name":"FIRST PAGE"
+      }
+   ],
+   "groups":[
+
+   ],
+   "devices":[
+      {
+         "id":1,
+         "name":"Generic MIDI",
+         "instrumentId":"generic-midi",
+         "port":1,
+         "channel":1
+      }
+   ],
+   "overlays":[
+
+   ],
+   "controls":[
+      {
+         "id":1,
+         "pageId":1,
+         "bounds":[
+            443,
+            169,
+            158,
+            158
+         ],
+         "controlSetId":1,
+         "type":"pad",
+         "name":"Trigger PRG #1",
+         "color":"F49500",
+         "mode":"momentary",
+         "values":[
+            {
+               "message":{
+                  "deviceId":1,
+                  "type":"sysex",
+                  "parameterNumber":1,
+                  "onValue": 127,
+                  "offValue": 0,
+                  "data":[
+                     67,
+                     16,
+                     0,
+                     110,
+                     {
+                        "type":"value",
+                        "rules":[
+                           {
+                              "parameterNumber":1,
+                              "parameterPosition":0,
+                              "bitPosition":0,
+                              "bitWidth":7,
+                              "type":"sysex"
+                           }
+                        ]
+                     }
+                  ]
+               }
+            }
+         ]
+      }
+   ]
+}
