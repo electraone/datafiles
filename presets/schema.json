@@ -1,24 +1,24 @@
 {
    "$schema":"http://json-schema.org/draft-07/schema",
-   "$id":"http://example.com/example.json",
+   "$id":"https://github.com/martinpavlas/electra.one/blob/master/presets/schema.json",
    "definitions":{
       "pageId":{
          "type":"integer",
-         "title":"The Page identifier",
+         "title":"Page Id",
          "description":"A unique identifier of the page. The identifier is used by other objects to refer to a particular page.",
          "minimum":1,
          "maximum":12
       },
       "deviceId":{
          "type":"integer",
-         "title":"The Device identifier",
+         "title":"Device Id",
          "description":"A unique identifier of the device. The identifier is used in other objects to refer to a particular device.",
          "minimum":1,
          "maximum":16
       },
       "bounds":{
          "type":"array",
-         "title":"The Bounding box",
+         "title":"Bounds",
          "description":"A bounding box of the control, ie. the definition of the control's position on the screen and its size. The bounding box is represented as an array of [x, y, width, height].",
          "default":[
 
@@ -33,7 +33,7 @@
       },
       "color":{
          "type":"string",
-         "title":"The color",
+         "title":"Color",
          "description":"A 24-bit RGB code of the control's color. The colors are limited to six predefined colors.",
          "default":"FFFFFF",
          "enum":[
@@ -47,7 +47,7 @@
       },
       "valueId":{
          "type":"string",
-         "title":"The Value identifier",
+         "title":"Value Id",
          "description":"An identifier of a specific value object in the array of values.",
          "enum":[
             "value",
@@ -68,7 +68,7 @@
       },
       "inputs":{
          "type":"array",
-         "title":"The list of Inputs",
+         "title":"Inputs",
          "description":"An list of all inputs that can be assigned to a control.",
          "default":[
 
@@ -76,7 +76,7 @@
          "items":{
             "$id":"#/definitions/inputs/items",
             "type":"object",
-            "title":"The Input definition",
+            "title":"Input",
             "description":"An Input provides information about an assignment of a physical control/gesture to a value. An example is assigning a knob to a value of the control.",
             "default":{
 
@@ -89,7 +89,7 @@
                "potId":{
                   "$id":"#/defintions/inputs/items/potId",
                   "type":"integer",
-                  "title":"The Potentiometer identifier",
+                  "title":"Pot Id",
                   "description":"An identifier of the physical potentiometer - knob",
                   "minimum":1,
                   "maximum":12
@@ -102,14 +102,14 @@
       },
       "controlId":{
          "type":"integer",
-         "title":"The Control identifier",
+         "title":"Control Id",
          "description":"A unique identifier of the control. Electra uses the id to uniquely identify each control.",
          "minimum":1,
          "maximum":432
       },
       "controlType":{
          "type":"string",
-         "title":"The Type of the control",
+         "title":"Control Type",
          "description":"A type of functional and visual representation of the control.",
          "enum":[
             "fader",
@@ -123,7 +123,7 @@
       },
       "padMode":{
          "type":"string",
-         "title":"The Mode of Pad operation",
+         "title":"Pad Mode",
          "description":"A mode tells adjust behaviour of the pads.",
          "enum":[
             "toggle",
@@ -132,14 +132,14 @@
       },
       "controlName":{
          "type":"string",
-         "title":"The name of the Control",
+         "title":"Control Name",
          "description":"A name of the control. The name is usually shown underneath the control. When the control receives touch-event via the physical knob, the name is highlighted. If a name is an empty string or the attribute is omitted, the name is not shown and touch indication is disabled.",
          "minLength":0,
          "maxLength":20
       },
       "controlSetId":{
          "type":"integer",
-         "title":"The control Set identifier",
+         "title":"Control Set Id",
          "description":"Controls placed on one page can be further divided into control sets. The control sets are used t assign controls to pots (knobs). Users may switch between controls sets by pressing the hardware buttons or by sending MIDI messages to Electra. Only one control set can be active at any time. The controls of the active control sets are highlighted.",
          "minimum":1,
          "maximum":3
@@ -150,17 +150,17 @@
          "maximum":16383
       },
       "defaultValue":{
-         "title":"The defaultValue definition",
+         "title":"Default Value",
          "description":"A value to be set when the preset is loaded. The default value is also recalled when user double-taps the control on the touch screen.",
          "$ref":"#/definitions/displayValue"
       },
       "displayMin":{
-         "title":"The minimum display value",
+         "title":"Display Min Value",
          "description":"A mimimum value of the control's display value range.",
          "$ref":"#/definitions/displayValue"
       },
       "displayMax":{
-         "title":"The maximum display value",
+         "title":"Display Max Value",
          "description":"A maximum value of the control's display value range.",
          "$ref":"#/definitions/displayValue"
       },
@@ -170,25 +170,25 @@
          "maximum":16383
       },
       "midiMin":{
-         "title":"The minimum MIDI value",
+         "title":"Midi Min Value",
          "description":"A minimum value of the MIDI message value range.",
          "$ref":"#/definitions/midiValue"
       },
       "midiMax":{
-         "title":"The maximum MIDI value",
+         "title":"Midi Max Value",
          "description":"A maximum value of the MIDI message value range.",
          "$ref":"#/definitions/midiValue"
       },
       "midiParameterNumber":{
          "type":"integer",
-         "title":"The parameter number",
+         "title":"Parameter Number",
          "description":"A parameter number associated with the MIDI message.",
          "minimum":0,
          "maximum":16383
       },
       "midiMessagetype":{
          "type":"string",
-         "title":"The Type of the MIDI messages",
+         "title":"Midi Msg Type",
          "description":"A type of the MIDI message. The type is not limited to basic MIDI messages but supports their higher level implementation, such as NRPN, etc.",
          "enum":[
             "cc7",
@@ -205,14 +205,14 @@
       },
       "overlayId":{
          "type":"integer",
-         "title":"The overlayId definition",
+         "title":"Overlay Id",
          "description":"An unique overlay identifier defined in the array of overlays.",
          "minimum":1,
          "maximum":50
       }
    },
    "type":"object",
-   "title":"The Electra One preset file schema",
+   "title":"Preset Schema",
    "description":"The Electra One preset is a definition of the preset layout and controls",
    "default":{
 
@@ -233,7 +233,7 @@
       "name":{
          "$id":"#/properties/name",
          "type":"string",
-         "title":"The name of the preset",
+         "title":"Name",
          "description":"A name of the preset. The name will be shown to the user on the screen in the status bar.",
          "default":"",
          "minLength":0,
@@ -242,7 +242,7 @@
       "projectId":{
          "$id":"#/properties/projectId",
          "type":"string",
-         "title":"The projectId",
+         "title":"Project Id",
          "description":"An external identifier. This id can be used to refer any external data within your Electra applications. For example, the projectId is used to associate a preset within the meta data, such as the preset description, author, etc., in the Electra Preset Editor application.",
          "default":"",
          "minLength":0,
@@ -251,7 +251,7 @@
       "pages":{
          "$id":"#/properties/pages",
          "type":"array",
-         "title":"The list of the preset pages",
+         "title":"Page List",
          "description":"An array of pages. A page is a collection of controls and groups displayed to the user at once.",
          "default":[
 
@@ -261,7 +261,7 @@
          "items":{
             "$id":"#/properties/pages/items",
             "type":"object",
-            "title":"The page definition",
+            "title":"Page",
             "description":"A page is a collection of controls and graphic objects shown on the screen at once. Each page has a name to make it easier to switch between pages. The page name is shown in the status bar.",
             "default":{
 
@@ -284,7 +284,7 @@
                "name":{
                   "$id":"#/properties/pages/items/properties/name",
                   "type":"string",
-                  "title":"The Name of the page",
+                  "title":"Name",
                   "description":"A name of the page. The name makes it easier for users to get oriented in Electra presets.",
                   "default":"",
                   "minLength":0,
@@ -296,7 +296,7 @@
       "groups":{
          "$id":"#/properties/groups",
          "type":"array",
-         "title":"The list of groups used in the preset",
+         "title":"Group List",
          "description":"An array of groups. A group is a graphical separator to improve a layout of presets.",
          "default":[
 
@@ -306,7 +306,7 @@
          "items":{
             "$id":"#/properties/groups/items",
             "type":"object",
-            "title":"The group definition",
+            "title":"Group",
             "description":"Graphical separators used to organize controls to groups by meaning. For example a group 'Envelope 1' can be created for controls 'Attack', 'Decay', 'Sustain', and 'Release'. Groups do not provide any other functionality than the visual grouping of controls.",
             "default":{
 
@@ -337,7 +337,7 @@
                "name":{
                   "$id":"#/properties/groups/items/properties/name",
                   "type":"string",
-                  "title":"The Group name",
+                  "title":"Name",
                   "description":"A name of the group. The name is shown to the user inside the group graphics. The name is trimmed to fit the size of the group.",
                   "minLength":0,
                   "maxLength":40
@@ -356,7 +356,7 @@
       "devices":{
          "$id":"#/properties/devices",
          "type":"array",
-         "title":"The list of MIDI devices used in the preset",
+         "title":"Device List",
          "description":"An array of devices. A device is a hardware MIDI device or software device (application, VST/AU plugin) connected to the Electra One.",
          "default":[
 
@@ -366,7 +366,7 @@
          "items":{
             "$id":"#/properties/devices/items",
             "type":"object",
-            "title":"The device definition",
+            "title":"Device",
             "description":"A device is a MIDI hardware or software instrument connected to one of Electra's ports. It can be a hardware synth connected to a MIDI IO port, a hardware sequencer connected to Electra's USB host port, or a software plugin attached to Electra's USB device ports. Electra can handle up to 16 simultaneously connected devices. When working with Electra, you always need to define your connected devices, you never send or receive MIDI messages from port and channel directly.",
             "default":{
 
@@ -389,7 +389,7 @@
                "id":{
                   "$id":"#/properties/devices/items/properties/id",
                   "type":"integer",
-                  "title":"The Device identifier",
+                  "title":"Id",
                   "description":"A unique identifier of the device. The identifier is used in other objects to refer to a particular device.",
                   "minimum":1,
                   "maximum":16
@@ -397,7 +397,7 @@
                "name":{
                   "$id":"#/properties/devices/items/properties/name",
                   "type":"string",
-                  "title":"The Device name",
+                  "title":"Name",
                   "description":"A user-defined name of the device. The name makes it easier for users to remember and identify devices.",
                   "minLength":0,
                   "maxLength":20
@@ -405,7 +405,7 @@
                "port":{
                   "$id":"#/properties/devices/items/properties/port",
                   "type":"integer",
-                  "title":"The MIDI port",
+                  "title":"Midi Port",
                   "description":"A port number that represents the MIDI bus inside the Electra. Port 1 interconnects MIDI IO port 1, USB Host port 1, USB device port 1. Port 2 interconnects MIDI IO 2, USB Host port 2, and USB device port 2.",
                   "minimum":1,
                   "maximum":2
@@ -413,7 +413,7 @@
                "channel":{
                   "$id":"#/properties/devices/items/properties/channel",
                   "type":"integer",
-                  "title":"The MIDI channel",
+                  "title":"Midi Channel",
                   "description":"A MIDI channel where the device transmits the MIDI messages.",
                   "minimum":1,
                   "maximum":16
@@ -424,7 +424,7 @@
       "overlays":{
          "$id":"#/properties/overlays",
          "type":"array",
-         "title":"The list of overlays - text lables definitions",
+         "title":"Overlay List",
          "description":"An array of overlays. An overlay is a list of text labels or graphical symbols that can be assigned to a control.",
          "default":[
 
@@ -435,7 +435,7 @@
          "items":{
             "$id":"#/properties/overlays/items",
             "type":"object",
-            "title":"The Overlay definition",
+            "title":"Overlay",
             "description":"Overlays are lists of text labels linked to particular MIDI values. Typically they are assigned to selection list controls or faders. Overlays are referred to by its identifier. Overlay items can be both text labels or graphical symbols represented with bitmap images.",
             "default":{
 
@@ -499,7 +499,7 @@
                "items":{
                   "$id":"#/properties/overlays/items/properties/items",
                   "type":"array",
-                  "title":"The list of text labels",
+                  "title":"Overlay Items",
                   "description":"An list of MIDI value - text label pairs.",
                   "default":[
 
@@ -519,7 +519,7 @@
                   "items":{
                      "$id":"#/properties/overlays/items/properties/items/items",
                      "type":"object",
-                     "title":"The text only overlay item",
+                     "title":"OverlayItem",
                      "description":"A text only overlay item.",
                      "default":{
 
@@ -542,14 +542,14 @@
                      "properties":{
                         "value":{
                            "$id":"#/properties/overlays/items/properties/items/items/properties/value",
-                           "title":"The MIDI value",
+                           "title":"Value",
                            "description":"A MIDI value associated with the text label.",
                            "$ref":"#/definitions/midiValue"
                         },
                         "label":{
                            "$id":"#/properties/overlays/items/properties/items/items/properties/label",
                            "type":"string",
-                           "title":"The Text label",
+                           "title":"Label",
                            "description":"A Text label that describes the value.",
                            "minLength":0,
                            "maxLength":20
@@ -557,7 +557,7 @@
                         "bitmap":{
                            "$id":"#/properties/overlays/items/properties/items/items/properties/bitmap",
                            "type":"string",
-                           "title":"The bitmap image",
+                           "title":"Bitmap",
                            "description":"A base64 encoded XBM image with 48x18 size.",
                            "minLength":144,
                            "maxLength":144
@@ -571,7 +571,7 @@
       "controls":{
          "$id":"#/properties/controls",
          "type":"array",
-         "title":"The list of controls present in the preset",
+         "title":"Control",
          "description":"An array of controls. A control is a representation of one or more MIDI parameters or messages that can be controlled by the user.",
          "default":[
 
@@ -584,7 +584,7 @@
                {
                   "$id":"#/properties/controls/items/anyOf/Pad",
                   "type":"object",
-                  "title":"The Pad control",
+                  "title":"Pad",
                   "description":"A touch sensitive Pad that represents a switch with On and Off state.",
                   "default":{
 
@@ -679,7 +679,7 @@
                         "items":{
                            "$id":"#/properties/controls/items/anyOf/Pad/properties/values/items",
                            "type":"object",
-                           "title":"The Value definition for the Pad",
+                           "title":"Value",
                            "description":"A Value object specific to the Pad control.",
                            "default":{
 
@@ -712,7 +712,7 @@
                               "message":{
                                  "$id":"#/properties/controls/items/anyOf/Pad/properties/values/items/properties/message",
                                  "type":"object",
-                                 "title":"The message definition for the Pad",
+                                 "title":"Message",
                                  "description":"A message object specific to the Pad control.",
                                  "default":{
 
@@ -765,7 +765,7 @@
                {
                   "$id":"#/properties/controls/items/anyOf/fader",
                   "type":"object",
-                  "title":"The Fader control",
+                  "title":"Fader",
                   "description":"A Fader that can be used change a continuous value of one MIDI parameter.",
                   "default":{
 
@@ -858,7 +858,7 @@
                         "items":{
                            "$id":"#/properties/controls/items/anyOf/fader/properties/values/items",
                            "type":"object",
-                           "title":"The Value definition for the Fader",
+                           "title":"Fader Value",
                            "description":"A Value object specific to the Fader control.",
                            "default":{
 
@@ -882,7 +882,7 @@
                               "message":{
                                  "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/message",
                                  "type":"object",
-                                 "title":"The message definition for the Fader value",
+                                 "title":"Value",
                                  "description":"A message object specific to the Fader control value.",
                                  "default":{
 
@@ -922,7 +922,7 @@
                {
                   "$id":"#/properties/controls/items/anyOf/adsr",
                   "type":"object",
-                  "title":"The ADSR Envelope",
+                  "title":"ADSR Env",
                   "description":"An ADSR Envelope that can be used to change continuous values of Attack, Decay, Sustain, and Release MIDI parameters.",
                   "default":{
 
@@ -1097,7 +1097,7 @@
                         "items":{
                            "$id":"#/properties/controls/items/anyOf/adsr/properties/values/items",
                            "type":"object",
-                           "title":"The Value definition for the Adsr",
+                           "title":"Value",
                            "description":"A Value object specific to the Adsr control.",
                            "default":{
 
@@ -1166,7 +1166,7 @@
                {
                   "$id":"#/properties/controls/items/anyOf/list",
                   "type":"object",
-                  "title":"The List",
+                  "title":"Control List",
                   "description":"A List that can be used to display lists of labels assigned to discrete values of a MIDI parameter.",
                   "default":{
 
@@ -1255,7 +1255,7 @@
                         "items":{
                            "$id":"#/properties/controls/items/anyOf/list/properties/values/items",
                            "type":"object",
-                           "title":"The Value definition for the List",
+                           "title":"List",
                            "description":"A Value object specific to the List control.",
                            "default":{
 
@@ -1276,7 +1276,7 @@
                               "message":{
                                  "$id":"#/properties/controls/items/anyOf/list/properties/values/items/properties/message",
                                  "type":"object",
-                                 "title":"The message definition for the List value",
+                                 "title":"List Value",
                                  "description":"A message object specific to the List control value.",
                                  "default":{
 
