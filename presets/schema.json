@@ -17,21 +17,26 @@
          "type":"integer",
          "title":"The version of the preset format",
          "description":"Provides information about the version of the preset file. Electra controller uses version information to distinguish between various preset file formats.",
-         "default":0
+         "default":2,
+         "minimum":1
       },
       "name":{
          "$id":"#/properties/name",
          "type":"string",
          "title":"The name of the preset",
          "description":"A name of the preset. The name will be shown to the user on the screen in the status bar.",
-         "default":""
+         "default":"",
+         "minLength":0,
+         "maxLength":20
       },
       "projectId":{
          "$id":"#/properties/projectId",
          "type":"string",
          "title":"The projectId",
          "description":"An external identifier. This id can be used to refer any external data within your Electra applications. For example, the projectId is used to associate a preset within the meta data, such as the preset description, author, etc., in the Electra Preset Editor application.",
-         "default":""
+         "default":"",
+         "minLength":0,
+         "maxLength":20
       },
       "pages":{
          "$id":"#/properties/pages",
@@ -41,47 +46,46 @@
          "default":[
 
          ],
-         "additionalItems":true,
+         "minItems":0,
+         "maxItems":12,
          "items":{
             "$id":"#/properties/pages/items",
-            "anyOf":[
-               {
-                  "$id":"#/properties/pages/items/anyOf/0",
-                  "type":"object",
-                  "title":"The first anyOf schema",
-                  "description":"An explanation about the purpose of this instance.",
-                  "default":{
+            "type":"object",
+            "title":"The page definition",
+            "description":"A page is a collection of controls and graphic objects shown on the screen at once. Each page has a name to make it easier to switch between pages. The page name is shown in the status bar.",
+            "default":{
 
-                  },
-                  "examples":[
-                     {
-                        "id":1,
-                        "name":"Page 1"
-                     }
-                  ],
-                  "required":[
-                     "id",
-                     "name"
-                  ],
-                  "properties":{
-                     "id":{
-                        "$id":"#/properties/pages/items/anyOf/0/properties/id",
-                        "type":"integer",
-                        "title":"The id schema",
-                        "description":"An explanation about the purpose of this instance.",
-                        "default":1
-                     },
-                     "name":{
-                        "$id":"#/properties/pages/items/anyOf/0/properties/name",
-                        "type":"string",
-                        "title":"The name schema",
-                        "description":"An explanation about the purpose of this instance.",
-                        "default":""
-                     }
-                  },
-                  "additionalProperties":true
+            },
+            "examples":[
+               {
+                  "id":1,
+                  "name":"Oscillators"
                }
-            ]
+            ],
+            "required":[
+               "id",
+               "name"
+            ],
+            "properties":{
+               "id":{
+                  "$id":"#/properties/pages/items/properties/id",
+                  "type":"integer",
+                  "title":"The Page identifier",
+                  "description":"A unique identifier of the page. The identifier is used by other objects to refer to a particular page.",
+                  "default":1,
+                  "minimum":1,
+                  "maximum":12
+               },
+               "name":{
+                  "$id":"#/properties/pages/items/properties/name",
+                  "type":"string",
+                  "title":"The Name of the page",
+                  "description":"A name of the page. The name makes it easier for users to get oriented in Electra presets.",
+                  "default":"",
+                  "minLength":0,
+                  "maxLength":20
+               }
+            }
          }
       },
       "groups":{
@@ -92,83 +96,83 @@
          "default":[
 
          ],
-         "additionalItems":true,
+         "minItems":0,
+         "maxItems":50,
          "items":{
             "$id":"#/properties/groups/items",
-            "anyOf":[
-               {
-                  "$id":"#/properties/groups/items/anyOf/0",
-                  "type":"object",
-                  "title":"The first anyOf schema",
-                  "description":"An explanation about the purpose of this instance.",
-                  "default":{
+            "type":"object",
+            "title":"The group definition",
+            "description":"Graphical separators used to organize controls to groups by meaning. For example a group 'Envelope 1' can be created for controls 'Attack', 'Decay', 'Sustain', and 'Release'. Groups do not provide any other functionality than the visual grouping of controls.",
+            "default":{
 
-                  },
-                  "examples":[
-                     {
-                        "pageId":1,
-                        "name":"Group VCO",
-                        "bounds":[
-                           0,
-                           16,
-                           996,
-                           16
-                        ],
-                        "color":"FFFFFF"
-                     }
+            },
+            "examples":[
+               {
+                  "pageId":1,
+                  "name":"Group VCO",
+                  "bounds":[
+                     0,
+                     16,
+                     996,
+                     16
                   ],
-                  "required":[
-                     "pageId",
-                     "name",
-                     "bounds"
-                  ],
-                  "properties":{
-                     "pageId":{
-                        "$id":"#/properties/groups/items/anyOf/0/properties/pageId",
-                        "type":"integer",
-                        "title":"The pageId schema",
-                        "description":"An explanation about the purpose of this instance.",
-                        "default":0
-                     },
-                     "name":{
-                        "$id":"#/properties/groups/items/anyOf/0/properties/name",
-                        "type":"string",
-                        "title":"The name schema",
-                        "description":"An explanation about the purpose of this instance.",
-                        "default":""
-                     },
-                     "bounds":{
-                        "$id":"#/properties/groups/items/anyOf/0/properties/bounds",
-                        "type":"array",
-                        "title":"The bounds schema",
-                        "description":"An explanation about the purpose of this instance.",
-                        "default":[
-                        ],
-                        "additionalItems":true,
-                        "items":{
-                           "$id":"#/properties/groups/items/anyOf/0/properties/bounds/items",
-                           "anyOf":[
-                              {
-                                 "$id":"#/properties/groups/items/anyOf/0/properties/bounds/items/anyOf/0",
-                                 "type":"integer",
-                                 "title":"The first anyOf schema",
-                                 "description":"An explanation about the purpose of this instance.",
-                                 "default":0
-                              }
-                           ]
-                        }
-                     },
-                     "color":{
-                        "$id":"#/properties/groups/items/anyOf/0/properties/color",
-                        "type":"string",
-                        "title":"The color schema",
-                        "description":"An explanation about the purpose of this instance.",
-                        "default":""
-                     }
-                  },
-                  "additionalProperties":true
+                  "color":"FFFFFF"
                }
-            ]
+            ],
+            "required":[
+               "pageId",
+               "name",
+               "bounds"
+            ],
+            "properties":{
+               "pageId":{
+                  "$id":"#/properties/groups/items/properties/pageId",
+                  "type":"integer",
+                  "title":"The Page identifier",
+                  "description":"A reference to a page identifier. Each control must belong to exactly one page and the page must be defined within the pages array.",
+                  "minimum":1,
+                  "maximum":12
+               },
+               "name":{
+                  "$id":"#/properties/groups/items/properties/name",
+                  "type":"string",
+                  "title":"The Group name",
+                  "description":"A name of the group. The name is shown to the user inside the group graphics. The name is trimmed to fit the size of the group.",
+                  "minLength":0,
+                  "maxLength":40
+               },
+               "bounds":{
+                  "$id":"#/properties/groups/items/properties/bounds",
+                  "type":"array",
+                  "title":"The Bounding box",
+                  "description":"A bounding box of the control, ie. the definition of the control's position on the screen and its size. The bounding box is represented as an array of [x, y, width, height].",
+                  "default":[
+
+                  ],
+                  "minItems":4,
+                  "maxItems":4,
+                  "items":{
+                     "$id":"#/properties/groups/items/properties/bounds/items",
+                     "type":"integer",
+                     "default":0
+                  }
+               },
+               "color":{
+                  "$id":"#/properties/groups/items/properties/color",
+                  "type":"string",
+                  "title":"The color",
+                  "description":"A 24-bit RGB code of the control's color. The colors are limited to six predefined colors.",
+                  "default":"FFFFFF",
+                  "enum":[
+                     "FFFFFF",
+                     "F45C51",
+                     "F49500",
+                     "529DEC",
+                     "03A598",
+                     "C44795"
+                  ]
+               }
+            }
          }
       },
       "devices":{
@@ -177,194 +181,219 @@
          "title":"The list of MIDI devices used in the preset",
          "description":"An array of devices. A device is a hardware MIDI device or software device (application, VST/AU plugin) connected to the Electra One.",
          "default":[
+
          ],
-         "additionalItems":true,
+         "minItems":0,
+         "maxItems":16,
          "items":{
             "$id":"#/properties/devices/items",
-            "anyOf":[
-               {
-                  "$id":"#/properties/devices/items/anyOf/0",
-                  "type":"object",
-                  "title":"The first anyOf schema",
-                  "description":"An explanation about the purpose of this instance.",
-                  "default":{
+            "type":"object",
+            "title":"The device definition",
+            "description":"A device is a MIDI hardware or software instrument connected to one of Electra's ports. It can be a hardware synth connected to a MIDI IO port, a hardware sequencer connected to Electra's USB host port, or a software plugin attached to Electra's USB device ports. Electra can handle up to 16 simultaneously connected devices. When working with Electra, you always need to define your connected devices, you never send or receive MIDI messages from port and channel directly.",
+            "default":{
 
-                  },
-                  "examples":[
-                     {
-                        "id":1,
-                        "name":"Generic MIDI",
-                        "port":2,
-                        "channel":1
-                     }
-                  ],
-                  "required":[
-                     "id",
-                     "name",
-                     "port",
-                     "channel"
-                  ],
-                  "properties":{
-                     "id":{
-                        "$id":"#/properties/devices/items/anyOf/0/properties/id",
-                        "type":"integer",
-                        "title":"The id schema",
-                        "description":"An explanation about the purpose of this instance.",
-                        "default":0
-                     },
-                     "name":{
-                        "$id":"#/properties/devices/items/anyOf/0/properties/name",
-                        "type":"string",
-                        "title":"The name schema",
-                        "description":"An explanation about the purpose of this instance.",
-                        "default":""
-                     },
-                     "port":{
-                        "$id":"#/properties/devices/items/anyOf/0/properties/port",
-                        "type":"integer",
-                        "title":"The port schema",
-                        "description":"An explanation about the purpose of this instance.",
-                        "default":0
-                     },
-                     "channel":{
-                        "$id":"#/properties/devices/items/anyOf/0/properties/channel",
-                        "type":"integer",
-                        "title":"The channel schema",
-                        "description":"An explanation about the purpose of this instance.",
-                        "default":0
-                     }
-                  },
-                  "additionalProperties":true
+            },
+            "examples":[
+               {
+                  "id":1,
+                  "name":"Generic MIDI",
+                  "port":1,
+                  "channel":1
                }
-            ]
+            ],
+            "required":[
+               "id",
+               "name",
+               "port",
+               "channel"
+            ],
+            "properties":{
+               "id":{
+                  "$id":"#/properties/devices/items/properties/id",
+                  "type":"integer",
+                  "title":"The Device identifier",
+                  "description":"A unique identifier of the device. The identifier is used in other objects to refer to a particular device.",
+                  "minimum":1,
+                  "maximum":16
+               },
+               "name":{
+                  "$id":"#/properties/devices/items/properties/name",
+                  "type":"string",
+                  "title":"The Device name",
+                  "description":"A user-defined name of the device. The name makes it easier for users to remember and identify devices.",
+                  "minLength":0,
+                  "maxLength":20
+               },
+               "port":{
+                  "$id":"#/properties/devices/items/properties/port",
+                  "type":"integer",
+                  "title":"The MIDI port",
+                  "description":"A port number that represents the MIDI bus inside the Electra. Port 1 interconnects MIDI IO port 1, USB Host port 1, USB device port 1. Port 2 interconnects MIDI IO 2, USB Host port 2, and USB device port 2.",
+                  "minimum":1,
+                  "maximum":2
+               },
+               "channel":{
+                  "$id":"#/properties/devices/items/properties/channel",
+                  "type":"integer",
+                  "title":"The MIDI channel",
+                  "description":"A MIDI channel where the device transmits the MIDI messages.",
+                  "minimum":1,
+                  "maximum":16
+               }
+            }
          }
       },
       "overlays":{
          "$id":"#/properties/overlays",
          "type":"array",
-         "title":"The overlays schema",
+         "title":"The list of overlays - text lables definitions",
          "description":"An array of overlays. An overlay is a list of text labels or graphical symbols that can be assigned to a control.",
          "default":[
 
          ],
          "additionalItems":true,
+         "minItems":0,
+         "maxItems":50,
          "items":{
             "$id":"#/properties/overlays/items",
-            "anyOf":[
+            "type":"object",
+            "title":"The Overlay definition",
+            "description":"Overlays are lists of text labels linked to particular MIDI values. Typically they are assigned to selection list controls or faders. Overlays are referred to by its identifier. Overlay items can be both text labels or graphical symbols represented with bitmap images.",
+            "default":{
+
+            },
+            "examples":[
                {
-                  "$id":"#/properties/overlays/items/anyOf/0",
-                  "type":"object",
-                  "title":"The first anyOf schema",
-                  "description":"An explanation about the purpose of this instance.",
-                  "default":{
-
-                  },
-                  "examples":[
+                  "id":1,
+                  "items":[
                      {
-                        "id":1,
-                        "items":[
-                           {
-                              "value":0,
-                              "label":"Sixteenth"
-                           },
-                           {
-                              "value":15,
-                              "label":"Eighth"
-                           },
-                           {
-                              "value":31,
-                              "label":"Quarter"
-                           },
-                           {
-                              "value":63,
-                              "label":"Half"
-                           },
-                           {
-                              "value":127,
-                              "label":"Full"
-                           }
-                        ]
-                     }
-                  ],
-                  "required":[
-                     "id",
-                     "items"
-                  ],
-                  "properties":{
-                     "id":{
-                        "$id":"#/properties/overlays/items/anyOf/0/properties/id",
-                        "type":"integer",
-                        "title":"The id schema",
-                        "description":"An explanation about the purpose of this instance.",
-                        "default":0
+                        "value":0,
+                        "label":"Sixteenth"
                      },
-                     "items":{
-                        "$id":"#/properties/overlays/items/anyOf/0/properties/items",
-                        "type":"array",
-                        "title":"The items schema",
-                        "description":"An explanation about the purpose of this instance.",
-                        "default":[
+                     {
+                        "value":15,
+                        "label":"Eighth"
+                     },
+                     {
+                        "value":31,
+                        "label":"Quarter"
+                     },
+                     {
+                        "value":63,
+                        "label":"Half"
+                     },
+                     {
+                        "value":127,
+                        "label":"Full"
+                     }
+                  ]
+               },
+               {
+                  "id":2,
+                  "items":[
+                     {
+                        "value":0,
+                        "label":"Square",
+                        "bitmap":"AAAAAAAA/P//AQAA/P//AQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACA//8/DACA//8/AAAAAAAAAAAAAAAA"
+                     },
+                     {
+                        "value":1,
+                        "label":"Triangle",
+                        "bitmap":"AAAAAAAAAADgAAAAAADwAQAAAAAYAwAAAAAMBgAAAAAGDAAAAAADGAAAAIABMAAgAMAAYAAwAGAAwAAYBDAAgAEMDBgAAAMGGAwAAAYDMAYAAIwB4AMAAPgAwAEAAHAAAAAAAAAAAAAAAAAA"
+                     },
+                     {
+                        "value":2,
+                        "label":"Saw",
+                        "bitmap":"AAAAAAAAAAAAwAEAAAAA8AEAAAAAnAEAAAAAhwEAAADAgQEAAABwgAEAAAAcgAEAAAAHgAEAAMABgAE4AHAAgAEOABwAgIEDAAcAgOEAwAEAgDkAcAAAgA8AHAAAgAMAAAAAAAAAAAAAAAAA"
+                     }
+                  ]
+               }
+            ],
+            "required":[
+               "id",
+               "items"
+            ],
+            "properties":{
+               "id":{
+                  "$id":"#/properties/overlays/items/properties/id",
+                  "type":"integer",
+                  "title":"The id schema",
+                  "description":"An explanation about the purpose of this instance.",
+                  "minimum":1,
+                  "maximum":50
+               },
+               "items":{
+                  "$id":"#/properties/overlays/items/properties/items",
+                  "type":"array",
+                  "title":"The list of text labels",
+                  "description":"An list of MIDI value - text label pairs.",
+                  "default":[
 
-                        ],
-                        "examples":[
-                           [
-                              {
-                                 "value":0,
-                                 "label":"Sixteenth"
-                              },
-                              {
-                                 "value":15,
-                                 "label":"Eighth"
-                              }
-                           ]
-                        ],
-                        "additionalItems":true,
-                        "items":{
-                           "$id":"#/properties/overlays/items/anyOf/0/properties/items/items",
-                           "anyOf":[
-                              {
-                                 "$id":"#/properties/overlays/items/anyOf/0/properties/items/items/anyOf/0",
-                                 "type":"object",
-                                 "title":"The first anyOf schema",
-                                 "description":"An explanation about the purpose of this instance.",
-                                 "default":{
+                  ],
+                  "examples":[
+                     [
+                        {
+                           "value":0,
+                           "label":"Sixteenth"
+                        },
+                        {
+                           "value":15,
+                           "label":"Eighth"
+                        }
+                     ]
+                  ],
+                  "items":{
+                     "$id":"#/properties/overlays/items/properties/items/items",
+                     "type":"object",
+                     "title":"The text only overlay item",
+                     "description":"A text only overlay item.",
+                     "default":{
 
-                                 },
-                                 "examples":[
-                                    {
-                                       "value":0,
-                                       "label":"Sixteenth"
-                                    }
-                                 ],
-                                 "required":[
-                                    "value",
-                                    "label"
-                                 ],
-                                 "properties":{
-                                    "value":{
-                                       "$id":"#/properties/overlays/items/anyOf/0/properties/items/items/anyOf/0/properties/value",
-                                       "type":"integer",
-                                       "title":"The value schema",
-                                       "description":"An explanation about the purpose of this instance.",
-                                       "default":0
-                                    },
-                                    "label":{
-                                       "$id":"#/properties/overlays/items/anyOf/0/properties/items/items/anyOf/0/properties/label",
-                                       "type":"string",
-                                       "title":"The label schema",
-                                       "description":"An explanation about the purpose of this instance.",
-                                       "default":""
-                                    }
-                                 },
-                                 "additionalProperties":true
-                              }
-                           ]
+                     },
+                     "examples":[
+                        {
+                           "value":0,
+                           "label":"Sixteenth"
+                        },
+                        {
+                           "value":8,
+                           "label":"Saw",
+                           "bitmap":"AAAAAAAAAAAAwAEAAAAA8AEAAAAAnAEAAAAAhwEAAADAgQEAAABwgAEAAAAcgAEAAAAHgAEAAMABgAE4AHAAgAEOABwAgIEDAAcAgOEAwAEAgDkAcAAAgA8AHAAAgAMAAAAAAAAAAAAAAAAA"
+                        }
+                     ],
+                     "required":[
+                        "value",
+                        "label"
+                     ],
+                     "properties":{
+                        "value":{
+                           "$id":"#/properties/overlays/items/properties/items/items/properties/value",
+                           "type":"integer",
+                           "title":"The MIDI value",
+                           "description":"A MIDI value associated with the text label.",
+                           "minimum":0,
+                           "maximum":16383
+                        },
+                        "label":{
+                           "$id":"#/properties/overlays/items/properties/items/items/properties/label",
+                           "type":"string",
+                           "title":"The Text label",
+                           "description":"A Text label that describes the value.",
+                           "minLength":0,
+                           "maxLength":20
+                        },
+                        "bitmap":{
+                           "$id":"#/properties/overlays/items/properties/items/items/properties/bitmap",
+                           "type":"string",
+                           "title":"The bitmap image",
+                           "description":"A base64 encoded XBM image with 48x18 size.",
+                           "minLength":144,
+                           "maxLength":144
                         }
                      }
-                  },
-                  "additionalProperties":true
+                  }
                }
-            ]
+            }
          }
       },
       "controls":{
@@ -376,6 +405,8 @@
 
          ],
          "additionalItems":true,
+         "minItems":0,
+         "maxItems":432,
          "items":{
             "$id":"#/properties/controls/items",
             "anyOf":[
