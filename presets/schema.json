@@ -3,7 +3,7 @@
    "$id":"http://example.com/example.json",
    "type":"object",
    "title":"The Electra One preset file schema",
-   "description":"The root schema comprises the entire JSON document.",
+   "description":"The Electra One preset is a definition of the preset layout and controls",
    "default":{
 
    },
@@ -16,28 +16,28 @@
          "$id":"#/properties/version",
          "type":"integer",
          "title":"The version of the preset format",
-         "description":"An explanation about the purpose of this instance.",
+         "description":"Provides information about the version of the preset file. Electra controller uses version information to distinguish between various preset file formats.",
          "default":0
       },
       "name":{
          "$id":"#/properties/name",
          "type":"string",
          "title":"The name of the preset",
-         "description":"An explanation about the purpose of this instance.",
+         "description":"A name of the preset. The name will be shown to the user on the screen in the status bar.",
          "default":""
       },
       "projectId":{
          "$id":"#/properties/projectId",
          "type":"string",
          "title":"The projectId",
-         "description":"An explanation about the purpose of this instance.",
+         "description":"An external identifier. This id can be used to refer any external data within your Electra applications. For example, the projectId is used to associate a preset within the meta data, such as the preset description, author, etc., in the Electra Preset Editor application.",
          "default":""
       },
       "pages":{
          "$id":"#/properties/pages",
          "type":"array",
          "title":"The list of the preset pages",
-         "description":"An explanation about the purpose of this instance.",
+         "description":"An array of pages. A page is a collection of controls and groups displayed to the user at once.",
          "default":[
 
          ],
@@ -87,8 +87,8 @@
       "groups":{
          "$id":"#/properties/groups",
          "type":"array",
-         "title":"The groups schema",
-         "description":"An explanation about the purpose of this instance.",
+         "title":"The list of groups used in the preset",
+         "description":"An array of groups. A group is a graphical separator to improve a layout of presets.",
          "default":[
 
          ],
@@ -174,8 +174,8 @@
       "devices":{
          "$id":"#/properties/devices",
          "type":"array",
-         "title":"The devices schema",
-         "description":"An explanation about the purpose of this instance.",
+         "title":"The list of MIDI devices used in the preset",
+         "description":"An array of devices. A device is a hardware MIDI device or software device (application, VST/AU plugin) connected to the Electra One.",
          "default":[
          ],
          "additionalItems":true,
@@ -243,7 +243,7 @@
          "$id":"#/properties/overlays",
          "type":"array",
          "title":"The overlays schema",
-         "description":"An explanation about the purpose of this instance.",
+         "description":"An array of overlays. An overlay is a list of text labels or graphical symbols that can be assigned to a control.",
          "default":[
 
          ],
@@ -370,8 +370,8 @@
       "controls":{
          "$id":"#/properties/controls",
          "type":"array",
-         "title":"The controls schema",
-         "description":"An explanation about the purpose of this instance.",
+         "title":"The list of controls present in the preset",
+         "description":"An array of controls. A control is a representation of one or more MIDI parameters or messages that can be controlled by the user.",
          "default":[
 
          ],
@@ -382,8 +382,8 @@
                {
                   "$id":"#/properties/controls/items/anyOf/0",
                   "type":"object",
-                  "title":"The first anyOf schema",
-                  "description":"An explanation about the purpose of this instance.",
+                  "title":"The Pad control",
+                  "description":"A touch sensitive Pad that represents a switch with On and Off state.",
                   "default":{
 
                   },
@@ -683,8 +683,8 @@
                {
                   "$id":"#/properties/controls/items/anyOf/1",
                   "type":"object",
-                  "title":"The second anyOf schema",
-                  "description":"An explanation about the purpose of this instance.",
+                  "title":"The Fader control",
+                  "description":"A Fader that can be used change a continuous value of one MIDI parameter.",
                   "default":{
 
                   },
@@ -950,8 +950,8 @@
                {
                   "$id":"#/properties/controls/items/anyOf/2",
                   "type":"object",
-                  "title":"The third anyOf schema",
-                  "description":"An explanation about the purpose of this instance.",
+                  "title":"The ADSR Envelope",
+                  "description":"An ADSR Envelope that can be used to change continuous values of Attack, Decay, Sustain, and Release MIDI parameters.",
                   "default":{
 
                   },
@@ -1326,8 +1326,8 @@
                {
                   "$id":"#/properties/controls/items/anyOf/3",
                   "type":"object",
-                  "title":"The fourth anyOf schema",
-                  "description":"An explanation about the purpose of this instance.",
+                  "title":"The List",
+                  "description":"A List that can be used to display lists of labels assigned to discrete values of a MIDI parameter.",
                   "default":{
 
                   },
