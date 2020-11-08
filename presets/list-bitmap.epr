@@ -9,6 +9,7 @@
       }
    ],
    "groups":[
+
    ],
    "devices":[
       {
@@ -102,12 +103,18 @@
    "controls":[
       {
          "id":1,
-         "bounds": [10, 20, 158, 60],
+         "bounds":[
+            10,
+            20,
+            158,
+            60
+         ],
+         "pageId":1,
          "type":"list",
          "name":"WAVESHAPE",
          "color":"03A598",
-         "controlSetId": 1,
-         "inputs": [
+         "controlSetId":1,
+         "inputs":[
             {
                "potId":1,
                "valueId":"value"
@@ -138,7 +145,7 @@
          ],
          "pageId":1,
          "controlSetId":1,
-         "inputs": [
+         "inputs":[
             {
                "potId":2,
                "valueId":"value"
