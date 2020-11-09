@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id":"https://github.com/martinpavlas/electra.one/blob/master/schemas/info.json",
+    "type": "object",
+    "title": "Info Schema",
+    "description": "Schema for info message",
+    "default": {},
+    "examples": [
+        {
+            "versionText": "v1.1.6",
+            "versionSeq": 100100700,
+            "serial": "EO1-123456"
+        }
+    ],
+    "required": [
+        "versionText",
+        "versionSeq",
+        "serial"
+    ],
+    "properties": {
+        "versionText": {
+            "$id": "#/properties/versionText",
+            "type": "string",
+            "title": "VersionText",
+            "description": "text representation of version",
+            "default": "",
+            "examples": [
+                "v1.1.6"
+            ]
+        },
+        "versionSeq": {
+            "$id": "#/properties/versionSeq",
+            "type": "integer",
+            "title": "VersionSeq",
+            "description": "numeric version number",
+            "default": 0,
+            "examples": [
+                100100700
+            ]
+        },
+        "serial": {
+            "$id": "#/properties/serial",
+            "type": "string",
+            "title": "Serial",
+            "description": "serial number of unit",
+            "default": "",
+            "examples": [
+                "EO1-123456"
+            ]
+        }
+    },
+    "additionalProperties": true
+}

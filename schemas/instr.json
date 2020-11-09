@@ -1,0 +1,673 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id":"https://github.com/martinpavlas/electra.one/blob/master/schemas/insr.json",
+    "type": "object",
+    "title": "Instrument Schema",
+    "description": "Schema for the instrument",
+    "default": {},
+    "required": [
+        "name",
+        "id",
+        "manufacturer",
+        "manufacturerId",
+        "categories",
+        "overlays",
+        "parameters"
+    ],
+    "properties": {
+        "name": {
+            "$id": "#/properties/name",
+            "type": "string",
+            "title": "The name schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Pioneer Toraiz AS-1"
+            ]
+        },
+        "id": {
+            "$id": "#/properties/id",
+            "type": "string",
+            "title": "The id schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "toraizas1"
+            ]
+        },
+        "manufacturer": {
+            "$id": "#/properties/manufacturer",
+            "type": "string",
+            "title": "The manufacturer schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Pioneer"
+            ]
+        },
+        "manufacturerId": {
+            "$id": "#/properties/manufacturerId",
+            "type": "string",
+            "title": "The manufacturerId schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "pioneer"
+            ]
+        },
+        "categories": {
+            "$id": "#/properties/categories",
+            "type": "array",
+            "title": "The categories schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "id": "global",
+                        "label": "Global"
+                    },
+                    {
+                        "id": "master",
+                        "label": "Master"
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/categories/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/categories/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "id": "global",
+                                "label": "Global"
+                            }
+                        ],
+                        "required": [
+                            "id",
+                            "label"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$id": "#/properties/categories/items/anyOf/0/properties/id",
+                                "type": "string",
+                                "title": "The id schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "global"
+                                ]
+                            },
+                            "label": {
+                                "$id": "#/properties/categories/items/anyOf/0/properties/label",
+                                "type": "string",
+                                "title": "The label schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "Global"
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "overlays": {
+            "$id": "#/properties/overlays",
+            "type": "array",
+            "title": "The overlays schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/overlays/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/overlays/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "required": [
+                            "id",
+                            "name",
+                            "items"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$id": "#/properties/overlays/items/anyOf/0/properties/id",
+                                "type": "integer",
+                                "title": "The id schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "name": {
+                                "$id": "#/properties/overlays/items/anyOf/0/properties/name",
+                                "type": "string",
+                                "title": "The name schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "Negative and Positive"
+                                ]
+                            },
+                            "items": {
+                                "$id": "#/properties/overlays/items/anyOf/0/properties/items",
+                                "type": "array",
+                                "title": "The items schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": [],
+                                "examples": [
+                                    [
+                                        {
+                                            "value": 0,
+                                            "label": "-64"
+                                        },
+                                        {
+                                            "value": 1,
+                                            "label": "-63"
+                                        }
+                                    ]
+                                ],
+                                "additionalItems": true,
+                                "items": {
+                                    "$id": "#/properties/overlays/items/anyOf/0/properties/items/items",
+                                    "anyOf": [
+                                        {
+                                            "$id": "#/properties/overlays/items/anyOf/0/properties/items/items/anyOf/0",
+                                            "type": "object",
+                                            "title": "The first anyOf schema",
+                                            "description": "An explanation about the purpose of this instance.",
+                                            "default": {},
+                                            "examples": [
+                                                {
+                                                    "value": 0,
+                                                    "label": "-64"
+                                                }
+                                            ],
+                                            "required": [
+                                                "value",
+                                                "label"
+                                            ],
+                                            "properties": {
+                                                "value": {
+                                                    "$id": "#/properties/overlays/items/anyOf/0/properties/items/items/anyOf/0/properties/value",
+                                                    "type": "integer",
+                                                    "title": "The value schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": 0,
+                                                    "examples": [
+                                                        0
+                                                    ]
+                                                },
+                                                "label": {
+                                                    "$id": "#/properties/overlays/items/anyOf/0/properties/items/items/anyOf/0/properties/label",
+                                                    "type": "string",
+                                                    "title": "The label schema",
+                                                    "description": "An explanation about the purpose of this instance.",
+                                                    "default": "",
+                                                    "examples": [
+                                                        "-64"
+                                                    ]
+                                                }
+                                            },
+                                            "additionalProperties": true
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "parameters": {
+            "$id": "#/properties/parameters",
+            "type": "array",
+            "title": "The parameters schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "id": 0,
+                        "type": "list",
+                        "name": "OSC1 Freq",
+                        "defaultValue": 24,
+                        "overlayId": 4,
+                        "categoryId": "oscs",
+                        "msg": "nrpn"
+                    },
+                    {
+                        "id": 1,
+                        "type": "list",
+                        "name": "OSC1 Sync",
+                        "defaultValue": 0,
+                        "overlayId": 2,
+                        "categoryId": "oscs",
+                        "msg": "nrpn"
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/parameters/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/parameters/items/anyOf/0",
+                        "type": "object",
+                        "title": "The first anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "id": 0,
+                                "type": "list",
+                                "name": "OSC1 Freq",
+                                "defaultValue": 24,
+                                "overlayId": 4,
+                                "categoryId": "oscs",
+                                "msg": "nrpn"
+                            }
+                        ],
+                        "required": [
+                            "id",
+                            "type",
+                            "name",
+                            "defaultValue",
+                            "overlayId",
+                            "categoryId",
+                            "msg"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$id": "#/properties/parameters/items/anyOf/0/properties/id",
+                                "type": "integer",
+                                "title": "The id schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    0
+                                ]
+                            },
+                            "type": {
+                                "$id": "#/properties/parameters/items/anyOf/0/properties/type",
+                                "type": "string",
+                                "title": "The type schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "list"
+                                ]
+                            },
+                            "name": {
+                                "$id": "#/properties/parameters/items/anyOf/0/properties/name",
+                                "type": "string",
+                                "title": "The name schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "OSC1 Freq"
+                                ]
+                            },
+                            "defaultValue": {
+                                "$id": "#/properties/parameters/items/anyOf/0/properties/defaultValue",
+                                "type": "integer",
+                                "title": "The defaultValue schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    24
+                                ]
+                            },
+                            "overlayId": {
+                                "$id": "#/properties/parameters/items/anyOf/0/properties/overlayId",
+                                "type": "integer",
+                                "title": "The overlayId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    4
+                                ]
+                            },
+                            "categoryId": {
+                                "$id": "#/properties/parameters/items/anyOf/0/properties/categoryId",
+                                "type": "string",
+                                "title": "The categoryId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "oscs"
+                                ]
+                            },
+                            "msg": {
+                                "$id": "#/properties/parameters/items/anyOf/0/properties/msg",
+                                "type": "string",
+                                "title": "The msg schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "nrpn"
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    },
+                    {
+                        "$id": "#/properties/parameters/items/anyOf/1",
+                        "type": "object",
+                        "title": "The second anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "id": 2,
+                                "type": "fader",
+                                "name": "OSC1 Level",
+                                "min": 0,
+                                "max": 127,
+                                "categoryId": "mix",
+                                "msg": "nrpn"
+                            }
+                        ],
+                        "required": [
+                            "id",
+                            "type",
+                            "name",
+                            "min",
+                            "max",
+                            "categoryId",
+                            "msg"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$id": "#/properties/parameters/items/anyOf/1/properties/id",
+                                "type": "integer",
+                                "title": "The id schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    2
+                                ]
+                            },
+                            "type": {
+                                "$id": "#/properties/parameters/items/anyOf/1/properties/type",
+                                "type": "string",
+                                "title": "The type schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "fader"
+                                ]
+                            },
+                            "name": {
+                                "$id": "#/properties/parameters/items/anyOf/1/properties/name",
+                                "type": "string",
+                                "title": "The name schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "OSC1 Level"
+                                ]
+                            },
+                            "min": {
+                                "$id": "#/properties/parameters/items/anyOf/1/properties/min",
+                                "type": "integer",
+                                "title": "The min schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    0
+                                ]
+                            },
+                            "max": {
+                                "$id": "#/properties/parameters/items/anyOf/1/properties/max",
+                                "type": "integer",
+                                "title": "The max schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    127
+                                ]
+                            },
+                            "categoryId": {
+                                "$id": "#/properties/parameters/items/anyOf/1/properties/categoryId",
+                                "type": "string",
+                                "title": "The categoryId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "mix"
+                                ]
+                            },
+                            "msg": {
+                                "$id": "#/properties/parameters/items/anyOf/1/properties/msg",
+                                "type": "string",
+                                "title": "The msg schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "nrpn"
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    },
+                    {
+                        "$id": "#/properties/parameters/items/anyOf/2",
+                        "type": "object",
+                        "title": "The third anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "id": 3,
+                                "type": "list",
+                                "name": "OSC1 Shape",
+                                "overlayId": 3,
+                                "categoryId": "oscs",
+                                "msg": "nrpn"
+                            }
+                        ],
+                        "required": [
+                            "id",
+                            "type",
+                            "name",
+                            "overlayId",
+                            "categoryId",
+                            "msg"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$id": "#/properties/parameters/items/anyOf/2/properties/id",
+                                "type": "integer",
+                                "title": "The id schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    3
+                                ]
+                            },
+                            "type": {
+                                "$id": "#/properties/parameters/items/anyOf/2/properties/type",
+                                "type": "string",
+                                "title": "The type schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "list"
+                                ]
+                            },
+                            "name": {
+                                "$id": "#/properties/parameters/items/anyOf/2/properties/name",
+                                "type": "string",
+                                "title": "The name schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "OSC1 Shape"
+                                ]
+                            },
+                            "overlayId": {
+                                "$id": "#/properties/parameters/items/anyOf/2/properties/overlayId",
+                                "type": "integer",
+                                "title": "The overlayId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    3
+                                ]
+                            },
+                            "categoryId": {
+                                "$id": "#/properties/parameters/items/anyOf/2/properties/categoryId",
+                                "type": "string",
+                                "title": "The categoryId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "oscs"
+                                ]
+                            },
+                            "msg": {
+                                "$id": "#/properties/parameters/items/anyOf/2/properties/msg",
+                                "type": "string",
+                                "title": "The msg schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "nrpn"
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    },
+                    {
+                        "$id": "#/properties/parameters/items/anyOf/3",
+                        "type": "object",
+                        "title": "The fourth anyOf schema",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "id": 6,
+                                "type": "fader",
+                                "name": "OSC2 FreqFine",
+                                "defaultValue": 127,
+                                "min": 0,
+                                "max": 254,
+                                "categoryId": "oscs",
+                                "msg": "nrpn"
+                            }
+                        ],
+                        "required": [
+                            "id",
+                            "type",
+                            "name",
+                            "defaultValue",
+                            "min",
+                            "max",
+                            "categoryId",
+                            "msg"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$id": "#/properties/parameters/items/anyOf/3/properties/id",
+                                "type": "integer",
+                                "title": "The id schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    6
+                                ]
+                            },
+                            "type": {
+                                "$id": "#/properties/parameters/items/anyOf/3/properties/type",
+                                "type": "string",
+                                "title": "The type schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "fader"
+                                ]
+                            },
+                            "name": {
+                                "$id": "#/properties/parameters/items/anyOf/3/properties/name",
+                                "type": "string",
+                                "title": "The name schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "OSC2 FreqFine"
+                                ]
+                            },
+                            "defaultValue": {
+                                "$id": "#/properties/parameters/items/anyOf/3/properties/defaultValue",
+                                "type": "integer",
+                                "title": "The defaultValue schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    127
+                                ]
+                            },
+                            "min": {
+                                "$id": "#/properties/parameters/items/anyOf/3/properties/min",
+                                "type": "integer",
+                                "title": "The min schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    0
+                                ]
+                            },
+                            "max": {
+                                "$id": "#/properties/parameters/items/anyOf/3/properties/max",
+                                "type": "integer",
+                                "title": "The max schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": 0,
+                                "examples": [
+                                    254
+                                ]
+                            },
+                            "categoryId": {
+                                "$id": "#/properties/parameters/items/anyOf/3/properties/categoryId",
+                                "type": "string",
+                                "title": "The categoryId schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "oscs"
+                                ]
+                            },
+                            "msg": {
+                                "$id": "#/properties/parameters/items/anyOf/3/properties/msg",
+                                "type": "string",
+                                "title": "The msg schema",
+                                "description": "An explanation about the purpose of this instance.",
+                                "default": "",
+                                "examples": [
+                                    "nrpn"
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": true
+}

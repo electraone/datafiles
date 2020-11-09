@@ -1,6 +1,6 @@
 {
    "$schema":"http://json-schema.org/draft-07/schema",
-   "$id":"https://github.com/martinpavlas/electra.one/blob/master/presets/schema.json",
+   "$id":"https://github.com/martinpavlas/electra.one/blob/master/schemas/preset.json",
    "definitions":{
       "pageId":{
          "type":"integer",
