@@ -1,0 +1,409 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id":"https://github.com/martinpavlas/electra.one/blob/master/schemas/config.json",
+    "type": "object",
+    "title": "Config Schema",
+    "description": "Schema for config message",
+    "default": {},
+    "examples": [
+        {
+            "router": {
+                "usbDevToMidiIo": true,
+                "usbDevToUsbHost": true,
+                "midiIoToUsbDev": true,
+                "midiIoToUsbHost": true,
+                "usbHostToMidiIo": true,
+                "usbHostToUsbDev": true,
+                "electraToMidiIo": true,
+                "electraToUsbHost": true,
+                "electraToUsbDev": true
+            },
+            "presetBanks": [
+                {
+                    "id": 1,
+                    "name": "FX UNITS",
+                    "color": "FFFFFF"
+                },
+                {
+                    "id": 2,
+                    "name": "SAMPLERS",
+                    "color": "529DEC"
+                }
+            ],
+            "usbHostAssigments": [
+                {
+                    "pattern": "launchpad",
+                    "port": 3
+                }
+            ],
+            "midiControl": [
+                {
+                    "event": "switchPreset",
+                    "eventParameter": 1,
+                    "midiMessage": "program",
+                    "parameterNumber": 1
+                }
+            ]
+        }
+    ],
+    "required": [
+        "router",
+        "presetBanks",
+        "usbHostAssigments",
+        "midiControl"
+    ],
+    "properties": {
+        "router": {
+            "$id": "#/properties/router",
+            "type": "object",
+            "title": "Router",
+            "description": "Routing setup.",
+            "default": {},
+            "examples": [
+                {
+                    "usbDevToMidiIo": true,
+                    "usbDevToUsbHost": true,
+                    "midiIoToUsbDev": true,
+                    "midiIoToUsbHost": true,
+                    "usbHostToMidiIo": true,
+                    "usbHostToUsbDev": true,
+                    "electraToMidiIo": true,
+                    "electraToUsbHost": true,
+                    "electraToUsbDev": true
+                }
+            ],
+            "required": [
+                "usbDevToMidiIo",
+                "usbDevToUsbHost",
+                "midiIoToUsbDev",
+                "midiIoToUsbHost",
+                "usbHostToMidiIo",
+                "usbHostToUsbDev",
+                "electraToMidiIo",
+                "electraToUsbHost",
+                "electraToUsbDev"
+            ],
+            "properties": {
+                "usbDevToMidiIo": {
+                    "$id": "#/properties/router/properties/usbDevToMidiIo",
+                    "type": "boolean",
+                    "title": "usbDevToMidiIo",
+                    "description": "usb device to midi din",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "usbDevToUsbHost": {
+                    "$id": "#/properties/router/properties/usbDevToUsbHost",
+                    "type": "boolean",
+                    "title": "usbDevToUsbHost",
+                    "description": "usb device to usn host",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "midiIoToUsbDev": {
+                    "$id": "#/properties/router/properties/midiIoToUsbDev",
+                    "type": "boolean",
+                    "title": "midiIoToUsbDev",
+                    "description": "midi din to usb device.",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "midiIoToUsbHost": {
+                    "$id": "#/properties/router/properties/midiIoToUsbHost",
+                    "type": "boolean",
+                    "title": "midiIoToUsbHost",
+                    "description": "midi din to usb host",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "usbHostToMidiIo": {
+                    "$id": "#/properties/router/properties/usbHostToMidiIo",
+                    "type": "boolean",
+                    "title": "usbHostToMidiIo",
+                    "description": "usb host to midi din",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "usbHostToUsbDev": {
+                    "$id": "#/properties/router/properties/usbHostToUsbDev",
+                    "type": "boolean",
+                    "title": "The usbHostToUsbDev schema",
+                    "description": "usb host to usb device",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "electraToMidiIo": {
+                    "$id": "#/properties/router/properties/electraToMidiIo",
+                    "type": "boolean",
+                    "title": "electraToMidiIo",
+                    "description": "electra to midi din",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "electraToUsbHost": {
+                    "$id": "#/properties/router/properties/electraToUsbHost",
+                    "type": "boolean",
+                    "title": "electraToUsbHost",
+                    "description": "electra to usb host",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                },
+                "electraToUsbDev": {
+                    "$id": "#/properties/router/properties/electraToUsbDev",
+                    "type": "boolean",
+                    "title": "electraToUsbDev",
+                    "description": "electra to midi device",
+                    "default": false,
+                    "examples": [
+                        true
+                    ]
+                }
+            },
+            "additionalProperties": true
+        },
+        "presetBanks": {
+            "$id": "#/properties/presetBanks",
+            "type": "array",
+            "title": "presetBanks",
+            "description": "preset banks",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "id": 1,
+                        "name": "FX UNITS",
+                        "color": "FFFFFF"
+                    },
+                    {
+                        "id": 2,
+                        "name": "SAMPLERS",
+                        "color": "529DEC"
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/presetBanks/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/presetBanks/items/anyOf/0",
+                        "type": "object",
+                        "title": "PresetBank",
+                        "description": "preset bank",
+                        "default": {},
+                        "examples": [
+                            {
+                                "id": 1,
+                                "name": "FX UNITS",
+                                "color": "FFFFFF"
+                            }
+                        ],
+                        "required": [
+                            "id",
+                            "name",
+                            "color"
+                        ],
+                        "properties": {
+                            "id": {
+                                "$id": "#/properties/presetBanks/items/anyOf/0/properties/id",
+                                "type": "integer",
+                                "title": "Id",
+                                "description": "preset bank id",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "name": {
+                                "$id": "#/properties/presetBanks/items/anyOf/0/properties/name",
+                                "type": "string",
+                                "title": "Name",
+                                "description": "preset bank name",
+                                "default": "",
+                                "examples": [
+                                    "FX UNITS"
+                                ]
+                            },
+                            "color": {
+                                "$id": "#/properties/presetBanks/items/anyOf/0/properties/color",
+                                "type": "string",
+                                "title": "Color",
+                                "description": "preset bank colour",
+                                "default": "",
+                                "examples": [
+                                    "FFFFFF"
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "usbHostAssigments": {
+            "$id": "#/properties/usbHostAssigments",
+            "type": "array",
+            "title": "usbHostAssigments",
+            "description": "usbHostAssigments",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "pattern": "launchpad",
+                        "port": 3
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/usbHostAssigments/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/usbHostAssigments/items/anyOf/0",
+                        "type": "object",
+                        "title": "usbHostAssigment",
+                        "description": "An explanation about the purpose of this instance.",
+                        "default": {},
+                        "examples": [
+                            {
+                                "pattern": "launchpad",
+                                "port": 3
+                            }
+                        ],
+                        "required": [
+                            "pattern",
+                            "port"
+                        ],
+                        "properties": {
+                            "pattern": {
+                                "$id": "#/properties/usbHostAssigments/items/anyOf/0/properties/pattern",
+                                "type": "string",
+                                "title": "Pattern",
+                                "description": "usbHostAssigment pattern",
+                                "default": "",
+                                "examples": [
+                                    "launchpad"
+                                ]
+                            },
+                            "port": {
+                                "$id": "#/properties/usbHostAssigments/items/anyOf/0/properties/port",
+                                "type": "integer",
+                                "title": "Port",
+                                "description": "usbHostAssigment midi port",
+                                "default": 0,
+                                "examples": [
+                                    3
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        },
+        "midiControl": {
+            "$id": "#/properties/midiControl",
+            "type": "array",
+            "title": "midiControl",
+            "description": "midi control",
+            "default": [],
+            "examples": [
+                [
+                    {
+                        "event": "switchPreset",
+                        "eventParameter": 1,
+                        "midiMessage": "program",
+                        "parameterNumber": 1
+                    }
+                ]
+            ],
+            "additionalItems": true,
+            "items": {
+                "$id": "#/properties/midiControl/items",
+                "anyOf": [
+                    {
+                        "$id": "#/properties/midiControl/items/anyOf/0",
+                        "type": "object",
+                        "title": "MidiControlItem",
+                        "description": "midi control item",
+                        "default": {},
+                        "examples": [
+                            {
+                                "event": "switchPreset",
+                                "eventParameter": 1,
+                                "midiMessage": "program",
+                                "parameterNumber": 1
+                            }
+                        ],
+                        "required": [
+                            "event",
+                            "eventParameter",
+                            "midiMessage",
+                            "parameterNumber"
+                        ],
+                        "properties": {
+                            "event": {
+                                "$id": "#/properties/midiControl/items/anyOf/0/properties/event",
+                                "type": "string",
+                                "title": "Event",
+                                "description": "Event type",
+                                "default": "",
+                                "examples": [
+                                    "switchPreset"
+                                ]
+                            },
+                            "eventParameter": {
+                                "$id": "#/properties/midiControl/items/anyOf/0/properties/eventParameter",
+                                "type": "integer",
+                                "title": "EventParameter",
+                                "description": "Event parameter",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "midiMessage": {
+                                "$id": "#/properties/midiControl/items/anyOf/0/properties/midiMessage",
+                                "type": "string",
+                                "title": "midiMessage",
+                                "description": "midi message",
+                                "default": "",
+                                "examples": [
+                                    "program"
+                                ]
+                            },
+                            "parameterNumber": {
+                                "$id": "#/properties/midiControl/items/anyOf/0/properties/parameterNumber",
+                                "type": "integer",
+                                "title": "parameterNumber",
+                                "description": "parameterNumber",
+                                "default": 0,
+                                "examples": [
+                                    1
+                                ]
+                            }
+                        },
+                        "additionalProperties": true
+                    }
+                ]
+            }
+        }
+    },
+    "additionalProperties": true
+}

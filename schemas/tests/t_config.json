@@ -1,0 +1,39 @@
+{
+  "router": {
+    "usbDevToMidiIo": true,
+    "usbDevToUsbHost": true,
+    "midiIoToUsbDev": true,
+    "midiIoToUsbHost": true,
+    "usbHostToMidiIo": true,
+    "usbHostToUsbDev": true,
+    "electraToMidiIo": true,
+    "electraToUsbHost": true,
+    "electraToUsbDev": true
+  },
+  "presetBanks": [
+    {
+      "id": 1,
+      "name": "FX UNITS",
+      "color": "FFFFFF"
+    },
+    {
+      "id": 2,
+      "name": "SAMPLERS",
+      "color": "529DEC"
+    }
+  ],
+  "usbHostAssigments": [
+    {
+      "pattern": "launchpad",
+      "port": 3
+    }
+  ],
+  "midiControl": [
+    {
+      "event": "switchPreset",
+      "eventParameter": 1,
+      "midiMessage": "program",
+      "parameterNumber": 1
+    }
+  ]
+}
