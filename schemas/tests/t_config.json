@@ -1,4 +1,5 @@
 {
+  "version":1,
   "router": {
     "usbDevToMidiIo": true,
     "usbDevToUsbHost": true,
