@@ -11,11 +11,11 @@
    "groups":[
       {
          "pageId":1,
-         "name":"POT 2",
+         "name":"Touch me",
          "bounds":[
-            170,
-            192,
-            146,
+            354,
+            102,
+            309,
             16
          ],
          "color":"FFFFFF"
