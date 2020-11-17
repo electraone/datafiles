@@ -889,7 +889,10 @@
                                  },
                                  "required":[
                                     "deviceId",
-                                    "type"
+                                    "type",
+                                    "parameterNumber",
+                                    "min",
+                                    "max"
                                  ],
                                  "properties":{
                                     "deviceId":{
@@ -1133,7 +1136,9 @@
                                  "required":[
                                     "deviceId",
                                     "type",
-                                    "parameterNumber"
+                                    "parameterNumber",
+                                    "min",
+                                    "max"
                                  ],
                                  "properties":{
                                     "deviceId":{
