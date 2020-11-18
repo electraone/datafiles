@@ -550,9 +550,9 @@
                            "$id":"#/properties/overlays/items/properties/items/items/properties/label",
                            "type":"string",
                            "title":"Label",
-                           "description":"A Text label that describes the value.",
+                           "description":"A Text label that describes the value. The width of the displayed text depends on the the width of the component.",
                            "minLength":0,
-                           "maxLength":20
+                           "maxLength":40
                         },
                         "bitmap":{
                            "$id":"#/properties/overlays/items/properties/items/items/properties/bitmap",
