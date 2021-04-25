@@ -1,5 +1,5 @@
 {
-	 "id":"mpa-xctrl",
+   "id":"mpa-xctrl",
    "name":"X Controller",
    "manufacturer":"Electra.One",
    "manufacturerId":"e1",
@@ -42,7 +42,6 @@
             {
                "id":"value",
                "message":{
-                  "deviceId":1,
                   "type":"cc7",
                   "parameterNumber":1,
                   "min":0,
