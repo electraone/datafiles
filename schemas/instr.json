@@ -1,673 +1,1537 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "$id":"https://github.com/martinpavlas/electra.one/blob/master/schemas/insr.json",
-    "type": "object",
-    "title": "Instrument Schema",
-    "description": "Schema for the instrument",
-    "default": {},
-    "required": [
-        "name",
-        "id",
-        "manufacturer",
-        "manufacturerId",
-        "categories",
-        "overlays",
-        "parameters"
-    ],
-    "properties": {
-        "name": {
-            "$id": "#/properties/name",
-            "type": "string",
-            "title": "The name schema",
-            "description": "An explanation about the purpose of this instance.",
-            "default": "",
-            "examples": [
-                "Pioneer Toraiz AS-1"
+   "$schema":"http://json-schema.org/draft-07/schema",
+   "$id":"https://github.com/martinpavlas/electra.one/blob/master/schemas/instrument.json",
+   "type":"object",
+   "title":"Instrument schema",
+   "description":"The Electra One instrument is a description of MIDI implementation of a MIDI device.",
+   "definitions":{
+      "categoryId":{
+         "type":"string",
+         "title":"Category identifier",
+         "description":"A unique identifier of the category. A short string that is used by parameters to their category.",
+         "minLength":1,
+         "maxLength":20,
+         "examples":[
+            "vcf"
+         ]
+      },
+      "valueId":{
+         "type":"string",
+         "title":"Value Id",
+         "description":"An identifier of a specific value object in the array of values.",
+         "enum":[
+            "value",
+            "attack",
+            "decay",
+            "release",
+            "sustain",
+            "r1",
+            "l1",
+            "r2",
+            "l2",
+            "r3",
+            "l3",
+            "r4",
+            "l4"
+         ],
+         "default":"value"
+      },
+      "controlType":{
+         "type":"string",
+         "title":"Control Type",
+         "description":"A type of functional and visual representation of the control.",
+         "enum":[
+            "fader",
+            "list",
+            "pad",
+            "vfader",
+            "adsr",
+            "adr",
+            "dx7envelope"
+         ]
+      },
+      "padMode":{
+         "type":"string",
+         "title":"Pad Mode",
+         "description":"A mode tells adjust behaviour of the pads.",
+         "enum":[
+            "toggle",
+            "momentary"
+         ]
+      },
+      "controlName":{
+         "type":"string",
+         "title":"Control Name",
+         "description":"A name of the control. The name is usually shown underneath the control. When the control receives touch-event via the physical knob, the name is highlighted. If a name is an empty string or the attribute is omitted, the name is not shown and touch indication is disabled.",
+         "minLength":0,
+         "maxLength":20
+      },
+      "displayValue":{
+         "type":"integer",
+         "minimum":-16383,
+         "maximum":16383
+      },
+      "defaultValue":{
+         "title":"Default Value",
+         "description":"A value to be set when the preset is loaded. The default value is also recalled when user double-taps the control on the touch screen.",
+         "$ref":"#/definitions/displayValue"
+      },
+      "displayMin":{
+         "title":"Display Min Value",
+         "description":"A mimimum value of the control's display value range.",
+         "$ref":"#/definitions/displayValue"
+      },
+      "displayMax":{
+         "title":"Display Max Value",
+         "description":"A maximum value of the control's display value range.",
+         "$ref":"#/definitions/displayValue"
+      },
+      "midiValue":{
+         "type":"integer",
+         "minimum":0,
+         "maximum":16383
+      },
+      "midiMin":{
+         "title":"Midi Min Value",
+         "description":"A minimum value of the MIDI message value range.",
+         "$ref":"#/definitions/midiValue"
+      },
+      "midiMax":{
+         "title":"Midi Max Value",
+         "description":"A maximum value of the MIDI message value range.",
+         "$ref":"#/definitions/midiValue"
+      },
+      "midiParameterNumber":{
+         "type":"integer",
+         "title":"Parameter Number",
+         "description":"A parameter number associated with the MIDI message.",
+         "minimum":0,
+         "maximum":16383
+      },
+      "midiMessagetype":{
+         "type":"string",
+         "title":"Midi Msg Type",
+         "description":"A type of the MIDI message. The type is not limited to basic MIDI messages but supports their higher level implementation, such as NRPN, etc.",
+         "enum":[
+            "cc7",
+            "cc14",
+            "nrpn",
+            "rpn",
+            "sysex",
+            "note",
+            "program",
+            "tune",
+            "start",
+            "stop"
+         ]
+      },
+      "overlayId":{
+         "type":"integer",
+         "title":"Overlay Id",
+         "description":"An unique overlay identifier defined in the array of overlays.",
+         "minimum":1,
+         "maximum":50
+      },
+      "hexNotation":{
+         "type":"string",
+         "title":"Hex notation",
+         "description":"A byte expressed in the hexadecimal notation.",
+         "minLength":2,
+         "maxLength":2,
+         "examples":[
+            "43",
+            "20",
+            "00"
+         ]
+      },
+      "decNotation":{
+         "$id":"#/properties/patch/items/properties/request/items/anyOf/dec",
+         "type":"integer",
+         "title":"Dec notation",
+         "description":"A byte expressed in the decimal notation.",
+         "minimum":0,
+         "maximum":127,
+         "examples":[
+            67,
+            32,
+            0
+         ]
+      }
+   },
+   "default":{
+
+   },
+   "examples":[
+      {
+         "id":"mpa-xctrl",
+         "name":"X Controller",
+         "manufacturer":"Electra.One",
+         "manufacturerId":"e1",
+         "categories":[
+            {
+               "id":"vcf",
+               "label":"Filter"
+            },
+            {
+               "id":"vca",
+               "label":"Amplifier"
+            },
+            {
+               "id":"global",
+               "label":"Global section"
+            }
+         ],
+         "overlays":[
+            {
+               "id":1,
+               "name":"Mode",
+               "items":[
+                  {
+                     "value":0,
+                     "label":"Fixed"
+                  },
+                  {
+                     "value":1,
+                     "label":"Ratio"
+                  }
+               ]
+            }
+         ],
+         "parameters":[
+            {
+               "categoryId":"vcf",
+               "type":"fader",
+               "name":"Cutoff",
+               "values":[
+                  {
+                     "id":"value",
+                     "message":{
+                        "deviceId":1,
+                        "type":"cc7",
+                        "parameterNumber":1,
+                        "min":0,
+                        "max":127
+                     },
+                     "min":0,
+                     "max":127
+                  }
+               ]
+            },
+            {
+               "categoryId":"vcf",
+               "type":"fader",
+               "name":"Resonance",
+               "values":[
+                  {
+                     "id":"value",
+                     "message":{
+                        "type":"cc7",
+                        "parameterNumber":1,
+                        "min":0,
+                        "max":127
+                     },
+                     "min":0,
+                     "max":127
+                  }
+               ]
+            },
+            {
+               "categoryId":"global",
+               "type":"list",
+               "name":"Mode",
+               "values":[
+                  {
+                     "message":{
+                        "type":"sysex",
+                        "data":[
+                           "43",
+                           "02",
+                           "20",
+                           "10",
+                           {
+                              "type":"value"
+                           }
+                        ],
+                        "parameterNumber":1,
+                        "min":0,
+                        "max":127
+                     },
+                     "id":"value",
+                     "overlayId":1
+                  }
+               ]
+            },
+            {
+               "categoryId":"vca",
+               "type":"adsr",
+               "name":"Envelope",
+               "values":[
+                  {
+                     "id":"attack",
+                     "defaultValue":84,
+                     "message":{
+                        "type":"cc7",
+                        "min":0,
+                        "max":127,
+                        "parameterNumber":2
+                     }
+                  },
+                  {
+                     "id":"decay",
+                     "defaultValue":127,
+                     "message":{
+                        "type":"cc7",
+                        "min":0,
+                        "max":127,
+                        "parameterNumber":3
+                     }
+                  },
+                  {
+                     "id":"sustain",
+                     "defaultValue":64,
+                     "message":{
+                        "type":"cc7",
+                        "min":0,
+                        "max":127,
+                        "parameterNumber":4
+                     }
+                  },
+                  {
+                     "id":"release",
+                     "defaultValue":127,
+                     "message":{
+                        "type":"cc7",
+                        "min":0,
+                        "max":127,
+                        "parameterNumber":5
+                     }
+                  }
+               ]
+            }
+         ],
+         "patch":[
+            {
+               "request":[
+                  "43",
+                  "20",
+                  "00"
+               ],
+               "responses":[
+                  {
+                     "header":[
+                        "43",
+                        "00",
+                        "00",
+                        "01",
+                        "1B"
+                     ],
+                     "rules":[
+                        {
+                           "type":"sysex",
+                           "paramterNumber":1,
+                           "parameterBitPosition":0,
+                           "byte":1,
+                           "byteBitPosition":0,
+                           "bitWidth":7
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "request":[
+                  "43",
+                  "20",
+                  "01"
+               ],
+               "responses":[
+                  {
+                     "header":[
+                        "43",
+                        "00",
+                        "01",
+                        "00",
+                        "5E"
+                     ],
+                     "rules":[
+                        {
+                           "type":"sysex",
+                           "paramterNumber":161,
+                           "parameterBitPosition":0,
+                           "byte":2,
+                           "byteBitPosition":0,
+                           "bitWidth":7
+                        }
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+   ],
+   "required":[
+      "id",
+      "name",
+      "manufacturer",
+      "manufacturerId",
+      "categories",
+      "parameters"
+   ],
+   "properties":{
+     "name":{
+        "$id":"#/properties/id",
+        "type":"string",
+        "title":"id",
+        "description":"A unique identifier of the instrument file. Please follow syntax: 'dev identifier-instrument file'",
+        "minLength":1,
+        "maxLength":30,
+        "examples":[
+           "mpa-xctrl",
+           "jro-virusb",
+           "e1-p5"
+        ]
+     },
+      "name":{
+         "$id":"#/properties/name",
+         "type":"string",
+         "title":"Name of the instrument",
+         "description":"Provides information about the model of the instrument.",
+         "minLength":1,
+         "maxLength":30,
+         "examples":[
+            "X Controller",
+            "TX7",
+            "Prophet 5 rev4"
+         ]
+      },
+      "manufacturer":{
+         "$id":"#/properties/manufacturer",
+         "type":"string",
+         "title":"Manufacturer",
+         "description":"The name of the manufacturer of the instrument.",
+         "minLength":1,
+         "maxLength":30,
+         "examples":[
+            "Electra.One",
+            "Yamaha",
+            "Sequential"
+         ]
+      },
+      "manufacturerId":{
+         "$id":"#/properties/manufacturerId",
+         "type":"string",
+         "title":"Manufacturer identifier",
+         "description":"Unique identifier of the manufacturer. Contact electra.one to request new one if needed.",
+         "enum":[
+            "roland",
+            "yamaha",
+            "korg",
+            "access",
+            "kawai",
+            "sci",
+            "e1"
+         ],
+         "examples":[
+            "e1",
+            "yamaha",
+            "sci"
+         ]
+      },
+      "categories":{
+         "$id":"#/properties/categories",
+         "type":"array",
+         "title":"Parameter categories",
+         "description":"A list of parameter categories that makes it easier to organize the parameters.",
+         "default":[
+
+         ],
+         "examples":[
+            [
+               {
+                  "id":"vcf",
+                  "label":"Filter"
+               },
+               {
+                  "id":"vca",
+                  "label":"Amplifier"
+               }
             ]
-        },
-        "id": {
-            "$id": "#/properties/id",
-            "type": "string",
-            "title": "The id schema",
-            "description": "An explanation about the purpose of this instance.",
-            "default": "",
-            "examples": [
-                "toraizas1"
-            ]
-        },
-        "manufacturer": {
-            "$id": "#/properties/manufacturer",
-            "type": "string",
-            "title": "The manufacturer schema",
-            "description": "An explanation about the purpose of this instance.",
-            "default": "",
-            "examples": [
-                "Pioneer"
-            ]
-        },
-        "manufacturerId": {
-            "$id": "#/properties/manufacturerId",
-            "type": "string",
-            "title": "The manufacturerId schema",
-            "description": "An explanation about the purpose of this instance.",
-            "default": "",
-            "examples": [
-                "pioneer"
-            ]
-        },
-        "categories": {
-            "$id": "#/properties/categories",
-            "type": "array",
-            "title": "The categories schema",
-            "description": "An explanation about the purpose of this instance.",
-            "default": [],
-            "examples": [
-                [
-                    {
-                        "id": "global",
-                        "label": "Global"
-                    },
-                    {
-                        "id": "master",
-                        "label": "Master"
-                    }
-                ]
+         ],
+         "items":{
+            "$id":"#/properties/categories/items",
+            "type":"object",
+            "title":"Category",
+            "description":"A category a means to organize the parameters in to the groups.",
+            "default":{
+
+            },
+            "examples":[
+               {
+                  "id":"vcf",
+                  "label":"Filter"
+               }
             ],
-            "additionalItems": true,
-            "items": {
-                "$id": "#/properties/categories/items",
-                "anyOf": [
-                    {
-                        "$id": "#/properties/categories/items/anyOf/0",
-                        "type": "object",
-                        "title": "The first anyOf schema",
-                        "description": "An explanation about the purpose of this instance.",
-                        "default": {},
-                        "examples": [
-                            {
-                                "id": "global",
-                                "label": "Global"
-                            }
-                        ],
-                        "required": [
-                            "id",
-                            "label"
-                        ],
-                        "properties": {
-                            "id": {
-                                "$id": "#/properties/categories/items/anyOf/0/properties/id",
-                                "type": "string",
-                                "title": "The id schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "global"
-                                ]
-                            },
-                            "label": {
-                                "$id": "#/properties/categories/items/anyOf/0/properties/label",
-                                "type": "string",
-                                "title": "The label schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "Global"
-                                ]
-                            }
-                        },
-                        "additionalProperties": true
-                    }
-                ]
-            }
-        },
-        "overlays": {
-            "$id": "#/properties/overlays",
-            "type": "array",
-            "title": "The overlays schema",
-            "description": "An explanation about the purpose of this instance.",
-            "default": [],
-            "additionalItems": true,
-            "items": {
-                "$id": "#/properties/overlays/items",
-                "anyOf": [
-                    {
-                        "$id": "#/properties/overlays/items/anyOf/0",
-                        "type": "object",
-                        "title": "The first anyOf schema",
-                        "description": "An explanation about the purpose of this instance.",
-                        "default": {},
-                        "required": [
-                            "id",
-                            "name",
-                            "items"
-                        ],
-                        "properties": {
-                            "id": {
-                                "$id": "#/properties/overlays/items/anyOf/0/properties/id",
-                                "type": "integer",
-                                "title": "The id schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    1
-                                ]
-                            },
-                            "name": {
-                                "$id": "#/properties/overlays/items/anyOf/0/properties/name",
-                                "type": "string",
-                                "title": "The name schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "Negative and Positive"
-                                ]
-                            },
-                            "items": {
-                                "$id": "#/properties/overlays/items/anyOf/0/properties/items",
-                                "type": "array",
-                                "title": "The items schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": [],
-                                "examples": [
-                                    [
-                                        {
-                                            "value": 0,
-                                            "label": "-64"
-                                        },
-                                        {
-                                            "value": 1,
-                                            "label": "-63"
-                                        }
-                                    ]
-                                ],
-                                "additionalItems": true,
-                                "items": {
-                                    "$id": "#/properties/overlays/items/anyOf/0/properties/items/items",
-                                    "anyOf": [
-                                        {
-                                            "$id": "#/properties/overlays/items/anyOf/0/properties/items/items/anyOf/0",
-                                            "type": "object",
-                                            "title": "The first anyOf schema",
-                                            "description": "An explanation about the purpose of this instance.",
-                                            "default": {},
-                                            "examples": [
-                                                {
-                                                    "value": 0,
-                                                    "label": "-64"
-                                                }
-                                            ],
-                                            "required": [
-                                                "value",
-                                                "label"
-                                            ],
-                                            "properties": {
-                                                "value": {
-                                                    "$id": "#/properties/overlays/items/anyOf/0/properties/items/items/anyOf/0/properties/value",
-                                                    "type": "integer",
-                                                    "title": "The value schema",
-                                                    "description": "An explanation about the purpose of this instance.",
-                                                    "default": 0,
-                                                    "examples": [
-                                                        0
-                                                    ]
-                                                },
-                                                "label": {
-                                                    "$id": "#/properties/overlays/items/anyOf/0/properties/items/items/anyOf/0/properties/label",
-                                                    "type": "string",
-                                                    "title": "The label schema",
-                                                    "description": "An explanation about the purpose of this instance.",
-                                                    "default": "",
-                                                    "examples": [
-                                                        "-64"
-                                                    ]
-                                                }
-                                            },
-                                            "additionalProperties": true
-                                        }
-                                    ]
-                                }
-                            }
-                        },
-                        "additionalProperties": true
-                    }
-                ]
-            }
-        },
-        "parameters": {
-            "$id": "#/properties/parameters",
-            "type": "array",
-            "title": "The parameters schema",
-            "description": "An explanation about the purpose of this instance.",
-            "default": [],
-            "examples": [
-                [
-                    {
-                        "id": 0,
-                        "type": "list",
-                        "name": "OSC1 Freq",
-                        "defaultValue": 24,
-                        "overlayId": 4,
-                        "categoryId": "oscs",
-                        "msg": "nrpn"
-                    },
-                    {
-                        "id": 1,
-                        "type": "list",
-                        "name": "OSC1 Sync",
-                        "defaultValue": 0,
-                        "overlayId": 2,
-                        "categoryId": "oscs",
-                        "msg": "nrpn"
-                    }
-                ]
+            "required":[
+               "id",
+               "label"
             ],
-            "additionalItems": true,
-            "items": {
-                "$id": "#/properties/parameters/items",
-                "anyOf": [
-                    {
-                        "$id": "#/properties/parameters/items/anyOf/0",
-                        "type": "object",
-                        "title": "The first anyOf schema",
-                        "description": "An explanation about the purpose of this instance.",
-                        "default": {},
-                        "examples": [
-                            {
-                                "id": 0,
-                                "type": "list",
-                                "name": "OSC1 Freq",
-                                "defaultValue": 24,
-                                "overlayId": 4,
-                                "categoryId": "oscs",
-                                "msg": "nrpn"
-                            }
-                        ],
-                        "required": [
-                            "id",
-                            "type",
-                            "name",
-                            "defaultValue",
-                            "overlayId",
-                            "categoryId",
-                            "msg"
-                        ],
-                        "properties": {
-                            "id": {
-                                "$id": "#/properties/parameters/items/anyOf/0/properties/id",
-                                "type": "integer",
-                                "title": "The id schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    0
-                                ]
-                            },
-                            "type": {
-                                "$id": "#/properties/parameters/items/anyOf/0/properties/type",
-                                "type": "string",
-                                "title": "The type schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "list"
-                                ]
-                            },
-                            "name": {
-                                "$id": "#/properties/parameters/items/anyOf/0/properties/name",
-                                "type": "string",
-                                "title": "The name schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "OSC1 Freq"
-                                ]
-                            },
-                            "defaultValue": {
-                                "$id": "#/properties/parameters/items/anyOf/0/properties/defaultValue",
-                                "type": "integer",
-                                "title": "The defaultValue schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    24
-                                ]
-                            },
-                            "overlayId": {
-                                "$id": "#/properties/parameters/items/anyOf/0/properties/overlayId",
-                                "type": "integer",
-                                "title": "The overlayId schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    4
-                                ]
-                            },
-                            "categoryId": {
-                                "$id": "#/properties/parameters/items/anyOf/0/properties/categoryId",
-                                "type": "string",
-                                "title": "The categoryId schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "oscs"
-                                ]
-                            },
-                            "msg": {
-                                "$id": "#/properties/parameters/items/anyOf/0/properties/msg",
-                                "type": "string",
-                                "title": "The msg schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "nrpn"
-                                ]
-                            }
-                        },
-                        "additionalProperties": true
-                    },
-                    {
-                        "$id": "#/properties/parameters/items/anyOf/1",
-                        "type": "object",
-                        "title": "The second anyOf schema",
-                        "description": "An explanation about the purpose of this instance.",
-                        "default": {},
-                        "examples": [
-                            {
-                                "id": 2,
-                                "type": "fader",
-                                "name": "OSC1 Level",
-                                "min": 0,
-                                "max": 127,
-                                "categoryId": "mix",
-                                "msg": "nrpn"
-                            }
-                        ],
-                        "required": [
-                            "id",
-                            "type",
-                            "name",
-                            "min",
-                            "max",
-                            "categoryId",
-                            "msg"
-                        ],
-                        "properties": {
-                            "id": {
-                                "$id": "#/properties/parameters/items/anyOf/1/properties/id",
-                                "type": "integer",
-                                "title": "The id schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    2
-                                ]
-                            },
-                            "type": {
-                                "$id": "#/properties/parameters/items/anyOf/1/properties/type",
-                                "type": "string",
-                                "title": "The type schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "fader"
-                                ]
-                            },
-                            "name": {
-                                "$id": "#/properties/parameters/items/anyOf/1/properties/name",
-                                "type": "string",
-                                "title": "The name schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "OSC1 Level"
-                                ]
-                            },
-                            "min": {
-                                "$id": "#/properties/parameters/items/anyOf/1/properties/min",
-                                "type": "integer",
-                                "title": "The min schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    0
-                                ]
-                            },
-                            "max": {
-                                "$id": "#/properties/parameters/items/anyOf/1/properties/max",
-                                "type": "integer",
-                                "title": "The max schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    127
-                                ]
-                            },
-                            "categoryId": {
-                                "$id": "#/properties/parameters/items/anyOf/1/properties/categoryId",
-                                "type": "string",
-                                "title": "The categoryId schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "mix"
-                                ]
-                            },
-                            "msg": {
-                                "$id": "#/properties/parameters/items/anyOf/1/properties/msg",
-                                "type": "string",
-                                "title": "The msg schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "nrpn"
-                                ]
-                            }
-                        },
-                        "additionalProperties": true
-                    },
-                    {
-                        "$id": "#/properties/parameters/items/anyOf/2",
-                        "type": "object",
-                        "title": "The third anyOf schema",
-                        "description": "An explanation about the purpose of this instance.",
-                        "default": {},
-                        "examples": [
-                            {
-                                "id": 3,
-                                "type": "list",
-                                "name": "OSC1 Shape",
-                                "overlayId": 3,
-                                "categoryId": "oscs",
-                                "msg": "nrpn"
-                            }
-                        ],
-                        "required": [
-                            "id",
-                            "type",
-                            "name",
-                            "overlayId",
-                            "categoryId",
-                            "msg"
-                        ],
-                        "properties": {
-                            "id": {
-                                "$id": "#/properties/parameters/items/anyOf/2/properties/id",
-                                "type": "integer",
-                                "title": "The id schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    3
-                                ]
-                            },
-                            "type": {
-                                "$id": "#/properties/parameters/items/anyOf/2/properties/type",
-                                "type": "string",
-                                "title": "The type schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "list"
-                                ]
-                            },
-                            "name": {
-                                "$id": "#/properties/parameters/items/anyOf/2/properties/name",
-                                "type": "string",
-                                "title": "The name schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "OSC1 Shape"
-                                ]
-                            },
-                            "overlayId": {
-                                "$id": "#/properties/parameters/items/anyOf/2/properties/overlayId",
-                                "type": "integer",
-                                "title": "The overlayId schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    3
-                                ]
-                            },
-                            "categoryId": {
-                                "$id": "#/properties/parameters/items/anyOf/2/properties/categoryId",
-                                "type": "string",
-                                "title": "The categoryId schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "oscs"
-                                ]
-                            },
-                            "msg": {
-                                "$id": "#/properties/parameters/items/anyOf/2/properties/msg",
-                                "type": "string",
-                                "title": "The msg schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "nrpn"
-                                ]
-                            }
-                        },
-                        "additionalProperties": true
-                    },
-                    {
-                        "$id": "#/properties/parameters/items/anyOf/3",
-                        "type": "object",
-                        "title": "The fourth anyOf schema",
-                        "description": "An explanation about the purpose of this instance.",
-                        "default": {},
-                        "examples": [
-                            {
-                                "id": 6,
-                                "type": "fader",
-                                "name": "OSC2 FreqFine",
-                                "defaultValue": 127,
-                                "min": 0,
-                                "max": 254,
-                                "categoryId": "oscs",
-                                "msg": "nrpn"
-                            }
-                        ],
-                        "required": [
-                            "id",
-                            "type",
-                            "name",
-                            "defaultValue",
-                            "min",
-                            "max",
-                            "categoryId",
-                            "msg"
-                        ],
-                        "properties": {
-                            "id": {
-                                "$id": "#/properties/parameters/items/anyOf/3/properties/id",
-                                "type": "integer",
-                                "title": "The id schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    6
-                                ]
-                            },
-                            "type": {
-                                "$id": "#/properties/parameters/items/anyOf/3/properties/type",
-                                "type": "string",
-                                "title": "The type schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "fader"
-                                ]
-                            },
-                            "name": {
-                                "$id": "#/properties/parameters/items/anyOf/3/properties/name",
-                                "type": "string",
-                                "title": "The name schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "OSC2 FreqFine"
-                                ]
-                            },
-                            "defaultValue": {
-                                "$id": "#/properties/parameters/items/anyOf/3/properties/defaultValue",
-                                "type": "integer",
-                                "title": "The defaultValue schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    127
-                                ]
-                            },
-                            "min": {
-                                "$id": "#/properties/parameters/items/anyOf/3/properties/min",
-                                "type": "integer",
-                                "title": "The min schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    0
-                                ]
-                            },
-                            "max": {
-                                "$id": "#/properties/parameters/items/anyOf/3/properties/max",
-                                "type": "integer",
-                                "title": "The max schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": 0,
-                                "examples": [
-                                    254
-                                ]
-                            },
-                            "categoryId": {
-                                "$id": "#/properties/parameters/items/anyOf/3/properties/categoryId",
-                                "type": "string",
-                                "title": "The categoryId schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "oscs"
-                                ]
-                            },
-                            "msg": {
-                                "$id": "#/properties/parameters/items/anyOf/3/properties/msg",
-                                "type": "string",
-                                "title": "The msg schema",
-                                "description": "An explanation about the purpose of this instance.",
-                                "default": "",
-                                "examples": [
-                                    "nrpn"
-                                ]
-                            }
-                        },
-                        "additionalProperties": true
-                    }
-                ]
+            "properties":{
+               "id":{
+                  "$id":"#/properties/categories/items/properties/id",
+                  "$ref":"#/definitions/categoryId"
+               },
+               "label":{
+                  "$id":"#/properties/categories/items/anyOf/0/properties/label",
+                  "type":"string",
+                  "title":"Category label",
+                  "description":"A text label with the name of the category.",
+                  "default":"",
+                  "examples":[
+                     "Filter"
+                  ]
+               }
             }
-        }
-    },
-    "additionalProperties": true
+         }
+      },
+      "overlays":{
+         "$id":"#/properties/overlays",
+         "type":"array",
+         "title":"Overlay List",
+         "description":"An array of overlays. An overlay is a list of text labels or graphical symbols that describe the parameter values.",
+         "default":[
+
+         ],
+         "additionalItems":true,
+         "minItems":0,
+         "maxItems":50,
+         "items":{
+            "$id":"#/properties/overlays/items",
+            "type":"object",
+            "title":"Overlay",
+            "description":"Overlays are lists of text labels linked to particular MIDI values. Typically they are assigned to selection list controls or faders. Overlays are referred to by its identifier. Overlay items can be both text labels or graphical symbols represented with bitmap images.",
+            "default":{
+
+            },
+            "examples":[
+               {
+                  "id":1,
+                  "items":[
+                     {
+                        "value":0,
+                        "label":"Sixteenth"
+                     },
+                     {
+                        "value":15,
+                        "label":"Eighth"
+                     },
+                     {
+                        "value":31,
+                        "label":"Quarter"
+                     },
+                     {
+                        "value":63,
+                        "label":"Half"
+                     },
+                     {
+                        "value":127,
+                        "label":"Full"
+                     }
+                  ]
+               },
+               {
+                  "id":2,
+                  "items":[
+                     {
+                        "value":0,
+                        "label":"Square",
+                        "bitmap":"AAAAAAAA/P//AQAA/P//AQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACAAQAwDACA//8/DACA//8/AAAAAAAAAAAAAAAA"
+                     },
+                     {
+                        "value":1,
+                        "label":"Triangle",
+                        "bitmap":"AAAAAAAAAADgAAAAAADwAQAAAAAYAwAAAAAMBgAAAAAGDAAAAAADGAAAAIABMAAgAMAAYAAwAGAAwAAYBDAAgAEMDBgAAAMGGAwAAAYDMAYAAIwB4AMAAPgAwAEAAHAAAAAAAAAAAAAAAAAA"
+                     },
+                     {
+                        "value":2,
+                        "label":"Saw",
+                        "bitmap":"AAAAAAAAAAAAwAEAAAAA8AEAAAAAnAEAAAAAhwEAAADAgQEAAABwgAEAAAAcgAEAAAAHgAEAAMABgAE4AHAAgAEOABwAgIEDAAcAgOEAwAEAgDkAcAAAgA8AHAAAgAMAAAAAAAAAAAAAAAAA"
+                     }
+                  ]
+               }
+            ],
+            "required":[
+               "id",
+               "items"
+            ],
+            "properties":{
+               "id":{
+                  "$id":"#/properties/overlays/items/properties/id",
+                  "$ref":"#/definitions/overlayId"
+               },
+               "items":{
+                  "$id":"#/properties/overlays/items/properties/items",
+                  "type":"array",
+                  "title":"Overlay Items",
+                  "description":"An list of MIDI value - text label pairs.",
+                  "default":[
+
+                  ],
+                  "examples":[
+                     [
+                        {
+                           "value":0,
+                           "label":"Sixteenth"
+                        },
+                        {
+                           "value":15,
+                           "label":"Eighth"
+                        }
+                     ]
+                  ],
+                  "items":{
+                     "$id":"#/properties/overlays/items/properties/items/items",
+                     "type":"object",
+                     "title":"OverlayItem",
+                     "description":"A text only overlay item.",
+                     "default":{
+
+                     },
+                     "examples":[
+                        {
+                           "value":0,
+                           "label":"Sixteenth"
+                        },
+                        {
+                           "value":8,
+                           "label":"Saw",
+                           "bitmap":"AAAAAAAAAAAAwAEAAAAA8AEAAAAAnAEAAAAAhwEAAADAgQEAAABwgAEAAAAcgAEAAAAHgAEAAMABgAE4AHAAgAEOABwAgIEDAAcAgOEAwAEAgDkAcAAAgA8AHAAAgAMAAAAAAAAAAAAAAAAA"
+                        }
+                     ],
+                     "required":[
+                        "value",
+                        "label"
+                     ],
+                     "properties":{
+                        "value":{
+                           "$id":"#/properties/overlays/items/properties/items/items/properties/value",
+                           "title":"Value",
+                           "description":"A MIDI value associated with the text label.",
+                           "$ref":"#/definitions/midiValue"
+                        },
+                        "label":{
+                           "$id":"#/properties/overlays/items/properties/items/items/properties/label",
+                           "type":"string",
+                           "title":"Label",
+                           "description":"A Text label that describes the value. The width of the displayed text depends on the the width of the component.",
+                           "minLength":0,
+                           "maxLength":40
+                        },
+                        "bitmap":{
+                           "$id":"#/properties/overlays/items/properties/items/items/properties/bitmap",
+                           "type":"string",
+                           "title":"Bitmap",
+                           "description":"A base64 encoded XBM image with 48x18 size.",
+                           "minLength":144,
+                           "maxLength":144
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      },
+      "parameters":{
+         "$id":"#/properties/parameters",
+         "type":"array",
+         "title":"Parameters",
+         "description":"A list of mappings for instrument parameters to predefined controls.",
+         "default":[
+
+         ],
+         "items":{
+            "$id":"#/properties/parameters/items",
+            "anyOf":[
+               {
+                  "$id":"#/properties/parameters/items/anyOf/Pad",
+                  "type":"object",
+                  "title":"Pad",
+                  "description":"A touch sensitive Pad that represents a switch with On and Off state.",
+                  "default":{
+
+                  },
+                  "examples":[
+                     {
+                        "categoryId":"vcf",
+                        "type":"pad",
+                        "mode":"toggle",
+                        "name":"CC7 #1",
+                        "values":[
+                           {
+                              "defaultValue":0,
+                              "message":{
+                                 "type":"cc7",
+                                 "parameterNumber":1,
+                                 "onValue":127,
+                                 "offValue":0
+                              }
+                           }
+                        ]
+                     }
+                  ],
+                  "required":[
+                     "categoryId",
+                     "type",
+                     "name",
+                     "values"
+                  ],
+                  "properties":{
+                     "categoryId":{
+                        "$id":"#/properties/parameters/items/anyOf/pad/properties/categoryId",
+                        "$ref":"#/definitions/categoryId"
+                     },
+                     "type":{
+                        "$id":"#/properties/parameters/items/anyOf/pad/properties/type",
+                        "$ref":"#/definitions/controlType"
+                     },
+                     "mode":{
+                        "$id":"#/properties/parameters/items/anyOf/pad/properties/mode",
+                        "$ref":"#/definitions/padMode"
+                     },
+                     "name":{
+                        "$id":"#/properties/parameters/items/anyOf/pad/properties/name",
+                        "$ref":"#/definitions/controlName"
+                     },
+                     "values":{
+                        "$id":"#/properties/parameters/items/anyOf/pad/properties/values",
+                        "type":"array",
+                        "title":"The values list",
+                        "description":"A list of values associated with the Pad control.",
+                        "default":[
+
+                        ],
+                        "items":{
+                           "$id":"#/properties/parameters/items/anyOf/pad/properties/values/items",
+                           "type":"object",
+                           "title":"Value",
+                           "description":"A Value object specific to the Pad control.",
+                           "default":{
+
+                           },
+                           "examples":[
+                              {
+                                 "id":"value",
+                                 "defaultValue":0,
+                                 "message":{
+                                    "type":"cc7",
+                                    "parameterNumber":1,
+                                    "onValue":127,
+                                    "offValue":0
+                                 }
+                              }
+                           ],
+                           "required":[
+                              "message"
+                           ],
+                           "properties":{
+                              "id":{
+                                 "$id":"#/properties/parameters/items/anyOf/pad/properties/values/items/properties/id",
+                                 "$ref":"#/definitions/valueId"
+                              },
+                              "defaultValue":{
+                                 "$id":"#/properties/parameters/items/anyOf/pad/properties/values/items/properties/defaultValue",
+                                 "$ref":"#/definitions/defaultValue"
+                              },
+                              "message":{
+                                 "$id":"#/properties/parameters/items/anyOf/pad/properties/values/items/properties/message",
+                                 "type":"object",
+                                 "title":"Message",
+                                 "description":"A message object specific to the Pad control.",
+                                 "default":{
+
+                                 },
+                                 "examples":[
+                                    {
+                                       "type":"cc7",
+                                       "parameterNumber":1,
+                                       "onValue":127,
+                                       "offValue":0
+                                    }
+                                 ],
+                                 "required":[
+                                    "type",
+                                    "parameterId",
+                                    "onValue",
+                                    "offValue"
+                                 ],
+                                 "properties":{
+                                    "type":{
+                                       "$id":"#/properties/parameters/items/anyOf/pad/properties/values/items/properties/message/properties/type",
+                                       "$ref":"#/definitions/midiMessagetype"
+                                    },
+                                    "parameterNumber":{
+                                       "$id":"#/properties/parameters/items/anyOf/pad/properties/values/items/properties/message/properties/parameterNumber",
+                                       "$ref":"#/definitions/midiParameterNumber"
+                                    },
+                                    "onValue":{
+                                       "$id":"#/properties/parameters/items/anyOf/pad/properties/values/items/properties/message/properties/onValue",
+                                       "title":"onValue",
+                                       "description":"A MIDI value sent when the button goes on.",
+                                       "$ref":"#/definitions/midiValue"
+                                    },
+                                    "offValue":{
+                                       "$id":"#/properties/parameters/items/anyOf/pad/properties/values/items/properties/message/properties/offValue",
+                                       "title":"offValue",
+                                       "description":"A MIDI value sent when the button goes off.",
+                                       "$ref":"#/definitions/midiValue"
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "$id":"#/properties/parameters/items/anyOf/fader",
+                  "type":"object",
+                  "title":"Fader",
+                  "description":"A Fader that can be used change a continuous value of one MIDI parameter.",
+                  "default":{
+
+                  },
+                  "examples":[
+                     {
+                        "categoryId":"vcf",
+                        "type":"fader",
+                        "name":"CC #1",
+                        "values":[
+                           {
+                              "id":"value",
+                              "message":{
+                                 "type":"cc7",
+                                 "parameterNumber":1,
+                                 "min":0,
+                                 "max":127
+                              },
+                              "min":0,
+                              "max":127
+                           }
+                        ]
+                     }
+                  ],
+                  "required":[
+                     "categoryId",
+                     "type",
+                     "name",
+                     "values"
+                  ],
+                  "properties":{
+                     "categoryId":{
+                        "$id":"#/properties/parameters/items/anyOf/fader/properties/categoryId",
+                        "$ref":"#/definitions/categoryId"
+                     },
+                     "type":{
+                        "$id":"#/properties/parameters/items/anyOf/fader/properties/type",
+                        "$ref":"#/definitions/controlType"
+                     },
+                     "name":{
+                        "$id":"#/properties/parameters/items/anyOf/fader/properties/name",
+                        "$ref":"#/definitions/controlName"
+                     },
+                     "values":{
+                        "$id":"#/properties/parameters/items/anyOf/fader/properties/values",
+                        "type":"array",
+                        "title":"The values list",
+                        "description":"A list of values associated with the Fader control.",
+                        "default":[
+
+                        ],
+                        "items":{
+                           "$id":"#/properties/parameters/items/anyOf/fader/properties/values/items",
+                           "type":"object",
+                           "title":"Fader Value",
+                           "description":"A Value object specific to the Fader control.",
+                           "default":{
+
+                           },
+                           "required":[
+                              "message"
+                           ],
+                           "properties":{
+                              "id":{
+                                 "$id":"#/properties/parameters/items/anyOf/fader/properties/values/items/properties/id",
+                                 "$ref":"#/definitions/valueId"
+                              },
+                              "min":{
+                                 "$id":"#/properties/parameters/items/anyOf/fader/properties/values/items/properties/min",
+                                 "$ref":"#/definitions/displayMin"
+                              },
+                              "max":{
+                                 "$id":"#/properties/parameters/items/anyOf/fader/properties/values/items/properties/max",
+                                 "$ref":"#/definitions/displayMax"
+                              },
+                              "message":{
+                                 "$id":"#/properties/parameters/items/anyOf/fader/properties/values/items/properties/message",
+                                 "type":"object",
+                                 "title":"Value",
+                                 "description":"A message object specific to the Fader control value.",
+                                 "default":{
+
+                                 },
+                                 "required":[
+                                    "type",
+                                    "parameterNumber",
+                                    "min",
+                                    "max"
+                                 ],
+                                 "properties":{
+                                    "type":{
+                                       "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/message/properties/type",
+                                       "$ref":"#/definitions/midiMessagetype"
+                                    },
+                                    "parameterNumber":{
+                                       "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/message/properties/parameterNumber",
+                                       "$ref":"#/definitions/midiParameterNumber"
+                                    },
+                                    "min":{
+                                       "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/message/properties/min",
+                                       "$ref":"#/definitions/midiMin"
+                                    },
+                                    "max":{
+                                       "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/message/properties/max",
+                                       "$ref":"#/definitions/midiMax"
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "$id":"#/properties/parameters/items/anyOf/adsr",
+                  "type":"object",
+                  "title":"ADSR Envelope",
+                  "description":"An ADSR Envelope that can be used to change continuous values of Attack, Decay, Sustain, and Release MIDI parameters.",
+                  "default":{
+
+                  },
+                  "examples":[
+                     {
+                        "categoryId":"vcf",
+                        "type":"adsr",
+                        "name":"ADSR",
+                        "values":[
+                           {
+                              "id":"attack",
+                              "min":0,
+                              "max":127,
+                              "defaultValue":52,
+                              "message":{
+                                 "type":"cc7",
+                                 "parameterNumber":1,
+                                 "min":0,
+                                 "max":127
+                              }
+                           },
+                           {
+                              "id":"decay",
+                              "min":0,
+                              "max":127,
+                              "defaultValue":78,
+                              "message":{
+                                 "type":"cc7",
+                                 "parameterNumber":2,
+                                 "min":0,
+                                 "max":127
+                              }
+                           },
+                           {
+                              "id":"sustain",
+                              "min":0,
+                              "max":127,
+                              "defaultValue":90,
+                              "message":{
+                                 "type":"cc7",
+                                 "parameterNumber":3,
+                                 "min":0,
+                                 "max":127
+                              }
+                           },
+                           {
+                              "id":"release",
+                              "min":0,
+                              "max":127,
+                              "defaultValue":127,
+                              "message":{
+                                 "type":"cc7",
+                                 "parameterNumber":4,
+                                 "min":0,
+                                 "max":127
+                              }
+                           }
+                        ]
+                     }
+                  ],
+                  "required":[
+                     "categoryId",
+                     "id",
+                     "type",
+                     "name",
+                     "values"
+                  ],
+                  "properties":{
+                     "categoryId":{
+                        "$id":"#/properties/parameters/items/anyOf/adsr/properties/categoryId",
+                        "$ref":"#/definitions/categoryId"
+                     },
+                     "type":{
+                        "$id":"#/properties/parameters/items/anyOf/adsr/properties/type",
+                        "$ref":"#/definitions/controlType"
+                     },
+                     "name":{
+                        "$id":"#/properties/parameters/items/anyOf/adsr/properties/name",
+                        "$ref":"#/definitions/controlName"
+                     },
+                     "values":{
+                        "$id":"#/properties/parameters/items/anyOf/adsr/properties/values",
+                        "type":"array",
+                        "title":"The values list",
+                        "description":"A list of values associated with the Adsr control.",
+                        "default":[
+
+                        ],
+                        "examples":[
+                           [
+                              {
+                                 "id":"attack",
+                                 "min":0,
+                                 "max":127,
+                                 "defaultValue":52,
+                                 "message":{
+                                    "type":"cc7",
+                                    "parameterNumber":1,
+                                    "min":0,
+                                    "max":127
+                                 }
+                              },
+                              {
+                                 "id":"decay",
+                                 "min":0,
+                                 "max":127,
+                                 "defaultValue":78,
+                                 "message":{
+                                    "type":"cc7",
+                                    "parameterNumber":2,
+                                    "min":0,
+                                    "max":127
+                                 }
+                              }
+                           ]
+                        ],
+                        "items":{
+                           "$id":"#/properties/parameters/items/anyOf/adsr/properties/values/items",
+                           "type":"object",
+                           "title":"Value",
+                           "description":"A Value object specific to the Adsr control.",
+                           "default":{
+
+                           },
+                           "required":[
+                              "message"
+                           ],
+                           "properties":{
+                              "id":{
+                                 "$id":"#/properties/parameters/items/anyOf/adsr/properties/values/items/properties/id",
+                                 "$ref":"#/definitions/valueId"
+                              },
+                              "min":{
+                                 "$id":"#/properties/parameters/items/anyOf/adsr/properties/values/items/properties/min",
+                                 "$ref":"#/definitions/displayMin"
+                              },
+                              "max":{
+                                 "$id":"#/properties/parameters/items/anyOf/adsr/properties/values/items/properties/max",
+                                 "$ref":"#/definitions/displayMax"
+                              },
+                              "defaultValue":{
+                                 "$id":"#/properties/parameters/items/anyOf/adsr/properties/values/items/properties/defaultValue",
+                                 "$ref":"#/definitions/defaultValue"
+                              },
+                              "message":{
+                                 "$id":"#/properties/parameters/items/anyOf/adsr/properties/values/items/properties/message",
+                                 "type":"object",
+                                 "title":"The message definition for the Adsr values",
+                                 "description":"A message object specific to the Adsr control values.",
+                                 "default":{
+
+                                 },
+                                 "required":[
+                                    "type",
+                                    "parameterNumber",
+                                    "min",
+                                    "max"
+                                 ],
+                                 "properties":{
+                                    "type":{
+                                       "$id":"#/properties/parameters/items/anyOf/adsr/properties/values/items/properties/message/properties/type",
+                                       "$ref":"#/definitions/midiMessagetype"
+                                    },
+                                    "parameterNumber":{
+                                       "$id":"#/properties/parameters/items/anyOf/adsr/properties/values/items/properties/message/properties/parameterNumber",
+                                       "$ref":"#/definitions/midiParameterNumber"
+                                    },
+                                    "min":{
+                                       "$id":"#/properties/parameters/items/anyOf/adsr/properties/values/items/properties/message/properties/min",
+                                       "$ref":"#/definitions/midiMin"
+                                    },
+                                    "max":{
+                                       "$id":"#/properties/parameters/items/anyOf/adsr/properties/values/items/properties/message/properties/max",
+                                       "$ref":"#/definitions/midiMax"
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               },
+               {
+                  "$id":"#/properties/parameters/items/anyOf/list",
+                  "type":"object",
+                  "title":"Control List",
+                  "description":"A List that can be used to display lists of labels assigned to discrete values of a MIDI parameter.",
+                  "default":{
+
+                  },
+                  "examples":[
+                     {
+                        "categoryId":"vcf",
+                        "type":"list",
+                        "name":"WAVESHAPE 1",
+                        "values":[
+                           {
+                              "id":"value",
+                              "overlayId":4,
+                              "message":{
+                                 "type":"cc7",
+                                 "parameterNumber":100
+                              }
+                           }
+                        ]
+                     }
+                  ],
+                  "required":[
+                     "categoryId",
+                     "type",
+                     "name",
+                     "values"
+                  ],
+                  "properties":{
+                     "categoryId":{
+                        "$id":"#/properties/parameters/items/anyOf/list/properties/categoryId",
+                        "$ref":"#/definitions/categoryId"
+                     },
+                     "type":{
+                        "$id":"#/properties/parameters/items/anyOf/list/properties/type",
+                        "$ref":"#/definitions/controlType"
+                     },
+                     "name":{
+                        "$id":"#/properties/parameters/items/anyOf/list/properties/name",
+                        "$ref":"#/definitions/controlName"
+                     },
+                     "values":{
+                        "$id":"#/properties/parameters/items/anyOf/list/properties/values",
+                        "type":"array",
+                        "title":"The values list",
+                        "description":"A list of values associated with the List control.",
+                        "default":[
+
+                        ],
+                        "items":{
+                           "$id":"#/properties/parameters/items/anyOf/list/properties/values/items",
+                           "type":"object",
+                           "title":"List",
+                           "description":"A Value object specific to the List control.",
+                           "default":{
+
+                           },
+                           "required":[
+                              "message",
+                              "overlayId"
+                           ],
+                           "properties":{
+                              "id":{
+                                 "$id":"#/properties/parameters/items/anyOf/list/properties/values/items/properties/id",
+                                 "$ref":"#/definitions/valueId"
+                              },
+                              "overlayId":{
+                                 "$id":"#/properties/parameters/items/anyOf/list/properties/values/items/properties/overlayId",
+                                 "$ref":"#/definitions/overlayId"
+                              },
+                              "message":{
+                                 "$id":"#/properties/parameters/items/anyOf/list/properties/values/items/properties/message",
+                                 "type":"object",
+                                 "title":"List Value",
+                                 "description":"A message object specific to the List control value.",
+                                 "default":{
+
+                                 },
+                                 "required":[
+                                    "type",
+                                    "parameterNumber"
+                                 ],
+                                 "properties":{
+                                    "type":{
+                                       "$id":"#/properties/parameters/items/anyOf/list/properties/values/items/properties/message/properties/type",
+                                       "$ref":"#/definitions/midiMessagetype"
+                                    },
+                                    "parameterNumber":{
+                                       "$id":"#/properties/parameters/items/anyOf/list/properties/values/items/properties/message/properties/parameterNumber",
+                                       "$ref":"#/definitions/midiParameterNumber"
+                                    }
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            ]
+         }
+      },
+      "patch":{
+         "$id":"#/properties/patch",
+         "type":"array",
+         "title":"Patch",
+         "description":"A device specific container that describes exchange of Patch and SysEx data.",
+         "default":[
+
+         ],
+         "examples":[
+            [
+               {
+                  "request":[
+                     "43",
+                     "20",
+                     "00"
+                  ],
+                  "responses":[
+                     {
+                        "header":[
+                           "43",
+                           "00",
+                           "00",
+                           "01",
+                           "1B"
+                        ],
+                        "rules":[
+                           {
+                              "type":"sysex",
+                              "paramterNumber":1,
+                              "parameterBitPosition":0,
+                              "byte":1,
+                              "byteBitPosition":0,
+                              "bitWidth":7
+                           }
+                        ]
+                     }
+                  ]
+               },
+               {
+                  "request":[
+                     "43",
+                     "20",
+                     "01"
+                  ],
+                  "responses":[
+                     {
+                        "header":[
+                           "43",
+                           "00",
+                           "01",
+                           "00",
+                           "5E"
+                        ],
+                        "rules":[
+                           {
+                              "type":"sysex",
+                              "paramterNumber":161,
+                              "parameterBitPosition":0,
+                              "byte":2,
+                              "byteBitPosition":0,
+                              "bitWidth":7
+                           }
+                        ]
+                     }
+                  ]
+               }
+            ]
+         ],
+         "additionalItems":true,
+         "items":{
+            "$id":"#/properties/patch/items",
+            "type":"object",
+            "title":"Patch item",
+            "description":"A generic patch item object",
+            "default":{
+
+            },
+            "examples":[
+               {
+                  "request":[
+                     "43",
+                     "20",
+                     "00"
+                  ],
+                  "responses":[
+                     {
+                        "header":[
+                           "43",
+                           "00",
+                           "00",
+                           "01",
+                           "1B"
+                        ],
+                        "rules":[
+                           {
+                              "type":"sysex",
+                              "paramterNumber":1,
+                              "parameterBitPosition":0,
+                              "byte":1,
+                              "byteBitPosition":0,
+                              "bitWidth":7
+                           }
+                        ]
+                     }
+                  ]
+               }
+            ],
+            "required":[
+               "responses"
+            ],
+            "properties":{
+               "request":{
+                  "$id":"#/properties/patch/items/properties/request",
+                  "type":"array",
+                  "title":"request",
+                  "description":"An array of SysEx bytes to be sent as a Patch Request call.",
+                  "default":[
+
+                  ],
+                  "examples":[
+                     [
+                        "43",
+                        "20",
+                        "00"
+                     ]
+                  ],
+                  "additionalItems":true,
+                  "items":{
+                     "$id":"#/properties/patch/items/properties/request/items",
+                     "anyOf":[
+                        {
+                           "$id":"#/properties/patch/items/properties/request/items/anyOf/hex",
+                           "$ref":"#/definitions/hexNotation"
+                        },
+                        {
+                           "$id":"#/properties/patch/items/properties/request/items/anyOf/dec",
+                           "$ref":"#/definitions/decNotation"
+                        }
+                     ]
+                  }
+               },
+               "responses":{
+                  "$id":"#/properties/patch/items/properties/responses",
+                  "type":"array",
+                  "title":"responses",
+                  "description":"An array of instrument SysEx responses to be parsed.",
+                  "default":[
+
+                  ],
+                  "examples":[
+                     [
+                        {
+                           "header":[
+                              "43",
+                              "00",
+                              "00",
+                              "01",
+                              "1B"
+                           ],
+                           "rules":[
+                              {
+                                 "type":"sysex",
+                                 "paramterNumber":1,
+                                 "parameterBitPosition":0,
+                                 "byte":1,
+                                 "byteBitPosition":0,
+                                 "bitWidth":7
+                              }
+                           ]
+                        }
+                     ]
+                  ],
+                  "additionalItems":true,
+                  "items":{
+                     "$id":"#/properties/patch/items/properties/responses/items",
+                     "type":"object",
+                     "title":"response",
+                     "description":"A definition of the SysEx response parser.",
+                     "default":{
+
+                     },
+                     "examples":[
+                        {
+                           "header":[
+                              "43",
+                              "00",
+                              "00",
+                              "01",
+                              "1B"
+                           ],
+                           "rules":[
+                              {
+                                 "type":"sysex",
+                                 "paramterNumber":1,
+                                 "parameterBitPosition":0,
+                                 "byte":1,
+                                 "byteBitPosition":0,
+                                 "bitWidth":7
+                              }
+                           ]
+                        }
+                     ],
+                     "required":[
+                        "header",
+                        "rules"
+                     ],
+                     "properties":{
+                        "header":{
+                           "$id":"#/properties/patch/items/properties/responses/items/properties/header",
+                           "type":"array",
+                           "title":"header",
+                           "description":"A sequence of bytes used to identify a specific SysEx message. Matching starts right after the leading F0 SysEx byte.",
+                           "default":[
+
+                           ],
+                           "examples":[
+                              [
+                                 "43",
+                                 "00"
+                              ]
+                           ],
+                           "additionalItems":true,
+                           "items":{
+                              "$id":"#/properties/patch/items/properties/responses/items/properties/header/items",
+                              "anyOf":[
+                                 {
+                                    "$id":"#/properties/patch/items/properties/responses/items/properties/header/items/hex",
+                                    "$ref":"#/definitions/hexNotation"
+                                 },
+                                 {
+                                    "$id":"#/properties/patch/items/properties/responses/items/properties/header/items/dec",
+                                    "$ref":"#/definitions/decNotation"
+                                 }
+                              ]
+                           }
+                        },
+                        "rules":{
+                           "$id":"#/properties/patch/items/anyOf/0/properties/responses/items/anyOf/0/properties/rules",
+                           "type":"array",
+                           "title":"rules",
+                           "description":"An list of rules to parse out individual parameter values from the response SysEx data",
+                           "default":[
+
+                           ],
+                           "examples":[
+                              [
+                                 {
+                                    "type":"sysex",
+                                    "paramterNumber":1,
+                                    "parameterBitPosition":0,
+                                    "byte":1,
+                                    "byteBitPosition":0,
+                                    "bitWidth":7
+                                 }
+                              ]
+                           ],
+                           "additionalItems":true,
+                           "items":{
+                              "$id":"#/properties/patch/items/anyOf/0/properties/responses/items/anyOf/0/properties/rules/items",
+                              "type":"object",
+                              "title":"rule",
+                              "description":"A parameter value parsing rule.",
+                              "default":{
+
+                              },
+                              "examples":[
+                                 {
+                                    "type":"sysex",
+                                    "paramterNumber":1,
+                                    "parameterBitPosition":0,
+                                    "byte":1,
+                                    "byteBitPosition":0,
+                                    "bitWidth":7
+                                 }
+                              ],
+                              "required":[
+                                 "paramterNumber",
+                                 "byte"
+                              ],
+                              "properties":{
+                                 "type":{
+                                    "$id":"#/properties/patch/items/properties/responses/items/properties/rules/items/properties/type",
+                                    "$ref":"#/definitions/midiMessagetype",
+                                    "default":"sysex"
+                                 },
+                                 "paramterNumber":{
+                                    "$id":"#/properties/patch/items/properties/responses/items/properties/rules/items/properties/paramterNumber",
+                                    "$ref":"#/definitions/midiParameterNumber"
+                                 },
+                                 "parameterBitPosition":{
+                                    "$id":"#/properties/patch/items/properties/responses/items/properties/rules/items/properties/parameterBitPosition",
+                                    "type":"integer",
+                                    "title":"parameterBitPosition",
+                                    "description":"A bit position within a parameter where the parsed value will be placed. Consider it to be a bitshift and logical or operation.",
+                                    "default":0,
+                                    "minimum":0,
+                                    "maximum":13
+                                 },
+                                 "byte":{
+                                    "$id":"#/properties/patch/items/properties/responses/items/properties/rules/items/properties/byte",
+                                    "type":"integer",
+                                    "title":"byte",
+                                    "description":"The position of the SysEx byte to parse. The position is an index of the byte within the SySex message. Index 0 is the first byte after the last header byte.",
+                                    "minimum":0,
+                                    "maximum":16383
+                                 },
+                                 "byteBitPosition":{
+                                    "$id":"#/properties/patch/items/properties/responses/items/properties/rules/items/properties/byteBitPosition",
+                                    "type":"integer",
+                                    "title":"byteBitPosition",
+                                    "description":"A bit position within a byte where the data parsing will take place.",
+                                    "default":0,
+                                    "minimum":0,
+                                    "maximum":13
+                                 },
+                                 "bitWidth":{
+                                    "$id":"#/properties/patch/items/properties/responses/items/properties/rules/items/properties/bitWidth",
+                                    "type":"integer",
+                                    "title":"bitWidth",
+                                    "description":"A number of bits to be parsed out (starting the byteBitPosition) and placed to the parameter (to the parameterBitPosition).",
+                                    "default":7,
+                                    "minimum":1,
+                                    "maximum":14
+                                 }
+                              }
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   },
+   "additionalProperties":true
 }
