@@ -745,14 +745,14 @@
                                     },
                                     "onValue":{
                                        "$id":"#/properties/controls/items/anyOf/Pad/properties/values/items/properties/message/properties/onValue",
-                                       "title":"The onValue schema",
-                                       "description":"An explanation about the purpose of this instance.",
+                                       "title":"onValue",
+                                       "description":"A MIDI value sent when the button goes on.",
                                        "$ref":"#/definitions/midiValue"
                                     },
                                     "offValue":{
                                        "$id":"#/properties/controls/items/anyOf/Pad/properties/values/items/properties/message/properties/offValue",
-                                       "title":"The offValue schema",
-                                       "description":"An explanation about the purpose of this instance.",
+                                       "title":"offValue",
+                                       "description":"A MIDI value sent when the button goes off.",
                                        "$ref":"#/definitions/midiValue"
                                     }
                                  }
