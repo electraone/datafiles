@@ -1,0 +1,97 @@
+{
+   "version":2,
+   "name":"Patch with the parameter ref",
+   "projectId":"d8WjdwYrP3lRyyx8nEMF",
+   "pages":[
+      {
+         "id":1,
+         "name":"PAGE 1"
+      }
+   ],
+   "devices":[
+      {
+         "id":1,
+         "name":"Generic MIDI",
+         "instrument":"generic",
+         "port":1,
+         "channel":1,
+         "patch":[
+            {
+               "request":[
+                  67,
+                  32,
+                  {
+                      "type": "value",
+                      "rules": [
+                        {
+                          "parameterNumber": 1,
+                          "type":"cc7",
+                          "parameterBitPosition": 0,
+                          "byteBitPosition": 0,
+                          "bitWidth": 7
+                        }
+                      ]
+                  }
+               ],
+               "responses":[
+                  {
+                     "id":1,
+                     "header":[
+                        67,
+                        0,
+                        0,
+                        1,
+                        27
+                     ],
+                     "rules":[
+
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+   ],
+   "overlays":[
+
+   ],
+   "groups":[
+
+   ],
+   "controls":[
+      {
+         "id":1,
+         "type":"fader",
+         "name":"BYTE FOR REQ",
+         "color":"FFFFFF",
+         "bounds":[
+            0,
+            40,
+            146,
+            56
+         ],
+         "pageId":1,
+         "controlSetId":1,
+         "inputs":[
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
+         "values":[
+            {
+               "id":"value",
+               "message":{
+                  "deviceId":1,
+                  "type":"cc7",
+                  "parameterNumber":1,
+                  "min":0,
+                  "max":127
+               },
+               "min":0,
+               "max":127
+            }
+         ]
+      }
+   ]
+}

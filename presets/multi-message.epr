@@ -1,0 +1,70 @@
+{
+   "version":2,
+   "name":"Color test",
+   "projectId":"0wNTonckqwkXSo1nPciJ",
+   "pages":[
+      {
+         "id":1,
+         "name":"Page 1"
+      }
+   ],
+   "groups":[
+
+   ],
+   "devices":[
+      {
+         "id":1,
+         "name":"Generic MIDI",
+         "port":1,
+         "channel":1
+      }
+   ],
+   "overlays":[
+
+   ],
+   "controls":[
+      {
+         "id":1,
+         "type":"fader",
+         "name":"WHITE",
+         "color":"FFFFFF",
+         "bounds":[
+            0,
+            40,
+            146,
+            56
+         ],
+         "pageId":1,
+         "controlSetId":1,
+         "inputs":[
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
+         "values":[
+            {
+               "id":"value",
+               "message":[
+                  {
+                     "deviceId":1,
+                     "type":"cc7",
+                     "parameterNumber":1,
+                     "min":0,
+                     "max":127
+                  },
+                  {
+                     "deviceId":1,
+                     "type":"cc7",
+                     "parameterNumber":2,
+                     "min":0,
+                     "max":127
+                  }
+               ],
+               "min":0,
+               "max":127
+            }
+         ]
+      }
+   ]
+}
