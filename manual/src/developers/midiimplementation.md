@@ -44,7 +44,7 @@ For example, the Electra App account and Electra Editor use this call to verify 
 - 0x00 0x21 0x45 Electra One MIDI manufacturer Id
 - 0x01 Data dump
 - 0x7F Electra information
-- _info-json-data_ JSON document with info about Electra (see below)
+- `info-json-data` JSON document with info about Electra (see below)
 - 0xF7 SysEx closing byte
 
 ##### An example of info-json-data
@@ -58,7 +58,7 @@ For example, the Electra App account and Electra Editor use this call to verify 
 
 
 ## Upload a preset
-The preset upload call is meant to upload a new preset to the Electra One MIDI controller. The preset is always loaded to a currently selected preset slot (out of 12 preset slots supported). Once the preset is uploaded, it is activated immediately and the user may use it.
+The preset upload call is meant to upload a new preset to the Electra One MIDI controller. The preset is always loaded to a currently selected preset slot (out of 72 preset slots supported). Once the preset is uploaded, it is activated immediately and the user may use it.
 
 ### Request
 ```
@@ -69,10 +69,10 @@ The preset upload call is meant to upload a new preset to the Electra One MIDI c
 - 0x00 0x21 0x45 Electra One MIDI manufacturer Id
 - 0x01 Upload data
 - 0x01 Preset file
-- _preset-json-data_ bytes representing ascii bytes of the preset file
+- `preset-json-data` bytes representing ascii bytes of the preset file
 - 0xF7 SysEx closing byte
 
-Detailed information about _preset-json-data_ is provided at [Preset format description](./presetformat.md)
+Detailed information about `preset-json-data` is provided at [Preset format description](./presetformat.md)
 
 ### Response
 - No response
@@ -99,7 +99,7 @@ Detailed information about _preset-json-data_ is provided at [Preset format desc
 - 0x00 0x21 0x45 Electra One MIDI manufacturer Id
 - 0x01 Data dump / Upload data
 - 0x01 Preset file
-- _preset-json-data_ JSON document with info about Electra (see below)
+- `preset-json-data` JSON document with info about Electra (see below)
 - 0xF7 SysEx closing byte
 
 ##### An example of preset-json-data
@@ -121,11 +121,11 @@ Detailed information about _preset-json-data_ is provided at [Preset format desc
 }
 ```
 
-Electra One MIDI controller responds with the SysEx message that has exactly the same format as the Preset upload message (see above). Thus a SysEx message downloaded with a preset download call can be used to upload the preset to Electra later on.
+Electra One MIDI controller responds with the SysEx message that has exactly the same format as the Preset upload message (see above). Thus, a SysEx message downloaded with a preset download call can be used to upload the preset to Electra later on.
 
 This call always downloads a preset that is currently selected and active in the controller.
 
-Detailed information about _preset-json-data_ is provided at [Preset format description](./presetformat.md)
+Detailed information about `preset-json-data` is provided at [Preset format description](./presetformat.md)
 
 
 ## Upload a configuration
@@ -140,10 +140,10 @@ The configuration upload call is meant to upload and apply a new Electra One con
 - 0x00 0x21 0x45 Electra One MIDI manufacturer Id
 - 0x01 Upload data
 - 0x02 Configuration file
-- _configuration-json-data_ bytes representing ascii bytes of the configuration file
+- `configuration-json-data` bytes representing ascii bytes of the configuration file
 - 0xF7 SysEx closing byte
 
-Detailed information about _configuration-json-data_ is provided at [Configuration format description](./configurationformat.md)
+Detailed information about `configuration-json-data` is provided at [Configuration format description](./configurationformat.md)
 
 ### Response
 - No response
@@ -170,7 +170,7 @@ Detailed information about _configuration-json-data_ is provided at [Configurati
 - 0x00 0x21 0x45 Electra One MIDI manufacturer Id
 - 0x01 Data dump / Upload data
 - 0x02 Configuration file
-- _configuration-json-data_ JSON document with info about Electra (see below)
+- `configuration-json-data` JSON document with info about Electra (see below)
 - 0xF7 SysEx closing byte
 
 ##### An example of configuration-json-data
@@ -215,5 +215,87 @@ Detailed information about _configuration-json-data_ is provided at [Configurati
      }
    ]
 }
+```
 
+## Upload a Lua script
+The Lua script upload call is meant to upload and execute a new Electra One Lua script.
+
+### Request
+```
+0xF0 0x00 0x21 0x45 0x01 0x7C script-source-code 0xF7
+```
+
+- 0xF0 SysEx header byte
+- 0x00 0x21 0x45 Electra One MIDI manufacturer Id
+- 0x01 Upload data
+- 0x7C Lua Script file
+- `script-source-code` bytes representing a source code of the Electra One Lua script application
+- 0xF7 SysEx closing byte
+
+Detailed information about developing Lua script applications is provided at [Electra One Lua script](./lua.md) documentation.
+
+### Response
+- No response
+
+
+## Download a Lua script
+
+### Request
+```
+0xF0 0x00 0x21 0x45 0x02 0x7C 0xF7
+```
+
+- 0xF0 SysEx header byte
+- 0x00 0x21 0x45 Electra One MIDI manufacturer Id
+- 0x02 Query data
+- 0x7C Lua script file
+- 0xF7 SysEx closing byte
+
+### Response
+```
+0xF0 0x00 0x21 0x45 0x01 0x7C script-source-code 0xF7
+```
+- 0xF0 SysEx header byte
+- 0x00 0x21 0x45 Electra One MIDI manufacturer Id
+- 0x01 Data dump / Upload data
+- 0x7C Lua Script file
+- `script-source-code` bytes representing a source code of the Electra One Lua script application
+- 0xF7 SysEx closing byte
+
+##### An example of script-source-code
+``` lua
+-- Demo application
+
+-- the Setup
+clockCounter = 0
+beatEnabled = 0
+
+
+-- User functions
+function myPrint (text)
+    print ("my Lua: " .. text)
+end
+
+
+-- Standard callbacks
+function midi.onClock (midiInput)
+    if beatEnabled == 1 then
+        if math.mod (clockCounter, 24) == 0 then
+            myPrint ("midi beat received: interface=" .. midiInput.interface)
+        end
+    end
+    clockCounter = clockCounter + 1
+end
+
+function onButtonDown (buttonId)
+    myPrint ("button " .. buttonId .. " pressed")
+
+    if buttonId == BUTTON_1 then
+        myPrint ("Beat enabled")
+        beatEnabled = 1
+    elseif buttonId == BUTTON_4 then
+        myPrint ("Beat disabled")
+        beatEnabled = 0
+    end
+end
 ```
