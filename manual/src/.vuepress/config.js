@@ -100,7 +100,8 @@ module.exports = {
               '/developers/presetformat.md',
               '/developers/controltypes.md',
               '/developers/confformat.md',
-              '/developers/sysexparser.md'
+              '/developers/sysexparser.md',
+              '/developers/lua.md'
             ]
           }
         ]
@@ -116,6 +117,21 @@ module.exports = {
       {
         type: 'note',
         before: info => `<div class="note"><p class="title">${info}</p>`,
+        after: '</div>',
+      }
+    ],
+    [
+      'vuepress-plugin-container',
+      {
+        type: 'functiondesc',
+        defaultTitle: ''
+      }
+    ],
+    [
+      'vuepress-plugin-container',
+      {
+        type: 'params',
+        before: info => `<div class="params"><p class="paramstitle">${info}</p>`,
         after: '</div>',
       }
     ],
