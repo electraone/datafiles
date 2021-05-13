@@ -98,7 +98,6 @@ module.exports = {
             children: [
               '/developers/midiimplementation.md',
               '/developers/presetformat.md',
-              '/developers/controltypes.md',
               '/developers/confformat.md',
               '/developers/sysexparser.md',
               '/developers/lua.md'
