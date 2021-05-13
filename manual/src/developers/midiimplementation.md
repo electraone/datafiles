@@ -601,9 +601,17 @@ A call to update the name, color, and visibility of the control. Currently, the 
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x04` Update command
 - `0x07` Control
-- `control-id` an identifier of the snapshot slot (1 .. 432)
+- `control-id-lsb` a LSB of a controlId
+- `control-id-msb` a LSB of a controlId
 - `control-update-json-data`
 - `0xF7` SysEx closing byte
+
+The `controlId` is decomposed to LSB and MSB part as:
+
+```
+control-id-msb = controlId >> 7
+control-id-lsb = controlId & 0x7F
+```
 
 The `control-update-json-data` may consist of three optional attributes `name`, `color`, and `visibility`. Upon receiving the control update command the fields will be set accordingly. It is possible send only attributes that need to be changed.
 
