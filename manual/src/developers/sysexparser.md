@@ -293,9 +293,3 @@ extract parameter 1 and parameter 5 out of SysEx byte 10:
   "bitWidth": 4
 }
 ```
-
-# The Instrument file inspector
-
-![](https://github.com/martinpavlas/electra.one/raw/master/docs/wiki/SysEx-parsing/instrument-editor.png)
-
-As it may become quite hard to fully understand the structure of the instrument file, we have made a tool for you that visualizes the parameters of the instrument file and their assignment to the bytes of SysEx messages [Instrument file inspector](https://editor.electra.one/instrument/)
