@@ -1,12 +1,12 @@
-# Configuration format description
+# Config format description
 
-This document describes the format of the Electra One configuration file. The configuration file holds instructions on how Electra will operate.
+This document describes the format of the Electra One configuration file. The configuration file allow users to customize behaviour of the controler.
 
 
-## Preset JSON format
+## Config JSON format
 
 ### JSON schema
-This is a WIP (work-in-progress) version of JSON schema of [Electra configuration file format](https://github.com/martinpavlas/electra.one/blob/master/presets/confschema.json)
+The JSON schema of the Electra configuration file is available at [GitHub](https://github.com/martinpavlas/electra.one/blob/master/presets/confschema.json).
 
 
 ### Minification
@@ -26,6 +26,8 @@ A preset has a number of top-level objects. These are either simple elements pro
    "usbHostAssigments":[
    ],
    "midiControl":[
+   ],
+   "uiFeatures":[
    ]
 }
 ```
@@ -158,17 +160,35 @@ An array of assignments of MIDI messages to Electra internal commands, such as p
 ```
 
 
+### uiFeatures
+The UI features object is used to configure / customize the user interface of the controller.
+
+##### example:
+
+``` json
+{
+   "touchSwitchControlSets": true
+}
+```
+
+#### touchSwitchControlSets
+When set to true, touch on controls changes changes the active control set (section of active controls). When set to false, only hardware buttons switch the active control set.
+
+- mandatory
+- boolean
+
+
 ### presetBank
 A preset bank is a named collection of 12 presets. Electra support 6 presets banks. Each bank has a name and color assigned.
 
 ##### example:
 
 ``` json
-  {
-     "id":1,
-     "name":"FX UNITS",
-     "color":"FFFFFF"
-  }
+{
+   "id":1,
+   "name":"FX UNITS",
+   "color":"FFFFFF"
+}
 ```
 
 #### id
@@ -208,10 +228,10 @@ USB Host assignments allow automating the assignment of MIDI devices connected t
 ##### example:
 
 ``` json
-  {
-     "pattern":"launchpad",
-     "port":3
-  }
+{
+   "pattern":"launchpad",
+   "port":3
+}
 ```
 
 #### pattern
@@ -236,12 +256,12 @@ A rule that tells what internal event will be triggered after receipt of the giv
 ##### example:
 
 ``` json
-  {
-     "event":"switchPreset",
-     "eventParameter":1,
-     "midiMessage":"program",
-     "parameterNumber":1
-  }
+{
+   "event":"switchPreset",
+   "eventParameter":1,
+   "midiMessage":"program",
+   "parameterNumber":1
+}
 ```
 
 #### event
