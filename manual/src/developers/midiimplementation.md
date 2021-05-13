@@ -46,7 +46,7 @@ For example, the Electra App account and Electra Editor use this call to verify 
 0xF0 0x00 0x21 0x45 0x01 0x7F info-json-data 0xF7
 ```
 - `0xF0` SysEx header byte
-- `0x00` 0x21 0x45 Electra One MIDI manufacturer Id
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x01` Data dump
 - `0x7F` Electra information
 - `info-json-data` JSON document with info about Electra (see below)
@@ -231,7 +231,7 @@ A request call to fetch a list of snaphots of an active preset.
 ```
 
 - `0xF0` SysEx header byte
-- `0x00` 0x21 0x45 Electra One MIDI manufacturer Id
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x02` Query data
 - `0x05` Snaphost list
 - `0xF7` SysEx closing byte
@@ -336,7 +336,6 @@ end
 ### Upload a preset
 The preset upload call is meant to upload a new preset to the Electra One MIDI controller. The preset is always loaded to a currently selected preset slot (out of 72 preset slots supported). Once the preset is uploaded, it is activated immediately and the user may use it.
 
-#### Request
 ```
 0xF0 0x00 0x21 0x45 0x01 0x01 preset-json-data 0xF7
 ```
@@ -354,7 +353,6 @@ Detailed information about `preset-json-data` is provided at [Preset format desc
 ### Upload a configuration
 The configuration upload call is meant to upload and apply a new Electra One configuration to the controller.
 
-#### Request
 ```
 0xF0 0x00 0x21 0x45 0x01 0x02 configuration-json-data 0xF7
 ```
@@ -372,7 +370,6 @@ Detailed information about `configuration-json-data` is provided at [Configurati
 ### Upload a Lua script
 The Lua script upload call is meant to upload and execute a new Electra One Lua script.
 
-#### Request
 ```
 0xF0 0x00 0x21 0x45 0x01 0x7C script-source-code 0xF7
 ```
@@ -423,7 +420,7 @@ Acknowledged. Informs the host that the last operation was successfully complete
 Informs the host that the user changed the preset on the controller.
 
 ```
-0xF0 0x00 0x21 0x45 0x7E 0x02 bank-number preset-slot 0xF7
+0xF0 0x00 0x21 0x45 0x7E 0x02 bank-number slot 0xF7
 ```
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
@@ -476,7 +473,7 @@ When Electra has the MIDI learn enabled it sends a MIDI message with description
 Detailed information about `midilearn-json-data` is provided at (to be done)
 
 ##### An example of midilearn-json-data
-_non-sysex_:
+_non-SysEx_:
 ``` json
 {
   "port": 0,
@@ -487,7 +484,7 @@ _non-sysex_:
 }
 ```
 
-_sysex_:
+_SysEx_:
 ``` json
 {
   "port": 0,
@@ -504,7 +501,7 @@ A log message is a text that is transmitted to the host computer in order to pro
 ```
 
 - `0xF0` SysEx header byte
-- `0x00` 0x21 0x45 Electra One MIDI manufacturer Id
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x7F` Upload data
 - `0x00` Lua Script file
 - `log-message` ASCII bytes representing the log message
@@ -523,7 +520,6 @@ The `log-message` is a text string that start with a number representing millise
 ### Midi learn enable / disable
 A call to enable or disable the MIDI learn functionality on the controller. When enabled, the controller will send MIDI learn messages back to the host for all incoming MIDI messages.
 
-#### Request
 ```
 0xF0 0x00 0x21 0x45 0x03 status 0xF7
 ```
@@ -541,7 +537,6 @@ A call to enable or disable the MIDI learn functionality on the controller. When
 ### Snapshot update
 A call to update snapshot attributes.
 
-#### Request
 ```
 0xF0 0x00 0x21 0x45 0x04 0x06 bank-number slot snapshot-json-data 0xF7
 ```
@@ -568,7 +563,6 @@ Detailed information about `snapshot-json-data` is provided at (to be done)
 ### Snapshot remove
 A call to permanently remove a snapshot.
 
-#### Request
 ```
 0xF0 0x00 0x21 0x45 0x05 0x06 bank-number slot 0xF7
 ```
@@ -583,7 +577,6 @@ A call to permanently remove a snapshot.
 ### Snapshot swap
 A call to swap snapshots in two snapshot slots. If one of the slots is empty, it becomes a simple move action.
 
-#### Request
 ```
 0xF0 0x00 0x21 0x45 0x06 0x06 bank-number slot 0xF7
 ```
@@ -599,14 +592,13 @@ A call to swap snapshots in two snapshot slots. If one of the slots is empty, it
 
 
 ### Control update
-A call to update the name, color, or visibility of the control. Currently, the change is made only at the run-time it means it is lost when the Electra is powered down.
+A call to update the name, color, and visibility of the control. Currently, the change is made only at the run-time, it means it is lost when the Electra is powered off.
 
-#### Request
 ```
 0xF0 0x00 0x21 0x45 0x04 0x07 control-id control-upadate-json-data 0xF7
 ```
 - `0xF0` SysEx header byte
-- `0x00` 0x21 0x45 Electra One MIDI manufacturer Id
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x04` Update command
 - `0x07` Control
 - `control-id` an identifier of the snapshot slot (1 .. 432)
@@ -615,7 +607,7 @@ A call to update the name, color, or visibility of the control. Currently, the c
 
 The `control-update-json-data` may consist of three optional attributes `name`, `color`, and `visibility`. Upon receiving the control update command the fields will be set accordingly. It is possible send only attributes that need to be changed.
 
-##### An example of the snapshot-json-data
+##### An example of the control-json-data
 _change all attrinbutes_:
 ``` json
 {
@@ -628,16 +620,13 @@ _change all attrinbutes_:
 _one attribute only_:
 ``` json
 {
-  "name": "Track 2",
-  "color": "FFFFFF",
-  "visible": true
+  "name": "Track 2"
 }
 ```
 
-### Switch to the Firmware update mode
+### Switch to the firmware update mode
 A system call that forces Electra to switch to the update mode. When in update mode Electra is ready to receive a firmware update.
 
-#### Request
 ```
 0xF0 0x00 0x21 0x45 0x7F 0x7F 0xF7
 ```
