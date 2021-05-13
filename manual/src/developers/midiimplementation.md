@@ -34,6 +34,8 @@ For example, the Electra App account and Electra Editor use this call to verify 
 ```
 0xF0 0x00 0x21 0x45 0x02 0x7F 0xF7
 ```
+<syxDownloadLink href="/sysex/query-electra-info.syx" description="download .syx"/>
+
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
@@ -72,6 +74,7 @@ A request call to fetch the run-time information from the Electra firmware. Only
 ```
 0xF0 0x00 0x21 0x45 0x02 0x7E 0xF7
 ```
+<syxDownloadLink href="/sysex/query-runtime-info.syx" description="download .syx"/>
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
@@ -107,6 +110,7 @@ A request to fetch a preset that is active in the controller.
 ```
 0xF0 0x00 0x21 0x45 0x02 0x01 0xF7
 ```
+<syxDownloadLink href="/sysex/query-preset.syx" description="download .syx"/>
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
@@ -158,6 +162,7 @@ A request call to fetch current Electra One configuration.
 ```
 0xF0 0x00 0x21 0x45 0x02 0x02 0xF7
 ```
+<syxDownloadLink href="/sysex/query-config.syx" description="download .syx"/>
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
@@ -229,6 +234,7 @@ A request call to fetch a list of snaphots of an active preset.
 ```
 0xF0 0x00 0x21 0x45 0x02 0x05 0xF7
 ```
+<syxDownloadLink href="/sysex/query-snapshot-list.syx" description="download .syx"/>
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
@@ -272,6 +278,7 @@ A request call to download Lua script that is currently stored in the controller
 ```
 0xF0 0x00 0x21 0x45 0x02 0x7C 0xF7
 ```
+<syxDownloadLink href="/sysex/query-lua-script.syx" description="download .syx"/>
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
@@ -339,6 +346,7 @@ The preset upload call is meant to upload a new preset to the Electra One MIDI c
 ```
 0xF0 0x00 0x21 0x45 0x01 0x01 preset-json-data 0xF7
 ```
+<syxDownloadLink href="/sysex/upload-preset.syx" description="download .syx"/>
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
@@ -356,6 +364,7 @@ The configuration upload call is meant to upload and apply a new Electra One con
 ```
 0xF0 0x00 0x21 0x45 0x01 0x02 configuration-json-data 0xF7
 ```
+<syxDownloadLink href="/sysex/upload-config.syx" description="download .syx"/>
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
@@ -373,6 +382,7 @@ The Lua script upload call is meant to upload and execute a new Electra One Lua 
 ```
 0xF0 0x00 0x21 0x45 0x01 0x7C script-source-code 0xF7
 ```
+<syxDownloadLink href="/sysex/upload-lua-script.syx" description="download .syx"/>
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
@@ -523,6 +533,8 @@ A call to enable or disable the MIDI learn functionality on the controller. When
 ```
 0xF0 0x00 0x21 0x45 0x03 status 0xF7
 ```
+<syxDownloadLink href="/sysex/midilearn-on.syx" description="download .syx"/>
+
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x03` Midi Learn
@@ -540,6 +552,8 @@ A call to update snapshot attributes.
 ```
 0xF0 0x00 0x21 0x45 0x04 0x06 bank-number slot snapshot-json-data 0xF7
 ```
+<syxDownloadLink href="/sysex/update-snapshot.syx" description="download .syx"/>
+
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x04` Update command
@@ -566,6 +580,8 @@ A call to permanently remove a snapshot.
 ```
 0xF0 0x00 0x21 0x45 0x05 0x06 bank-number slot 0xF7
 ```
+<syxDownloadLink href="/sysex/remove-snapshot.syx" description="download .syx"/>
+
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x05` Remove command
@@ -574,12 +590,15 @@ A call to permanently remove a snapshot.
 - `slot` an identifier of the snapshot slot (0 .. 35)
 - `0xF7` SysEx closing byte
 
+
 ### Snapshot swap
 A call to swap snapshots in two snapshot slots. If one of the slots is empty, it becomes a simple move action.
 
 ```
 0xF0 0x00 0x21 0x45 0x06 0x06 bank-number slot 0xF7
 ```
+<syxDownloadLink href="/sysex/swap-snapshot.syx" description="download .syx"/>
+
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x06` Swap command
@@ -597,6 +616,8 @@ A call to update the name, color, and visibility of the control. Currently, the 
 ```
 0xF0 0x00 0x21 0x45 0x04 0x07 control-id control-upadate-json-data 0xF7
 ```
+<syxDownloadLink href="/sysex/update-control.syx" description="download .syx"/>
+
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x04` Update command
