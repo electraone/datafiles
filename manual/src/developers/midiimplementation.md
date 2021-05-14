@@ -538,7 +538,7 @@ A call to enable or disable the MIDI learn functionality on the controller. When
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x03` Midi Learn
-- `status` request state of the MIDI learn functionality (see below)
+- `status` desired state of the MIDI learn functionality (see below)
 - `0xF7` SysEx closing byte
 
 `status`
@@ -652,6 +652,26 @@ _one attribute only_:
   "name": "Track 2"
 }
 ```
+
+### Logger enable / disable
+A system call that is used to control whether or not Electra sends the debugging log messages. The command controls a non-volative flag in the controller. The status of the logger stays set even after powering the controller off. The start-up log messages are, however, always sent without taking the logger status in account.
+
+```
+0xF0 0x00 0x21 0x45 0x7F 0x7D status 0x00 0xF7
+```
+
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x7F` System call
+- `0x7D` Logger status change
+- `status` desired state of the logger (see below)
+- `0x00` reserved
+- `0xF7` SysEx closing byte
+
+`status`
+- `0x00` disable the logger
+- `0x01` enable the logger
+
 
 ### Switch to the firmware update mode
 A system call that forces Electra to switch to the update mode. When in update mode Electra is ready to receive a firmware update.
