@@ -1,26 +1,6 @@
 # Preset format description
 
-This document describes the format of the Electra One preset file. The preset file holds a complete definition of Electra preset, no other data needs to be transferred to Electra to run a preset.
-
-::: warning
-Do not load presets in this format to Electra with firmware 0.9.x. This preset format is supported with version 1.0.0 and above.
-:::
-
-## Why a new version?
-
-Electra One has been used by real users for about over 9 months now. We have listened to the feedback from our users as well as we have come up with a number of new features we wanted to implement. It has become obvious that the original format of the Electra preset file was rather limiting.
-
-The new format is designed to address the following feature requests:
-
-- support pads (touch-operated on-screen controls)
-- support controls that represent more than one value (envelopes, etc)
-- support macro functionality (one knob changing of multiple controls at the same time)
-- support lists with images (eg. waveshapes) instead of or next to text labels
-- make it possible to assign "functions" to rubber buttons
-- place controls freely on the canvas (not strictly aligned in the 6x6 grid)
-- allow setting a custom size to individual controls
-
-
+This document describes the format of the Electra One preset file. The preset file holds a complete definition of Electra One preset, no other data needs to be transferred to Electra to run a preset.
 
 ## Preset JSON format
 
