@@ -276,24 +276,24 @@ A request call to download Lua script that is currently stored in the controller
 
 #### Request
 ```
-0xF0 0x00 0x21 0x45 0x02 0x7C 0xF7
+0xF0 0x00 0x21 0x45 0x02 0x0C 0xF7
 ```
 <syxDownloadLink href="/sysex/query-lua-script.syx" description="download .syx"/>
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x02` Query data
-- `0x7C` Lua script file
+- `0x0C` Lua script file
 - `0xF7` SysEx closing byte
 
 #### Response
 ```
-0xF0 0x00 0x21 0x45 0x01 0x7C script-source-code 0xF7
+0xF0 0x00 0x21 0x45 0x01 0x0C script-source-code 0xF7
 ```
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x01` Data dump
-- `0x7C` Lua Script file
+- `0x0C` Lua Script file
 - `script-source-code` bytes representing a source code of the Electra One Lua script application
 - `0xF7` SysEx closing byte
 
@@ -380,14 +380,14 @@ Detailed information about `configuration-json-data` is provided at [Configurati
 The Lua script upload call is meant to upload and execute a new Electra One Lua script.
 
 ```
-0xF0 0x00 0x21 0x45 0x01 0x7C script-source-code 0xF7
+0xF0 0x00 0x21 0x45 0x01 0x0C script-source-code 0xF7
 ```
 <syxDownloadLink href="/sysex/upload-lua-script.syx" description="download .syx"/>
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x01` Upload data
-- `0x7C` Lua Script file
+- `0x0C` Lua Script file
 - `script-source-code` bytes representing a source code of the Electra One Lua script application
 - `0xF7` SysEx closing byte
 
