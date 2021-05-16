@@ -189,9 +189,9 @@ The Parameter map is the heart of the Electra Controller firmware. It is used to
 
 #### Functions
 ::: functiondesc
-<b>parameterMap.reset ()</b>
+<b>parameterMap.resetAll ()</b>
 <small>
-Resets all parameters to zero. (_should this be rather the default values?_)
+Resets all parameters of all devices to zero.
 </small>
 :::
 
@@ -217,6 +217,21 @@ Sets a midiValue of particular Electra parameter within the parameter map.
 <i>parameterType</i> - integer, a numeric identifier of Electra's parameter type (0 .. 11)<br />
 <i>ParameterNumber</i> - integer, a numeric identifier of the parameter (0 .. 16383)<br />
 <i>midiValue</i> - integer, a MIDI value (0 .. 16383)<br />
+</small>
+:::
+
+::: functiondesc
+<b>parameterMap.apply (deviceId, parameterType, parameterNumber, midiValueFragment)</b>
+<small>
+Apply partial value to current value of particular Electra parameter within the
+parameter map. The `midiValueFragment` is ORed to the parameter value.
+</small>
+
+<small>
+<i>deviceId</i> - integer, a numeric identifier of the device (1 .. 32)<br />
+<i>parameterType</i> - integer, a numeric identifier of Electra's parameter type (0 .. 11)<br />
+<i>ParameterNumber</i> - integer, a numeric identifier of the parameter (0 .. 16383)<br />
+<i>midiValueFragment</i> - integer, a MIDI value frangement to be applied (0 .. 16383)<br />
 </small>
 :::
 
@@ -290,7 +305,7 @@ A user function to run custom Lua extension function.
 
 #### Example script
 ``` lua
-function functionCallback (value)
+function functionCallback (controlId, value)
   if (value >= 0) then
     print ("hide")
     controls.setVisible (2, false)
