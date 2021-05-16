@@ -143,11 +143,49 @@ end
 
 ```
 
+### Controls
+The controls module provides functionality to manage preset controls.
+
+::: warning
+only the visibility methods are shown but the same pattern may be applied to all functionality related to Controls
+:::
+
+::: functiondesc
+<b>controls.setVisible (controlId, shouldBeVisible)</b>
+<small>
+Changes the visibility of given control.
+</small>
+
+<small>
+<i>controlId</i> - integer, a numeric identifier of the control (1..432)<br />
+<i>shouldBeVisible</i> - integer, desired state of the visibility (0..1)
+</small>
+:::
+
+::: functiondesc
+<b>controls.isVisible (controlId)</b>
+<small>
+Gets status of given control's visibility.
+</small>
+
+<small>
+<i>controlId</i> - integer, a numeric identifier of the control (1..432)
+</small>
+:::
+
+Example script
+``` lua
+-- a function to toggle visibility of a control
+
+function toggleControl (controlId)
+    controls.setVisible (controlId, not controls.isVisible (controlId))
+end
+end
+```
+
 
 ### Parameter Map
 The Parameter map is the heart of the Electra Controller firmware. It is used to store and retrieve information about all parameter values across all connected devices. Whenever a MIDI message is received, pot turned, or a value change made with the touch, the information about the change is routed to the Parameter map and the map, in turn, updates all relevant components and sends MIDI messages out.
-
-There are a number functions work with the parameterMap.
 
 #### Functions
 ::: functiondesc
@@ -235,12 +273,48 @@ function format (value)
 end
 ```
 
-### Application hooks
-There is number of places where the controller firmware triggers a action that
+### Value function callbacks
+Value function callbacks are user functions allowing running complex user actions whenever control value is changed.
 
-There are a number functions work with the parameterMap.
+::: functiondesc
+<b>functionCallback (controlId, value)</b>
+<small>
+A user function to run custom Lua extension function.
+</small>
 
-#### Functions
+<small>
+<i>controlId</i> - integer, a numeric identifier of the control (1..432)<br />
+<i>value</i> - integer, a display value as defined by the preset JSON<br />
+</small>
+:::
+
+#### Example script
+``` lua
+function functionCallback (value)
+  if (value >= 0) then
+    print ("hide")
+    controls.setVisible (2, false)
+  else
+    print ("show")
+    controls.setVisible (2, true)
+  end
+end
+```
+
+### SysEx handling
+Functions to handle incoming SysEx messages.
+
+::: functiondesc
+<b>requestPatch (device)</b>
+<small>
+A callback to send a patch request to a particular device. The function is called upon the `[PATCH REQUEST]` button has been pressed and it is sent to all device that have a patch request defined in their `patch` definition.
+</small>
+
+<small>
+<i>device</i> - data table, a device description data structure (see below)<br />
+</small>
+:::
+
 ::: functiondesc
 <b>parseResponse (device, responseId, sysexBlock)</b>
 <small>
@@ -251,17 +325,6 @@ A callback to handle incoming SysEx message that matched the Patch response defi
 <i>device</i> - data table, a device description data structure (see below)<br />
 <i>responseId</i> - integer, a numeric identifier of the matching Patch response (1 .. 127)<br />
 <i>sysexBlock</i> - light userdata, an object holding the received SysEx message (see below)<br />
-</small>
-:::
-
-::: functiondesc
-<b>requestPatch (device)</b>
-<small>
-A callback to send a patch request to a particular device. The function is called upon the `[PATCH REQUEST]` button has been pressed and it is sent to all device that have a patch request defined in their `patch` definition.
-</small>
-
-<small>
-<i>device</i> - data table, a device description data structure (see below)<br />
 </small>
 :::
 
@@ -294,5 +357,109 @@ function parseResponse (device, responseId, data)
   for i = 1, sysexBlock.getLength (data) do
     print ("data[" .. i .. "] = " .. sysexBlock.peek (data, i))
   end
+end
+```
+
+### Timer
+The timer library provides functionality to run perpetual task. The timer calls `timer.onTick ()` function at given time periods or BPM. The timer makes it possible to implement MIDI clocks, LFOs, and many other repetitive processes. The timer is disabled by default and the initial rate is 120 BMP.
+
+::: functiondesc
+<b>timer.enable ()</b>
+<small>
+Enable the timer. Once the timer is enabled, the `timer.onTick ()` is run at given time periods.
+</small>
+:::
+
+::: functiondesc
+<b>timer.disable ()</b>
+<small>
+Disable the timer. The period of the timer is kept.
+</small>
+:::
+
+::: functiondesc
+<b>timer.isEnabled ()</b>
+<small>
+Get the status of the timer.
+</small>
+
+<small>
+<i>returns</i> - boolean, `true` when the timer is enabled<br />
+</small>
+:::
+
+::: functiondesc
+<b>timer.setPeriod ()</b>
+<small>
+Set the period to run the timer ticks.
+</small>
+
+<small>
+<i>period</i> - integer, period specified in milliseconds (10..60000)<br />
+</small>
+:::
+
+::: functiondesc
+<b>timer.getPeriod ()</b>
+<small>
+Get the period of the timer ticks.
+</small>
+
+<small>
+<i>returns</i> - integer, period specified in milliseconds<br />
+</small>
+:::
+
+::: functiondesc
+<b>timer.setBpm ()</b>
+<small>
+Set the BPM of running the timer ticks.
+</small>
+
+<small>
+<i>period</i> - integer, period specified in BPM (1..6000)<br />
+</small>
+:::
+
+::: functiondesc
+<b>timer.getBpm ()</b>
+<small>
+Get the BPM of the timer ticks.
+</small>
+
+<small>
+<i>returns</i> - integer, period specified in BPM<br />
+</small>
+:::
+
+::: functiondesc
+<b>timer.onTick ()</b>
+<small>
+A user function that will be run at the start of every timer cycle.
+</small>
+:::
+
+``` lua
+-- A simple MIDI clock implemented with the timer
+
+function midi.onStart (midiInput)
+  timer.enable ()
+  print ("timer BPM = " .. timer.getPeriod ())
+end
+
+function midi.onStop (midiInput)
+  timer.disable ()
+end
+
+function midi.onContinue (midiInput)
+  if (timer.isEnabled ()) then
+    timer.disable ()
+  else
+    timer.enable ()
+  end
+end
+
+function timer.onTick ()
+  midi.sendClock (PORT_1)
 end
 ```
