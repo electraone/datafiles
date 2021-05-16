@@ -276,7 +276,8 @@ A simple control with one value assigned.
                "max": 127
             },
             "min": 0,
-            "max": 127
+            "max": 127,
+            "formatter": "formatFractions"
          }
       ]
    }
@@ -771,6 +772,7 @@ a continuous value
    "min": -64,
    "max": 63,
    "defaultValue": 0,
+   "formatter": "formatFractions",
    "message": {
       "deviceId": 1,
       "type": "cc7",
@@ -830,6 +832,16 @@ A value to be set when the preset is loaded. The default value is also recalled 
 - default = 0
 - min = -16383
 - max = 16383
+
+#### formatter
+A hook to a custom Lua extension function that will be called to format the value. More infomation on Electra One preset Lua extension is available at [Preset Lua extension](./ctrllua.md) document. It is up to the user what the name of th function will be, as long as the function exists in the Lua extension module. The formatting function must take exactly one parameter in (value) and must return one parameter back (formatted string).
+
+- optional
+- string
+- default = value
+- minLength = 1
+- maxLength = 20
+
 
 #### overlayId
 A reference to the overlay identifier defined in the array of overlays. The list control will use the overlay items as the list items. Fader control will show overlay labels for matching values.

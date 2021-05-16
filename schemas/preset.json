@@ -144,6 +144,13 @@
          "minimum":1,
          "maximum":3
       },
+      "formatter":{
+         "type":"string",
+         "title":"Formatter function",
+         "description":"A custom value formatting Lua Extension function.",
+         "minLength":1,
+         "maxLength":20
+      },
       "displayValue":{
          "type":"integer",
          "minimum":-16383,
@@ -613,6 +620,7 @@
                         "values":[
                            {
                               "defaultValue":0,
+                              "formatter":"formatFractions",
                               "message":{
                                  "type":"cc7",
                                  "deviceId":1,
@@ -801,7 +809,8 @@
                                  "max":127
                               },
                               "min":0,
-                              "max":127
+                              "max":127,
+                              "formatter":"formatFractions"
                            }
                         ]
                      }
@@ -878,6 +887,10 @@
                               "max":{
                                  "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/max",
                                  "$ref":"#/definitions/displayMax"
+                              },
+                              "formatter":{
+                                "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/formatter",
+                                "$ref":"#/definitions/formatter"
                               },
                               "message":{
                                  "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/message",
