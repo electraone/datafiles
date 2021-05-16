@@ -201,3 +201,41 @@ Sets a midiValue of particular Electra parameter within the parameter map.
 ``` lua
 
 ```
+
+### Application hooks
+There is number of places where the controller firmware triggers a action that
+
+There are a number functions work with the parameterMap.
+
+#### Functions
+::: functiondesc
+<b>parseResponse (device, responseId, sysexBlock)</b>
+<small>
+A callback to handle incoming SysEx message that matched the Patch response definition.
+</small>
+
+<small>
+<i>device</i> - data table, a device description data structure (see below)<br />
+<i>responseId</i> - integer, a numeric identifier of the matching Patch response (1 .. 127)<br />
+<i>sysexBlock</i> - light userdata, an object holding the received SysEx message (see below)<br />
+</small>
+:::
+
+::: functiondesc
+<b>requestPatch (device)</b>
+<small>
+A callback to send a patch request to a particular device. The function is called upon the `[PATCH REQUEST]` button has been pressed and it is sent to all device that have a patch request defined in their `patch` definition.
+</small>
+
+<small>
+<i>device</i> - data table, a device description data structure (see below)<br />
+</small>
+:::
+
+``` lua
+device = {
+  id = 1,                 -- a device Id
+  port = 0                -- a numeric port identifier
+  channel = 1,            -- a channel number
+}
+```
