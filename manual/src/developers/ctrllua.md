@@ -199,7 +199,40 @@ Sets a midiValue of particular Electra parameter within the parameter map.
 
 #### Example script
 ``` lua
+-- set the value of a parameter when processing the patch response SysEx message
 
+function parseResponse (device, responseId, data)
+  parameterMap.set (device.id, PT_CC7, 2, sysexBlock.peek (data, 8))
+end
+```
+
+### Value formatters
+Value formatters are user functions used for formatting the display value of controls. It is a function that takes a display value as an input and computes a value that will be displayed. The formatted value is returned in the form of a string, therefore, given the user a vast range of formatting possibilities.
+
+::: functiondesc
+<b>formatter (value)</b>
+<small>
+A user function to transform the input display value to a text string that is displayed on the LCD.
+</small>
+
+<small>
+<i>value</i> - integer, a display value as defined by the preset JSON<br />
+<br />
+<i>returns</i> - string, transformed version of the input display value<br />
+</small>
+:::
+
+#### Example script
+``` lua
+-- add percentage to the value
+function format2 (value)
+  return (value .. "%")
+end
+
+-- display value with fractions
+function format (value)
+  return (value / 10)
+end
 ```
 
 ### Application hooks
@@ -232,10 +265,34 @@ A callback to send a patch request to a particular device. The function is calle
 </small>
 :::
 
+#### Device data table
 ``` lua
 device = {
   id = 1,                 -- a device Id
   port = 0                -- a numeric port identifier
   channel = 1,            -- a channel number
 }
+```
+
+#### Example script
+``` lua
+function requestPatch (device)
+  print ("Requesting patches from device " .. device.id);
+  midi.sendProgramChange (PORT_1, device.channel, 10)
+end
+
+function parseResponse (device, responseId, data)
+
+  -- print the header information
+  print ("device id = " .. device.id)
+  print ("device channel = " .. device.channel)
+  print ("device port = " .. device.port)
+  print ("responseId = " .. responseId)
+  print ("manufacturer Id = " .. sysexBlock.getManufacturerSysexId (data))
+
+  -- print the received data
+  for i = 1, sysexBlock.getLength (data) do
+    print ("data[" .. i .. "] = " .. sysexBlock.peek (data, i))
+  end
+end
 ```
