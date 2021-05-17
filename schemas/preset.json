@@ -680,6 +680,11 @@
                         "$id":"#/properties/controls/items/anyOf/Pad/properties/controlSetId",
                         "$ref":"#/definitions/controlSetId"
                      },
+                     "visible":{
+                        "$id":"#/properties/controls/items/anyOf/Pad/properties/visible",
+                        "type": "boolean",
+                        "default": true
+                     },
                      "inputs":{
                         "$id":"#/properties/controls/items/anyOf/Pad/properties/inputs",
                         "$ref":"#/definitions/inputs"

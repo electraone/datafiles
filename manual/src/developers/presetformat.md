@@ -260,6 +260,7 @@ A simple control with one value assigned.
       ],
       "pageId": 1,
       "controlSetId": 1,
+      "visible": false,
       "inputs": [
          {
             "potId": 2,
@@ -532,6 +533,7 @@ A simple control with one value assigned.
    ],
    "pageId": 1,
    "controlSetId": 1,
+   "visible": true,
    "inputs": [
       {
          "potId": 1,
@@ -700,6 +702,13 @@ Controls placed on one page can be further divided into control sets. The contro
 - default = 0
 - min = 0
 - max 12
+
+#### visible
+A boolean flag to manage the visibility of a Control. When set to `false`, the control is invisble.
+
+- optional
+- boolean
+- default = true
 
 #### values
 An array of values associated with the control. A values represent an instance of the value of certain MIDI parameter. Actions made with the control (turning assigned pot, touch events) effectively change associated values and trigger transmission of MIDI messages.
