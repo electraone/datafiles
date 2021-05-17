@@ -151,6 +151,13 @@
          "minLength":1,
          "maxLength":20
       },
+      "function":{
+         "type":"string",
+         "title":"Callback function",
+         "description":"A Lua Extension callback function to execute user's custom code.",
+         "minLength":1,
+         "maxLength":20
+      },
       "displayValue":{
          "type":"integer",
          "minimum":-16383,
@@ -621,6 +628,7 @@
                            {
                               "defaultValue":0,
                               "formatter":"formatFractions",
+                              "function":"displaySections",
                               "message":{
                                  "type":"cc7",
                                  "deviceId":1,
@@ -891,6 +899,10 @@
                               "formatter":{
                                 "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/formatter",
                                 "$ref":"#/definitions/formatter"
+                              },
+                              "function":{
+                                "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/function",
+                                "$ref":"#/definitions/function"
                               },
                               "message":{
                                  "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/message",

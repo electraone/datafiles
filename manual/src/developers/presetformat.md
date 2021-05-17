@@ -773,6 +773,7 @@ a continuous value
    "max": 63,
    "defaultValue": 0,
    "formatter": "formatFractions",
+   "function": "disableOscillator",
    "message": {
       "deviceId": 1,
       "type": "cc7",
@@ -789,6 +790,7 @@ value with a list of discrete values (an overlay)
 {
    "id": "value",
    "overlayId": 2,
+   "function": "displaySections",
    "message":{
       "deviceId": 1,
       "type": "cc7",
@@ -835,6 +837,15 @@ A value to be set when the preset is loaded. The default value is also recalled 
 
 #### formatter
 A hook to a custom Lua extension function that will be called to format the value. More infomation on Electra One preset Lua extension is available at [Preset Lua extension](./ctrllua.md) document. It is up to the user what the name of th function will be, as long as the function exists in the Lua extension module. The formatting function must take exactly one parameter in (value) and must return one parameter back (formatted string).
+
+- optional
+- string
+- default = value
+- minLength = 1
+- maxLength = 20
+
+#### function
+A hook to a custom Lua extension function that will be called whenever the display value is changed. More infomation on Electra One preset Lua extension is available at [Preset Lua extension](./ctrllua.md) document. It is up to the user what the name of th function will be, as long as the function exists in the Lua extension module. The function must take exactly two parameters in (controlId and value).
 
 - optional
 - string
