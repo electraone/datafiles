@@ -21,10 +21,14 @@ print("Is it blue now? " .. (controls.getColor(control) == BLUE and "YES" or "NO
 
 -- Change a location, using the helpers.slotToBounds () function.
 control = controls.get(19)
-controls.setBounds(control, helpers.slotToBounds(20))
+controls.setBounds(control, helpers.slotToBounds(6))
 bounds = controls.getBounds(control)
 print("New bounds are: x=" .. bounds[X] ..
     ", y=" .. bounds[Y] ..
     ", width=" .. bounds[WIDTH] ..
     ", height=" .. bounds[HEIGHT]
 )
+
+-- Change assignment of the control to a controlSet
+controls.setControlSet (control, 1)
+print ("It was moved to controlSet: " .. controls.getControlSet (control))
