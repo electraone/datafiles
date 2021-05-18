@@ -14,3 +14,4 @@ Each example consits of two files, the preset and the Lua extension file. Both f
 
 1. [Hello MIDI world!](01_helloworld)
 1. [Display value formatting](02_value_formatting)
+1. [Control management](03_control_management)
