@@ -45,6 +45,16 @@
             "C44795"
          ]
       },
+      "variant":{
+         "type":"string",
+         "title":"Variant",
+         "description":"A visual variant of the control.",
+         "default":"auto",
+         "enum":[
+            "auto",
+            "fixedValuePosition"
+         ]
+      },
       "valueId":{
          "type":"string",
          "title":"Value Id",
@@ -797,6 +807,7 @@
                         "type":"fader",
                         "name":"CC #1",
                         "color":"FFFFFF",
+                        "variant":"fixedValuePosition",
                         "bounds":[
                            0,
                            128,
@@ -852,6 +863,10 @@
                      "color":{
                         "$id":"#/properties/controls/items/anyOf/fader/properties/color",
                         "$ref":"#/definitions/color"
+                     },
+                     "variant":{
+                        "$id":"#/properties/controls/items/anyOf/fader/properties/variant",
+                        "$ref":"#/definitions/variant"
                      },
                      "bounds":{
                         "$id":"#/properties/controls/items/anyOf/fader/properties/bounds",

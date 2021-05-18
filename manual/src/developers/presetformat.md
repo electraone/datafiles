@@ -525,6 +525,7 @@ A simple control with one value assigned.
    "type": "fader",
    "name": "WHITE",
    "color": "FFFFFF",
+   "variant": "fixedValuePosition",
    "bounds":[
       0,
       40,
@@ -679,6 +680,16 @@ A 24-bit RGB code of the control's color. The colors are limited to six predefin
   - 529DEC (blue)
   - 03A598 (green)
   - C44795 (pink)
+
+#### variant
+A visual variant of the control. Variants provide more subtle control of the visual appearance.
+
+- optional
+- string
+- default = auto
+- enum
+  - auto
+  - fixedValuePosition (fader)
 
 #### bounds
 A bounding box of the control, ie. the definition of the control's position on the screen and its size. The bounding box is represented as an array of [x, y, width, height]
