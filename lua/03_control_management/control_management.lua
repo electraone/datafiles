@@ -3,26 +3,26 @@
 
 -- Change visibility
 control = controls.get (1)
-controls.setVisible (control, false)
-print ("is it still visible: " .. (controls.isVisible (control) and "YES" or "NO"))
+control:setVisible (false)
+print ("is it still visible: " .. (control:isVisible () and "YES" or "NO"))
 
 
 -- Change name
 control = controls.get (7)
-controls.setName (control, "CHANGED")
-print ("The new label is: " .. controls.getName (control))
+control:setName ("CHANGED")
+print ("The new label is: " .. control:getName ())
 
 
 -- Change color
 control = controls.get (13)
-controls.setColor (control, ORANGE)
-print ("Is it blue now? " .. (controls.getColor (control) == BLUE and "YES" or "NO"))
+control:setColor (ORANGE)
+print ("Is it blue now? " .. (control:getColor () == BLUE and "YES" or "NO"))
 
 
 -- Change a location, using the helpers.slotToBounds () function.
 control = controls.get (19)
-controls.setBounds (control, helpers.slotToBounds (6))
-bounds = controls.getBounds (control)
+control:setBounds (helpers.slotToBounds (6))
+bounds = control:getBounds ()
 
 print ("New bounds are: x=" .. bounds[X] ..
     ", y=" .. bounds[Y] ..
@@ -30,5 +30,5 @@ print ("New bounds are: x=" .. bounds[X] ..
     ", height=" .. bounds[HEIGHT])
 
 -- Change assignment of the control to a controlSet
-controls.setControlSet (control, 1)
-print ("It was moved to controlSet: " .. controls.getControlSet (control))
+control:setControlSet (1)
+print ("It was moved to controlSet: " .. control:getControlSet ())
