@@ -23,6 +23,7 @@ All SysEx messages must carry information about the manufacturer. Electra One us
 ```
 
 ## Querying data from the controller
+A set of commands to retrieve information from the controller. The information may be either runtime data, static data, or various files stored in the controller.
 
 ### Get an Electra info
 Electra One MIDI controller can provide info about the hardware and currently loaded firmware on a request. This call comes in handy if you need to find out if connected Electra is working correctly and get information about the firmware it runs.
@@ -339,6 +340,7 @@ end
 
 
 ## Uploading data to the controller
+A set of commands to upload files to the controller.
 
 ### Upload a preset
 The preset upload call is meant to upload a new preset to the Electra One MIDI controller. The preset is always loaded to a currently selected preset slot (out of 72 preset slots supported). Once the preset is uploaded, it is activated immediately and the user may use it.
@@ -395,6 +397,7 @@ Detailed information about developing Lua script applications is provided at [El
 
 
 ## Controller events
+Controller events are sent by the controller to the host. The primary goal is to keep the host computer informed about important events taking place in the controller.
 
 ### NAK
 Not acknowledged. Informs the host that the last operation did not succeed.
@@ -525,25 +528,8 @@ The `log-message` is a text string that start with a number representing millise
 ```
 
 
-## Controller commands
-
-### Midi learn enable / disable
-A call to enable or disable the MIDI learn functionality on the controller. When enabled, the controller will send MIDI learn messages back to the host for all incoming MIDI messages.
-
-```
-0xF0 0x00 0x21 0x45 0x03 status 0xF7
-```
-<syxDownloadLink href="/sysex/midilearn-on.syx" description="download .syx"/>
-
-- `0xF0` SysEx header byte
-- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
-- `0x03` Midi Learn
-- `status` desired state of the MIDI learn functionality (see below)
-- `0xF7` SysEx closing byte
-
-`status`
-- `0x00` disable the MIDI learn
-- `0x01` enable the MIDI learn
+## Persistent commands
+Persistent command make changes to the data stored in the controller. This means that all changes made with persistent commands will be effective even if the controller is power-recycled.
 
 
 ### Snapshot update
@@ -610,17 +596,88 @@ A call to swap snapshots in two snapshot slots. If one of the slots is empty, it
 - `0xF7` SysEx closing byte
 
 
-### Control update
-A call to update the name, color, and visibility of the control. Currently, the change is made only at the run-time, it means it is lost when the Electra is powered off.
+## Runtime commands
+The runtime command modify the behaviour of the controller at the runtime but do not make permanent changes.
+
+### Midi learn enable / disable
+A call to enable or disable the MIDI learn functionality on the controller. When enabled, the controller will send MIDI learn messages back to the host for all incoming MIDI messages.
 
 ```
-0xF0 0x00 0x21 0x45 0x04 0x07 control-id-lsb control-id-msb control-upadate-json-data 0xF7
+0xF0 0x00 0x21 0x45 0x03 status 0xF7
+```
+<syxDownloadLink href="/sysex/midilearn-on.syx" description="download .syx"/>
+
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x03` Midi Learn
+- `status` desired state of the MIDI learn functionality (see below)
+- `0xF7` SysEx closing byte
+
+`status`
+- `0x00` disable the MIDI learn
+- `0x01` enable the MIDI learn
+
+
+### Logger enable / disable
+A system call that is used to control whether or not Electra sends the debugging log messages. The command controls a non-volative flag in the controller. The status of the logger stays set even after powering the controller off. The start-up log messages are, however, always sent without taking the logger status in account.
+
+```
+0xF0 0x00 0x21 0x45 0x7F 0x7D status 0x00 0xF7
+```
+
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x7F` System call
+- `0x7D` Logger status change
+- `status` desired state of the logger (see below)
+- `0x00` reserved
+- `0xF7` SysEx closing byte
+
+`status`
+- `0x00` disable the logger
+- `0x01` enable the logger
+
+
+### Execute Lua command
+A call to run an arbitrary Lua command.
+
+```
+0xF0 0x00 0x21 0x45 0x08 0x0D lua-command-text 0xF7
 ```
 <syxDownloadLink href="/sysex/update-control.syx" description="download .syx"/>
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
-- `0x04` Update command
+- `0x08` Execute command
+- `0x0D` Lua command
+- `lua-command-text` ASCII bytes representing the log message
+- `0xF7` SysEx closing byte
+
+The `lua-command-text` is free form sting containing Lua command to be executed. The maximum length is limited to 128 characters. It is recommended to call predefined functions.
+
+##### An example of the lua-command-text
+``` lua
+hideControl (1)
+```
+
+or
+
+``` lua
+print ("Hello MIDI world!")
+```
+
+
+### Control update
+A call to update the name, color, and visibility of the control. The change is made only at the run-time, it means it is lost when the Electra is powered off.
+
+```
+0xF0 0x00 0x21 0x45 0x14 0x07 control-id-lsb control-id-msb control-upadate-json-data 0xF7
+```
+<syxDownloadLink href="/sysex/update-control.syx" description="download .syx"/>
+
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x14` Update runtime command
 - `0x07` Control
 - `control-id-lsb` a LSB of a controlId
 - `control-id-msb` a MSB of a controlId
@@ -652,54 +709,6 @@ _one attribute only_:
   "name": "Track 2"
 }
 ```
-
-### Execute Lua command
-A call to run an arbitrary Lua command.
-
-```
-0xF0 0x00 0x21 0x45 0x08 0x0D lua-command-text 0xF7
-```
-<syxDownloadLink href="/sysex/update-control.syx" description="download .syx"/>
-
-- `0xF0` SysEx header byte
-- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
-- `0x08` Execute command
-- `0x0D` Lua command
-- `lua-command-text` ASCII bytes representing the log message
-- `0xF7` SysEx closing byte
-
-The `lua-command-text` is free form sting containing Lua command to be executed. The maximum length is limited to 128 characters. It is recommended to call predefined functions.
-
-##### An example of the lua-command-text
-``` lua
-hideControl (1)
-```
-
-or
-
-``` lua
-print ("Hello MIDI world!")
-```
-
-
-### Logger enable / disable
-A system call that is used to control whether or not Electra sends the debugging log messages. The command controls a non-volative flag in the controller. The status of the logger stays set even after powering the controller off. The start-up log messages are, however, always sent without taking the logger status in account.
-
-```
-0xF0 0x00 0x21 0x45 0x7F 0x7D status 0x00 0xF7
-```
-
-- `0xF0` SysEx header byte
-- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
-- `0x7F` System call
-- `0x7D` Logger status change
-- `status` desired state of the logger (see below)
-- `0x00` reserved
-- `0xF7` SysEx closing byte
-
-`status`
-- `0x00` disable the logger
-- `0x01` enable the logger
 
 
 ### Switch to the firmware update mode
