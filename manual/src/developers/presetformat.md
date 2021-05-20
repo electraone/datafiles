@@ -5,7 +5,7 @@ This document describes the format of the Electra One preset file. The preset fi
 ## Preset JSON format
 
 ### JSON schema
-This is a WIP (work-in-progress) version of JSON schema of [Electra preset file format version 2](https://github.com/martinpavlas/electra.one/blob/master/presets/schema.json)
+The JSON schema of the Electra preset file is available at [GitHub](https://github.com/martinpavlas/electra.one/blob/master/schemas/preset.json).
 
 
 ### Minification

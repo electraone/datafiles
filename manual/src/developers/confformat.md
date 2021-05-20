@@ -6,7 +6,7 @@ This document describes the format of the Electra One configuration file. The co
 ## Config JSON format
 
 ### JSON schema
-The JSON schema of the Electra configuration file is available at [GitHub](https://github.com/martinpavlas/electra.one/blob/master/presets/confschema.json).
+The JSON schema of the Electra configuration file is available at [GitHub](https://github.com/martinpavlas/electra.one/blob/master/schemas/config.json).
 
 
 ### Minification
