@@ -1,5 +1,6 @@
 -- Example of a simple value change callback function
 
-function writeToLog (value)
-    print ("value changed to " .. value)
+-- Note, the value is not the MIDI value sent, but the state of the pad itself
+function writeToLog (control, value)
+    print ("value of control " .. control .. " changed to " .. value)
 end
