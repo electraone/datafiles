@@ -46,26 +46,63 @@ The Electra One Lua script may consist of four different building blocks:
 Let's use following example to demonstrate it:
 
 ``` lua
--- Lua script structure example
+-- Display controls related to specific value of another control
 
--- the Setup
-clockCounter = 0
-beatEnabled = 0
-
-
--- User functions
-function myPrint (text)
-    print ("my Lua: " .. text)
+-- a function to hide all controls within the groups
+function hideAllGroups (groups)
+    for groupId = 0, #groups do
+        for i, controlId in ipairs (groups[groupId]) do
+            control = controls.get (controlId)
+            control:setVisible (false)
+        end
+    end
 end
+
+-- show given control group
+function showGroup (groups, groupId)
+    for i, controlId in ipairs (groups[groupId]) do
+        control = controls.get (controlId)
+        control:setSlot (i + 1)
+    end
+end
+
+-- the callback function called from the preset
+function displayGroup (controlId, value)
+    hideAllGroups (controlGroups)
+    showGroup (controlGroups, value)
+end
+
+
+-- set the initial state. group 0 is displayed
+
+-- define assignment of controls to groups
+controlGroups = {
+    [0] = { 20, 21, 22 },
+    [1] = { 26, 27, 28 },
+    [2] = { 32, 33 }
+}
+
+showGroup (controlGroups, 0)
+
+print ("Lua ext initialized")
 ```
 
 #### The setup
 The setup part is all source code that is not part of any function, it means it resides in the global context of the script. The setup part may call any standard functions, user functions, initialize global variables, and so on. The setup part in the above script is:
 
 ``` lua
--- the Setup
-clockCounter = 0
-beatEnabled = 0
+-- set the initial state. group 0 is displayed
+
+-- define assignment of controls to groups
+controlGroups = {
+    [0] = { 20, 21, 22 },
+    [1] = { 26, 27, 28 },
+    [2] = { 32, 33 }
+}
+
+showGroup (controlGroups, 0)
+
+print ("Lua ext initialized")
 ```
 
 The primary purpose of the setup is to prepare your extension for handling the application events at the later stage. The setup is executed immediately after the preset is loaded. It does not matter where the setup part is located in the script, it is not required to be at the top. If you intend to use your own user functions in the setup, you will need to place the setup part below the definition of the user functions.
@@ -74,14 +111,10 @@ The primary purpose of the setup is to prepare your extension for handling the a
 #### The standard functions
 The standard functions are functions from the Lua standard libraries and the Electra One extension libraries. These functions cover vast range of functionality from printing, doing math, MIDI messaging to working with UI components.
 
-If you observe the above example source code carefully, you will spot two standard functions there.
+A `print` function is a typical standard function.
 
 ``` lua
--- print text to the ElectraOne Console application
-print ("my Lua: " .. text)
-
--- run modulo function from the math library
-if math.mod (clockCounter, 24) == 0 then
+print ("Lua ext initialized")
 ```
 
 The description of the standard functions is covered by the official [Lua documentation](http://www.lua.org/docs.html) and this document.
@@ -99,12 +132,13 @@ The Electra One Lua extension brings number of predefined event handlers - callb
 #### The user functions
 Of course, user can, and actually are encouraged to, package their functionality to Lua user functions that are used to build more complex programatic blocks.
 
-To demonstrate the user functions we added a `myPrint ()` function to the example.
+A good example of a user function is a `displayGroup` callback from the above example source code.
 
 ``` lua
--- User functions
-function myPrint (text)
-    print ("my Lua: " .. text)
+-- the callback function called from the preset
+function displayGroup (controlId, value)
+    hideAllGroups (controlGroups)
+    showGroup (controlGroups, value)
 end
 ```
 
@@ -151,25 +185,24 @@ only the visibility methods are shown but the same pattern may be applied to all
 :::
 
 ::: functiondesc
-<b>controls.setVisible (controlId, shouldBeVisible)</b>
+<b>control:setVisible (shouldBeVisible)</b>
 <small>
 Changes the visibility of given control.
 </small>
 
 <small>
-<i>controlId</i> - integer, a numeric identifier of the control (1..432)<br />
 <i>shouldBeVisible</i> - integer, desired state of the visibility (0..1)
 </small>
 :::
 
 ::: functiondesc
-<b>controls.isVisible (controlId)</b>
+<b>control:isVisible ()</b>
 <small>
 Gets status of given control's visibility.
 </small>
 
 <small>
-<i>controlId</i> - integer, a numeric identifier of the control (1..432)
+<i>returns</i> - boolean, true when the control is visible
 </small>
 :::
 
