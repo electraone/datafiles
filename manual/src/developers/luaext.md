@@ -21,12 +21,21 @@ The Electra One Preset Lua extension allows you to embed Lua function calls to t
 
 \* not preset in current version of the API
 
+The main idea here is to have a healthy split between the static data that is defined in the declarative JSON and the dynamic processing of this data in the run-time with the Lua script. The JSON preset is used to pre-load all pages, lists, devices, controls. Once, the preset is loaded, the Lua Extension may be used to modify it to suit the particular needs. This is enforced by the fact that the Lua Extension API cannot create new objects. It can, however, modify, move, and change visibility of existing objects.
 
-## Uploading the scripts
+
+## Examples
+Examples of presets with the Lua Extensions are available at [Github Electra.One repository](https://github.com/martinpavlas/electra.one/tree/master/lua)
+
+
+## SysEx Implementation
+
+### Uploading the scripts
 In order to make a Lua script extension functions accessible from the preset, it needs to be uploaded first. It can be done with the Lua script upload SysEx call. The script is uploaded and assigned to currently active preset. If there already exists a Lua script for given preset, the upload SysEx call will overwrite it.
 
+This effectively means that one preset may have one Lua script assigned. From this perspective a new can now been seen as a combo of the JSON preset .epr file and the Lua script .lua file.
 
-### SysEx Request
+#### SysEx Request
 ```
 0xF0 0x00 0x21 0x45 0x01 0x0C script-source-code 0xF7
 ```
@@ -38,6 +47,38 @@ In order to make a Lua script extension functions accessible from the preset, it
 - `script-source-code` bytes representing ASCII characters of the Lua script
   source code
 - 0xF7 SysEx closing byte
+
+
+### Executing a Lua command
+A call to run an arbitrary Lua command. This can be seen as an API endpoint for
+managing Electra One preset from external devices and applications.
+
+#### SysEx Request
+```
+0xF0 0x00 0x21 0x45 0x08 0x0D lua-command-text 0xF7
+```
+<syxDownloadLink href="/sysex/update-control.syx" description="download .syx"/>
+
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x08` Execute command
+- `0x0D` Lua command
+- `lua-command-text` ASCII bytes representing the log message
+- `0xF7` SysEx closing byte
+
+The `lua-command-text` is free form sting containing Lua command to be executed. The maximum length is limited to 128 characters. It is recommended to call predefined functions.
+
+##### An example of the lua-command-text
+``` lua
+hideControl (1)
+```
+
+or
+
+``` lua
+print ("Hello MIDI world!")
+```
+
 
 
 ## The structure of the script
@@ -427,12 +468,17 @@ control:setSlot (7)
 
 
 
+### Pages
+Work needs to be done here...
+
+
+
 ### Groups
 Work needs to be done here...
 
 
 
-### Device
+### Devices
 Work needs to be done here...
 
 

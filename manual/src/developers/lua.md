@@ -20,9 +20,9 @@ The Electra's Lua implementation provides a programming API to:
 - Reading the status and positions of the touch sensitive knobs
 - Reading the status of the hardware buttons
 - Working with the graphics and UI components on the LCD
-- Managing timer-based tasks (*)
-- Managing objects stored in the memory (*)
-- Managing data stored in the internal permanent storage media (*)
+- Managing timer-based tasks
+- Managing objects stored in the memory *
+- Managing data stored in the internal permanent storage media *
 
 \* not preset in current version of the API
 
