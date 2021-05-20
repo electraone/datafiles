@@ -675,6 +675,12 @@ The `lua-command-text` is free form sting containing Lua command to be executed.
 hideControl (1)
 ```
 
+or
+
+``` lua
+print ("Hello MIDI world!")
+```
+
 
 ### Logger enable / disable
 A system call that is used to control whether or not Electra sends the debugging log messages. The command controls a non-volative flag in the controller. The status of the logger stays set even after powering the controller off. The start-up log messages are, however, always sent without taking the logger status in account.
