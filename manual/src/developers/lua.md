@@ -1420,14 +1420,14 @@ Constructs a new Component object and returns a reference to it.
 :::
 
 ::: functiondesc
-<b>\<component\>.repaint ()</b>
+<b>\<component\>:repaint ()</b>
 <small>
 A class method to schedule a repaint of the component.
 </small>
 :::
 
 ::: functiondesc
-<b>\<component\>.setLabel (label)</b>
+<b>\<component\>:setLabel (label)</b>
 <small>
 Sets a new label of the component.
 </small>
@@ -1438,7 +1438,7 @@ Sets a new label of the component.
 :::
 
 ::: functiondesc
-<b>\<component\>.getLabel ()</b>
+<b>\<component\>:getLabel ()</b>
 <small>
 Retrieves the current label of the component.
 </small>
@@ -1449,7 +1449,7 @@ Retrieves the current label of the component.
 :::
 
 ::: functiondesc
-<b>\<component\>.setName (name)</b>
+<b>\<component\>:setName (name)</b>
 <small>
 Sets a new name of the component. The component name is not shown.
 The constructor sets it to the same text as the label.
@@ -1461,7 +1461,7 @@ The constructor sets it to the same text as the label.
 :::
 
 ::: functiondesc
-<b>\<component\>.getName ()</b>
+<b>\<component\>:getName ()</b>
 <small>
 Retrieves the current name of the component.
 </small>
@@ -1472,7 +1472,7 @@ Retrieves the current name of the component.
 :::
 
 ::: functiondesc
-<b>\<component\>.setId (id)</b>
+<b>\<component\>:setId (id)</b>
 <small>
 Sets a new identifier of the component.
 </small>
@@ -1483,7 +1483,7 @@ Sets a new identifier of the component.
 :::
 
 ::: functiondesc
-<b>\<component\>.getId ()</b>
+<b>\<component\>:getId ()</b>
 <small>
 Retrieves the current id of the component.
 </small>
@@ -1494,7 +1494,7 @@ Retrieves the current id of the component.
 :::
 
 ::: functiondesc
-<b>\<component\>.setActive (shouldBeActive)</b>
+<b>\<component\>:setActive (shouldBeActive)</b>
 <small>
 Sets a active flag of the component. When set (true) the component is highlighted.
 When unset (false) the component is shown in the normal state.
@@ -1506,7 +1506,7 @@ When unset (false) the component is shown in the normal state.
 :::
 
 ::: functiondesc
-<b>\<component\>.isActive ()</b>
+<b>\<component\>:isActive ()</b>
 <small>
 Retrieves the current state of the active flag of the component.
 </small>
@@ -1517,7 +1517,7 @@ Retrieves the current state of the active flag of the component.
 :::
 
 ::: functiondesc
-<b>\<component\>.setDimmed (shouldBeDimmed)</b>
+<b>\<component\>:setDimmed (shouldBeDimmed)</b>
 <small>
 Sets a dimmed flag of the component. When set (true) the component is dimmed.
 When unset (false) the component is shown in the normal state.
@@ -1529,7 +1529,7 @@ When unset (false) the component is shown in the normal state.
 :::
 
 ::: functiondesc
-<b>\<component\>.isDimmed ()</b>
+<b>\<component\>:isDimmed ()</b>
 <small>
 Retrieves the current state of the dimmed flag of the component.
 </small>
@@ -1540,7 +1540,7 @@ Retrieves the current state of the dimmed flag of the component.
 :::
 
 ::: functiondesc
-<b>\<component\>.setVisible (shouldBeVisible)</b>
+<b>\<component\>:setVisible (shouldBeVisible)</b>
 <small>
 Sets a visibility flag of the component. When set (true) the component is shown.
 When unset (false) the component is hidden.
@@ -1552,7 +1552,7 @@ When unset (false) the component is hidden.
 :::
 
 ::: functiondesc
-<b>\<component\>.isVisible ()</b>
+<b>\<component\>:isVisible ()</b>
 <small>
 Retrieves the current state of the visibility flag of the component.
 </small>
@@ -1563,7 +1563,7 @@ Retrieves the current state of the visibility flag of the component.
 :::
 
 ::: functiondesc
-<b>\<component\>.setColor (color)</b>
+<b>\<component\>:setColor (color)</b>
 <small>
 Sets a color of the component.
 </small>
@@ -1574,7 +1574,7 @@ Sets a color of the component.
 :::
 
 ::: functiondesc
-<b>\<component\>.getColor ()</b>
+<b>\<component\>:getColor ()</b>
 <small>
 Retrieves the current color of the component.
 </small>
@@ -1585,7 +1585,7 @@ Retrieves the current color of the component.
 :::
 
 ::: functiondesc
-<b>\<component\>.setBounds (bounds)</b>
+<b>\<component\>:setBounds (bounds)</b>
 <small>
 Sets a new bounding box, ie. the position and dimensions of the component.
 </small>
