@@ -98,7 +98,7 @@ module.exports = {
             children: [
               '/developers/midiimplementation.md',
               '/developers/presetformat.md',
-              '/developers/ctrllua.md',
+              '/developers/luaext.md',
               '/developers/confformat.md',
               '/developers/sysexparser.md',
               '/developers/lua.md'
