@@ -30,5 +30,4 @@ print ("New bounds are: x=" .. bounds[X] ..
     ", height=" .. bounds[HEIGHT])
 
 -- Change assignment of the control to a controlSet
-control:setControlSet (1)
-print ("It was moved to controlSet: " .. control:getControlSet ())
+control:setSlot (5)
