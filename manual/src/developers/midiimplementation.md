@@ -614,7 +614,7 @@ A call to swap snapshots in two snapshot slots. If one of the slots is empty, it
 A call to update the name, color, and visibility of the control. Currently, the change is made only at the run-time, it means it is lost when the Electra is powered off.
 
 ```
-0xF0 0x00 0x21 0x45 0x04 0x07 control-id control-upadate-json-data 0xF7
+0xF0 0x00 0x21 0x45 0x04 0x07 control-id-lsb control-id-msb control-upadate-json-data 0xF7
 ```
 <syxDownloadLink href="/sysex/update-control.syx" description="download .syx"/>
 
@@ -623,7 +623,7 @@ A call to update the name, color, and visibility of the control. Currently, the 
 - `0x04` Update command
 - `0x07` Control
 - `control-id-lsb` a LSB of a controlId
-- `control-id-msb` a LSB of a controlId
+- `control-id-msb` a MSB of a controlId
 - `control-update-json-data`
 - `0xF7` SysEx closing byte
 
@@ -652,6 +652,29 @@ _one attribute only_:
   "name": "Track 2"
 }
 ```
+
+### Execute Lua command
+A call to run an arbitrary Lua command.
+
+```
+0xF0 0x00 0x21 0x45 0x08 0x0D lua-command-text 0xF7
+```
+<syxDownloadLink href="/sysex/update-control.syx" description="download .syx"/>
+
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x08` Execute command
+- `0x0D` Lua command
+- `lua-command-text` ASCII bytes representing the log message
+- `0xF7` SysEx closing byte
+
+The `lua-command-text` is free form sting containing Lua command to be executed. The maximum length is limited to 128 characters. It is recommended to call predefined functions.
+
+##### An example of the lua-command-text
+``` lua
+hideControl (1)
+```
+
 
 ### Logger enable / disable
 A system call that is used to control whether or not Electra sends the debugging log messages. The command controls a non-volative flag in the controller. The status of the logger stays set even after powering the controller off. The start-up log messages are, however, always sent without taking the logger status in account.
