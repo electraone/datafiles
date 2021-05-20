@@ -1,12 +1,5 @@
 -- Display controls related to specific value of another control
 
--- define assignment of controls to groups
-controlGroups = {
-    [0] = { 20, 21, 22 },
-    [1] = { 26, 27, 28 },
-    [2] = { 32, 33 }
-}
-
 -- a function to hide all controls within the groups
 function hideAllGroups (groups)
     for groupId = 0, #groups do
@@ -31,5 +24,14 @@ function displayGroup (controlId, value)
     showGroup (controlGroups, value)
 end
 
+
 -- set the initial state. group 0 is displayed
+
+-- define assignment of controls to groups
+controlGroups = {
+    [0] = { 20, 21, 22 },
+    [1] = { 26, 27, 28 },
+    [2] = { 32, 33 }
+}
+
 showGroup (controlGroups, 0)
