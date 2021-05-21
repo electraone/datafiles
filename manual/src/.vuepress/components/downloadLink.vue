@@ -31,7 +31,7 @@ export default {
 
 .linkContainer {
   text-align: left;
-  width: 264px;
+  width: 284px;
   float:left;
 }
 
