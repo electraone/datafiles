@@ -7,6 +7,15 @@
 </div>
 </template>
 
+
+
+<script>
+export default {
+  props: ['href', 'description'],
+  methods: {}
+}
+</script>
+
 <script>
 export default {
   props: ['filename', 'href', 'description'],
@@ -21,13 +30,12 @@ export default {
 }
 
 .linkContainer {
-  text-align: right;
-  width: 214px;
+  text-align: left;
+  width: 264px;
   float:left;
 }
 
 .description {
-  padding-left: 2.5em;
   color: #666;
   font-size: 80%;
 }

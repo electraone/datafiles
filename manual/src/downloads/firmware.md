@@ -9,20 +9,26 @@ To keep your Electra One MIDI Controller updated, follow the instructions descri
 
 ## MIDI Controller firmware
 
-The latest version of the Electra One Midi Controller firmware. This version fully supports [Electra App account](https://app.electra.one/) and the new preset format.
+The latest stable version of the Electra One Midi Controller firmware.
 
 <downloadButton href="/firmware-1.5.frm.zip" description="version 1.5 (9 Feb 2021)"/>
 
 
-## Lua Script firmware
+## Public beta releases
+The beta releases are development snapshots meant for user testing and providing the user feedback. Majority of betas will become a public release in the future. Betas should not be used for serious work.
 
-The latest version of the Electra One firmware that allows running custom Lua scripts on the controller. This is a develpment version and should not be used for serious work yet. More information about the Lua firmware is available at [Electra One Lua script](../developers/lua.md) and the new preset format.
-
-<downloadButton href="/firmware-lua-0.1.frm.zip" description="version 0.1 (11 May 2021)"/>
+ElectraOne Console version 2.0b or higher must be used with the firmware beta releases.
 
 
-## Legacy MIDI Controller firmware
+### MIDI Controller firmware
 
-The original firmware of the Electra One Midi controller that supports an older version of presets and works with the legacy Electra editor as [https://editor.electra.one/](https://editor.electra.one/)
+The latest beta version of the Electra One firmware that allows running Lua Extension scripts on the controller. More information about the beta firmware is available at [Electra One Lua Extension](../developers/luaext.md). The changelog can be found at [Nightly builds](../developers/nightly.md).
 
-<downloadButton href="/firmware-0.9.13.frm.zip" description="version 0.9.13 (2 Sep 2020)"/>
+<downloadLink filename="firmware-2.0b.img.zip" href="/firmware-2.0b.img.zip" description="version 2.0b (20 May 2021)"/>
+
+
+### Lua Script firmware
+
+The latest version of the Electra One firmware that allows running custom Lua applications on the controller. More information about the Lua firmware is available at [Electra One Lua script](../developers/lua.md) and the new preset format.
+
+<downloadLink filename="firmware-lua-0.1.img.zip" href="/firmware-lua-0.1.img.zip" description="version 0.1 (20 May 2021)"/>

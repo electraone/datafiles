@@ -101,7 +101,8 @@ module.exports = {
               '/developers/luaext.md',
               '/developers/confformat.md',
               '/developers/sysexparser.md',
-              '/developers/lua.md'
+              '/developers/lua.md',
+              '/developers/nightly.md',
             ]
           }
         ]

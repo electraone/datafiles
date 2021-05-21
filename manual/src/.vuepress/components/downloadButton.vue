@@ -1,6 +1,8 @@
 <template>
 <div class="download">
+    <div class="linkContainer">
     <a class="downloadButton" :href="href">Download</a>
+        </div>
     <span class="description">{{ description }}</span>
 </div>
 </template>
@@ -38,8 +40,13 @@ a.downloadButton:hover {
   text-decoration: none;
 }
 
+.linkContainer {
+  text-align: left;
+  width: 264px;
+  float:left;
+}
+
 .description {
-  padding-left: 2.5em;
   color: #666;
   font-size: 80%;
 }
