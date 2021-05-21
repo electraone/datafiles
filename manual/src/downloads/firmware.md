@@ -15,9 +15,11 @@ The latest stable version of the Electra One Midi Controller firmware.
 
 
 ## Public beta releases
-The beta releases are development snapshots meant for user testing and providing the user feedback. Majority of betas will become a public release in the future. Betas should not be used for serious work.
+The beta releases are development snapshots meant for user testing and providing the user feedback. Majority of betas will become a public release in the future.
 
-ElectraOne Console version 2.0b or higher must be used with the firmware beta releases.
+- Beta releases should not be used for serious work.
+- ElectraOne Console version 2.0b or higher must be used with the firmware beta releases.
+- Beta releases should be used in combination with the [Beta version of the app.electra.one](https://beta.electra.one/) editor.
 
 
 ### MIDI Controller firmware

@@ -14,11 +14,11 @@ ElectraOne Console is an application to update Electra One MIDI Controller firmw
 <downloadButton href="/ElectraOneConsoleSetup.msi" description="Windows version 1.0.0 (2 Jan 2020)"/>
 
 ## Public beta releases
-The beta releases are development snapshots meant for user testing and providing the user feedback. Majority of betas will become a public release in the future. Betas should not be used for serious work.
+The beta releases are development snapshots meant for user testing and providing the user feedback. Majority of betas will become a public release in the future.
 
-ElectraOne Console version 2.0b or higher must be used with the firmware beta releases.
-
-ElectraOne Console beta release is to be used in combination with the 2.0b beta releases of the Electra One MIDI controller firmware.
+- Beta releases should not be used for serious work.
+- ElectraOne Console version 2.0b or higher must be used with the firmware beta releases.
+- ElectraOne Console beta release is to be used in combination with the 2.0b beta releases of the Electra One MIDI controller firmware.
 
 ### MacOS X
 
