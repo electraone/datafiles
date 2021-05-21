@@ -650,10 +650,10 @@ A call to run an arbitrary Lua command.
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x08` Execute command
 - `0x0D` Lua command
-- `lua-command-text` ASCII bytes representing the log message
+- `lua-command-text` ASCII bytes representing the Lua command
 - `0xF7` SysEx closing byte
 
-The `lua-command-text` is free form sting containing Lua command to be executed. The maximum length is limited to 128 characters. It is recommended to call predefined functions.
+The `lua-command-text` is free form string containing Lua command to be executed. The maximum length is limited to 128 characters. It is recommended to call predefined functions.
 
 ##### An example of the lua-command-text
 ``` lua

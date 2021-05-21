@@ -40,13 +40,12 @@ This effectively means that one preset may have one Lua script assigned. From th
 0xF0 0x00 0x21 0x45 0x01 0x0C script-source-code 0xF7
 ```
 
-- 0xF0 SysEx header byte
-- 0x00 0x21 0x45 Electra One MIDI manufacturer Id
-- 0x01 Upload data
-- 0x0C Lua script file
-- `script-source-code` bytes representing ASCII characters of the Lua script
-  source code
-- 0xF7 SysEx closing byte
+- `0xF0` SysEx header byte
+- `0x00` 0x21 0x45 Electra One MIDI manufacturer Id
+- `0x01` Upload data
+- `0x0C` Lua script file
+- `script-source-code` bytes representing ASCII characters of the Lua script source code
+- `0xF7` SysEx closing byte
 
 
 ### Executing a Lua command
@@ -377,6 +376,8 @@ Example script
 function functionCallback (control, value)
     if (value > 100) then
         control:setColor (RED)
+    else
+        control:setColor (WHITE)
     end
 end
 ```
@@ -425,7 +426,7 @@ print ("current bounds: " ..
 ::: functiondesc
 <b>control:setPot (controlSet, pot)</b>
 <small>
-Assigns the control to given pot and controlSet.
+Assigns the control to given controlSet and pot.
 </small>
 
 <small>
@@ -439,7 +440,7 @@ Assigns the control to given pot and controlSet.
 
 #### Example script
 ``` lua
--- A reassign to the control to different section and pot
+-- Reassign the control to different controlSet and pot
 
 control = controls.get (1)
 control:setPot (CONTROL_SET_1, POT_2)
@@ -460,7 +461,7 @@ are assigned accordingly and the control is made visible.
 
 #### Example script
 ``` lua
--- A reassign to the control to different section and pot
+-- Change location of the control within the 6x6 grid
 
 control = controls.get (1)
 control:setSlot (7)
@@ -485,6 +486,8 @@ Work needs to be done here...
 
 ### Parameter Map
 The Parameter map is the heart of the Electra Controller firmware. It is used to store and retrieve information about all parameter values across all connected devices. Whenever a MIDI message is received, pot turned, or a value change made with the touch, the information about the change is routed to the Parameter map and the map, in turn, updates all relevant components and sends MIDI messages out.
+
+
 
 #### Functions
 ::: functiondesc
@@ -549,11 +552,24 @@ Sets a midiValue of particular Electra parameter within the parameter map.
 </small>
 :::
 
+::: functiondesc
+<b>parameterMap.send (deviceId, parameterType, parameterNumber)</b>
+<small>
+Sends current midiValue via all controls linked to the parameter map entry.
+</small>
+
+<small>
+<i>deviceId</i> - integer, a numeric identifier of the device (1 .. 32)<br />
+<i>parameterType</i> - integer, a numeric identifier of Electra's parameter type (0 .. 11)<br />
+<i>ParameterNumber</i> - integer, a numeric identifier of the parameter (0 .. 16383)<br />
+</small>
+:::
+
 #### Example script
 ``` lua
 -- set the value of a parameter when processing the patch response SysEx message
 
-function parseResponse (device, responseId, data)
+function onPatchResponse (device, responseId, data)
   parameterMap.set (device.id, PT_CC7, 2, sysexBlock.peek (data, 8))
 end
 ```
@@ -580,12 +596,12 @@ A user function to transform the input display value to a text string that is di
 ``` lua
 -- add percentage to the value
 function addPercentage (control, value)
-  return (value .. "%")
+    return (value .. "%")
 end
 
--- display value with fractions
-function useFractions (control, value)
-  return (value / 10)
+-- Convert number to a range with decimal numbers
+function convertToFractions (control, value)
+    return (string.format("%.1f", value / 20))
 end
 ```
 
@@ -608,22 +624,20 @@ A user function to run custom Lua extension function.
 #### Example script
 ``` lua
 function functionCallback (control, value)
-  if (value >= 0) then
-    print ("hide")
-    control:setVisible (false)
-  else
-    print ("show")
-    control:setVisible (true)
-  end
+    if (value > 64) then
+        control:setColor (ORANGE)
+    else
+        control:setColor (WHITE)
+    end
 end
 ```
 
 
-### SysEx handling
-Functions to handle incoming SysEx messages.
+### Patch
+A library to handle requesting and parsing patch related MIDI messages.
 
 ::: functiondesc
-<b>requestPatch (device)</b>
+<b>patch.onRequest (device)</b>
 <small>
 A callback to send a patch request to a particular device. The function is called upon the
 `[PATCH REQUEST]` button has been pressed and it is sent to all device that have a patch
@@ -636,7 +650,7 @@ request defined in their `patch` definition.
 :::
 
 ::: functiondesc
-<b>parseResponse (device, responseId, sysexBlock)</b>
+<b>patch.onResponse (device, responseId, sysexBlock)</b>
 <small>
 A callback to handle incoming SysEx message that matched the Patch response definition.
 </small>
@@ -645,6 +659,13 @@ A callback to handle incoming SysEx message that matched the Patch response defi
 <i>device</i> - data table, a device description data structure (see below)<br />
 <i>responseId</i> - integer, a numeric identifier of the matching Patch response (1 .. 127)<br />
 <i>sysexBlock</i> - light userdata, an object holding the received SysEx message (see below)<br />
+</small>
+:::
+
+::: functiondesc
+<b>patch.requestAll ()</b>
+<small>
+Sends patch requests to all connected devices.
 </small>
 :::
 
@@ -659,13 +680,20 @@ device = {
 
 #### Example script
 ``` lua
-function requestPatch (device)
-  print ("Requesting patches from device " .. device.id);
-  midi.sendProgramChange (PORT_1, device.channel, 10)
+-- Issue a patch requests
+patch.requestAll ()
+
+-- Send a program change
+function patch.onRequest (device)
+    print ("Requesting patches...");
+
+    if (device.id == 1) then
+        midi.sendProgramChange (PORT_1, device.channel, 10)
+    end
 end
 
-function parseResponse (device, responseId, data)
-
+-- Parse an incoming response
+function patch.onResponse (device, responseId, data)
   -- print the header information
   print ("device id = " .. device.id)
   print ("device channel = " .. device.channel)
@@ -759,28 +787,19 @@ A user function that will be run at the start of every timer cycle.
 </small>
 :::
 
+#### Example script
 ``` lua
--- A simple MIDI clock implemented with the timer
+-- A naive MIDI LFO implementation
 
-function midi.onStart (midiInput)
-  timer.enable ()
-  print ("timer BPM = " .. timer.getPeriod ())
-end
+faderValue = 0
 
-function midi.onStop (midiInput)
-  timer.disable ()
-end
-
-function midi.onContinue (midiInput)
-  if (timer.isEnabled ()) then
-    timer.disable ()
-  else
-    timer.enable ()
-  end
-end
+timer.enable ()
+timer.setBpm (120 * 16)
 
 function timer.onTick ()
-  midi.sendClock (PORT_1)
+    parameterMap.set (1, PT_CC7, 1, faderValue)
+    parameterMap.send (1, PT_CC7, 1)
+    faderValue = math.fmod (faderValue + 1, 127)
 end
 ```
 
