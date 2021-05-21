@@ -29,5 +29,8 @@ print ("New bounds are: x=" .. bounds[X] ..
     ", width=" .. bounds[WIDTH] ..
     ", height=" .. bounds[HEIGHT])
 
--- Change assignment of the control to a controlSet
+
+-- Change the slot of an existing control. Location and the pot
+-- assignment will be changed
+control = controls.get (13)
 control:setSlot (5)
