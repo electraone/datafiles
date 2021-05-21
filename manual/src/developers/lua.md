@@ -5,7 +5,7 @@ their own applications and run them on the controller. This, in fact, turns the 
 
 The applications can go from simple scripts addressing specific needs of one user to complex UI-rich applications, such as custom controllers, sequencers, and midi monitors.
 
-The Lua script interface is under development at present and it is being modified on daily basis. If you intend to use it, make sure you join the community at the [Electra One forum](https://forum.electra.one/) and you share your ideas and frustrations.
+The Lua script interface is under development at present time and it is being modified on daily basis. If you intend to use it, make sure you join the community at the [Electra One forum](https://forum.electra.one/) and you share your ideas and frustrations.
 
 ::: warning Note
 A special firmware needs to be installed in your controller in order to run Lua scripts. The firmware can be downloaded on the [Downloads](../downloads/firmware.md) page.
