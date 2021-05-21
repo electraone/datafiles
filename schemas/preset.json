@@ -227,6 +227,29 @@
             "stop"
          ]
       },
+      "signMode":{
+         "type":"string",
+         "title":"Sign Mode",
+         "description":"A type of negative number representation.",
+         "enum":[
+            "none",
+            "twosComplement",
+            "signBit"
+         ]
+      },
+      "bitWidth":{
+         "type":"integer",
+         "title":"Number of bits used",
+         "description":"A number of bits used to calculate the value.",
+         "minimum":1,
+         "maximum":14
+      },
+      "lsbFirst":{
+        "type": "boolean",
+        "title": "LSB order",
+        "description": "A position of LSB within the transferred two bytes.",
+        "default": true
+      },
       "overlayId":{
          "type":"integer",
          "title":"Overlay Id",
@@ -785,6 +808,10 @@
                                        "title":"offValue",
                                        "description":"A MIDI value sent when the button goes off.",
                                        "$ref":"#/definitions/midiValue"
+                                    },
+                                    "lsbFirst":{
+                                       "$id":"#/properties/controls/items/anyOf/Pad/properties/values/items/properties/message/properties/bitWidth",
+                                       "$ref":"#/definitions/lsbFirst"
                                     }
                                  }
                               }
@@ -959,6 +986,18 @@
                                     "max":{
                                        "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/message/properties/max",
                                        "$ref":"#/definitions/midiMax"
+                                    },
+                                    "bitWidth":{
+                                       "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/message/properties/bitWidth",
+                                       "$ref":"#/definitions/bitWidth"
+                                    },
+                                    "signMode":{
+                                       "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/message/properties/signMode",
+                                       "$ref":"#/definitions/signMode"
+                                    },
+                                    "lsbFirst":{
+                                       "$id":"#/properties/controls/items/anyOf/fader/properties/values/items/properties/message/properties/bitWidth",
+                                       "$ref":"#/definitions/lsbFirst"
                                     }
                                  }
                               }
@@ -1348,6 +1387,10 @@
                                     "parameterNumber":{
                                        "$id":"#/properties/controls/items/anyOf/list/properties/values/items/properties/message/properties/parameterNumber",
                                        "$ref":"#/definitions/midiParameterNumber"
+                                    },
+                                    "lsbFirst":{
+                                       "$id":"#/properties/controls/items/anyOf/list/properties/values/items/properties/message/properties/bitWidth",
+                                       "$ref":"#/definitions/lsbFirst"
                                     }
                                  }
                               }

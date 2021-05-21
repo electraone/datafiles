@@ -953,7 +953,8 @@ A simple NRPN message handling a negative values
    "type": "cc7",
    "parameterNumber": 1,
    "lsbFirst": false,
-   "twosComplement": true
+   "twosComplement": true,
+   "bitWidth": 7
 }
 ```
 
@@ -1033,9 +1034,20 @@ The lsbFirst is a flag that forces Electra to swap LSB and MSB value bytes of 14
 - boolean
 - default = false
 
-#### twosComplement
-The twosComplement is a flag to instruct electra to use Two's complement represetation of negative numbers.
+#### signMode
+The sigMode sets what type of negative number representation will be used for negative values.
 
 - optional
-- boolean
-- default = false
+- enum
+  - none
+  - twosComplement
+  - signBit
+
+#### bitWidth
+The bitWidth specifies number of bits used to calculate the value. It tells the controller where the sign-bit should be placed for negative values.
+
+- optional
+- numeric
+- default = 7 or 14 depending on the message type
+- min = 1
+- max = 14
