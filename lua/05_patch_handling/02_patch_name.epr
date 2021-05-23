@@ -1,0 +1,83 @@
+{
+   "version":2,
+   "name":"Sysex parsing",
+   "pages":[
+      {
+         "id":1,
+         "name":"PAGE 1"
+      }
+   ],
+   "groups":[
+
+   ],
+   "devices":[
+      {
+         "id":1,
+         "name":"Test device",
+         "instrument":"generic",
+         "port":1,
+         "channel":1,
+         "patch":[
+            {
+               "request":[
+                  67,
+                  32,
+                  0
+               ],
+               "responses":[
+                  {
+                     "id":1,
+                     "header":[
+                        67,
+                        0,
+                        0,
+                        1,
+                        27
+                     ],
+                     "rules":[
+
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
+   ],
+   "overlays":[
+   ],
+   "controls":[
+      {
+         "id":1,
+         "pageId":1,
+         "bounds":[
+            0,
+            40,
+            146,
+            56
+         ],
+         "controlSetId":1,
+         "inputs":[
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
+         "type":"pad",
+         "name":"no name",
+         "color":"F45C51",
+         "mode":"momentary",
+         "values":[
+            {
+               "id":"value",
+               "message":{
+                  "deviceId":1,
+                  "type":"cc7",
+                  "parameterNumber":1,
+                  "onValue":127,
+                  "offValue":0
+               }
+            }
+         ]
+      }
+   ]
+}
