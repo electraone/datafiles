@@ -576,7 +576,7 @@ end
 
 
 ### Value formatters
-Value formatter is user function used to format the display value of a control. It is a function that takes a display value as an input and computes a value that will be displayed. The formatted value is returned in the form of a string, therefore, given the user a vast range of formatting possibilities.
+Value formatter is a user function used to format the display value of a control. It is a function that takes a display value as an input and computes a value that will be displayed. The formatted value is returned in the form of a string, therefore, given the user a vast range of formatting possibilities.
 
 To invoke the formatter function, it needs to be assigned to a _Value_ in the preset JSON first. It is done by adding a `formatter` attribute to the `value` object.
 
@@ -618,7 +618,7 @@ A user function to transform the input display value to a text string that is di
 #### Example script
 ``` lua
 -- Convert number to a range with decimal numbers
-function convertToFractions (control, value)
+function formatFractions (control, value)
     return (string.format("%.1f", value / 20))
 end
 
@@ -630,7 +630,7 @@ end
 
 
 ### Value function callbacks
-Value function callback is a user function allowing running complex user actions whenever control value is changed.
+Value function callback is a user function allowing running complex user actions whenever the control value is changed.
 
 To invoke the callback function, it needs to be assigned to a _Value_ in the preset JSON first. It is done by adding a `function` attribute to the `value` object. You may see the callback function as an alternative to the `message`. While the `message` represent a statically defined MIDI message, `function` is a dynamic Lua function call run on the value change.
 
