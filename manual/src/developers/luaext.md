@@ -202,7 +202,7 @@ end
 ### Logger
 The logging is a key element to understanding what is happening inside the controller. Electra One Lua API provides the `print ()` command that writes texts that can be observed in the ElectraOne Console application.
 
-The log messages are, in fact, SysEx messages sent to the CTRL port. They carry the timestamp and the text of the message. For more details about the console logs, please review the [Electra's MIDI implementation](./developers/midiimplementation.md)
+The log messages are, in fact, SysEx messages sent to the CTRL port. They carry the timestamp and the text of the message. For more details about the console logs, please review the [Electra's MIDI implementation](./midiimplementation.md)
 
 As the logging relies on the standard SysEx messaging, users can develop their own log viewers or integrate Electra logs to their own applications.
 
@@ -576,10 +576,33 @@ end
 
 
 ### Value formatters
-Value formatters are user functions used for formatting the display value of controls. It is a function that takes a display value as an input and computes a value that will be displayed. The formatted value is returned in the form of a string, therefore, given the user a vast range of formatting possibilities.
+Value formatter is user function used to format the display value of a control. It is a function that takes a display value as an input and computes a value that will be displayed. The formatted value is returned in the form of a string, therefore, given the user a vast range of formatting possibilities.
 
+To invoke the formatter function, it needs to be assigned to a _Value_ in the preset JSON first. It is done by adding a `formatter` attribute to the `value` object.
+
+#### Example preset JSON
+``` JSON
+"values": [
+   {
+      "message": {
+         "deviceId": 1,
+         "type": "cc7",
+         "parameterNumber": 2,
+         "min": 0,
+         "max": 127
+      },
+      "min": 0,
+      "max": 127,
+      "formatter": "formatFractions"
+   }
+]
+```
+
+For more detailed information please review the [Electra's MIDI implementation](./midiimplementation.md) page.
+
+#### Functions
 ::: functiondesc
-<b>formatter (control, value)</b>
+<b>\<formatterFunction\> (control, value)</b>
 <small>
 A user function to transform the input display value to a text string that is displayed on the LCD.
 </small>
@@ -594,23 +617,46 @@ A user function to transform the input display value to a text string that is di
 
 #### Example script
 ``` lua
--- add percentage to the value
-function addPercentage (control, value)
-    return (value .. "%")
-end
-
 -- Convert number to a range with decimal numbers
 function convertToFractions (control, value)
     return (string.format("%.1f", value / 20))
+end
+
+-- add percentage to the value
+function addPercentage (control, value)
+    return (value .. "%")
 end
 ```
 
 
 ### Value function callbacks
-Value function callbacks are user functions allowing running complex user actions whenever control value is changed.
+Value function callback is a user function allowing running complex user actions whenever control value is changed.
 
+To invoke the callback function, it needs to be assigned to a _Value_ in the preset JSON first. It is done by adding a `function` attribute to the `value` object. You may see the callback function as an alternative to the `message`. While the `message` represent a statically defined MIDI message, `function` is a dynamic Lua function call run on the value change.
+
+#### Example preset JSON
+``` JSON
+"values": [
+   {
+      "message": {
+         "deviceId": 1,
+         "type": "cc7",
+         "parameterNumber": 2,
+         "min": 0,
+         "max": 127
+      },
+      "min": 0,
+      "max": 127,
+      "function": "highlightOnOverload"
+   }
+]
+```
+
+For more detailed information please review the [Electra's MIDI implementation](./midiimplementation.md) page.
+
+#### Functions
 ::: functiondesc
-<b>functionCallback (control, value)</b>
+<b>\<callbackFunction\> (control, value)</b>
 <small>
 A user function to run custom Lua extension function.
 </small>
@@ -623,7 +669,7 @@ A user function to run custom Lua extension function.
 
 #### Example script
 ``` lua
-function functionCallback (control, value)
+function highlightOnOverload (control, value)
     if (value > 64) then
         control:setColor (ORANGE)
     else
@@ -636,6 +682,7 @@ end
 ### Patch
 A library to handle requesting and parsing patch related MIDI messages.
 
+#### Functions
 ::: functiondesc
 <b>patch.onRequest (device)</b>
 <small>
@@ -711,6 +758,7 @@ end
 ### Timer
 The timer library provides functionality to run perpetual task. The timer calls `timer.onTick ()` function at given time periods or BPM. The timer makes it possible to implement MIDI clocks, LFOs, and many other repetitive processes. The timer is disabled by default and the initial rate is 120 BMP.
 
+#### Functions
 ::: functiondesc
 <b>timer.enable ()</b>
 <small>
@@ -806,6 +854,7 @@ end
 ### Transport
 The transport library is similar to the timer. The main difference is that the tick signal is not generated by the library itself but requires MIDI real-time system and clock messages. The transport makes it possible to implement repetitive processes that are synced to the external MIDI clock. The transport is disabled by default.
 
+#### Functions
 ::: functiondesc
 <b>transport.enable ()</b>
 <small>
@@ -951,7 +1000,7 @@ The MIDI library provides functions to send raw MIDI messages. There are two way
 
 All functions send MIDI messages to all Electra's interfaces (`USB Dev`, `USB host`, `MIDI IO`). The idea is that this will follow the configuration of the low-level router of the Electra One controller. This might change in near future.
 
-
+#### Functions
 ::: functiondesc
 <b>midi.sendMessage (port, midiMessage)</b>
 <small>
