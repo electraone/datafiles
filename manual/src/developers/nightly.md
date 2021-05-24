@@ -4,6 +4,15 @@
 Nightly builds are not considered to be stable and should not be used for serious work on the presets.
 :::
 
+## 2.0.1b
+
+24 May 2021
+
+### changelog
+- Fix issue with the transport callbacks not being called
+- Add SysEx commands to remove presets, Lua scripts, and the config [Midi Implementation - remove command](./midiimplementation.html#preset-remove)
+
+
 ## 2.0b
 
 20 May 2021

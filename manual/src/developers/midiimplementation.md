@@ -572,7 +572,7 @@ A call to permanently remove a snapshot.
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x05` Remove command
 - `0x06` Snapshot
-- `bank-number` an identifier of the snapshot bank (0 .. 12)
+- `bank-number` an identifier of the snapshot bank (0 .. 11)
 - `slot` an identifier of the snapshot slot (0 .. 35)
 - `0xF7` SysEx closing byte
 
@@ -589,10 +589,85 @@ A call to swap snapshots in two snapshot slots. If one of the slots is empty, it
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x06` Swap command
 - `0x06` Snapshot
-- `bank-number-1` an identifier of the snapshot bank (0 .. 12)
+- `bank-number-1` an identifier of the snapshot bank (0 .. 11)
 - `slot-1` an identifier of the snapshot slot (0 .. 35)
-- `bank-number-2` an identifier of the snapshot bank (0 .. 12)
+- `bank-number-2` an identifier of the snapshot bank (0 .. 11)
 - `slot-2` an identifier of the snapshot slot (0 .. 35)
+- `0xF7` SysEx closing byte
+
+
+### Preset remove
+A call to permanently remove a preset identified with the bankNumber and a preset slot.
+
+```
+0xF0 0x00 0x21 0x45 0x05 0x01 bank-number slot 0xF7
+```
+<syxDownloadLink href="/sysex/remove-preset.syx" description="download .syx"/>
+
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x05` Remove command
+- `0x01` Preset
+- `bank-number` an identifier of the snapshot bank (0 .. 5)
+- `slot` an identifier of the snapshot slot (0 .. 11)
+- `0xF7` SysEx closing byte
+
+For removing a currently active Lua script, run shorter version of the call
+
+```
+0xF0 0x00 0x21 0x45 0x05 0x01 0xF7
+```
+<syxDownloadLink href="/sysex/remove-preset-current.syx" description="download .syx"/>
+
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x05` Remove command
+- `0x01` Preset
+- `0xF7` SysEx closing byte
+
+
+### Lua script remove
+A call to permanently remove a Lua script identified with the bankNumber and a slot.
+
+```
+0xF0 0x00 0x21 0x45 0x05 0x0C bank-number slot 0xF7
+```
+<syxDownloadLink href="/sysex/remove-lua-script.syx" description="download .syx"/>
+
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x05` Remove command
+- `0x0C` Lua script
+- `bank-number` an identifier of the snapshot bank (0 .. 5)
+- `slot` an identifier of the snapshot slot (0 .. 11)
+- `0xF7` SysEx closing byte
+
+For removing a currently active Lua script, run shorter version of the call
+
+```
+0xF0 0x00 0x21 0x45 0x05 0x0C 0xF7
+```
+<syxDownloadLink href="/sysex/remove-lua-script-current.syx" description="download .syx"/>
+
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x05` Remove command
+- `0x0C` Lua script
+- `0xF7` SysEx closing byte
+
+
+### Config file remove
+A call to permanently remove a preset identified with the bankNumber and a preset slot.
+
+```
+0xF0 0x00 0x21 0x45 0x05 0x02 0xF7
+```
+<syxDownloadLink href="/sysex/remove-config.syx" description="download .syx"/>
+
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x05` Remove command
+- `0x02` Lua script
 - `0xF7` SysEx closing byte
 
 
