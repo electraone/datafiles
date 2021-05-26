@@ -480,7 +480,119 @@ Work needs to be done here...
 
 
 ### Devices
-Work needs to be done here...
+The `devices` module provides functionality to manage preset devices.
+
+#### Functions
+::: functiondesc
+<b>devices.get (deviceId)</b>
+<small>
+Retrieves a reference to a device object (userdata).
+</small>
+<br />
+<small>
+<i>deviceId</i> - integer, a numeric identifier of the device. <i>id</i> attribute from the preset.<br />
+<i>returns</i> - userdata, a reference to a device object
+</small>
+:::
+
+#### Example script
+``` lua
+-- Retrieving a reference to given control
+
+local device = devices.get (1)
+
+```
+
+### Device
+A representation of a Device object. It holds the data and functions to modify itself.
+
+#### Functions
+::: functiondesc
+<b>device:getId ()</b>
+<small>
+Retrieves the identifier of the Device. The identifier is assigned to the device
+in the preset JSON.
+</small>
+<br />
+<small>
+<i>returns</i> - integer, identifier of the device (1 .. 32)
+</small>
+:::
+
+``` lua
+-- Retrieving a device and getting its Id
+
+local AccessVirus = devices.get (2)
+print ("Access Virus is device with Id " .. AccessVirus:getId ())
+```
+
+
+::: functiondesc
+<b>device:setPort (port)</b>
+<small>
+Assigns given device to a hardware port.
+</small>
+<br />
+<small>
+<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)
+</small>
+:::
+
+::: functiondesc
+<b>device:getPort ()</b>
+<small>
+Gets an identifier of the hardware port currently assigned to the device.
+</small>
+<br />
+<small>
+<i>returns</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)
+</small>
+:::
+
+::: functiondesc
+<b>device:setChannel (channel)</b>
+<small>
+Assigns given device to a MIDI channel.
+</small>
+
+<small>
+<i>channel</i> - integer, a numeric representation of the MIDI channel (1 .. 16)
+</small>
+:::
+
+::: functiondesc
+<b>device:getChannel ()</b>
+<small>
+Gets an identifier of the MIDI channel currently assigned to the device.
+</small>
+
+<small>
+<i>returns</i> - integer, a numeric representation of the MIDI channel (1 .. 16)
+</small>
+:::
+
+Example script
+``` lua
+-- This needs to reflect the preset device settings
+
+AccessVirusDeviceId = 2
+
+
+-- Display info about the device
+
+local device = devices.get (AccessVirusDeviceId)
+print ("device port: " .. device:getPort ())
+print ("device channel: " .. device:getChannel ())
+
+
+-- A function to set channel of device with a Control
+
+function setChannel (control, value)
+    device = devices.get (AccessVirusDeviceId)
+    device:setChannel (value)
+end
+```
+
 
 
 
