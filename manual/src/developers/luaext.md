@@ -792,7 +792,28 @@ end
 
 
 ### Patch
-A library to handle requesting and parsing patch related MIDI messages.
+A library to handle requesting patch dumps and parsing patch dump SysEx MIDI messages. The `patch.onResponse ()` callback is called when the Patch response header, as defined in the preset JSON, is matched. This means, you need to define the Patch object in the Preset if you want the patch callbacks to be invoked.
+
+The following `Patch` definition is the bare minimum implementation. The `patch.onReponse ()` will be called whenever a SysEx message with leading bytes `67`, `0`, `0`, `1`, `27` is received.
+
+``` JSON
+"patch":[
+   {
+      "responses":[
+         {
+            "id":1,
+            "header":[
+               67,
+               0,
+               0,
+               1,
+               27
+            ]
+         }
+      ]
+   }
+]
+```
 
 #### Functions
 ::: functiondesc
@@ -853,17 +874,21 @@ end
 
 -- Parse an incoming response
 function patch.onResponse (device, responseId, data)
-  -- print the header information
-  print ("device id = " .. device.id)
-  print ("device channel = " .. device.channel)
-  print ("device port = " .. device.port)
-  print ("responseId = " .. responseId)
-  print ("manufacturer Id = " .. sysexBlock.getManufacturerSysexId (data))
+    -- print the header information
+    print ("device id = " .. device.id)
+    print ("device channel = " .. device.channel)
+    print ("device port = " .. device.port)
+    print ("responseId = " .. responseId)
+    print ("manufacturer Id = " .. sysexBlock.getManufacturerSysexId (data))
 
-  -- print the received data
-  for i = 1, sysexBlock.getLength (data) do
-    print ("data[" .. i .. "] = " .. sysexBlock.peek (data, i))
-  end
+    -- print the received data
+    for i = 1, sysexBlock.getLength (data) do
+        print ("data[" .. i .. "] = " .. sysexBlock.peek (data, i))
+    end
+
+    -- update two parameters
+    parameterMap.set (device.id, PT_CC7, 1, sysexBlock.peek (data, 7));
+    parameterMap.set (device.id, PT_CC7, 2, sysexBlock.peek (data, 8));
 end
 ```
 
