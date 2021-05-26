@@ -470,7 +470,67 @@ control:setSlot (7)
 
 
 ### Pages
-Work needs to be done here...
+The `pages` module provides functionality to manage preset pages.
+
+#### Functions
+::: functiondesc
+<b>pages.get (pageId)</b>
+<small>
+Retrieves a reference to a page object (userdata).
+</small>
+<br />
+<small>
+<i>pageId</i> - integer, a numeric identifier of the page. <i>id</i> attribute from the preset.<br />
+<i>returns</i> - userdata, a reference to a page object
+</small>
+:::
+
+#### Example script
+``` lua
+-- Retrieving a reference to given page
+
+local page = pages.get (3)
+
+```
+
+### Page
+A representation of a Page object. It holds the data and functions to modify itself.
+
+#### Functions
+::: functiondesc
+<b>page:getId ()</b>
+<small>
+Retrieves the identifier of the Page. The identifier is assigned to the page
+in the preset JSON.
+</small>
+<br />
+<small>
+<i>returns</i> - integer, identifier of the page (1 .. 12)
+</small>
+:::
+
+::: functiondesc
+<b>page:setName (name)</b>
+<small>
+Sets a new name to a given page.
+</small>
+<br />
+<small>
+<i>name</i> - string, a new name to be used
+</small>
+:::
+
+::: functiondesc
+<b>page:getName ()</b>
+<small>
+Retrieves current name of given page.
+</small>
+<br />
+<small>
+<i>returns</i> - string, current name of the page
+</small>
+:::
+
 
 
 
@@ -497,7 +557,7 @@ Retrieves a reference to a device object (userdata).
 
 #### Example script
 ``` lua
--- Retrieving a reference to given control
+-- Retrieving a reference to given device
 
 local device = devices.get (1)
 
@@ -518,14 +578,6 @@ in the preset JSON.
 <i>returns</i> - integer, identifier of the device (1 .. 32)
 </small>
 :::
-
-``` lua
--- Retrieving a device and getting its Id
-
-local AccessVirus = devices.get (2)
-print ("Access Virus is device with Id " .. AccessVirus:getId ())
-```
-
 
 ::: functiondesc
 <b>device:setPort (port)</b>
