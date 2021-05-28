@@ -219,7 +219,7 @@ A function to print text to the ElectraOne Console log view.
 :::
 
 
-#### Example script
+##### Example script
 ``` lua
 -- Printing to the console log
 
@@ -247,7 +247,7 @@ Retrieves a reference to a control object (userdata).
 </small>
 :::
 
-#### Example script
+##### Example script
 ``` lua
 -- Retrieving a reference to given control
 
@@ -267,10 +267,11 @@ in the preset JSON.
 </small>
 
 <small>
-<i>returns</i> - integer, identifier of the control (1 .. 432)
+<i>returns</i> - integer, identifier of the control (1 .. 432)<br />
 </small>
 :::
 
+##### Example script
 ``` lua
 -- Retrieving a control and getting its Id
 
@@ -286,7 +287,7 @@ Changes the visibility of given control.
 </small>
 
 <small>
-<i>shouldBeVisible</i> - boolean, desired state of the visibility
+<i>shouldBeVisible</i> - boolean, desired state of the visibility<br />
 </small>
 :::
 
@@ -297,11 +298,11 @@ Gets status of given control's visibility.
 </small>
 
 <small>
-<i>returns</i> - boolean, true when the control is visible
+<i>returns</i> - boolean, true when the control is visible<br />
 </small>
 :::
 
-Example script
+##### Example script
 ``` lua
 -- a function to toggle visibility of a control
 
@@ -318,7 +319,7 @@ Sets a new name of the control.
 </small>
 
 <small>
-<i>name</i> - string, a new name to be assigned to the control
+<i>name</i> - string, a new name to be assigned to the control<br />
 </small>
 :::
 
@@ -329,11 +330,11 @@ Retrieves current name of the control.
 </small>
 
 <small>
-<i>returns</i> - string, current name of the control
+<i>returns</i> - string, current name of the control<br />
 </small>
 :::
 
-Example script
+##### Example script
 ``` lua
 -- print out a name of given control
 
@@ -347,11 +348,12 @@ end
 ::: functiondesc
 <b>control:setColor (color)</b>
 <small>
-Sets a new color of the control. Currently, only the predefined six Electra colors are available.
+Sets a new color of the control. Currently, only the predefined six Electra
+colors are available.
 </small>
 
 <small>
-<i>name</i> - integer, a new color to be used (0 .. 5)
+<i>name</i> - integer, a new color to be used (0 .. 5)<br />
 </small>
 :::
 
@@ -362,13 +364,13 @@ Retrieves current name of the control.
 </small>
 
 <small>
-<i>returns</i> - integer, current color of the control (0 .. 5)
+<i>returns</i> - integer, current color of the control (0 .. 5)<br />
 </small>
 :::
 
 `WHITE`, `RED`, `ORANGE`, `BLUE`, `GREEN`, `PINK` variables are available to specify the desired color.
 
-Example script
+##### Example script
 ``` lua
 -- A callback function that changes color of the control
 -- when its value exceeds 100
@@ -391,7 +393,7 @@ functions to convert bounds to preset `slots`.
 </small>
 
 <small>
-<i>bounds</i> - array, a array consisting of x, y, width, height boundary box attributes
+<i>bounds</i> - array, a array consisting of x, y, width, height boundary box attributes<br />
 </small>
 :::
 
@@ -402,13 +404,13 @@ Retrieves current position and dimensions (bounds) of the control.
 </small>
 
 <small>
-<i>returns</i> - array, an array consisting of x, y, width, height boundary box attributes
+<i>returns</i> - array, an array consisting of x, y, width, height boundary box attributes<br />
 </small>
 :::
 
 `X`, `Y`, `WIDTH`, `HEIGHT` variables are available to access the bounding box attributes
 
-Example script
+##### Example script
 ``` lua
 -- print out position and dimensions of given control
 
@@ -430,15 +432,15 @@ Assigns the control to given controlSet and pot.
 </small>
 
 <small>
-<i>controlSet</i> - integer, a numeric identifier of the control set (1 .. 3)
-<i>pot</i> - integer, a numeric identifier of the pot (1 .. 12)
+<i>controlSet</i> - integer, a numeric identifier of the control set (1 .. 3)<br />
+<i>pot</i> - integer, a numeric identifier of the pot (1 .. 12)<br />
 </small>
 :::
 
 `CONTROL_SET_1` .. `CONTROL_SET_3` variables are available to specify the desired control section.
 `POT_1` .. `POT_12` variables are available to specify the desired pot.
 
-#### Example script
+##### Example script
 ``` lua
 -- Reassign the control to different controlSet and pot
 
@@ -455,17 +457,123 @@ are assigned accordingly and the control is made visible.
 </small>
 
 <small>
-<i>slot</i> - integer, a numeric identifier of the preset slot (1 .. 36)
+<i>slot</i> - integer, a numeric identifier of the preset slot (1 .. 36)<br />
 </small>
 :::
 
-#### Example script
+##### Example script
 ``` lua
 -- Change location of the control within the 6x6 grid
 
 control = controls.get (1)
 control:setSlot (7)
 ```
+
+::: functiondesc
+<b>control:getValue (valueId)</b>
+<small>
+Retrieves the Value object of given control using the valueId handle.<br />
+The valueId is defined in the JSON preset or defaults to "value"
+</small>
+
+<small>
+<i>Value</i> - userdata, a reference to a value object<br />
+</small>
+:::
+
+##### Example script
+``` lua
+-- Display min and max display values
+
+local control = controls.get (1)
+local value = control:getValue ("attack")
+
+print ("value min: " .. value:getMin ())
+print ("value max: " .. value:getMax ())
+```
+
+
+### Value
+A representation of a Value object within the Control object. A Control object contains one or more Value objects, each identified by the `valueId`. The Value object describes the properties of the data value that users can change with their interaction. The Value holds the data and functions to modify itself.
+
+#### Functions
+::: functiondesc
+<b>value:getId ()</b>
+<small>
+Retrieves the identifier of the Value. The identifier is assigned to the Value
+in the preset JSON.
+</small>
+<br />
+<small>
+<i>returns</i> - string, identifier of the Value<br />
+</small>
+:::
+
+::: functiondesc
+<b>value:getDefault (defaultValue)</b>
+<small>
+Sets the default display value of the Value object
+</small>
+<br />
+<small>
+<i>defaultValue</i> - integer, the default display value<br />
+</small>
+:::
+
+::: functiondesc
+<b>value:getDefault ()</b>
+<small>
+Retrieves the default display value of the Value object
+</small>
+<br />
+<small>
+<i>returns</i> - integer, the default display value<br />
+</small>
+:::
+
+::: functiondesc
+<b>value:setMin (minumumValue)</b>
+<small>
+Sets the minimum display value of the Value object
+</small>
+<br />
+<small>
+<i>minimumValue</i> - integer, the minimum display value<br />
+</small>
+:::
+
+::: functiondesc
+<b>value:getMin ()</b>
+<small>
+Retrieves the minimum display value of the Value object
+</small>
+<br />
+<small>
+<i>returns</i> - integer, the minimum display value<br />
+</small>
+:::
+
+::: functiondesc
+<b>value:setMax (maximumValue)</b>
+<small>
+Sets the maximum display value of the Value object
+</small>
+<br />
+<small>
+<i>maximumValue</i> - integer, the maximum display value<br />
+</small>
+:::
+
+::: functiondesc
+<b>value:getMax ()</b>
+<small>
+Retrieves the maximum display value of the Value object
+</small>
+<br />
+<small>
+<i>returns</i> - integer, the maximum display value<br />
+</small>
+:::
 
 
 
@@ -555,7 +663,7 @@ Retrieves a reference to a device object (userdata).
 </small>
 :::
 
-#### Example script
+##### Example script
 ``` lua
 -- Retrieving a reference to given device
 
@@ -623,7 +731,7 @@ Gets an identifier of the MIDI channel currently assigned to the device.
 </small>
 :::
 
-Example script
+##### Example script
 ``` lua
 -- This needs to reflect the preset device settings
 
@@ -729,7 +837,7 @@ Sends current midiValue via all controls linked to the parameter map entry.
 </small>
 :::
 
-#### Example script
+##### Example script
 ``` lua
 -- set the value of a parameter when processing the patch response SysEx message
 
@@ -755,6 +863,7 @@ To invoke the formatter function, it needs to be assigned to a _Value_ in the pr
          "min": 0,
          "max": 127
       },
+      "id": "value",
       "min": 0,
       "max": 127,
       "formatter": "formatFractions"
@@ -766,20 +875,21 @@ For more detailed information please review the [Electra's MIDI implementation](
 
 #### Functions
 ::: functiondesc
-<b>\<formatterFunction\> (control, value)</b>
+<b>\<formatterFunction\> (control, valueId, value)</b>
 <small>
 A user function to transform the input display value to a text string that is displayed on the LCD.
 </small>
 
 <small>
 <i>control</i> - userdata, a reference to a control object<br />
+<i>valueId</i> - string, an identifier of the value within the control definition</br>
 <i>value</i> - integer, a display value as defined by the preset JSON<br />
 <br />
 <i>returns</i> - string, transformed version of the input display value<br />
 </small>
 :::
 
-#### Example script
+##### Example script
 ``` lua
 -- Convert number to a range with decimal numbers
 function formatFractions (control, value)
@@ -809,6 +919,7 @@ To invoke the callback function, it needs to be assigned to a _Value_ in the pre
          "min": 0,
          "max": 127
       },
+      "id": "attack",
       "min": 0,
       "max": 127,
       "function": "highlightOnOverload"
@@ -818,22 +929,23 @@ To invoke the callback function, it needs to be assigned to a _Value_ in the pre
 
 For more detailed information please review the [Electra's MIDI implementation](./midiimplementation.md) page.
 
-#### Functions
+##### Functions
 ::: functiondesc
-<b>\<callbackFunction\> (control, value)</b>
+<b>\<callbackFunction\> (control, valueId, value)</b>
 <small>
 A user function to run custom Lua extension function.
 </small>
 
 <small>
 <i>control</i> - userdata, a reference to a control object<br />
+<i>valueId</i> - string, an identifier of the value within the control definition</br>
 <i>value</i> - integer, a display value as defined by the preset JSON<br />
 </small>
 :::
 
-#### Example script
+##### Example script
 ``` lua
-function highlightOnOverload (control, value)
+function highlightOnOverload (control, valueId, value)
     if (value > 64) then
         control:setColor (ORANGE)
     else
@@ -901,7 +1013,7 @@ Sends patch requests to all connected devices.
 </small>
 :::
 
-#### Device data table
+##### Device data table
 ``` lua
 device = {
   id = 1,                 -- a device Id
@@ -910,7 +1022,7 @@ device = {
 }
 ```
 
-#### Example script
+##### Example script
 ``` lua
 -- Issue a patch requests
 patch.requestAll ()
@@ -1024,7 +1136,7 @@ A user function that will be run at the start of every timer cycle.
 </small>
 :::
 
-#### Example script
+##### Example script
 ``` lua
 -- A naive MIDI LFO implementation
 
@@ -1140,7 +1252,7 @@ A callback to handle incoming MIDI Song Position message.
 </small>
 :::
 
-#### Example script
+##### Example script
 ``` lua
 faderValue = 0
 
@@ -1457,7 +1569,7 @@ A function to send a Control Change 14bit MIDI message.
 :::
 
 
-#### Example script
+##### Example script
 ``` lua
 -- Sending MIDI messages using the sendMessage ()
 
@@ -1595,7 +1707,7 @@ midi.sendMessage (PORT_1, midiMessage)
 ```
 
 
-#### Example script
+##### Example script
 ``` lua
 -- Sending MIDI messages out
 
@@ -1695,7 +1807,7 @@ Converts a bounding box (bounds) to slot.
 :::
 
 
-#### Example script
+##### Example script
 ``` lua
 -- Move control to given slot
 
