@@ -5,7 +5,7 @@ This document describes the Lua Extension of the Electra One MIDI Controller fir
 The Lua is a scripting programming language - a detailed information about it can be found at the [Official Lua site](http://www.lua.org/).
 
 ::: warning Note
-Firmware version 1.5.12 or later is required to use the Electra One Lua Extension.
+Firmware version 2.0.2b or later is required to use the Electra One Lua Extension.
 :::
 
 ## A brief overview

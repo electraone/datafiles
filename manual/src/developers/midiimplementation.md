@@ -8,7 +8,7 @@ Electra One MIDI controller can be configured, programmed, and controlled with t
 This document describes the essential data exchange and control commands using the SysEx message format over the USB MIDI interface.
 
 ::: warning Note
-Firmware version 1.5.12 or later is required to have all the SysEx messages listed in this document supported.
+Firmware version 2.0.2b or later is required to have all the SysEx messages listed in this document supported.
 :::
 
 
