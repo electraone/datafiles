@@ -99,6 +99,7 @@ module.exports = {
               '/developers/midiimplementation.md',
               '/developers/presetformat.md',
               '/developers/luaext.md',
+              '/developers/instrumentformat.md',
               '/developers/confformat.md',
               '/developers/sysexparser.md',
               '/developers/lua.md',

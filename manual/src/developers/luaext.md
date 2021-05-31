@@ -5,23 +5,21 @@ This document describes the Lua Extension of the Electra One MIDI Controller fir
 The Lua is a scripting programming language - a detailed information about it can be found at the [Official Lua site](http://www.lua.org/).
 
 ::: warning Note
-Firmware version 1.5.12 or later is required to use the Electra One Lua Extension.
+Firmware version 2.0.2b or later is required to use the Electra One Lua Extension.
 :::
 
 ## A brief overview
 
-The Electra One Preset Lua extension allows you to embed Lua function calls to the preset JSON. Current implementation to provide following hooks:
+The Electra One Preset Lua extension allows you to embed Lua function calls to the preset JSON. Current implementation provides following functionality:
 
 - Trigger Lua function calls on control value changes
 - Format display values
 - Change visibility, location, name, colour of controls
 - Run custom patch request calls
 - Implement your own sysex parsers
-- Implement your own checksum calculators *
+- Calculate SysEx template bytes
 
-\* not preset in current version of the API
-
-The main idea here is to have a healthy split between the static data that is defined in the declarative JSON and the dynamic processing of this data in the run-time with the Lua script. The JSON preset is used to pre-load all pages, lists, devices, controls. Once, the preset is loaded, the Lua Extension may be used to modify it to suit the particular needs. This is enforced by the fact that the Lua Extension API cannot create new objects. It can, however, modify, move, and change visibility of existing objects.
+The main idea here is to have a healthy split between the static data defined with the declarative JSON and the dynamic processing of this data in the run-time with the Lua script. The JSON preset is used to pre-load all pages, lists, devices, groups, and controls. Once, the preset is loaded, the Lua Extension may be used to modify it to fulfill a particular purpose. This is enforced by the fact that the Lua Extension API cannot create new objects. It can, however, modify, move, and change visibility of existing objects.
 
 
 ## Examples
@@ -33,7 +31,9 @@ Examples of presets with the Lua Extensions are available at [Github Electra.One
 ### Uploading the scripts
 In order to make a Lua script extension functions accessible from the preset, it needs to be uploaded first. It can be done with the Lua script upload SysEx call. The script is uploaded and assigned to currently active preset. If there already exists a Lua script for given preset, the upload SysEx call will overwrite it.
 
-This effectively means that one preset may have one Lua script assigned. From this perspective a new can now been seen as a combo of the JSON preset .epr file and the Lua script .lua file.
+This effectively means that one preset may have one Lua script assigned. From this perspective a preset can be seen as a combo of the JSON preset .epr file and the Lua script .lua file.
+
+The Lua script can be also uploaded with the [Preset editor](https://beta.electra.one/) or the [Development sandbox tool](https://beta.electra.one/sandbox/).
 
 #### SysEx Request
 ```
@@ -49,7 +49,7 @@ This effectively means that one preset may have one Lua script assigned. From th
 
 
 ### Executing a Lua command
-A call to run an arbitrary Lua command. This can be seen as an API endpoint for
+A call to run an arbitrary Lua commands. This can be seen as an API endpoint for
 managing Electra One preset from external devices and applications.
 
 #### SysEx Request
@@ -68,12 +68,6 @@ managing Electra One preset from external devices and applications.
 The `lua-command-text` is free form sting containing Lua command to be executed. The maximum length is limited to 128 characters. It is recommended to call predefined functions.
 
 ##### An example of the lua-command-text
-``` lua
-hideControl (1)
-```
-
-or
-
 ``` lua
 print ("Hello MIDI world!")
 ```
@@ -111,13 +105,13 @@ function showGroup (groups, groupId)
 end
 
 -- the callback function called from the preset
-function displayGroup (controlId, value)
+function displayGroup (control, valueId, value)
     hideAllGroups (controlGroups)
     showGroup (controlGroups, value)
 end
 
 -- a standard callback function to handle PATCH REQUEST event
-function requestPatch (device)
+function patch.onRequest (device)
   print ("Requesting patches from device " .. device.id);
   midi.sendProgramChange (PORT_1, device.channel, 10)
 end
@@ -161,22 +155,22 @@ The primary purpose of the setup is to prepare your extension for handling the a
 ### The standard functions
 The standard functions are functions from the Lua standard libraries and the Electra One extension libraries. These functions cover vast range of functionality from printing, doing math, MIDI messaging to working with UI components.
 
-A `print` function is a typical standard function.
+The description of the standard functions is covered by the official [Lua documentation](http://www.lua.org/docs.html) and this document.
+
+A `print` function is a typical example of a standard function.
 
 ``` lua
 print ("Lua ext initialized")
 ```
 
-The description of the standard functions is covered by the official [Lua documentation](http://www.lua.org/docs.html) and this document.
-
 
 ### The standard callbacks
-The Electra One Lua extension brings number of predefined event handlers - callbacks. They are called upon specific events and give you way to add your own functionality.
+The Electra One Lua Extension brings number of predefined event handlers - callbacks. These are called upon specific events and give you way to assign your own functionality to them.
 
 
 ``` lua
 -- a standard callback function to handle PATCH REQUEST event
-function requestPatch (device)
+function patch.onRequest (device)
   print ("Requesting patches from device " .. device.id);
   midi.sendProgramChange (PORT_1, device.channel, 10)
 end
@@ -184,13 +178,13 @@ end
 
 
 ### The user functions
-Of course, user can, and actually are encouraged to, package their functionality to Lua user functions that are used to build more complex programatic blocks.
+Of course, as a user you can, and actually you are encouraged to, package your functionality to the user functions. These are used to build more complex programatic blocks.
 
 A good example of a user function is a `displayGroup` callback from the above example source code. It a function defined by the user and bound to a function callback hook in the preset JSON.
 
 ``` lua
 -- the callback function called from the preset
-function displayGroup (controlId, value)
+function displayGroup (control, valueId, value)
     hideAllGroups (controlGroups)
     showGroup (controlGroups, value)
 end
@@ -200,7 +194,7 @@ end
 ## Electra One Lua extension API
 
 ### Logger
-The logging is a key element to understanding what is happening inside the controller. Electra One Lua API provides the `print ()` command that writes texts that can be observed in the ElectraOne Console application.
+The logging is a key element to understanding what is happening inside the controller. Electra One Lua API provides the `print ()` command that writes texts that can be observed in the ElectraOne Console application. The log messages created with the `print ()` function are always prefixed with the `lua:` text.
 
 The log messages are, in fact, SysEx messages sent to the CTRL port. They carry the timestamp and the text of the message. For more details about the console logs, please review the [Electra's MIDI implementation](./midiimplementation.md)
 
@@ -209,14 +203,10 @@ As the logging relies on the standard SysEx messaging, users can develop their o
 #### Functions
 ::: functiondesc
 <b>print (text)</b>
-<small>
-A function to print text to the ElectraOne Console log view.
-</small>
-
-<small>
-<i>text</i> - string, a text message to be displayed in the console log
-</small>
 :::
+A function to print text to the ElectraOne Console log view.
+
+- `text` - string, a text message to be displayed in the console log.
 
 
 ##### Example script
@@ -228,22 +218,25 @@ print ("This message will be shown in the ElectraOne console")
 for i = 1, 10 do
     print ("message #" .. i)
 end
-
 ```
 
+The example script will produce following output in the ElectraOne Console
+
+![Hello world output](../img/luaext/logger.png)
+
+
+
 ### Controls
-The controls module provides functionality to manage preset controls. It is not meant to change properties of individual controls, instead it
+The controls module provides functionality to manage preset controls. It is not meant to change properties of individual controls. The individual controls are managed by manipulating the Control object, see below.
 
 #### Functions
 ::: functiondesc
 <b>controls.get (controlId)</b>
-<small>
-Retrieves a reference to a control object (userdata).
-</small>
+:::
+Retrieves a reference to a Control object (userdata). A control is a representation of a fader, list, and other types of controls.
 
-<small>
-<i>controlId</i> - integer, a numeric identifier of the control. <i>id</i> attribute from the preset.<br />
-<i>returns</i> - userdata, a reference to a control object
+- `controlId` - integer, a numeric identifier of the control. <i>id</i> attribute from the preset.
+- `returns` - userdata, a reference to a control object.
 </small>
 :::
 
@@ -252,7 +245,6 @@ Retrieves a reference to a control object (userdata).
 -- Retrieving a reference to given control
 
 local control = controls.get (1)
-
 ```
 
 ### Control
@@ -261,15 +253,11 @@ A representation of a Control object. It holds the data and functions to modify 
 #### Functions
 ::: functiondesc
 <b>control:getId ()</b>
-<small>
-Retrieves the identifier of the Control. The identifier is assigned to the control
-in the preset JSON.
-</small>
-
-<small>
-<i>returns</i> - integer, identifier of the control (1 .. 432)<br />
-</small>
 :::
+Retrieves an identifier of the Control. The identifier is assigned to the control in the preset JSON.
+
+- `returns` - integer, identifier of the control (1 .. 432).
+
 
 ##### Example script
 ``` lua
@@ -282,25 +270,19 @@ print ("got Control with Id " .. volumeControl:getId ())
 
 ::: functiondesc
 <b>control:setVisible (shouldBeVisible)</b>
-<small>
-Changes the visibility of given control.
-</small>
-
-<small>
-<i>shouldBeVisible</i> - boolean, desired state of the visibility<br />
-</small>
 :::
+Changes the visibility of given control. The initial visibility is set in the Preset JSON. The setVisibility method may change the visibility at the run-time.
+
+- `shouldBeVisible` - boolean, desired state of the visibility.
+
 
 ::: functiondesc
 <b>control:isVisible ()</b>
-<small>
-Gets status of given control's visibility.
-</small>
-
-<small>
-<i>returns</i> - boolean, true when the control is visible<br />
-</small>
 :::
+Retrieves a status of control's visibility.
+
+- `returns` - boolean, true when the control is visible.
+
 
 ##### Example script
 ``` lua
@@ -314,25 +296,19 @@ end
 
 ::: functiondesc
 <b>control:setName (name)</b>
-<small>
-Sets a new name of the control.
-</small>
-
-<small>
-<i>name</i> - string, a new name to be assigned to the control<br />
-</small>
 :::
+Sets a new name of the control.
+
+- `name` - string, a new name to be assigned to the control.
+
 
 ::: functiondesc
 <b>control:getName ()</b>
-<small>
-Retrieves current name of the control.
-</small>
-
-<small>
-<i>returns</i> - string, current name of the control<br />
-</small>
 :::
+Retrieves current name of the control.
+
+- `returns` - string, current name of the control.
+
 
 ##### Example script
 ``` lua
@@ -347,35 +323,29 @@ end
 
 ::: functiondesc
 <b>control:setColor (color)</b>
-<small>
-Sets a new color of the control. Currently, only the predefined six Electra
-colors are available.
-</small>
-
-<small>
-<i>name</i> - integer, a new color to be used (0 .. 5)<br />
-</small>
 :::
+Sets a new color of the control. Due to performance reasons, only predefined six colors are available at present time.
+
+- `color` - integer, a new color to be used (0 .. 5).
+
 
 ::: functiondesc
 <b>control:getColor ()</b>
-<small>
-Retrieves current name of the control.
-</small>
-
-<small>
-<i>returns</i> - integer, current color of the control (0 .. 5)<br />
-</small>
 :::
+Retrieves current color of the control.
+
+- `returns` - integer, current color of the control (0 .. 5).
+
 
 `WHITE`, `RED`, `ORANGE`, `BLUE`, `GREEN`, `PINK` variables are available to specify the desired color.
+
 
 ##### Example script
 ``` lua
 -- A callback function that changes color of the control
 -- when its value exceeds 100
 
-function functionCallback (control, value)
+function functionCallback (control, valueId, value)
     if (value > 100) then
         control:setColor (RED)
     else
@@ -387,28 +357,21 @@ end
 
 ::: functiondesc
 <b>control:setBounds ({ x, y, width, height })</b>
-<small>
-Changes position and dimensions (bounds) of the control. The `helpers` library provides
-functions to convert bounds to preset `slots`.
-</small>
-
-<small>
-<i>bounds</i> - array, a array consisting of x, y, width, height boundary box attributes<br />
-</small>
 :::
+Changes position and dimensions (bounds) of the control. The helpers library provides functions to convert bounds to preset slots.
+
+- `bounds` - array, a array consisting of x, y, width, height boundary box attributes.
+
 
 ::: functiondesc
 <b>control:getBounds ()</b>
-<small>
-Retrieves current position and dimensions (bounds) of the control.
-</small>
-
-<small>
-<i>returns</i> - array, an array consisting of x, y, width, height boundary box attributes<br />
-</small>
 :::
+Retrieves current position and dimensions (bounds) of the control.
+
+- `returns` - array, an array consisting of x, y, width, height boundary box attributes.
 
 `X`, `Y`, `WIDTH`, `HEIGHT` variables are available to access the bounding box attributes
+
 
 ##### Example script
 ``` lua
@@ -427,18 +390,16 @@ print ("current bounds: " ..
 
 ::: functiondesc
 <b>control:setPot (controlSet, pot)</b>
-<small>
-Assigns the control to given controlSet and pot.
-</small>
-
-<small>
-<i>controlSet</i> - integer, a numeric identifier of the control set (1 .. 3)<br />
-<i>pot</i> - integer, a numeric identifier of the pot (1 .. 12)<br />
-</small>
 :::
+Assigns the control to given controlSet and pot.
+
+- `controlSet` - integer, a numeric identifier of the control set (1 .. 3).
+- `pot` - integer, a numeric identifier of the pot (1 .. 12).
+
 
 `CONTROL_SET_1` .. `CONTROL_SET_3` variables are available to specify the desired control section.
 `POT_1` .. `POT_12` variables are available to specify the desired pot.
+
 
 ##### Example script
 ``` lua
@@ -451,15 +412,12 @@ control:setPot (CONTROL_SET_1, POT_2)
 
 ::: functiondesc
 <b>control:setSlot (slot)</b>
-<small>
-Moves given control to a preset slot on current page. The control set and pot are
-are assigned accordingly and the control is made visible.
-</small>
-
-<small>
-<i>slot</i> - integer, a numeric identifier of the preset slot (1 .. 36)<br />
-</small>
 :::
+Moves given control to a preset slot on the current page. The control set and pot are
+are assigned accordingly and the control is made visible.
+
+- `slot` - integer, a numeric identifier of the preset slot (1 .. 36).
+
 
 ##### Example script
 ``` lua
@@ -470,16 +428,34 @@ control:setSlot (7)
 ```
 
 ::: functiondesc
-<b>control:getValue (valueId)</b>
-<small>
-Retrieves the Value object of given control using the valueId handle.<br />
-The valueId is defined in the JSON preset or defaults to "value"
-</small>
-
-<small>
-<i>Value</i> - userdata, a reference to a value object<br />
-</small>
+<b>control:getValueIds ()</b>
 :::
+Retrieves a list of all valueIds associated with the control. The valueIds are defined in the JSON preset.
+
+- `valueIds` - array, a reference to a value object.
+
+
+##### Example script
+``` lua
+-- list all value Ids of a control
+
+local control = controls.get (1)
+local valueIds = control:getValueIds ()
+
+for i, valueId in ipairs(valueIds) do
+    print (valueId)
+end
+```
+
+
+::: functiondesc
+<b>control:getValue (valueId)</b>
+:::
+Retrieves the Value object of given control using the valueId handle.<br />
+The valueId is defined in the JSON preset. If not present, it defaults to "value"
+
+- `Value` - userdata, a reference to a value object.
+
 
 ##### Example script
 ``` lua
@@ -494,86 +470,98 @@ print ("value max: " .. value:getMax ())
 
 
 ### Value
-A representation of a Value object within the Control object. A Control object contains one or more Value objects, each identified by the `valueId`. The Value object describes the properties of the data value that users can change with their interaction. The Value holds the data and functions to modify itself.
+A representation of a Value object within the Control. A Control object contains one or more Value objects, each identified by the `valueId`. The Value object describes the properties of the data value that users can change with their interaction. The Value holds the data and functions to modify it.
 
 #### Functions
 ::: functiondesc
 <b>value:getId ()</b>
-<small>
+:::
 Retrieves the identifier of the Value. The identifier is assigned to the Value
 in the preset JSON.
-</small>
-<br />
-<small>
-<i>returns</i> - string, identifier of the Value<br />
-</small>
-:::
+
+- `returns` - string, identifier of the Value.
+
 
 ::: functiondesc
-<b>value:getDefault (defaultValue)</b>
-<small>
-Sets the default display value of the Value object
-</small>
-<br />
-<small>
-<i>defaultValue</i> - integer, the default display value<br />
-</small>
+<b>value:setDefault (defaultValue)</b>
 :::
+Sets the default display value of the Value object
+
+- `defaultValue` - integer, the default display value.
+
 
 ::: functiondesc
 <b>value:getDefault ()</b>
-<small>
-Retrieves the default display value of the Value object
-</small>
-<br />
-<small>
-<i>returns</i> - integer, the default display value<br />
-</small>
 :::
+Retrieves the default display value of the Value object
+
+- `returns` - integer, the default display value.
+
 
 ::: functiondesc
 <b>value:setMin (minumumValue)</b>
-<small>
-Sets the minimum display value of the Value object
-</small>
-<br />
-<small>
-<i>minimumValue</i> - integer, the minimum display value<br />
-</small>
 :::
+Sets the minimum display value of the Value object
+
+- `minimumValue` - integer, the minimum display value.
+
 
 ::: functiondesc
 <b>value:getMin ()</b>
-<small>
-Retrieves the minimum display value of the Value object
-</small>
-<br />
-<small>
-<i>returns</i> - integer, the minimum display value<br />
-</small>
 :::
+Retrieves the minimum display value of the Value object
+
+- `returns` - integer, the minimum display value.
+
 
 ::: functiondesc
 <b>value:setMax (maximumValue)</b>
-<small>
+:::
 Sets the maximum display value of the Value object
-</small>
-<br />
-<small>
-<i>maximumValue</i> - integer, the maximum display value<br />
+
+- `maximumValue` - integer, the maximum display value.
 </small>
 :::
 
 ::: functiondesc
 <b>value:getMax ()</b>
-<small>
-Retrieves the maximum display value of the Value object
-</small>
-<br />
-<small>
-<i>returns</i> - integer, the maximum display value<br />
-</small>
 :::
+Retrieves the maximum display value of the Value object
+
+- `returns` - integer, the maximum display value.
+
+
+::: functiondesc
+<b>value:setOverlayId (overlayId)</b>
+:::
+Assigns an overlay list to the Value object
+
+- `overlayId` - integer, an identifier of the overlay, as specified in the preset.
+
+
+::: functiondesc
+<b>value:getOverlayId ()</b>
+:::
+Retrieves the overlay assigned to the Value object
+
+- `returns` - integer, an identifier of the overlay, as specified in the preset.
+
+
+``` lua
+--  swap overlay lists of two controls
+
+listA = controls.get (1)
+listB = controls.get (2)
+
+valueA = listA:getValue ("value")
+valueB = listB:getValue ("value")
+
+print ("list A: " .. valueA:getOverlayId ())
+print ("list B: " .. valueB:getOverlayId ())
+
+valueB:setOverlayId (1)
+valueA:setOverlayId (2)
+```
 
 
 
@@ -583,23 +571,20 @@ The `pages` module provides functionality to manage preset pages.
 #### Functions
 ::: functiondesc
 <b>pages.get (pageId)</b>
-<small>
-Retrieves a reference to a page object (userdata).
-</small>
-<br />
-<small>
-<i>pageId</i> - integer, a numeric identifier of the page. <i>id</i> attribute from the preset.<br />
-<i>returns</i> - userdata, a reference to a page object
-</small>
 :::
+Retrieves a reference to a page object (userdata).
+
+- `pageId` - integer, a numeric identifier of the page (1 .. 12). <i>id</i> attribute from the preset.
+- `returns` - userdata, a reference to a page object.
+
 
 #### Example script
 ``` lua
 -- Retrieving a reference to given page
 
 local page = pages.get (3)
-
 ```
+
 
 ### Page
 A representation of a Page object. It holds the data and functions to modify itself.
@@ -607,129 +592,234 @@ A representation of a Page object. It holds the data and functions to modify its
 #### Functions
 ::: functiondesc
 <b>page:getId ()</b>
-<small>
+:::
 Retrieves the identifier of the Page. The identifier is assigned to the page
 in the preset JSON.
-</small>
-<br />
-<small>
-<i>returns</i> - integer, identifier of the page (1 .. 12)
-</small>
-:::
+
+- `returns` - integer, identifier of the page (1 .. 12).
+
 
 ::: functiondesc
 <b>page:setName (name)</b>
-<small>
-Sets a new name to a given page.
-</small>
-<br />
-<small>
-<i>name</i> - string, a new name to be used
-</small>
 :::
+Sets a new name to a given page.
+
+- `name` - string, a new name to be used.
+
 
 ::: functiondesc
 <b>page:getName ()</b>
-<small>
-Retrieves current name of given page.
-</small>
-<br />
-<small>
-<i>returns</i> - string, current name of the page
-</small>
 :::
+Retrieves current name of given page.
 
+- `returns` - string, current name of the page.
+
+##### Example script
+``` lua
+-- change name of a pge
+
+local page = pages.get (1)
+
+page:setName ("LPF")
+print ("page name: " .. page:getName ())
+```
 
 
 
 ### Groups
-Work needs to be done here...
+The `groups` module provides functionality to manage groups within the preset. A Group is a graphics object used to improve layout and structure of the preset pages.
 
+#### Functions
+::: functiondesc
+<b>groups.get (groupId)</b>
+:::
+Retrieves a reference to a group object (userdata). The groupId can be defined
+in the preset JSON. If not, group ids are assigned to to groups automatically.
+Starting with 1 and following the order or groups in the JSON.
+
+- `groupId` - integer, a numeric identifier of the group. <i>id</i> attribute from the preset.
+- `returns` - userdata, a reference to a group object.
+
+
+#### Example script
+``` lua
+-- Retrieving a reference to given group
+
+local group = groups.get (1)
+```
+
+
+### Group
+A representation of a Group object. The Group object holds the data and functions to modify it.
+
+#### Functions
+::: functiondesc
+<b>group:getId ()</b>
+:::
+Retrieves the identifier of the group. The identifier is assigned to the group
+in the preset JSON or generated automatically.
+
+- `returns` - integer, identifier of the page (1 .. 128).
+
+
+::: functiondesc
+<b>group:setLabel (label)</b>
+:::
+Sets a new label of a given group. The label gives a name to the group. When an empty string is provided, the label is now shown.
+
+- `label` - string, a new label to be shown at the top of the group.
+
+
+::: functiondesc
+<b>group:getLabel ()</b>
+:::
+Retrieves current label of given group.
+
+- `returns` - string, current label of the group.
+
+
+::: functiondesc
+<b>group:setVisible (shouldBeVisible)</b>
+:::
+Changes the visibility of given group.
+
+- `shouldBeVisible` - boolean, desired state of the visibility.
+
+
+::: functiondesc
+<b>group:isVisible ()</b>
+:::
+Gets status of given group's visibility.
+
+- `returns` - boolean, true when the group is visible.
+
+
+::: functiondesc
+<b>group:setColor (color)</b>
+:::
+Sets a new color of the control. Due to performance reasons, only predefined six colors are available at present time.
+
+- `color` - integer, a new color to be used (0 .. 5).
+
+::: functiondesc
+<b>group:getColor ()</b>
+:::
+Retrieves current color of the group.
+
+- `returns` - integer, current color of the control (0 .. 5).
+
+`WHITE`, `RED`, `ORANGE`, `BLUE`, `GREEN`, `PINK` variables are available to specify the desired color.
+
+::: functiondesc
+<b>group:setBounds ({ x, y, width, height })</b>
+:::
+Changes position and dimensions (bounds) of the group.
+
+- `bounds` - array, a array consisting of x, y, width, height boundary box attributes.
+
+
+::: functiondesc
+<b>group:getBounds ()</b>
+:::
+Retrieves current position and dimensions (bounds) of the group.
+
+- `returns` - array, an array consisting of x, y, width, height boundary box attributes.
+
+`X`, `Y`, `WIDTH`, `HEIGHT` variables are available to access the bounding box attributes.
+
+
+::: functiondesc
+<b>group:setSlot (slot, width, height)</b>
+:::
+Moves given group to a slot on current page. The width represents a span accross the slots. Optionally, a height can be specified to form a rectangle group.
+
+- `slot` - integer, a numeric identifier of the preset slot (1 .. 36).
+- `width` - integer, a numeric identifier of the preset slot (1 .. 6).
+- `height` - integer, a numeric identifier of the preset slot (0 .. 6).
+
+
+##### Example script
+``` lua
+-- change group slot and dimentions
+
+-- Verical line only
+local group1 = groups.get (1)
+
+print ("Label name: " .. group1:getLabel ())
+group1:setSlot (3, 2)
+
+-- Renctangle group
+local group2 = groups.get (2)
+
+print ("Label name: " .. group2:getLabel ())
+group2:setSlot (9, 2, 2)
+```
 
 
 ### Devices
-The `devices` module provides functionality to manage preset devices.
+The `devices` module provides functionality to manage preset devices. A device represents a connected instrument, such as a synth, sampler, FX unit. The device consists of information about the port and channel where the device is connected.
 
 #### Functions
 ::: functiondesc
 <b>devices.get (deviceId)</b>
-<small>
-Retrieves a reference to a device object (userdata).
-</small>
-<br />
-<small>
-<i>deviceId</i> - integer, a numeric identifier of the device. <i>id</i> attribute from the preset.<br />
-<i>returns</i> - userdata, a reference to a device object
-</small>
 :::
+Retrieves a reference to a device object (userdata).
+
+- `deviceId` - integer, a numeric identifier of the device. <i>id</i> attribute from the preset.
+- `returns` - userdata, a reference to a device object.
+
 
 ##### Example script
 ``` lua
 -- Retrieving a reference to given device
 
 local device = devices.get (1)
-
 ```
 
 ### Device
-A representation of a Device object. It holds the data and functions to modify itself.
+A representation of a Device object. It holds the data and functions to modify it.
 
 #### Functions
 ::: functiondesc
 <b>device:getId ()</b>
-<small>
+:::
 Retrieves the identifier of the Device. The identifier is assigned to the device
 in the preset JSON.
-</small>
-<br />
-<small>
-<i>returns</i> - integer, identifier of the device (1 .. 32)
-</small>
-:::
+
+- `returns` - integer, identifier of the device (1 .. 32).
+
 
 ::: functiondesc
 <b>device:setPort (port)</b>
-<small>
-Assigns given device to a hardware port.
-</small>
-<br />
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)
-</small>
 :::
+Assigns given device to a hardware port.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`).
+
 
 ::: functiondesc
 <b>device:getPort ()</b>
-<small>
-Gets an identifier of the hardware port currently assigned to the device.
-</small>
-<br />
-<small>
-<i>returns</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)
-</small>
 :::
+Gets an identifier of the hardware port currently assigned to the device.
+
+- `returns` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`).
+
 
 ::: functiondesc
 <b>device:setChannel (channel)</b>
-<small>
-Assigns given device to a MIDI channel.
-</small>
-
-<small>
-<i>channel</i> - integer, a numeric representation of the MIDI channel (1 .. 16)
-</small>
 :::
+Assigns given device to a MIDI channel.
+
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+
 
 ::: functiondesc
 <b>device:getChannel ()</b>
-<small>
-Gets an identifier of the MIDI channel currently assigned to the device.
-</small>
-
-<small>
-<i>returns</i> - integer, a numeric representation of the MIDI channel (1 .. 16)
-</small>
 :::
+Gets an identifier of the MIDI channel currently assigned to the device.
+
+- `returns` - integer, a numeric representation of the MIDI channel (1 .. 16).
+
 
 ##### Example script
 ``` lua
@@ -755,93 +845,77 @@ end
 
 
 
-
 ### Parameter Map
 The Parameter map is the heart of the Electra Controller firmware. It is used to store and retrieve information about all parameter values across all connected devices. Whenever a MIDI message is received, pot turned, or a value change made with the touch, the information about the change is routed to the Parameter map and the map, in turn, updates all relevant components and sends MIDI messages out.
-
 
 
 #### Functions
 ::: functiondesc
 <b>parameterMap.resetAll ()</b>
-<small>
-Resets all parameters of all devices to zero.
-</small>
 :::
+Resets all parameters of all devices to zero.
+
 
 ::: functiondesc
 <b>parameterMap.resetDevice (deviceId)</b>
-<small>
-Resets all parameters of given device to zero.
-</small>
-
-<small>
-<i>deviceId</i> - integer, a numeric identifier of the device (1..32)
-</small>
 :::
+Resets all parameters of given device to zero.
+
+
+- `deviceId` - integer, a numeric identifier of the device (1..32).
+
 
 ::: functiondesc
 <b>parameterMap.set (deviceId, parameterType, parameterNumber, midiValue)</b>
-<small>
-Sets a midiValue of particular Electra parameter within the parameter map.
-</small>
-
-<small>
-<i>deviceId</i> - integer, a numeric identifier of the device (1 .. 32)<br />
-<i>parameterType</i> - integer, a numeric identifier of Electra's parameter type (0 .. 11)<br />
-<i>ParameterNumber</i> - integer, a numeric identifier of the parameter (0 .. 16383)<br />
-<i>midiValue</i> - integer, a MIDI value (0 .. 16383)<br />
-</small>
 :::
+Sets a midiValue of particular Electra parameter within the parameter map.
+
+- `deviceId` - integer, a numeric identifier of the device (1 .. 32).
+- `parameterType` - integer, a numeric identifier of Electra's parameter type (0 .. 11).
+- `ParameterNumber` - integer, a numeric identifier of the parameter (0 .. 16383).
+- `midiValue` - integer, a MIDI value (0 .. 16383).
+
 
 ::: functiondesc
 <b>parameterMap.apply (deviceId, parameterType, parameterNumber, midiValueFragment)</b>
-<small>
-Apply partial value to current value of particular Electra parameter within the
-parameter map. The `midiValueFragment` is ORed to the parameter value.
-</small>
-
-<small>
-<i>deviceId</i> - integer, a numeric identifier of the device (1 .. 32)<br />
-<i>parameterType</i> - integer, a numeric identifier of Electra's parameter type (0 .. 11)<br />
-<i>ParameterNumber</i> - integer, a numeric identifier of the parameter (0 .. 16383)<br />
-<i>midiValueFragment</i> - integer, a MIDI value frangement to be applied (0 .. 16383)<br />
-</small>
 :::
+Apply a partial value to current value of particular Electra parameter within the
+parameter map. The midiValueFragment is ORed to the parameter value.
+
+
+- `deviceId` - integer, a numeric identifier of the device (1 .. 32).
+- `parameterType` - integer, a numeric identifier of Electra's parameter type (0 .. 11).
+- `ParameterNumber` - integer, a numeric identifier of the parameter (0 .. 16383).
+- `midiValueFragment` - integer, a MIDI value frangement to be applied (0 .. 16383).
+
 
 ::: functiondesc
 <b>parameterMap.get (deviceId, parameterType, parameterNumber)</b>
-<small>
-Sets a midiValue of particular Electra parameter within the parameter map.
-</small>
-
-<small>
-<i>deviceId</i> - integer, a numeric identifier of the device (1 .. 32)<br />
-<i>parameterType</i> - integer, a numeric identifier of Electra's parameter type (0 .. 11)<br />
-<i>ParameterNumber</i> - integer, a numeric identifier of the parameter (0 .. 16383)<br />
-<br />
-<i>returns</i> - integer, a MIDI value of given parameter (0 .. 16383)<br />
-</small>
 :::
+Sets a midiValue of particular Electra parameter within the parameter map.
+
+- `deviceId` - integer, a numeric identifier of the device (1 .. 32).
+- `parameterType` - integer, a numeric identifier of Electra's parameter type (0 .. 11).
+- `ParameterNumber` - integer, a numeric identifier of the parameter (0 .. 16383).
+- `returns` - integer, a MIDI value of given parameter (0 .. 16383).
+
 
 ::: functiondesc
 <b>parameterMap.send (deviceId, parameterType, parameterNumber)</b>
-<small>
-Sends current midiValue via all controls linked to the parameter map entry.
-</small>
-
-<small>
-<i>deviceId</i> - integer, a numeric identifier of the device (1 .. 32)<br />
-<i>parameterType</i> - integer, a numeric identifier of Electra's parameter type (0 .. 11)<br />
-<i>ParameterNumber</i> - integer, a numeric identifier of the parameter (0 .. 16383)<br />
-</small>
 :::
+Sends current midiValue via all controls linked to the parameter map entry.
+
+
+- `deviceId` - integer, a numeric identifier of the device (1 .. 32).
+- `parameterType` - integer, a numeric identifier of Electra's parameter type (0 .. 11).
+- `ParameterNumber` - integer, a numeric identifier of the parameter (0 .. 16383).
+
 
 ##### Example script
 ``` lua
 -- set the value of a parameter when processing the patch response SysEx message
 
-function onPatchResponse (device, responseId, data)
+function patch.onResponse (device, responseId, data)
   parameterMap.set (device.id, PT_CC7, 2, sysexBlock.peek (data, 8))
 end
 ```
@@ -850,7 +924,7 @@ end
 ### Value formatters
 Value formatter is a user function used to format the display value of a control. It is a function that takes a display value as an input and computes a value that will be displayed. The formatted value is returned in the form of a string, therefore, given the user a vast range of formatting possibilities.
 
-To invoke the formatter function, it needs to be assigned to a _Value_ in the preset JSON first. It is done by adding a `formatter` attribute to the `value` object.
+To invoke the formatter function, it needs to be assigned to a Value in the preset JSON first. It is done by adding a `formatter` attribute to the `value` object.
 
 #### Example preset JSON
 ``` JSON
@@ -876,28 +950,24 @@ For more detailed information please review the [Electra's MIDI implementation](
 #### Functions
 ::: functiondesc
 <b>\<formatterFunction\> (control, valueId, value)</b>
-<small>
-A user function to transform the input display value to a text string that is displayed on the LCD.
-</small>
-
-<small>
-<i>control</i> - userdata, a reference to a control object<br />
-<i>valueId</i> - string, an identifier of the value within the control definition</br>
-<i>value</i> - integer, a display value as defined by the preset JSON<br />
-<br />
-<i>returns</i> - string, transformed version of the input display value<br />
-</small>
 :::
+A user function to transform the input display value to a text string that is displayed on the LCD.
+
+- `control` - userdata, a reference to a control object.
+- `valueId` - string, an identifier of the value within the control definition.
+- `value` - integer, a display value as defined by the preset JSON.
+- `returns` - string, transformed version of the input display value.
+
 
 ##### Example script
 ``` lua
 -- Convert number to a range with decimal numbers
-function formatFractions (control, value)
+function formatFractions (control, valueId, value)
     return (string.format("%.1f", value / 20))
 end
 
 -- add percentage to the value
-function addPercentage (control, value)
+function addPercentage (control, valueId, value)
     return (value .. "%")
 end
 ```
@@ -906,7 +976,7 @@ end
 ### Value function callbacks
 Value function callback is a user function allowing running complex user actions whenever the control value is changed.
 
-To invoke the callback function, it needs to be assigned to a _Value_ in the preset JSON first. It is done by adding a `function` attribute to the `value` object. You may see the callback function as an alternative to the `message`. While the `message` represent a statically defined MIDI message, `function` is a dynamic Lua function call run on the value change.
+To invoke the callback function, it needs to be assigned to a Value in the preset JSON first. It is done by adding a `function` attribute to the `value` object. You may see the callback function as an alternative to the `message`. While the `message` represent a statically defined MIDI message, `function` is a dynamic Lua function call run on the value change.
 
 #### Example preset JSON
 ``` JSON
@@ -932,14 +1002,13 @@ For more detailed information please review the [Electra's MIDI implementation](
 ##### Functions
 ::: functiondesc
 <b>\<callbackFunction\> (control, valueId, value)</b>
-<small>
+:::
 A user function to run custom Lua extension function.
-</small>
 
-<small>
-<i>control</i> - userdata, a reference to a control object<br />
-<i>valueId</i> - string, an identifier of the value within the control definition</br>
-<i>value</i> - integer, a display value as defined by the preset JSON<br />
+
+- `control` - userdata, a reference to a control object.
+- `valueId` - string, an identifier of the value within the control definition.
+- `value` - integer, a display value as defined by the preset JSON.
 </small>
 :::
 
@@ -953,6 +1022,14 @@ function highlightOnOverload (control, valueId, value)
     end
 end
 ```
+
+
+
+### SysEx byte function
+A SysEx byte functions may be used in SysEx templates to calculate and insert bytes to specific locations in the SysEx messages.
+
+work to be done...
+
 
 
 ### Patch
@@ -982,38 +1059,31 @@ The following `Patch` definition is the bare minimum implementation. The `patch.
 #### Functions
 ::: functiondesc
 <b>patch.onRequest (device)</b>
-<small>
-A callback to send a patch request to a particular device. The function is called upon the
-`[PATCH REQUEST]` button has been pressed and it is sent to all device that have a patch
-request defined in their `patch` definition.
+:::
+A callback to send a patch request to a particular device. The function is called upon the `[PATCH REQUEST]` button has been pressed and it is sent to all device that have a patch request defined in their `patch` definition.
 </small>
 
-<small>
-<i>device</i> - data table, a device description data structure (see below)<br />
-</small>
-:::
+- `device` - data table, a device description data structure (see below).
+
 
 ::: functiondesc
 <b>patch.onResponse (device, responseId, sysexBlock)</b>
-<small>
-A callback to handle incoming SysEx message that matched the Patch response definition.
-</small>
-
-<small>
-<i>device</i> - data table, a device description data structure (see below)<br />
-<i>responseId</i> - integer, a numeric identifier of the matching Patch response (1 .. 127)<br />
-<i>sysexBlock</i> - light userdata, an object holding the received SysEx message (see below)<br />
-</small>
 :::
+A callback to handle incoming SysEx message that matched the Patch response definition.
+
+
+- `device` - data table, a device description data structure (see below).
+- `responseId` - integer, a numeric identifier of the matching Patch response (1 .. 127).
+- `sysexBlock` - light userdata, an object holding the received SysEx message (see below).
+
 
 ::: functiondesc
 <b>patch.requestAll ()</b>
-<small>
-Sends patch requests to all connected devices.
-</small>
 :::
+Sends patch requests to all connected devices.
 
-##### Device data table
+
+##### Device data table (obsolete)
 ``` lua
 device = {
   id = 1,                 -- a device Id
@@ -1062,79 +1132,61 @@ The timer library provides functionality to run perpetual task. The timer calls 
 #### Functions
 ::: functiondesc
 <b>timer.enable ()</b>
-<small>
-Enable the timer. Once the timer is enabled, the `timer.onTick ()` is run at given time periods.
-</small>
 :::
+Enable the timer. Once the timer is enabled, the `timer.onTick ()` is run at given time periods.
+
 
 ::: functiondesc
 <b>timer.disable ()</b>
-<small>
-Disable the timer. The period of the timer is kept.
-</small>
 :::
+Disable the timer. The period of the timer is kept.
+
 
 ::: functiondesc
 <b>timer.isEnabled ()</b>
-<small>
-Get the status of the timer.
-</small>
-
-<small>
-<i>returns</i> - boolean, `true` when the timer is enabled<br />
-</small>
 :::
+Get the status of the timer.
+
+- `returns` - boolean, `true` when the timer is enabled.
+
 
 ::: functiondesc
 <b>timer.setPeriod ()</b>
-<small>
-Set the period to run the timer ticks.
-</small>
-
-<small>
-<i>period</i> - integer, period specified in milliseconds (10..60000)<br />
-</small>
 :::
+Set the period to run the timer ticks.
+
+- `period` - integer, period specified in milliseconds (10..60000).
+
 
 ::: functiondesc
 <b>timer.getPeriod ()</b>
-<small>
-Get the period of the timer ticks.
-</small>
-
-<small>
-<i>returns</i> - integer, period specified in milliseconds<br />
-</small>
 :::
+Get the period of the timer ticks.
+
+- `returns` - integer, period specified in milliseconds.
+
 
 ::: functiondesc
 <b>timer.setBpm ()</b>
-<small>
-Set the BPM of running the timer ticks.
-</small>
-
-<small>
-<i>period</i> - integer, period specified in BPM (1..6000)<br />
-</small>
 :::
+Set the BPM of running the timer ticks.
+
+- `period` - integer, period specified in BPM (1..6000).
+
 
 ::: functiondesc
 <b>timer.getBpm ()</b>
-<small>
-Get the BPM of the timer ticks.
-</small>
-
-<small>
-<i>returns</i> - integer, period specified in BPM<br />
-</small>
 :::
+Get the BPM of the timer ticks.
+
+- `returns` - integer, period specified in BPM.
+
 
 ::: functiondesc
 <b>timer.onTick ()</b>
-<small>
-A user function that will be run at the start of every timer cycle.
-</small>
 :::
+A user function that will be run at the start of every timer cycle.
+
 
 ##### Example script
 ``` lua
@@ -1152,103 +1204,81 @@ function timer.onTick ()
 end
 ```
 
+
+
 ### Transport
 The transport library is similar to the timer. The main difference is that the tick signal is not generated by the library itself but requires MIDI real-time system and clock messages. The transport makes it possible to implement repetitive processes that are synced to the external MIDI clock. The transport is disabled by default.
 
 #### Functions
 ::: functiondesc
 <b>transport.enable ()</b>
-<small>
-Enable the transport. Once the timer is enabled, the transport callback user functions
-will be called when related MIDI messages are received.
-</small>
 :::
+Enable the transport. Once the timer is enabled, the transport callback user functions will be called when related MIDI messages are received.
+
 
 ::: functiondesc
 <b>timer.disable ()</b>
-<small>
-Disable the transport. Keep the transport disabled when you do not use it. You will save
-processing resources.
-</small>
 :::
+Disable the transport. Keep the transport disabled when you do not use it. You will save processing resources.
+
 
 ::: functiondesc
 <b>transport.isEnabled ()</b>
-<small>
-Get the status of the transport.
-</small>
-
-<small>
-<i>returns</i> - boolean, `true` when the transport is enabled<br />
-</small>
 :::
+Get the status of the transport.
+
+- `returns` - boolean, `true` when the transport is enabled.
+
 
 ::: functiondesc
 <b>transport.onClock (midiInput)</b>
-<small>
+:::
 A callback to handle incoming MIDI Clock message. There are 24 Clock messages
 to one quarter note.
-</small>
 
-<small>
-<i>midiInput</i> - data table, information about where the message came from<br />
-</small>
-:::
+- `midiInput` - data table, information about where the message came from.
+
 
 ::: functiondesc
 <b>transport.onStart (midiInput)</b>
-<small>
-A callback to handle incoming MIDI System real-time Start message.
-</small>
-
-<small>
-<i>midiInput</i> - data table, information about where the message came from<br />
-</small>
 :::
+A callback to handle incoming MIDI System real-time Start message.
+
+- `midiInput` - data table, information about where the message came from.
+
 
 ::: functiondesc
 <b>transport.onStop (midiInput)</b>
-<small>
-A callback to handle incoming MIDI System real-time Stop message.
-</small>
-
-<small>
-<i>midiInput</i> - data table, information about where the message came from<br />
-</small>
 :::
+A callback to handle incoming MIDI System real-time Stop message.
+
+- `midiInput` - data table, information about where the message came from.
+
 
 ::: functiondesc
 <b>transport.onContinue (midiInput)</b>
-<small>
-A callback to handle incoming MIDI System real-time Continue message.
-</small>
-
-<small>
-<i>midiInput</i> - data table, information about where the message came from<br />
-</small>
 :::
+A callback to handle incoming MIDI System real-time Continue message.
+
+- `midiInput` - data table, information about where the message came from.
+
 
 ::: functiondesc
 <b>transport.onSongSelect (midiInput, songNumber)</b>
-<small>
-A callback to handle incoming MIDI Song Select message.
-</small>
-
-<small>
-<i>midiInput</i> - data table, information about where the message came from<br />
-<i>songNumber</i> - integer, a numeric identifier of the song (0 .. 127)<br />
-</small>
 :::
+A callback to handle incoming MIDI Song Select message.
+
+- `midiInput` - data table, information about where the message came from.
+- `songNumber` - integer, a numeric identifier of the song (0 .. 127).
+
 
 ::: functiondesc
 <b>transport.onSongPosition (midiInput, position)</b>
-<small>
+:::
 A callback to handle incoming MIDI Song Position message.
-</small>
 
-<small>
-<i>midiInput</i> - data table, information about where the message came from<br />
-<i>position</i> - integer, a number of beats from the start of the song (0 .. 16383)<br />
+- `midiInput` - data table, information about where the message came from.
+- `position` - integer, a number of beats from the start of the song (0 .. 16383).
 </small>
 :::
 
@@ -1304,269 +1334,204 @@ All functions send MIDI messages to all Electra's interfaces (`USB Dev`, `USB ho
 #### Functions
 ::: functiondesc
 <b>midi.sendMessage (port, midiMessage)</b>
-<small>
-A function to send a MIDI message defined as a `midiMessage` data table.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>midiMessage</i> - data table, an outgoing MIDI message<br />
-</small>
 :::
+A function to send a MIDI message defined as a `midiMessage` data table.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `midiMessage` - data table, an outgoing MIDI message.
+
 
 ::: functiondesc
 <b>midi.sendNoteOn (port, channel, noteNumber, velocity)</b>
-<small>
-A function to send a Note On MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>channel</i> - integer, a numeric representation of the MIDI channel (1 .. 16)<br />
-<i>noteNumber</i> - integer, an identifier of the MIDI note (0 .. 127)<br />
-<i>velocity</i> - integer, a velocity (0 .. 127)<br />
-</small>
 :::
+A function to send a Note On MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `noteNumber` - integer, an identifier of the MIDI note (0 .. 127).
+- `velocity` - integer, a velocity (0 .. 127).
+
 
 ::: functiondesc
 <b>midi.sendNoteOff (port, channel, noteNumber, velocity)</b>
-<small>
-A function to send a Note Off MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>channel</i> - integer, a numeric representation of the MIDI channel (1 .. 16)<br />
-<i>noteNumber</i> - integer, an identifier of the MIDI note (0 .. 127)<br />
-<i>velocity</i> - integer, a velocity (0 .. 127)<br />
-</small>
 :::
+A function to send a Note Off MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `noteNumber` - integer, an identifier of the MIDI note (0 .. 127).
+- `velocity` - integer, a velocity (0 .. 127).
+
 
 ::: functiondesc
 <b>midi.sendControlChange (port, channel, parameterNumber, value)</b>
-<small>
-A function to send a Control Change MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>channel</i> - integer, a numeric representation of the MIDI channel (1 .. 16)<br />
-<i>controllerNumber</i> - integer, an identifier of the Control Change (0 .. 127)<br />
-<i>value</i> - integer, a value to be sent (0 .. 127)<br />
-</small>
 :::
+A function to send a Control Change MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `controllerNumber` - integer, an identifier of the Control Change (0 .. 127).
+- `value` - integer, a value to be sent (0 .. 127).
+
 
 ::: functiondesc
 <b>midi.sendAfterTouchPoly (port, channel, noteNumber, pressure)</b>
-<small>
-A function to send a Polyphonic Aftertouch MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>channel</i> - integer, a numeric representation of the MIDI channel (1 .. 16)<br />
-<i>noteNumber</i> - integer, an identifier of the MIDI note (0 .. 127)<br />
-<i>pressure</i> - integer, a value representing the pressure applied (0 .. 127)<br />
-</small>
 :::
+A function to send a Polyphonic Aftertouch MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `noteNumber` - integer, an identifier of the MIDI note (0 .. 127).
+- `pressure` - integer, a value representing the pressure applied (0 .. 127).
+
 
 ::: functiondesc
 <b>midi.sendAfterTouchChannel (port, channel, pressure)</b>
-<small>
-A function to send a Channel Aftertouch MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>channel</i> - integer, a numeric representation of the MIDI channel (1 .. 16)<br />
-<i>pressure</i> - integer, a value representing the pressure applied (0 .. 127)<br />
-</small>
 :::
+A function to send a Channel Aftertouch MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `pressure` - integer, a value representing the pressure applied (0 .. 127).
+
 
 ::: functiondesc
 <b>midi.sendProgramChange (port, channel, programNumber)</b>
-<small>
-A function to send a Program Change MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>channel</i> - integer, a numeric representation of the MIDI channel (1 .. 16)<br />
-<i>programNumber</i> - integer, an identifier of the CC (0 .. 127)<br />
-<i>pressure</i> - integer, a value to be sent (0 .. 127)<br />
-</small>
 :::
+A function to send a Program Change MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `programNumber` - integer, an identifier of the CC (0 .. 127).
+
 
 ::: functiondesc
 <b>midi.sendPitchBend (port, channel, value)</b>
-<small>
-A function to send a Pitch Bend MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>channel</i> - integer, a numeric representation of the MIDI channel (1 .. 16)<br />
-<i>value</i> - integer, an amount of Pitch Bend to be applied (0 .. 16383)<br />
-</small>
 :::
+A function to send a Pitch Bend MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `value` - integer, an amount of Pitch Bend to be applied (0 .. 16383).
+
 
 ::: functiondesc
 <b>midi.sendSongSelect (port, songNumber)</b>
-<small>
-A function to send a Song Select MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>songNumber</i> - integer, a numeric identifier of the song (0 .. 127)<br />
-</small>
 :::
+A function to send a Song Select MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `songNumber` - integer, a numeric identifier of the song (0 .. 127).
+
 
 ::: functiondesc
 <b>midi.sendSongPosition (port, position)</b>
-<small>
-A function to send a Song Position MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>songNumber</i> - integer, a number of beats from start of the song (0 .. 16383)<br />
-</small>
 :::
+A function to send a Song Position MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `songNumber` - integer, a number of beats from start of the song (0 .. 16383).
+
 
 ::: functiondesc
 <b>midi.sendClock (port)</b>
-<small>
-A function to send a System real-time Clock MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-</small>
 :::
+A function to send a System real-time Clock MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+
 
 ::: functiondesc
 <b>midi.sendStart (port)</b>
-<small>
-A function to send a System real-time Start MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-</small>
 :::
+A function to send a System real-time Start MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+
 
 ::: functiondesc
 <b>midi.sendStop (port)</b>
-<small>
-A function to send a System real-time Stop MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-</small>
 :::
+A function to send a System real-time Stop MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+
 
 ::: functiondesc
 <b>midi.sendContinue (port)</b>
-<small>
-A function to send a System real-time Continue MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-</small>
 :::
+A function to send a System real-time Continue MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+
 
 ::: functiondesc
 <b>midi.sendActiveSensing (port)</b>
-<small>
-A function to send a Active Sensing MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-</small>
 :::
+A function to send a Active Sensing MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+
 
 ::: functiondesc
 <b>midi.sendSystemReset (port)</b>
-<small>
-A function to send a System Reset MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-</small>
 :::
+A function to send a System Reset MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+
 
 ::: functiondesc
 <b>midi.sendTuneRequest (port)</b>
-<small>
-A function to send a Tune Request MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-</small>
 :::
+A function to send a Tune Request MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+
 
 ::: functiondesc
 <b>midi.sendSysex (port, data)</b>
-<small>
-A function to send a Sysex MIDI message. Currently limited to 256 bytes.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>data</i> - array, an array with sequence of bytes to be sent. Do not enter F0 and F7 bytes.
-</small>
 :::
+A function to send a Sysex MIDI message. Currently limited to 256 bytes.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `data` - array, an array with sequence of bytes to be sent. Do not enter F0 and F7 bytes.
+
 
 ::: functiondesc
 <b>midi.sendNrpn (port, channel, parameterNumber, value)</b>
-<small>
-A function to send a NRPN MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>channel</i> - integer, a numeric representation of the MIDI channel (1 .. 16)<br />
-<i>parameterNumber</i> - integer, an identifier of the NRPN (0 .. 16383)<br />
-<i>value</i> - integer, a value to be sent (0 .. 16383)<br />
-<i>lsbFirst</i> - boolean, when true, the lsb and msb bytes will be swapped<br />
-</small>
 :::
+A function to send a NRPN MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `parameterNumber` - integer, an identifier of the NRPN (0 .. 16383).
+- `value` - integer, a value to be sent (0 .. 16383).
+- `lsbFirst` - boolean, when true, the lsb and msb bytes will be swapped.
+
 
 ::: functiondesc
 <b>midi.sendRpn (port, channel, parameterNumber, value)</b>
-<small>
-A function to send a RPN MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>channel</i> - integer, a numeric representation of the MIDI channel (1 .. 16)<br />
-<i>parameterNumber</i> - integer, an identifier of the RPN (0 .. 16383)<br />
-<i>value</i> - integer, a value to be sent (0 .. 16383)<br />
-<i>lsbFirst</i> - boolean, when true, the lsb and msb bytes will be swapped<br />
-</small>
 :::
+A function to send a RPN MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `parameterNumber` - integer, an identifier of the RPN (0 .. 16383).
+- `value` - integer, a value to be sent (0 .. 16383).
+- `lsbFirst` - boolean, when true, the lsb and msb bytes will be swapped.
+
 
 ::: functiondesc
 <b>midi.sendControlChange14 (port, channel, parameterNumber, value)</b>
-<small>
-A function to send a Control Change 14bit MIDI message.
-</small>
-
-<small>
-<i>port</i> - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`))<br />
-<i>channel</i> - integer, a numeric representation of the MIDI channel (1 .. 16)<br />
-<i>controllerNumber</i> - integer, an identifier of the NRPN (0 .. 31)<br />
-<i>value</i> - integer, a value to be sent (0 .. 16383)<br />
-<i>lsbFirst</i> - boolean, when true, the lsb and msb bytes will be swapped<br />
-</small>
 :::
+A function to send a Control Change 14bit MIDI message.
+
+- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `controllerNumber` - integer, an identifier of the NRPN (0 .. 31).
+- `value` - integer, a value to be sent (0 .. 16383).
+- `lsbFirst` - boolean, when true, the lsb and msb bytes will be swapped.
 
 
 ##### Example script
@@ -1782,29 +1747,20 @@ situations easier.
 #### Functions
 ::: functiondesc
 <b>slotToBounds (slot)</b>
-<small>
-Converts a preset slot to a boundary box data table.
-</small>
-
-<small>
-<i>slot</i> - integer, a numeric identifier of the preset slot (1 .. 36)
-<br />
-<i>returns</i> - array, an array consisting of x, y, width, height boundary box attributes
-</small>
 :::
+Converts a preset slot to a boundary box data table.
+
+- `slot` - integer, a numeric identifier of the preset slot (1 .. 36).
+- `returns` - array, an array consisting of x, y, width, height boundary box attributes.
+
 
 ::: functiondesc
 <b>boundsToSlot (bounds)</b>
-<small>
-Converts a bounding box (bounds) to slot.
-</small>
-
-<small>
-<i>bounds</i> - array, an array consisting of x, y, width, height boundary box attributes
-<br />
-<i>returns</i> - integer, a numeric identifier of the preset slot (1 .. 36)
-</small>
 :::
+Converts a bounding box (bounds) to slot.
+
+- `bounds` - array, an array consisting of x, y, width, height boundary box attributes
+- `returns` - integer, a numeric identifier of the preset slot (1 .. 36).
 
 
 ##### Example script
@@ -1814,3 +1770,12 @@ Converts a bounding box (bounds) to slot.
 control = controls.get (1)
 control:setBounds (helpers.slotToBounds (6))
 ```
+
+
+::: functiondesc
+<b>showComponentFrames (shouldBeVisible)</b>
+:::
+Display bounding boxes of graphical objects.
+
+- `shouldBeVisible` - boolean, when true, all graphical objects will have their<br />
+bounding boxes shown.

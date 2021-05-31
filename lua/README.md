@@ -3,7 +3,7 @@
 Examples of using the [Lua Extension](https://docs.electra.one/developers/luaext.md) in Electra One presets.
 
 ## Firmware
-Firmware 1.5.12 or later is required to run the examples.
+Firmware 2.0.2b or later is required to run the examples.
 
 ## Uploading the examples
 Each example consists of two files, the preset and the Lua extension file. Both files must be uploaded to the same preset slot on the controller. This can be done by sending appropriate SysEx messages or using the [Development sandbox editor](https://beta.electra.one/sandbox).
