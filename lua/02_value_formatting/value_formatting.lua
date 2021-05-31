@@ -17,17 +17,17 @@ notes = {
 }
 
 -- Add % sign
-function addPercentage (value)
+function addPercentage (control, valueId, value)
     return (value .. "%")
 end
 
 -- Convert number to a range with decimal numbers
-function convertToFractions (value)
+function convertToFractions (control, valueId, value)
     return (string.format("%.1f", value / 20))
 end
 
 -- Map text labels to ranges of values
-function showRanges (value)
+function showRanges (control, valueId, value)
     if value < 43 then
         return ("low")
     elseif value > 86 then
@@ -38,6 +38,6 @@ function showRanges (value)
 end
 
 -- Map MIDI value to note names
-function displayNotes (value)
+function displayNotes (control, valueId, value)
     return (string.format(notes[math.fmod(value, 11) + 1], value / 12))
 end
