@@ -4,6 +4,21 @@
 Nightly builds are not considered to be stable and should not be used for serious work on the presets.
 :::
 
+## 2.0.2b
+
+31 May 2021
+### changelog
+- Use objects to handle controls - [Controls and Control object](http://localhost:8080/developers/luaext.html#controls).
+- Add support for working with Device - [Devices and Device object](http://localhost:8080/developers/luaext.html#devices).
+- Add support for working with Pages - [Pages and Page object](http://localhost:8080/developers/luaext.html#pages).
+- Add support for a Value object in Lua, affects functions callbacks and formatters - [Value object](http://localhost:8080/developers/luaext.html#value).
+- Make it possible to manage groups from Lua - [Managing groups](http://localhost:8080/developers/luaext.html#groups).
+- Allow groups to form rectangular shape (when height > 80).
+- Improve layout and visual of page, bank, message selection bars.
+- Allow showing of component frames for debugging with [showComponentFrames ()](http://localhost:8080/developers/luaext.html#helpers) function.
+- Make it possible to call Lua function from a SysEx template.
+
+
 ## 2.0.1b
 
 24 May 2021
