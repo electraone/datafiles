@@ -1,0 +1,95 @@
+{
+   "version":2,
+   "name":"MIDI clock",
+   "pages":[
+      {
+         "id":1,
+         "name":"Page 1"
+      }
+   ],
+   "groups":[
+
+   ],
+   "devices":[
+      {
+         "id":1,
+         "name":"Generic MIDI",
+         "port":1,
+         "channel":1
+      }
+   ],
+   "overlays":[
+
+   ],
+   "controls":[
+      {
+         "id":1,
+         "type":"fader",
+         "visible":true,
+         "name":"TEMPO / BMP",
+         "color":"FFFFFF",
+         "bounds":[
+            0,
+            40,
+            146,
+            56
+         ],
+         "pageId":1,
+         "controlSetId":1,
+         "inputs":[
+            {
+               "potId":1,
+               "valueId":"value"
+            }
+         ],
+         "values":[
+            {
+               "message":{
+                  "type":"virtual",
+                  "deviceId":1,
+                  "parameterNumber":1,
+                  "min":20,
+                  "max":240
+               },
+               "min":20,
+               "max":240,
+               "defaultValue":120,
+               "id":"value",
+               "function":"setClockRate"
+            }
+         ]
+      },
+      {
+         "id":2,
+         "type":"pad",
+         "mode":"toggle",
+         "visible":true,
+         "name":"START",
+         "color":"03A598",
+         "bounds":[
+            170,
+            40,
+            146,
+            56
+         ],
+         "pageId":1,
+         "controlSetId":1,
+         "inputs":[
+            {
+               "potId":2,
+               "valueId":"value"
+            }
+         ],
+         "values":[
+            {
+               "message":{
+                  "type":"virtual",
+                  "deviceId":1
+               },
+               "id":"value",
+               "function":"buttonPressed"
+            }
+         ]
+      }
+   ]
+}
