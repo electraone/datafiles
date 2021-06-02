@@ -4,6 +4,19 @@
 Nightly builds are not considered to be stable and should not be used for serious work on the presets.
 :::
 
+
+## 2.0.3b
+
+2 June 2021
+### changelog
+- Provide access to the Message object - [Message object](./luaext.html#message).
+- Add "Load and stay" function to the Snaphosts window
+- Fix: repaint controls and groups only when page is shown
+- Fix: crash of transport module when onClock () was not preset in Lua script
+- Fix: misalligned graphics of rectangular groups
+- Fix: snaps button on the Menu page did not work
+
+
 ## 2.0.2b
 
 31 May 2021

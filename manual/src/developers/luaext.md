@@ -5,7 +5,7 @@ This document describes the Lua Extension of the Electra One MIDI Controller fir
 The Lua is a scripting programming language - a detailed information about it can be found at the [Official Lua site](http://www.lua.org/).
 
 ::: warning Note
-Firmware version 2.0.2b or later is required to use the Electra One Lua Extension.
+Firmware version 2.0.3b or later is required to use the Electra One Lua Extension.
 :::
 
 ## A brief overview
@@ -326,7 +326,7 @@ end
 :::
 Sets a new color of the control. Due to performance reasons, only predefined six colors are available at present time.
 
-- `color` - integer, a new color to be used (0 .. 5).
+- `color` - integer, a new color to be used (see [Globals](./luaext.html#globals) for details).
 
 
 ::: functiondesc
@@ -334,10 +334,8 @@ Sets a new color of the control. Due to performance reasons, only predefined six
 :::
 Retrieves current color of the control.
 
-- `returns` - integer, current color of the control (0 .. 5).
+- `returns` - integer, current color of the control (see [Globals](./luaext.html#globals) for details).
 
-
-`WHITE`, `RED`, `ORANGE`, `BLUE`, `GREEN`, `PINK` variables are available to specify the desired color.
 
 
 ##### Example script
@@ -370,7 +368,7 @@ Retrieves current position and dimensions (bounds) of the control.
 
 - `returns` - array, an array consisting of x, y, width, height boundary box attributes.
 
-`X`, `Y`, `WIDTH`, `HEIGHT` variables are available to access the bounding box attributes
+`X`, `Y`, `WIDTH`, `HEIGHT` variables are available to access the bounding box attributes, (see [Globals](./luaext.html#globals) for details).
 
 
 ##### Example script
@@ -393,12 +391,9 @@ print ("current bounds: " ..
 :::
 Assigns the control to given controlSet and pot.
 
-- `controlSet` - integer, a numeric identifier of the control set (1 .. 3).
-- `pot` - integer, a numeric identifier of the pot (1 .. 12).
+- `controlSet` - integer, a numeric identifier of the control set (see [Globals](./luaext.html#globals) for details).
+- `pot` - integer, a numeric identifier of the pot (see [Globals](./luaext.html#globals) for details).
 
-
-`CONTROL_SET_1` .. `CONTROL_SET_3` variables are available to specify the desired control section.
-`POT_1` .. `POT_12` variables are available to specify the desired pot.
 
 
 ##### Example script
@@ -563,6 +558,65 @@ valueB:setOverlayId (1)
 valueA:setOverlayId (2)
 ```
 
+::: functiondesc
+<b>value:getMessage ()</b>
+:::
+Retrieves the MIDI message object assigned to the Value object
+
+- `returns` - userdata, a reference to a Message object.
+
+``` lua
+-- Get the message associated with the release value
+
+local value = control:getValue ("release")
+local message = value.getMessage ()
+```
+
+
+
+### Message
+The Message consists of a subset of attributes of the Message object from preset JSON.
+
+
+#### Functions
+::: functiondesc
+<b>value:getDeviceId ()</b>
+:::
+Retrieves the identifer of counterparty device that receives and sends this message.
+
+- `returns` - integer, a numeric identifier of the device (1 .. 32).
+
+
+#### Functions
+::: functiondesc
+<b>value:getType ()</b>
+:::
+Retrieves the type of the MIDI message. For the list of message types, please refer to the overview in the Globals section.
+
+- `returns` - integer, a numeric identifier of Electra's parameter type (0 .. 11).
+
+
+#### Functions
+::: functiondesc
+<b>value:getParameterNumber ()</b>
+:::
+Retrieves the identifer of the parameter as it as specified in the preset JSON.
+
+- `returns` - integer, a numeric identifier of the parameter (0 .. 16383).
+
+``` lua
+-- Print info about the message
+
+function valueCallback (control, valueId, value)
+    local value = control:getValue ("attack")
+    local message = value.getMessage ()
+
+    print ("Device Id: " .. message:getDeviceId ())
+    print ("Type: " .. message:getType ())
+    print ("Parameter Number: " .. message:getParameterNumber ())
+end
+```
+
 
 
 ### Pages
@@ -580,7 +634,7 @@ Retrieves a reference to a page object (userdata).
 
 #### Example script
 ``` lua
--- Retrieving a reference to given page
+-- Retrieve a reference to given page
 
 local page = pages.get (3)
 ```
@@ -643,7 +697,7 @@ Starting with 1 and following the order or groups in the JSON.
 
 #### Example script
 ``` lua
--- Retrieving a reference to given group
+-- Retrieve a reference to given group
 
 local group = groups.get (1)
 ```
@@ -659,7 +713,7 @@ A representation of a Group object. The Group object holds the data and function
 Retrieves the identifier of the group. The identifier is assigned to the group
 in the preset JSON or generated automatically.
 
-- `returns` - integer, identifier of the page (1 .. 128).
+- `returns` - integer, identifier of the page (1 .. 432).
 
 
 ::: functiondesc
@@ -699,16 +753,15 @@ Gets status of given group's visibility.
 :::
 Sets a new color of the control. Due to performance reasons, only predefined six colors are available at present time.
 
-- `color` - integer, a new color to be used (0 .. 5).
+- `color` - integer, a new color to be used (see [Globals](./luaext.html#globals) for details).
 
 ::: functiondesc
 <b>group:getColor ()</b>
 :::
 Retrieves current color of the group.
 
-- `returns` - integer, current color of the control (0 .. 5).
+- `returns` - integer, current color of the control (see [Globals](./luaext.html#globals) for details).
 
-`WHITE`, `RED`, `ORANGE`, `BLUE`, `GREEN`, `PINK` variables are available to specify the desired color.
 
 ::: functiondesc
 <b>group:setBounds ({ x, y, width, height })</b>
@@ -725,7 +778,7 @@ Retrieves current position and dimensions (bounds) of the group.
 
 - `returns` - array, an array consisting of x, y, width, height boundary box attributes.
 
-`X`, `Y`, `WIDTH`, `HEIGHT` variables are available to access the bounding box attributes.
+`X`, `Y`, `WIDTH`, `HEIGHT` variables are available to access the bounding box attributes (see [Globals](./luaext.html#globals) for details).
 
 
 ::: functiondesc
@@ -794,7 +847,7 @@ in the preset JSON.
 :::
 Assigns given device to a hardware port.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 
 
 ::: functiondesc
@@ -802,7 +855,7 @@ Assigns given device to a hardware port.
 :::
 Gets an identifier of the hardware port currently assigned to the device.
 
-- `returns` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`).
+- `returns` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 
 
 ::: functiondesc
@@ -871,7 +924,7 @@ Resets all parameters of given device to zero.
 Sets a midiValue of particular Electra parameter within the parameter map.
 
 - `deviceId` - integer, a numeric identifier of the device (1 .. 32).
-- `parameterType` - integer, a numeric identifier of Electra's parameter type (0 .. 11).
+- `parameterType` - integer, a numeric identifier of Electra's parameter type (see [Globals](./luaext.html#globals) for details).
 - `ParameterNumber` - integer, a numeric identifier of the parameter (0 .. 16383).
 - `midiValue` - integer, a MIDI value (0 .. 16383).
 
@@ -884,7 +937,7 @@ parameter map. The midiValueFragment is ORed to the parameter value.
 
 
 - `deviceId` - integer, a numeric identifier of the device (1 .. 32).
-- `parameterType` - integer, a numeric identifier of Electra's parameter type (0 .. 11).
+- `parameterType` - integer, a numeric identifier of Electra's parameter type (see [Globals](./luaext.html#globals) for details).
 - `ParameterNumber` - integer, a numeric identifier of the parameter (0 .. 16383).
 - `midiValueFragment` - integer, a MIDI value frangement to be applied (0 .. 16383).
 
@@ -895,7 +948,7 @@ parameter map. The midiValueFragment is ORed to the parameter value.
 Sets a midiValue of particular Electra parameter within the parameter map.
 
 - `deviceId` - integer, a numeric identifier of the device (1 .. 32).
-- `parameterType` - integer, a numeric identifier of Electra's parameter type (0 .. 11).
+- `parameterType` - integer, a numeric identifier of Electra's parameter type (see [Globals](./luaext.html#globals) for details).
 - `ParameterNumber` - integer, a numeric identifier of the parameter (0 .. 16383).
 - `returns` - integer, a MIDI value of given parameter (0 .. 16383).
 
@@ -907,7 +960,7 @@ Sends current midiValue via all controls linked to the parameter map entry.
 
 
 - `deviceId` - integer, a numeric identifier of the device (1 .. 32).
-- `parameterType` - integer, a numeric identifier of Electra's parameter type (0 .. 11).
+- `parameterType` - integer, a numeric identifier of Electra's parameter type (see [Globals](./luaext.html#globals) for details).
 - `ParameterNumber` - integer, a numeric identifier of the parameter (0 .. 16383).
 
 
@@ -1025,8 +1078,29 @@ end
 
 
 
+### TransformIn function
+A function that can be used to transform an incoming MIDI value.
+
+Work to be done...
+
+
+
+### TransformOut function
+A function that can be used to transform an outgoing MIDI value.
+
+Work to be done...
+
+
+
 ### SysEx byte function
 A SysEx byte functions may be used in SysEx templates to calculate and insert bytes to specific locations in the SysEx messages.
+
+work to be done...
+
+
+
+### SysexBlock
+A library to work with SysEx message. On contrary to simple arrays of bytes, SysexBlock allows users to work with large SysEx message efficiently.
 
 work to be done...
 
@@ -1337,7 +1411,7 @@ All functions send MIDI messages to all Electra's interfaces (`USB Dev`, `USB ho
 :::
 A function to send a MIDI message defined as a `midiMessage` data table.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `midiMessage` - data table, an outgoing MIDI message.
 
 
@@ -1346,7 +1420,7 @@ A function to send a MIDI message defined as a `midiMessage` data table.
 :::
 A function to send a Note On MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
 - `noteNumber` - integer, an identifier of the MIDI note (0 .. 127).
 - `velocity` - integer, a velocity (0 .. 127).
@@ -1357,7 +1431,7 @@ A function to send a Note On MIDI message.
 :::
 A function to send a Note Off MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
 - `noteNumber` - integer, an identifier of the MIDI note (0 .. 127).
 - `velocity` - integer, a velocity (0 .. 127).
@@ -1368,7 +1442,7 @@ A function to send a Note Off MIDI message.
 :::
 A function to send a Control Change MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
 - `controllerNumber` - integer, an identifier of the Control Change (0 .. 127).
 - `value` - integer, a value to be sent (0 .. 127).
@@ -1379,7 +1453,7 @@ A function to send a Control Change MIDI message.
 :::
 A function to send a Polyphonic Aftertouch MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
 - `noteNumber` - integer, an identifier of the MIDI note (0 .. 127).
 - `pressure` - integer, a value representing the pressure applied (0 .. 127).
@@ -1390,7 +1464,7 @@ A function to send a Polyphonic Aftertouch MIDI message.
 :::
 A function to send a Channel Aftertouch MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
 - `pressure` - integer, a value representing the pressure applied (0 .. 127).
 
@@ -1400,7 +1474,7 @@ A function to send a Channel Aftertouch MIDI message.
 :::
 A function to send a Program Change MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
 - `programNumber` - integer, an identifier of the CC (0 .. 127).
 
@@ -1410,7 +1484,7 @@ A function to send a Program Change MIDI message.
 :::
 A function to send a Pitch Bend MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
 - `value` - integer, an amount of Pitch Bend to be applied (0 .. 16383).
 
@@ -1420,7 +1494,7 @@ A function to send a Pitch Bend MIDI message.
 :::
 A function to send a Song Select MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `songNumber` - integer, a numeric identifier of the song (0 .. 127).
 
 
@@ -1429,7 +1503,7 @@ A function to send a Song Select MIDI message.
 :::
 A function to send a Song Position MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `songNumber` - integer, a number of beats from start of the song (0 .. 16383).
 
 
@@ -1438,7 +1512,7 @@ A function to send a Song Position MIDI message.
 :::
 A function to send a System real-time Clock MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 
 
 ::: functiondesc
@@ -1446,7 +1520,7 @@ A function to send a System real-time Clock MIDI message.
 :::
 A function to send a System real-time Start MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 
 
 ::: functiondesc
@@ -1454,7 +1528,7 @@ A function to send a System real-time Start MIDI message.
 :::
 A function to send a System real-time Stop MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 
 
 ::: functiondesc
@@ -1462,7 +1536,7 @@ A function to send a System real-time Stop MIDI message.
 :::
 A function to send a System real-time Continue MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 
 
 ::: functiondesc
@@ -1470,7 +1544,7 @@ A function to send a System real-time Continue MIDI message.
 :::
 A function to send a Active Sensing MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 
 
 ::: functiondesc
@@ -1478,7 +1552,7 @@ A function to send a Active Sensing MIDI message.
 :::
 A function to send a System Reset MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 
 
 ::: functiondesc
@@ -1486,7 +1560,7 @@ A function to send a System Reset MIDI message.
 :::
 A function to send a Tune Request MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 
 
 ::: functiondesc
@@ -1494,7 +1568,7 @@ A function to send a Tune Request MIDI message.
 :::
 A function to send a Sysex MIDI message. Currently limited to 256 bytes.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `data` - array, an array with sequence of bytes to be sent. Do not enter F0 and F7 bytes.
 
 
@@ -1503,7 +1577,7 @@ A function to send a Sysex MIDI message. Currently limited to 256 bytes.
 :::
 A function to send a NRPN MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
 - `parameterNumber` - integer, an identifier of the NRPN (0 .. 16383).
 - `value` - integer, a value to be sent (0 .. 16383).
@@ -1515,7 +1589,7 @@ A function to send a NRPN MIDI message.
 :::
 A function to send a RPN MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
 - `parameterNumber` - integer, an identifier of the RPN (0 .. 16383).
 - `value` - integer, a value to be sent (0 .. 16383).
@@ -1527,7 +1601,7 @@ A function to send a RPN MIDI message.
 :::
 A function to send a Control Change 14bit MIDI message.
 
-- `port` - integer, a port identifier (`PORT_1`, `PORT_2`, `PORT_CTRL`)).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
 - `controllerNumber` - integer, an identifier of the NRPN (0 .. 31).
 - `value` - integer, a value to be sent (0 .. 16383).
@@ -1779,3 +1853,115 @@ Display bounding boxes of graphical objects.
 
 - `shouldBeVisible` - boolean, when true, all graphical objects will have their<br />
 bounding boxes shown.
+
+
+
+### Globals
+The global variables are used to identify common constants that can be used instead of numbers.
+
+#### Hardware ports
+Identifiers of the MIDI ports.
+
+`PORT_1`
+`PORT_2`
+`PORT_CTRL`
+
+
+
+#### Interfaces
+Types of MIDI interfaces.
+
+`MIDI_IO`
+`USB_DEV`
+`USB_HOST`
+
+
+
+#### Parameter types
+Types of Electra MIDI parameters. These types are higher abstraction of the standard MIDI message types.
+
+`PT_VIRTUAL`
+`PT_CC7`
+`PT_CC14`
+`PT_NRPN`
+`PT_RPN`
+`PT_NOTE`
+`PT_PROGRAM`
+`PT_SYSEX`
+`PT_START`
+`PT_STOP`
+`PT_TUNE`
+`PT_UNKNOWN`
+
+
+
+#### Control sets
+Identifiers of the conrol sets. The control sets are groups of controls assigned to the pots.
+
+`CONTROL_SET_1`
+`CONTROL_SET_2`
+`CONTROL_SET_3`
+
+
+
+#### Pots
+Identifiers of the hardware pots. The pots are the rotary knobs to change the control values.
+
+`POT_1`
+`POT_2`
+`POT_3`
+`POT_4`
+`POT_5`
+`POT_6`
+`POT_7`
+`POT_8`
+`POT_9`
+`POT_10`
+`POT_11`
+`POT_12`
+
+
+
+#### Colors
+Identifiers of standard Electra colors.
+
+`WHITE`
+`RED`
+`ORANGE`
+`BLUE`
+`GREEN`
+`PURPLE`
+
+
+
+#### Bounding box
+Identifiers of individual attributes of the bounding box (bounds).
+
+`X`
+`Y`
+`WIDTH`
+`HEIGHT`
+
+
+
+#### MIDI message types
+Identifiers of standard MIDI messages.
+
+`CONTROL_CHANGE`
+`NOTE_ON`
+`NOTE_OFF`
+`PROGRAM_CHANGE`
+`POLY_PRESSURE`
+`CHANNEL_PRESSURE`
+`PITCH_BEND`
+`CLOCK`
+`START`
+`STOP`
+`CONTINUE`
+`ACTIVE_SENSING`
+`RESET`
+`SONG_SELECT`
+`SONG_POSITION`
+`TUNE_REQUEST`
+`TIME_CODE_QUARTER_FRAME`
+`SYSEX`
