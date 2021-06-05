@@ -80,7 +80,8 @@
                   "type":"cc7",
                   "deviceId":1,
                   "parameterNumber":2,
-                  "bitWidth":7
+                  "bitWidth":7,
+                  "signMode":"sigBit"
                },
                "id":"value",
                "min":-50,
