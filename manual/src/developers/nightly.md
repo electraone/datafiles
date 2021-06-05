@@ -5,6 +5,17 @@ Nightly builds are not considered to be stable and should not be used for seriou
 :::
 
 
+## 2.0.4b
+
+5 June 2021
+### changelog
+- Clear state of Lua script when new preset is loaded.
+- Improve system of repainting the controls. More efficient and faster.
+- Highlight active value on the detail (full screen) controls.
+- Fix: issue of displaying the last control on the last page.
+- Fix: patch dumps are processed with Lua only.
+
+
 ## 2.0.3b
 
 2 June 2021
