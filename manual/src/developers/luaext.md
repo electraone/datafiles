@@ -237,7 +237,6 @@ Retrieves a reference to a Control object (userdata). A control is a representat
 
 - `controlId` - integer, a numeric identifier of the control. <i>id</i> attribute from the preset.
 - `returns` - userdata, a reference to a control object.
-</small>
 :::
 
 ##### Example script
@@ -515,7 +514,6 @@ Retrieves the minimum display value of the Value object
 Sets the maximum display value of the Value object
 
 - `maximumValue` - integer, the maximum display value.
-</small>
 :::
 
 ::: functiondesc
@@ -1062,7 +1060,6 @@ A user function to run custom Lua extension function.
 - `control` - userdata, a reference to a control object.
 - `valueId` - string, an identifier of the value within the control definition.
 - `value` - integer, a display value as defined by the preset JSON.
-</small>
 :::
 
 ##### Example script
@@ -1102,7 +1099,46 @@ work to be done...
 ### SysexBlock
 A library to work with SysEx message. On contrary to simple arrays of bytes, SysexBlock allows users to work with large SysEx message efficiently.
 
-work to be done...
+#### Functions
+::: functiondesc
+<b>\<sysexBlock\>.getLength ()</b>
+:::
+Retrieves the total length of the SysEx message. The length includes the leading and trailing 0xF0 and 0xF7 bytes.
+
+- `length` - integer, a number of bytes in the SysexBlock object.
+
+
+::: functiondesc
+<b>\<sysexBlock\>.getManufacturerSysexId ()</b>
+:::
+Retrieves the SysEx manufacturer identifier from the SysexBlock object. It is either one byte-wide number or a number componsed of the three bytes with LSB at position 3 and MSB at position 1.
+
+- `sysexManufacturerId` - integer, an identifier of SysEx Manufacturer id.
+
+
+::: functiondesc
+<b>\<sysexBlock\>.seek (position)</b>
+:::
+Sets the SysexBlock's current position at given ofset.
+
+- `position` - integer, the position of the read/write pointer in the SysexBlock.
+
+
+::: functiondesc
+<b>\<sysexBlock\>.read ()</b>
+:::
+Reads one byte from current position within the SysexBlock. The read/write pointer is automatically increased after the read is completed.
+
+- `returns` - byte, the byte value at current SysexBlock position, or -1.
+
+
+::: functiondesc
+<b>\<sysexBlock\>.peek (position)</b>
+:::
+Reads one byte from position provided as an input parameter. The read/write pointer is not affected by the peek operation.
+
+- `returns` - byte, the byte value at current SysexBlock position, or -1.
+
 
 
 
@@ -1135,7 +1171,6 @@ The following `Patch` definition is the bare minimum implementation. The `patch.
 <b>patch.onRequest (device)</b>
 :::
 A callback to send a patch request to a particular device. The function is called upon the `[PATCH REQUEST]` button has been pressed and it is sent to all device that have a patch request defined in their `patch` definition.
-</small>
 
 - `device` - data table, a device description data structure (see below).
 
@@ -1353,7 +1388,6 @@ A callback to handle incoming MIDI Song Position message.
 
 - `midiInput` - data table, information about where the message came from.
 - `position` - integer, a number of beats from the start of the song (0 .. 16383).
-</small>
 :::
 
 ##### Example script
