@@ -6,7 +6,9 @@
 -- declare a global threshold variable
 threshold = 96
 
-function applyColor (control, valueId, value)
+function applyColor (valueObject, value)
+  local control = valueObject:getControl ()
+  
   if (value <= threshold) then
     control:setColor (WHITE)
   else

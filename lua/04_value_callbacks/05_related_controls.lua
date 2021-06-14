@@ -19,7 +19,7 @@ function showGroup (groups, groupId)
 end
 
 -- the callback function called from the preset
-function displayGroup (control, controlId, value)
+function displayGroup (valueObject, value)
     hideAllGroups (controlGroups)
     showGroup (controlGroups, value)
 end

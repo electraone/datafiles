@@ -5,7 +5,7 @@ This document describes the Lua Extension of the Electra One MIDI Controller fir
 The Lua is a scripting programming language - a detailed information about it can be found at the [Official Lua site](http://www.lua.org/).
 
 ::: warning Note
-Firmware version 2.0.4b or later is required to use the Electra One Lua Extension.
+Firmware version 2.0.5b or later is required to use the Electra One Lua Extension.
 :::
 
 ## A brief overview
@@ -105,7 +105,7 @@ function showGroup (groups, groupId)
 end
 
 -- the callback function called from the preset
-function displayGroup (control, valueId, value)
+function displayGroup (valueObject, value)
     hideAllGroups (controlGroups)
     showGroup (controlGroups, value)
 end
@@ -184,7 +184,7 @@ A good example of a user function is a `displayGroup` callback from the above ex
 
 ``` lua
 -- the callback function called from the preset
-function displayGroup (control, valueId, value)
+function displayGroup (valueObject, value)
     hideAllGroups (controlGroups)
     showGroup (controlGroups, value)
 end
@@ -251,7 +251,7 @@ A representation of a Control object. It holds the data and functions to modify 
 
 #### Functions
 ::: functiondesc
-<b>control:getId ()</b>
+<b>\<control\>:getId ()</b>
 :::
 Retrieves an identifier of the Control. The identifier is assigned to the control in the preset JSON.
 
@@ -268,7 +268,7 @@ print ("got Control with Id " .. volumeControl:getId ())
 
 
 ::: functiondesc
-<b>control:setVisible (shouldBeVisible)</b>
+<b>\<control\>:setVisible (shouldBeVisible)</b>
 :::
 Changes the visibility of given control. The initial visibility is set in the Preset JSON. The setVisibility method may change the visibility at the run-time.
 
@@ -276,7 +276,7 @@ Changes the visibility of given control. The initial visibility is set in the Pr
 
 
 ::: functiondesc
-<b>control:isVisible ()</b>
+<b>\<control\>:isVisible ()</b>
 :::
 Retrieves a status of control's visibility.
 
@@ -294,7 +294,7 @@ end
 
 
 ::: functiondesc
-<b>control:setName (name)</b>
+<b>\<control\>:setName (name)</b>
 :::
 Sets a new name of the control.
 
@@ -302,7 +302,7 @@ Sets a new name of the control.
 
 
 ::: functiondesc
-<b>control:getName ()</b>
+<b>\<control\>:getName ()</b>
 :::
 Retrieves current name of the control.
 
@@ -321,7 +321,7 @@ end
 
 
 ::: functiondesc
-<b>control:setColor (color)</b>
+<b>\<control\>:setColor (color)</b>
 :::
 Sets a new color of the control. Due to performance reasons, only predefined six colors are available at present time.
 
@@ -329,7 +329,7 @@ Sets a new color of the control. Due to performance reasons, only predefined six
 
 
 ::: functiondesc
-<b>control:getColor ()</b>
+<b>\<control\>:getColor ()</b>
 :::
 Retrieves current color of the control.
 
@@ -353,7 +353,7 @@ end
 
 
 ::: functiondesc
-<b>control:setBounds ({ x, y, width, height })</b>
+<b>\<control\>:setBounds ({ x, y, width, height })</b>
 :::
 Changes position and dimensions (bounds) of the control. The helpers library provides functions to convert bounds to preset slots.
 
@@ -361,7 +361,7 @@ Changes position and dimensions (bounds) of the control. The helpers library pro
 
 
 ::: functiondesc
-<b>control:getBounds ()</b>
+<b>\<control\>:getBounds ()</b>
 :::
 Retrieves current position and dimensions (bounds) of the control.
 
@@ -386,7 +386,7 @@ print ("current bounds: " ..
 
 
 ::: functiondesc
-<b>control:setPot (controlSet, pot)</b>
+<b>\<control\>:setPot (controlSet, pot)</b>
 :::
 Assigns the control to given controlSet and pot.
 
@@ -405,7 +405,7 @@ control:setPot (CONTROL_SET_1, POT_2)
 
 
 ::: functiondesc
-<b>control:setSlot (slot)</b>
+<b>\<control\>:setSlot (slot)</b>
 :::
 Moves given control to a preset slot on the current page. The control set and pot are
 are assigned accordingly and the control is made visible.
@@ -422,11 +422,11 @@ control:setSlot (7)
 ```
 
 ::: functiondesc
-<b>control:getValueIds ()</b>
+<b>\<control\>:getValueIds ()</b>
 :::
 Retrieves a list of all valueIds associated with the control. The valueIds are defined in the JSON preset.
 
-- `valueIds` - array, a reference to a value object.
+- `returns` - array, a list of value identifier strings.
 
 
 ##### Example script
@@ -436,19 +436,20 @@ Retrieves a list of all valueIds associated with the control. The valueIds are d
 local control = controls.get (1)
 local valueIds = control:getValueIds ()
 
-for i, valueId in ipairs(valueIds) do
+for i, valueId in ipairs (valueIds) do
     print (valueId)
 end
 ```
 
 
 ::: functiondesc
-<b>control:getValue (valueId)</b>
+<b>\<control\>:getValue (valueId)</b>
 :::
 Retrieves the Value object of given control using the valueId handle.<br />
 The valueId is defined in the JSON preset. If not present, it defaults to "value"
 
-- `Value` - userdata, a reference to a value object.
+- `valueId` - string, an identifier of the value within the control definition.
+- `returns` - userdata, a reference to a value object.
 
 
 ##### Example script
@@ -462,13 +463,33 @@ print ("value min: " .. value:getMin ())
 print ("value max: " .. value:getMax ())
 ```
 
+::: functiondesc
+<b>\<control\>:getValues ()</b>
+:::
+Retrieves a list of all value objects associated with the control. The value objects are defined in the JSON preset.
+
+- `returns` - array, a list of references to userdata value objects.
+
+
+##### Example script
+``` lua
+-- list all value objects of a control
+
+local control = controls.get (1)
+local valueObjects = control:getValues ()
+
+for i, valueObject in ipairs (valueObjects) do
+    print (string.format ("%s.%s", control:getName (), valueObject:getId ())
+end
+```
+
 
 ### Value
 A representation of a Value object within the Control. A Control object contains one or more Value objects, each identified by the `valueId`. The Value object describes the properties of the data value that users can change with their interaction. The Value holds the data and functions to modify it.
 
 #### Functions
 ::: functiondesc
-<b>value:getId ()</b>
+<b>\<value\>:getId ()</b>
 :::
 Retrieves the identifier of the Value. The identifier is assigned to the Value
 in the preset JSON.
@@ -477,7 +498,7 @@ in the preset JSON.
 
 
 ::: functiondesc
-<b>value:setDefault (defaultValue)</b>
+<b>\<value\>:setDefault (defaultValue)</b>
 :::
 Sets the default display value of the Value object
 
@@ -485,7 +506,7 @@ Sets the default display value of the Value object
 
 
 ::: functiondesc
-<b>value:getDefault ()</b>
+<b>\<value\>:getDefault ()</b>
 :::
 Retrieves the default display value of the Value object
 
@@ -493,7 +514,7 @@ Retrieves the default display value of the Value object
 
 
 ::: functiondesc
-<b>value:setMin (minumumValue)</b>
+<b>\<value\>:setMin (minumumValue)</b>
 :::
 Sets the minimum display value of the Value object
 
@@ -501,7 +522,7 @@ Sets the minimum display value of the Value object
 
 
 ::: functiondesc
-<b>value:getMin ()</b>
+<b>\<value\>:getMin ()</b>
 :::
 Retrieves the minimum display value of the Value object
 
@@ -517,7 +538,7 @@ Sets the maximum display value of the Value object
 :::
 
 ::: functiondesc
-<b>value:getMax ()</b>
+<b>\<value\>:getMax ()</b>
 :::
 Retrieves the maximum display value of the Value object
 
@@ -525,7 +546,7 @@ Retrieves the maximum display value of the Value object
 
 
 ::: functiondesc
-<b>value:setOverlayId (overlayId)</b>
+<b>\<value\>:setOverlayId (overlayId)</b>
 :::
 Assigns an overlay list to the Value object
 
@@ -533,7 +554,7 @@ Assigns an overlay list to the Value object
 
 
 ::: functiondesc
-<b>value:getOverlayId ()</b>
+<b>\<value\>:getOverlayId ()</b>
 :::
 Retrieves the overlay assigned to the Value object
 
@@ -557,7 +578,7 @@ valueA:setOverlayId (2)
 ```
 
 ::: functiondesc
-<b>value:getMessage ()</b>
+<b>\<value\>:getMessage ()</b>
 :::
 Retrieves the MIDI message object assigned to the Value object
 
@@ -578,16 +599,16 @@ The Message consists of a subset of attributes of the Message object from preset
 
 #### Functions
 ::: functiondesc
-<b>value:getDeviceId ()</b>
+<b>\<message\>:getDeviceId ()</b>
 :::
-Retrieves the identifer of counterparty device that receives and sends this message.
+Retrieves the identifier of counterparty device that receives and sends this message.
 
 - `returns` - integer, a numeric identifier of the device (1 .. 32).
 
 
 #### Functions
 ::: functiondesc
-<b>value:getType ()</b>
+<b>\<message\>:getType ()</b>
 :::
 Retrieves the type of the MIDI message. For the list of message types, please refer to the overview in the Globals section.
 
@@ -596,25 +617,34 @@ Retrieves the type of the MIDI message. For the list of message types, please re
 
 #### Functions
 ::: functiondesc
-<b>value:getParameterNumber ()</b>
+<b>\<message\>:getParameterNumber ()</b>
 :::
-Retrieves the identifer of the parameter as it as specified in the preset JSON.
+Retrieves the identifier of the parameter as it as specified in the preset JSON.
 
 - `returns` - integer, a numeric identifier of the parameter (0 .. 16383).
+
+
+#### Functions
+::: functiondesc
+<b>\<message\>:getValue ()</b>
+:::
+Retrieves the current MIDI value of the Message object.
+
+- `returns` - integer, current MIDI value (0 .. 16383).
+
 
 ``` lua
 -- Print info about the message
 
-function valueCallback (control, valueId, value)
-    local value = control:getValue ("attack")
-    local message = value.getMessage ()
+function valueCallback (valueObject, value)
+    local message = valueObject:getMessage ()
 
     print ("Device Id: " .. message:getDeviceId ())
     print ("Type: " .. message:getType ())
     print ("Parameter Number: " .. message:getParameterNumber ())
+    print ("Current value: " .. message:getValue ())
 end
 ```
-
 
 
 ### Pages
@@ -643,7 +673,7 @@ A representation of a Page object. It holds the data and functions to modify its
 
 #### Functions
 ::: functiondesc
-<b>page:getId ()</b>
+<b>\<page\>:getId ()</b>
 :::
 Retrieves the identifier of the Page. The identifier is assigned to the page
 in the preset JSON.
@@ -652,7 +682,7 @@ in the preset JSON.
 
 
 ::: functiondesc
-<b>page:setName (name)</b>
+<b>\<page\>:setName (name)</b>
 :::
 Sets a new name to a given page.
 
@@ -660,7 +690,7 @@ Sets a new name to a given page.
 
 
 ::: functiondesc
-<b>page:getName ()</b>
+<b>\<page\>:getName ()</b>
 :::
 Retrieves current name of given page.
 
@@ -706,7 +736,7 @@ A representation of a Group object. The Group object holds the data and function
 
 #### Functions
 ::: functiondesc
-<b>group:getId ()</b>
+<b>\<group\>:getId ()</b>
 :::
 Retrieves the identifier of the group. The identifier is assigned to the group
 in the preset JSON or generated automatically.
@@ -715,7 +745,7 @@ in the preset JSON or generated automatically.
 
 
 ::: functiondesc
-<b>group:setLabel (label)</b>
+<b>\<group\>:setLabel (label)</b>
 :::
 Sets a new label of a given group. The label gives a name to the group. When an empty string is provided, the label is now shown.
 
@@ -723,7 +753,7 @@ Sets a new label of a given group. The label gives a name to the group. When an 
 
 
 ::: functiondesc
-<b>group:getLabel ()</b>
+<b>\<group\>:getLabel ()</b>
 :::
 Retrieves current label of given group.
 
@@ -731,7 +761,7 @@ Retrieves current label of given group.
 
 
 ::: functiondesc
-<b>group:setVisible (shouldBeVisible)</b>
+<b>\<group\>:setVisible (shouldBeVisible)</b>
 :::
 Changes the visibility of given group.
 
@@ -739,7 +769,7 @@ Changes the visibility of given group.
 
 
 ::: functiondesc
-<b>group:isVisible ()</b>
+<b>\<group\>:isVisible ()</b>
 :::
 Gets status of given group's visibility.
 
@@ -747,14 +777,14 @@ Gets status of given group's visibility.
 
 
 ::: functiondesc
-<b>group:setColor (color)</b>
+<b>\<group\>:setColor (color)</b>
 :::
 Sets a new color of the control. Due to performance reasons, only predefined six colors are available at present time.
 
 - `color` - integer, a new color to be used (see [Globals](./luaext.html#globals) for details).
 
 ::: functiondesc
-<b>group:getColor ()</b>
+<b>\<group\>:getColor ()</b>
 :::
 Retrieves current color of the group.
 
@@ -762,7 +792,7 @@ Retrieves current color of the group.
 
 
 ::: functiondesc
-<b>group:setBounds ({ x, y, width, height })</b>
+<b>\<group\>:setBounds ({ x, y, width, height })</b>
 :::
 Changes position and dimensions (bounds) of the group.
 
@@ -770,7 +800,7 @@ Changes position and dimensions (bounds) of the group.
 
 
 ::: functiondesc
-<b>group:getBounds ()</b>
+<b>\<group\>:getBounds ()</b>
 :::
 Retrieves current position and dimensions (bounds) of the group.
 
@@ -780,7 +810,7 @@ Retrieves current position and dimensions (bounds) of the group.
 
 
 ::: functiondesc
-<b>group:setSlot (slot, width, height)</b>
+<b>\<group\>:setSlot (slot, width, height)</b>
 :::
 Moves given group to a slot on current page. The width represents a span accross the slots. Optionally, a height can be specified to form a rectangle group.
 
@@ -832,7 +862,7 @@ A representation of a Device object. It holds the data and functions to modify i
 
 #### Functions
 ::: functiondesc
-<b>device:getId ()</b>
+<b>\<device\>:getId ()</b>
 :::
 Retrieves the identifier of the Device. The identifier is assigned to the device
 in the preset JSON.
@@ -841,7 +871,7 @@ in the preset JSON.
 
 
 ::: functiondesc
-<b>device:setPort (port)</b>
+<b>\<device\>:setPort (port)</b>
 :::
 Assigns given device to a hardware port.
 
@@ -849,7 +879,7 @@ Assigns given device to a hardware port.
 
 
 ::: functiondesc
-<b>device:getPort ()</b>
+<b>\<device\>:getPort ()</b>
 :::
 Gets an identifier of the hardware port currently assigned to the device.
 
@@ -857,7 +887,7 @@ Gets an identifier of the hardware port currently assigned to the device.
 
 
 ::: functiondesc
-<b>device:setChannel (channel)</b>
+<b>\<device\>:setChannel (channel)</b>
 :::
 Assigns given device to a MIDI channel.
 
@@ -865,7 +895,7 @@ Assigns given device to a MIDI channel.
 
 
 ::: functiondesc
-<b>device:getChannel ()</b>
+<b>\<device\>:getChannel ()</b>
 :::
 Gets an identifier of the MIDI channel currently assigned to the device.
 
@@ -971,6 +1001,43 @@ function patch.onResponse (device, responseId, data)
 end
 ```
 
+::: functiondesc
+<b>parameterMap.getValues (deviceId, parameterType, parameterNumber)</b>
+:::
+Retrieves a list of all value objects associated with the ParameterMap entry. The value objects are defined in the JSON preset.
+
+- `deviceId` - integer, a numeric identifier of the device (1 .. 32).
+- `parameterType` - integer, a numeric identifier of Electra's parameter type (see [Globals](./luaext.html#globals) for details).
+- `ParameterNumber` - integer, a numeric identifier of the parameter (0 .. 16383).
+- `returns` - array, a list of references to userdata value objects.
+
+
+::: functiondesc
+<b>parameterMap.onChange (valueObjects, origin, midiValue)</b>
+:::
+An onChange is a user function called whenever there is a change made to the ParameterMap. The function is provided with a list of all associated value objects and the current MIDI value.
+
+- `valueObjects` - array, a list of references to userdata value objects.
+- `origin` - interger, a numeric identifier of the change origin (see [Globals](./luaext.html#globals) for details).
+- `midiValue` - integer, a MIDI value (0 .. 16383).
+
+
+##### Example script
+``` lua
+-- Display info about the change in the ParameterMap
+
+function parameterMap.onChange (valueObjects, origin, midiValue)
+    print (string.format ("a new midiValue %d from origin %d",
+        midiValue, origin))
+
+        for i, valueObject in ipairs (valueObjects) do
+            local control = valueObject:getControl ()
+            print (string.format ("affects control value %s.%s",
+                control:getName (), valueObject:getId ()))
+        end
+end
+```
+
 
 ### Value formatters
 Value formatter is a user function used to format the display value of a control. It is a function that takes a display value as an input and computes a value that will be displayed. The formatted value is returned in the form of a string, therefore, given the user a vast range of formatting possibilities.
@@ -1000,12 +1067,11 @@ For more detailed information please review the [Electra's MIDI implementation](
 
 #### Functions
 ::: functiondesc
-<b>\<formatterFunction\> (control, valueId, value)</b>
+<b>\<formatterFunction\> (valueObject, value)</b>
 :::
 A user function to transform the input display value to a text string that is displayed on the LCD.
 
-- `control` - userdata, a reference to a control object.
-- `valueId` - string, an identifier of the value within the control definition.
+- `valueObject` - userdata, a reference to a value object.
 - `value` - integer, a display value as defined by the preset JSON.
 - `returns` - string, transformed version of the input display value.
 
@@ -1013,12 +1079,12 @@ A user function to transform the input display value to a text string that is di
 ##### Example script
 ``` lua
 -- Convert number to a range with decimal numbers
-function formatFractions (control, valueId, value)
+function formatFractions (valueObject, value)
     return (string.format("%.1f", value / 20))
 end
 
 -- add percentage to the value
-function addPercentage (control, valueId, value)
+function addPercentage (valueObject, value)
     return (value .. "%")
 end
 ```
@@ -1052,19 +1118,18 @@ For more detailed information please review the [Electra's MIDI implementation](
 
 ##### Functions
 ::: functiondesc
-<b>\<callbackFunction\> (control, valueId, value)</b>
+<b>\<callbackFunction\> (valueObject, value)</b>
 :::
 A user function to run custom Lua extension function.
 
 
-- `control` - userdata, a reference to a control object.
-- `valueId` - string, an identifier of the value within the control definition.
+- `valueObject` - userdata, a reference to a value object.
 - `value` - integer, a display value as defined by the preset JSON.
 :::
 
 ##### Example script
 ``` lua
-function highlightOnOverload (control, valueId, value)
+function highlightOnOverload (valueObject, value)
     if (value > 64) then
         control:setColor (ORANGE)
     else
@@ -1072,21 +1137,6 @@ function highlightOnOverload (control, valueId, value)
     end
 end
 ```
-
-
-
-### TransformIn function
-A function that can be used to transform an incoming MIDI value.
-
-Work to be done...
-
-
-
-### TransformOut function
-A function that can be used to transform an outgoing MIDI value.
-
-Work to be done...
-
 
 
 ### SysEx byte function
@@ -1101,7 +1151,7 @@ A library to work with SysEx message. On contrary to simple arrays of bytes, Sys
 
 #### Functions
 ::: functiondesc
-<b>\<sysexBlock\>.getLength ()</b>
+<b>\<sysexBlock\>:getLength ()</b>
 :::
 Retrieves the total length of the SysEx message. The length includes the leading and trailing 0xF0 and 0xF7 bytes.
 
@@ -1109,7 +1159,7 @@ Retrieves the total length of the SysEx message. The length includes the leading
 
 
 ::: functiondesc
-<b>\<sysexBlock\>.getManufacturerSysexId ()</b>
+<b>\<sysexBlock\>:getManufacturerSysexId ()</b>
 :::
 Retrieves the SysEx manufacturer identifier from the SysexBlock object. It is either one byte-wide number or a number componsed of the three bytes with LSB at position 3 and MSB at position 1.
 
@@ -1117,7 +1167,7 @@ Retrieves the SysEx manufacturer identifier from the SysexBlock object. It is ei
 
 
 ::: functiondesc
-<b>\<sysexBlock\>.seek (position)</b>
+<b>\<sysexBlock\>:seek (position)</b>
 :::
 Sets the SysexBlock's current position at given ofset.
 
@@ -1125,7 +1175,7 @@ Sets the SysexBlock's current position at given ofset.
 
 
 ::: functiondesc
-<b>\<sysexBlock\>.read ()</b>
+<b>\<sysexBlock\>:read ()</b>
 :::
 Reads one byte from current position within the SysexBlock. The read/write pointer is automatically increased after the read is completed.
 
@@ -1133,7 +1183,7 @@ Reads one byte from current position within the SysexBlock. The read/write point
 
 
 ::: functiondesc
-<b>\<sysexBlock\>.peek (position)</b>
+<b>\<sysexBlock\>:peek (position)</b>
 :::
 Reads one byte from position provided as an input parameter. The read/write pointer is not affected by the peek operation.
 
@@ -1911,6 +1961,15 @@ Types of MIDI interfaces.
 
 
 
+#### Change origins
+Identifiers of the sources of the MIDI value change. Origin is passed as a parameter of the ParameterMap `onChange` callback.
+
+`INTERNAL`
+`MIDI`
+`LUA`
+
+
+
 #### Parameter types
 Types of Electra MIDI parameters. These types are higher abstraction of the standard MIDI message types.
 
@@ -1930,7 +1989,7 @@ Types of Electra MIDI parameters. These types are higher abstraction of the stan
 
 
 #### Control sets
-Identifiers of the conrol sets. The control sets are groups of controls assigned to the pots.
+Identifiers of the control sets. The control sets are groups of controls assigned to the pots.
 
 `CONTROL_SET_1`
 `CONTROL_SET_2`

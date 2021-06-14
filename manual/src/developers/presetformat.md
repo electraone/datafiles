@@ -93,7 +93,8 @@ An array of devices. A device is a hardware MIDI device or software device (appl
       "name": "My MKS-50",
       "instrumentId": "roland-mks50",
       "port": 1,
-      "channel": 1
+      "channel": 1,
+      "rate": 20
    },
    {
       "id": 2,
@@ -360,6 +361,14 @@ A MIDI channel where the device transmits the MIDI messages.
 - numeric
 - min = 1
 - max = 16
+
+#### rate
+A minimum wait time between sending MIDI messages to a device, specified in milliseconds.
+
+- optional
+- numeric
+- min = 10
+- max = 1000
 
 
 ### Overlay

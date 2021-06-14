@@ -4,6 +4,23 @@
 Nightly builds are not considered to be stable and should not be used for serious work on the presets.
 :::
 
+## 2.0.5b
+
+14 June 2021
+### changelog
+- Initialize Lua interpreter only if Lua script is present - to save memory.
+- Update Lua to the latest 5.4.3 version.
+- Allow to limit rate of outgoing MIDI messages - to improve communication with older slow synths.
+- Add an alternative way of indicating active control sets - bars on the side instead of control dimming.
+- Change attributes of the `formatter` and `function` Lua callbacks. The `value` object is now passed instead of `control` and `valueId` - [Formatter & Function](./luaext.html#value-formatters).
+- Add setting and getting of the MIDI value of the `message` object - [Message object](./luaext.html#message).
+- Add an `onChange` callback on the ParameterMap - [ParameterMap library](./luaext.html#parameter-map).
+- Make it possible to retrieve a list of `value` objects associated with a `parameterMap` entry - [ParameterMap library](./luaext.html#parameter-map).
+- Make it possible to retrieve a list of `value` objects associated with a `control`  - [Control object](./luaext.html#control).
+- Fix: Do not trigger `patch.onResponse` for an empty SysEx message (MacOS X sends it).
+- Fix: Do not trigger the `function` callback twice.
+- Fix: Indicate outgoing MIDI (on screen indicators) when MIDI messages are sent with Lua functions.
+
 
 ## 2.0.4b
 

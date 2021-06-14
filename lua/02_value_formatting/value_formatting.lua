@@ -3,31 +3,31 @@
 -- The display values of the faders will be processed by the formatters
 
 notes = {
-    "C%i",
-    "C%i#",
-    "D%i",
-    "D%i#",
-    "E%i",
-    "F%i",
-    "F%i#",
-    "G%i",
-    "G%i#",
-    "A%i",
-    "B%i"
+    "C%d",
+    "C%d#",
+    "D%d",
+    "D%d#",
+    "E%d",
+    "F%d",
+    "F%d#",
+    "G%d",
+    "G%d#",
+    "A%d",
+    "B%d"
 }
 
 -- Add % sign
-function addPercentage (control, valueId, value)
-    return (value .. "%")
+function addPercentage (valueObject, value)
+    return (string.format ("%d%%", value))
 end
 
 -- Convert number to a range with decimal numbers
-function convertToFractions (control, valueId, value)
+function convertToFractions (valueObject, value)
     return (string.format("%.1f", value / 20))
 end
 
 -- Map text labels to ranges of values
-function showRanges (control, valueId, value)
+function showRanges (valueObject, value)
     if value < 43 then
         return ("low")
     elseif value > 86 then
@@ -38,6 +38,6 @@ function showRanges (control, valueId, value)
 end
 
 -- Map MIDI value to note names
-function displayNotes (control, valueId, value)
-    return (string.format(notes[math.fmod(value, 11) + 1], value / 12))
+function displayNotes (valueObject, value)
+    return (string.format(notes[math.fmod(value, 11) + 1], value // 12))
 end

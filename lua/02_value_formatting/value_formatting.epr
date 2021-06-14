@@ -81,7 +81,7 @@
                   "deviceId":1,
                   "parameterNumber":2,
                   "bitWidth":7,
-                  "signMode":"sigBit"
+                  "signMode":"signBit"
                },
                "id":"value",
                "min":-50,

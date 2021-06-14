@@ -1,6 +1,6 @@
 {
    "version":2,
-   "name":"Adjust volume",
+   "name":"Parameter Map values",
    "pages":[
       {
          "id":1,
@@ -25,8 +25,9 @@
       {
          "id":1,
          "type":"fader",
-         "name":"RESONANCE",
-         "color":"529DEC",
+         "visible":true,
+         "name":"FADER A",
+         "color":"FFFFFF",
          "bounds":[
             0,
             40,
@@ -50,16 +51,16 @@
                   "parameterNumber":1,
                   "deviceId":1
                },
-               "id":"value",
-               "function":"adjustVolume"
+               "id":"value"
             }
          ]
       },
       {
          "id":2,
          "type":"fader",
-         "name":"VOLUME",
-         "color":"C44795",
+         "visible":true,
+         "name":"FADER B",
+         "color":"FFFFFF",
          "bounds":[
             170,
             40,
@@ -80,11 +81,10 @@
                   "type":"cc7",
                   "min":0,
                   "max":127,
-                  "parameterNumber":2,
+                  "parameterNumber":1,
                   "deviceId":1
                },
-               "id":"value",
-               "defaultValue":65
+               "id":"value"
             }
          ]
       }

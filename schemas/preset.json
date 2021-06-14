@@ -423,7 +423,8 @@
                   "id":1,
                   "name":"Generic MIDI",
                   "port":1,
-                  "channel":1
+                  "channel":1,
+                  "rate":20
                }
             ],
             "required":[
@@ -464,6 +465,14 @@
                   "description":"A MIDI channel where the device transmits the MIDI messages.",
                   "minimum":1,
                   "maximum":16
+               },
+               "rate":{
+                  "$id":"#/properties/devices/items/properties/rate",
+                  "type":"integer",
+                  "title":"Message rate",
+                  "description":"A minimum wait time between sending MIDI messages to a device, specified in milliseconds.",
+                  "minimum":10,
+                  "maximum":1000
                }
             }
          }

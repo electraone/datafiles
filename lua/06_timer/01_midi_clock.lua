@@ -1,9 +1,9 @@
 -- Send MIDI clock messages at given tempo
 
-print ("MIDI clock demo")
-
 -- function callback for the start/stop button
-function buttonPressed (control, valueId, value)
+function buttonPressed (valueObject, value)
+    local control = valueObject:getControl ()
+
     if (value == 1) then
         control:setName ("STOP")
         timer.enable ()
@@ -13,13 +13,24 @@ function buttonPressed (control, valueId, value)
     end
 end
 
--- function callback for setting the clock related
--- remember there is 24 clocks to one beat
-function setClockRate (control, valueId, value)
-    timer.setBpm (value * 24)
+-- function to read the BMP control and adjust the timer settings
+-- remember there are 24 clocks in one beat
+function setTimerBpm ()
+    local bpm = parameterMap.get (1, PT_VIRTUAL, 1);
+    timer.setBpm (bpm * 24)
+    print ("Setting BPM to " .. bpm)
+end
+
+-- function callback for setting the timer
+function setClockRate (valueObject, value)
+    setTimerBpm ()
 end
 
 -- timer function
 function timer.onTick ()
     midi.sendClock (PORT_1)
 end
+
+-- Initial setup
+print ("MIDI clock demo")
+setTimerBpm ()
