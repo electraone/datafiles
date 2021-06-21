@@ -4,6 +4,21 @@
 Nightly builds are not considered to be stable and should not be used for serious work on the presets.
 :::
 
+## 2.0.6b
+
+21 June 2021
+### changelog
+- Minimalistic version of the Settings Menu window added. It is a very initial version of the Settings menu. More options will come.
+- Add brightness control for hw revision 2.2 or higher.
+- Make it possible to use solid background to highlight the active section - [Config format](./confformat.html#top-level-objects).
+- Improve switching of the active control set with the LCD touch. It is not required to hit the control any more. Any touch within the control set area will do the job.
+- Make the fader detail bigger so that it is easier to control it with the LCD touch.
+- Fix: Crash when patch `onRequest` or `onResponse` are called and Lua is not present.
+- Fix: Graphic artefacts showing up on the screen occasionally.
+- Fix: Knob on screen component (eg. page selection) has a grey arc displayed.
+- Fix: Incoming MIDI value that was out side the midiMin and midiMax broke controls graphics.
+
+
 ## 2.0.5b
 
 14 June 2021

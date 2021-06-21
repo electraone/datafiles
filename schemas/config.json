@@ -32,6 +32,17 @@
             "note"
          ]
       },
+      "activeControlSetType":{
+         "type":"string",
+         "title":"activeControlSetType",
+         "description":"Type of visual representation of the active control set.",
+         "enum":[
+            "none",
+            "dim",
+            "bars",
+            "background"
+         ]
+      },
       "parameterNumber":{
          "type":"integer",
          "title":"parameterNumber",
@@ -45,6 +56,7 @@
    "description":"Schema for config message",
    "examples":[
       {
+         "version":1,
          "router":{
             "usbDevToMidiIo":true,
             "usbDevToUsbHost":true,
@@ -84,7 +96,11 @@
                "midiMessage":"note",
                "parameterNumber":37
             }
-         ]
+         ],
+         "uiFeatures":{
+            "touchSwitchControlSets":true,
+            "activeControlSetType":"dim"
+         }
       }
    ],
    "required":[
@@ -430,6 +446,36 @@
                   }
                }
             ]
+         }
+      },
+      "uiFeatures":{
+         "$id":"#/properties/uiFeatures",
+         "type":"object",
+         "title":"uiFeatures",
+         "description":"Set of options that define the UI/UX behaviour.",
+         "examples":[
+           {
+             "uiFeatures":{
+                "touchSwitchControlSets":true,
+                "activeControlSetType":"dim"
+             }
+           }
+         ],
+         "required":[
+
+         ],
+         "properties":{
+            "touchSwitchControlSets":{
+               "$id":"#/properties/uiFeatures/properties/touchSwitchControlSets",
+               "type":"boolean",
+               "title":"touchSwitchControlSets",
+               "description":"When set, touch on LCD changes the active control set.",
+               "default":true
+            },
+            "activeControlSetType":{
+               "$id":"#/properties/uiFeatures/properties/activeControlSetType",
+               "$ref":"#/definitions/activeControlSetType"
+            }
          }
       }
    }

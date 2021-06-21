@@ -167,7 +167,11 @@ The UI features object is used to configure / customize the user interface of th
 
 ``` json
 {
-   "touchSwitchControlSets": true
+   "version":1,
+   "uiFeatures":{
+      "touchSwitchControlSets":true,
+      "activeControlSetType":"dim"
+   }
 }
 ```
 
@@ -176,6 +180,16 @@ When set to true, touch on controls changes changes the active control set (sect
 
 - mandatory
 - boolean
+
+#### activeControlSetType
+Sets the type of the visual indicator of the active control set.
+
+- mandatory
+- enum
+  - none
+  - dim
+  - bars
+  - background
 
 
 ### presetBank

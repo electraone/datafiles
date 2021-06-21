@@ -26,7 +26,7 @@ The beta releases are development snapshots meant for user testing and providing
 
 The latest beta version of the Electra One firmware that allows running Lua Extension scripts on the controller. More information about the beta firmware is available at [Electra One Lua Extension](../developers/luaext.md). The changelog can be found at [Nightly builds](../developers/nightly.md).
 
-<downloadLink filename="firmware-2.0.5b.img.zip" href="/firmware-2.0.5b.img.zip" description="version 2.0.5b (14 June 2021)"/>
+<downloadLink filename="firmware-2.0.6b.img.zip" href="/firmware-2.0.6b.img.zip" description="version 2.0.6b (21 June 2021)"/>
 
 
 ### Lua Script firmware
