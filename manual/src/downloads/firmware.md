@@ -11,26 +11,11 @@ To keep your Electra One MIDI Controller updated, follow the instructions descri
 
 The latest stable version of the Electra One Midi Controller firmware.
 
-<downloadButton href="/firmware-1.5.frm.zip" description="version 1.5 (9 Feb 2021)"/>
+<downloadButton href="/firmware-2.1.0.img.zip" description="version 2.1.0 (16 July 2021)"/>
 
+A new Electra One Console application is required to update the controller firmware to version 2.1.0. You can download the management console application at [Management applications](./hostapps.md)
 
-## Public beta releases
-The beta releases are development snapshots meant for user testing and providing the user feedback. Majority of betas will become a public release in the future.
+### Past firmware releases
+In case you needed to donwgrade to the past version of the firmware...
 
-- Beta releases should not be used for serious work.
-- ElectraOne Console version 2.0b or higher must be used with the firmware beta releases.
-- Beta releases should be used in combination with the [Beta version of the app.electra.one](https://beta.electra.one/) editor.
-
-
-### MIDI Controller firmware
-
-The latest beta version of the Electra One firmware that allows running Lua Extension scripts on the controller. More information about the beta firmware is available at [Electra One Lua Extension](../developers/luaext.md). The changelog can be found at [Nightly builds](../developers/nightly.md).
-
-<downloadLink filename="firmware-2.0.6b.img.zip" href="/firmware-2.0.6b.img.zip" description="version 2.0.6b (21 June 2021)"/>
-
-
-### Lua Script firmware
-
-The latest version of the Electra One firmware that allows running custom Lua applications on the controller. More information about the Lua firmware is available at [Electra One Lua script](../developers/lua.md) and the new preset format.
-
-<downloadLink filename="firmware-lua-0.1.1.img.zip" href="/firmware-lua-0.1.1.img.zip" description="version 0.1 (24 May 2021)"/>
+<downloadLink filename="firmware-1.5.frm.zip" href="/firmware-1.5.frm.zip" description="version 1.5 (9 Feb 2021)"/>
