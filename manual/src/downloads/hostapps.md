@@ -1,9 +1,9 @@
 # Management applications
 
 
-## ElectraOne Console
+## Electra One Console
 
-ElectraOne Console is an application to update Electra One MIDI Controller firmware and to display Electra's internal debugging messages. For more detailed information visit [ElectraOneConsole&nbsp;documentation](../electraoneconsole.md)
+Electra One Console is an application to update Electra One MIDI Controller firmware and to display Electra's internal debugging messages. For more detailed information visit [ElectraOneConsole&nbsp;documentation](../electraoneconsole.md)
 
 We are currently working on the application installers. For now, you need to install the application manually by copying it to appropriate filesystem directories.
 
