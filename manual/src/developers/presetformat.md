@@ -959,7 +959,7 @@ A simple NRPN message handling a negative values
 ``` json
 "message": {
    "deviceId": 1,
-   "type": "cc7",
+   "type": "nrpn",
    "parameterNumber": 1,
    "lsbFirst": false,
    "twosComplement": true,

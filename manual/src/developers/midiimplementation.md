@@ -250,7 +250,7 @@ A request call to fetch a list of snaphots of an active preset.
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x01` Data dump
-- `0x05` Configuration file
+- `0x05` Snapshot list
 - `snapshot-list-json-data` JSON document with a list of snapshots
 - `0xF7` SysEx closing byte
 
@@ -608,11 +608,11 @@ A call to permanently remove a preset identified with the bankNumber and a prese
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x05` Remove command
 - `0x01` Preset
-- `bank-number` an identifier of the snapshot bank (0 .. 5)
-- `slot` an identifier of the snapshot slot (0 .. 11)
+- `bank-number` an identifier of the preset bank (0 .. 5)
+- `slot` an identifier of the preset slot (0 .. 11)
 - `0xF7` SysEx closing byte
 
-For removing a currently active Lua script, run shorter version of the call
+For removing a currently active preset, run shorter version of the call
 
 ```
 0xF0 0x00 0x21 0x45 0x05 0x01 0xF7
@@ -638,8 +638,8 @@ A call to permanently remove a Lua script identified with the bankNumber and a s
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x05` Remove command
 - `0x0C` Lua script
-- `bank-number` an identifier of the snapshot bank (0 .. 5)
-- `slot` an identifier of the snapshot slot (0 .. 11)
+- `bank-number` an identifier of the preset bank (0 .. 5)
+- `slot` an identifier of the preset (0 .. 11)
 - `0xF7` SysEx closing byte
 
 For removing a currently active Lua script, run shorter version of the call
@@ -657,7 +657,7 @@ For removing a currently active Lua script, run shorter version of the call
 
 
 ### Config file remove
-A call to permanently remove a preset identified with the bankNumber and a preset slot.
+A call to permanently remove a configuration file.
 
 ```
 0xF0 0x00 0x21 0x45 0x05 0x02 0xF7
@@ -667,7 +667,7 @@ A call to permanently remove a preset identified with the bankNumber and a prese
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
 - `0x05` Remove command
-- `0x02` Lua script
+- `0x02` Configuration file
 - `0xF7` SysEx closing byte
 
 
