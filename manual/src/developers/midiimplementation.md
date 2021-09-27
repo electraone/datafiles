@@ -515,8 +515,8 @@ A log message is a text that is transmitted to the host computer in order to pro
 
 - `0xF0` SysEx header byte
 - `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
-- `0x7F` Upload data
-- `0x00` Lua Script file
+- `0x7F` System call
+- `0x00` Log message
 - `log-message` ASCII bytes representing the log message
 - `0xF7` SysEx closing byte
 
@@ -639,7 +639,7 @@ A call to permanently remove a Lua script identified with the bankNumber and a s
 - `0x05` Remove command
 - `0x0C` Lua script
 - `bank-number` an identifier of the preset bank (0 .. 5)
-- `slot` an identifier of the preset (0 .. 11)
+- `slot` an identifier of the preset slot (0 .. 11)
 - `0xF7` SysEx closing byte
 
 For removing a currently active Lua script, run shorter version of the call
