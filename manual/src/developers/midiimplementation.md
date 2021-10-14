@@ -338,6 +338,40 @@ function onButtonDown (buttonId)
 end
 ```
 
+### Get an application information
+A request call to fetch information about current application and preset.
+
+#### Request
+```
+0xF0 0x00 0x21 0x45 0x02 0x7C 0xF7
+```
+<syxDownloadLink href="/sysex/query-app-info.syx" description="download .syx"/>
+
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x02` Query data
+- `0x7C` Application information
+- `0xF7` SysEx closing byte
+
+#### Response
+```
+0xF0 0x00 0x21 0x45 0x01 0x05 snapshot-list-json-data 0xF7
+```
+- `0xF0` SysEx header byte
+- `0x00` `0x21` `0x45` Electra One MIDI manufacturer Id
+- `0x01` Data dump
+- `0x7C` Snapshot list
+- `app-info-json-data` JSON document with an application info
+- `0xF7` SysEx closing byte
+
+##### An example of app-info-json-data
+``` json
+{
+	"app":"ctrlv2",
+	"preset":"Alesis Micron"
+}
+```
+
 
 ## Uploading data to the controller
 A set of commands to upload files to the controller.

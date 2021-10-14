@@ -11,9 +11,9 @@ To keep your Electra One MIDI Controller updated, follow the instructions descri
 
 The latest stable version of the Electra One Midi Controller firmware.
 
-<downloadButton href="/firmware-2.1.0.img.zip" description="version 2.1.0 (16 July 2021)"/>
+<downloadButton href="/firmware-2.1.2.img.zip" description="version 2.1.2 (14 October 2021)"/>
 
-A new Electra One Console application is required to update the controller firmware to version 2.1.0. You can download the management console application at [Management applications](./hostapps.md)
+A new Electra One Console application is required to update the controller firmware to version 2.1.0 or higher. You can download the management console application at [Management applications](./hostapps.md)
 
 ### Past firmware releases
 In case you needed to donwgrade to the past version of the firmware...

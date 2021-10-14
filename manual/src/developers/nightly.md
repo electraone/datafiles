@@ -4,6 +4,33 @@
 Nightly builds are not considered to be stable and should not be used for serious work on the presets.
 :::
 
+
+## 2.1.2b
+
+13 October 2021
+### changelog
+
+- Add a SysEx call to obtain information about currently running Electra One application and preset [Midi Implementation - Get an application information](./midiimplementation.html#get-an-application-information). The call is used in the Bitwig extension maintained by Joris.
+- Fix: Issue of fader value not being shown properly for asymetric value rangers [Asymmetric range causes screen garbage](https://forum.electra.one/t/asymmetric-range-causes-screen-garbage/1000).
+- Fix: Display overlay labels corretly for values above 255 [Fader overlay doesn’t work past 255](https://forum.electra.one/t/fader-overlay-doesnt-work-past-255/1005).
+- Fix: Repaint List detail correctly. The background was transparent and therefore leaving artifacts on the acreen.
+
+
+## 2.0.7b
+
+27 June 2021
+### changelog
+
+- Implement multi-level queue for processing incoming MIDI messages. Improves latency of routing MIDI messages between the interfaces.
+- Make it possible to switch the active control set with external MIDI control.
+- Fix: Switch the active control set on the "press" event of the hardware button.
+- Fix: Use dim for indicating an active control set when the uiFeatures configuration is missing.
+- Fix: Run a preset-Lua script when user changes the preset using Electra's UI.
+- Fix: Use left buttons to switch control handles only with the control has multiple handles. eg. envelope. Otherwise, the buttons switch the active control set.
+- Fix: Do not lock the window when the lock symbol position is identical with the position to open the detail.
+- Fix: Do not set the fader detail value with the initial touch.
+
+
 ## 2.0.6b
 
 21 June 2021
