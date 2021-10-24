@@ -1140,9 +1140,116 @@ end
 
 
 ### SysEx byte function
-A SysEx byte functions may be used in SysEx templates to calculate and insert bytes to specific locations in the SysEx messages.
+A SysEx byte functions may be used in SysEx templates, patch requests, and patch response headers to calculate and insert bytes to specific locations of the SysEx message. The function is provided information about the device and a parameter number. It is expected to return one byte containing a 7bit value.
 
-work to be done...
+#### Example preset JSON
+The following snippet demonstrates use of Lua functions in both, the patch request and the response header. In this particular case, it is used to request and match SysEx patch dump from TX7 on a specific MIDI channel.
+
+``` JSON
+"devices":[
+   {
+      "id":1,
+      "name":"Yamaha DX7",
+      "port":1,
+      "channel":16,
+      "patch":[
+         {
+            "request":[
+               "43",
+               {
+                  "type":"function",
+                  "name":"getRequestByte"
+               },
+               "00"
+            ],
+            "responses":[
+               {
+                  "header":[
+                     "43",
+                     {
+                        "type":"function",
+                        "name":"getResponseByte"
+                     },
+                     "00",
+                     "01",
+                     "1B"
+                  ],
+                  "rules":[
+                     {
+                        "id":136,
+                        "pPos":0,
+                        "byte":136,
+                        "bPos":0,
+                        "size":1,
+                        "msg":"sysex"
+                     }
+                  ]
+               }
+            ]
+         }
+      ]
+   }
+]
+```
+
+The following snippet shows how to use the Lua SysEx byte function in the SysEx template.
+
+``` JSON
+"values":[
+   {
+	  "id":"value",
+	  "message":{
+		 "type":"sysex",
+		 "deviceId":1,
+		 "data":[
+			"43",
+			{
+			   "type":"function",
+			   "name":"getChannelByte"
+			},
+			"00",
+			"66",
+			{
+			   "type":"value",
+			   "rules":[
+				  {
+					 "parameterNumber":102,
+					 "bitWidth":5,
+					 "byteBitPosition":0
+				  }
+			   ]
+			}
+		 ],
+		 "parameterNumber":102,
+		 "min":0,
+		 "max":31
+	  },
+	  "min":0,
+	  "max":31
+   }
+]
+```
+
+##### Functions
+::: functiondesc
+<b>\<sysexByteFunction\> (deviceObject, parameterNumber)</b>
+:::
+A function to insert a calculated SysEx byte.
+
+
+- `deviceObject` - userdata, a reference to a device object.
+- `parameterNumber` - integer, parameter number, provided when used in the SysEx template.
+- `returns` - byte, 7bit value that will be inserted to the SysEx message.
+:::
+
+##### Example script
+``` lua
+-- returns a byte that TX7 uses to identify the MIDI channel
+
+function getChannelByte (device)
+    return (0x10 + (device:getChannel() - 1))
+end
+```
 
 
 

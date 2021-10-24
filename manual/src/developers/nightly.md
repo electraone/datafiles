@@ -4,6 +4,13 @@
 Nightly builds are not considered to be stable and should not be used for serious work on the presets.
 :::
 
+## 2.1.3b
+
+23 October 2021
+### changelog
+
+- Make it possible to use Lua functions in patch request and response headers.
+
 
 ## 2.1.2b
 
@@ -13,7 +20,7 @@ Nightly builds are not considered to be stable and should not be used for seriou
 - Add a SysEx call to obtain information about currently running Electra One application and preset [Midi Implementation - Get an application information](./midiimplementation.html#get-an-application-information). The call is used in the Bitwig extension maintained by Joris.
 - Fix: Issue of fader value not being shown properly for asymetric value rangers [Asymmetric range causes screen garbage](https://forum.electra.one/t/asymmetric-range-causes-screen-garbage/1000).
 - Fix: Display overlay labels corretly for values above 255 [Fader overlay doesn’t work past 255](https://forum.electra.one/t/fader-overlay-doesnt-work-past-255/1005).
-- Fix: Repaint List detail correctly. The background was transparent and therefore leaving artifacts on the acreen.
+- Fix: Repaint List detail correctly. The background was transparent and therefore leaving artifacts on the screen.
 
 
 ## 2.0.7b
