@@ -15,6 +15,7 @@ Nightly builds are not considered to be stable and should not be used for seriou
 - Call Lua functions only when pad's on or off value is defined.
 - Improve Lua script garbage collection. Memory is now freed automatically.
 - Lower memory requirements of Lua function storage.
+- Fix issue of backlight going completely dark on hw 2.4
 
 
 ## 2.1.3b
