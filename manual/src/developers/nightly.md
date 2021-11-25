@@ -4,6 +4,19 @@
 Nightly builds are not considered to be stable and should not be used for serious work on the presets.
 :::
 
+## 2.1.4b
+
+24 November 2021
+### changelog
+
+- Trim the label if the width of the label is bigger than the width of the pad.
+- Fix the issue of the pitchbend range. The value is now bipolar (-8192 .. 8191).
+- Add Lua functions for switching pages and control sets.
+- Call Lua functions only when pad's on or off value is defined.
+- Improve Lua script garbage collection. Memory is now freed automatically.
+- Lower memory requirements of Lua function storage.
+
+
 ## 2.1.3b
 
 23 October 2021

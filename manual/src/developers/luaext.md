@@ -606,7 +606,6 @@ Retrieves the identifier of counterparty device that receives and sends this mes
 - `returns` - integer, a numeric identifier of the device (1 .. 32).
 
 
-#### Functions
 ::: functiondesc
 <b>\<message\>:getType ()</b>
 :::
@@ -615,7 +614,6 @@ Retrieves the type of the MIDI message. For the list of message types, please re
 - `returns` - integer, a numeric identifier of Electra's parameter type (0 .. 11).
 
 
-#### Functions
 ::: functiondesc
 <b>\<message\>:getParameterNumber ()</b>
 :::
@@ -624,13 +622,28 @@ Retrieves the identifier of the parameter as it as specified in the preset JSON.
 - `returns` - integer, a numeric identifier of the parameter (0 .. 16383).
 
 
-#### Functions
 ::: functiondesc
 <b>\<message\>:getValue ()</b>
 :::
 Retrieves the current MIDI value of the Message object.
 
 - `returns` - integer, current MIDI value (0 .. 16383).
+
+
+::: functiondesc
+<b>\<message\>:getOffValue ()</b>
+:::
+Retrieves the Off MIDI value of the Pad control.
+
+- `returns` - integer, MIDI value of the Off state (0 .. 16383).
+
+
+::: functiondesc
+<b>\<message\>:getOnValue ()</b>
+:::
+Retrieves the On MIDI value of the Pad control.
+
+- `returns` - integer, MIDI value of the On state (0 .. 16383).
 
 
 ``` lua
@@ -658,6 +671,38 @@ Retrieves a reference to a page object (userdata).
 
 - `pageId` - integer, a numeric identifier of the page (1 .. 12). <i>id</i> attribute from the preset.
 - `returns` - userdata, a reference to a page object.
+
+
+::: functiondesc
+<b>pages.getActive ()</b>
+:::
+Retrieves a reference to a page object (userdata) of current active page.
+
+- `returns` - userdata, a reference to a page object.
+
+
+::: functiondesc
+<b>pages.display (pageId)</b>
+:::
+Displays given preset page.
+
+- `pageId` - integer, a numeric identifier of the page (1 .. 12). <i>id</i> attribute from the preset.
+
+
+::: functiondesc
+<b>pages.setActiveControlSet (controlSetId)</b>
+:::
+Changes current control set.
+
+- `controlSetId` - integer, a numeric identifier of the control set (1 .. 3).
+
+
+::: functiondesc
+<b>pages.getActiveControlSet ()</b>
+:::
+Retrieves an identifier of the current active control set.
+
+- `returns` - integer, a numeric identifier of the control set (1 .. 3).
 
 
 #### Example script
