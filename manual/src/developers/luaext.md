@@ -1722,7 +1722,7 @@ A function to send a Pitch Bend MIDI message.
 
 - `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
 - `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
-- `value` - integer, an amount of Pitch Bend to be applied (0 .. 16383).
+- `value` - integer, an amount of Pitch Bend to be applied (-8192 .. 8191).
 
 
 ::: functiondesc
