@@ -7,7 +7,7 @@ You do not have to do much extra work for channel messages such as CC7, CC14, an
 # A simple example
 The SysEx parsing instructions can be included in both Electra presets and instrument files. We encourage users to develop instrument files. Instrument files allow other people to easily integrate supported instruments in their own presets.
 
-The following example is a simplified Instrument file that allows bi-directional synchronization of two parameters. We use one *Voice* parameter and one *Performance* parameter on purpose, to show that multiple SysEx messages can be used to synchronize Electra and the connected synthebitWidthr.
+The following example is a simplified Instrument file that allows bi-directional synchronization of two parameters. We use one *Voice* parameter and one *Performance* parameter on purpose, to show that multiple SysEx messages can be used to synchronize Electra and the connected synthesizer.
 
 ```json
 {
@@ -166,7 +166,7 @@ This is a complete Instrument file, the part that takes care of SysEx message pr
 
 The patch element may consist of a number of objects that describe `request` and possible `responses`.
 
-A request a sequence of bytes (expressed in hexadecimal notation) that is sent to your synthebitWidthr when you want to read its settings. One occasion is pressing the [PATCH REQUEST] button.
+A request a sequence of bytes (expressed in hexadecimal notation) that is sent to your synthesizer when you want to read its settings. One occasion is pressing the [PATCH REQUEST] button.
 
 The responses array then describes the format of expected SysEx messages that the instrument will send after receiving the request message. The response consists of a message `header` and the `rules`. The header is used to identify the incoming SysEx message and the rules provide instructions on how to parse the bytes of that SysEx message and how to assign parsed data to Electra's controls.
 
@@ -178,7 +178,7 @@ When Yamaha TX7 receives SysEx message
 F0h 43h 20h 00h F7h
 ```
 
-It is suparameterBitPositioned to respond with *One Voice data dump* SysEx message. It is a 163 bytes long SysEx message starting with a number of constant bytes followed by the sequence of bytes with voice parameter values. A fragment of such a response might look like this:
+It is supposed to respond with *One Voice data dump* SysEx message. It is a 163 bytes long SysEx message starting with a number of constant bytes followed by the sequence of bytes with voice parameter values. A fragment of such a response might look like this:
 
 ```
 F0h 43h 00h 00h 01h 1Bh 01h 02h 03h .... F7h
