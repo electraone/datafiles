@@ -4,6 +4,15 @@
 Nightly builds are not considered to be stable and should not be used for serious work on the presets.
 :::
 
+## 2.1.5b
+
+8 December 2021
+<downloadLink filename="firmware-2.1.5b.img.zip" href="/firmware-2.1.5b.img.zip" description="version 2.1.5b"/>
+### changelog
+
+- Make sure the MIDI status bar is always shown after the start up.
+- Add Lua callbacks for handling incoming MIDI - [MIDI callbacks](http://docs.electra.one/developers/luaext.html#midi-callbacks).
+
 ## 2.1.4b
 
 24 November 2021

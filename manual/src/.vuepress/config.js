@@ -102,7 +102,6 @@ module.exports = {
               '/developers/instrumentformat.md',
               '/developers/confformat.md',
               '/developers/sysexparser.md',
-              '/developers/lua.md',
               '/developers/nightly.md',
             ]
           }

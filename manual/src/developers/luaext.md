@@ -1,23 +1,27 @@
 # Preset Lua extension
 
-This document describes the Lua Extension of the Electra One MIDI Controller firmware. The extension adds procedural programming to the Electra One [Preset format](./presetformat.md). If you are looking for possibility to develop your own applications for Electra One, you might want to visit [Electra One Lua Script](./lua.md) document instead.
+This document describes the Lua Extension of the Electra One MIDI Controller firmware. The extension adds procedural programming to the Electra One [Preset format](./presetformat.md).
 
 The Lua is a scripting programming language - a detailed information about it can be found at the [Official Lua site](http://www.lua.org/).
 
 ::: warning Note
-Firmware version 2.0.5b or later is required to use the Electra One Lua Extension.
+Firmware version 2.0.0 or later is required to use the Electra One Lua Extension.
 :::
 
 ## A brief overview
 
 The Electra One Preset Lua extension allows you to embed Lua function calls to the preset JSON. Current implementation provides following functionality:
 
-- Trigger Lua function calls on control value changes
-- Format display values
+- Send and receive MIDI messages
+- Trigger Lua functions on control value changes
+- Format control display values
 - Change visibility, location, name, colour of controls
-- Run custom patch request calls
+- Run custom patch dump request calls
 - Implement your own sysex parsers
-- Calculate SysEx template bytes
+- Calculate checksums, SysEx template bytes
+- Decode packed and nibbelized SysEx data
+- Trigger Lua functions on MIDI clock and transport control
+- Generate sequences of MIDI data, clock, MIDI LFOs
 
 The main idea here is to have a healthy split between the static data defined with the declarative JSON and the dynamic processing of this data in the run-time with the Lua script. The JSON preset is used to pre-load all pages, lists, devices, groups, and controls. Once, the preset is loaded, the Lua Extension may be used to modify it to fulfill a particular purpose. This is enforced by the fact that the Lua Extension API cannot create new objects. It can, however, modify, move, and change visibility of existing objects.
 
@@ -1041,7 +1045,7 @@ Sends current midiValue via all controls linked to the parameter map entry.
 ``` lua
 -- set the value of a parameter when processing the patch response SysEx message
 
-function patch.onResponse (device, responseId, data)
+function patch.onResponse (device, responseId, sysexBlock)
   parameterMap.set (device.id, PT_CC7, 2, sysexBlock.peek (data, 8))
 end
 ```
@@ -1635,8 +1639,357 @@ end
 ```
 
 
+### MIDI callbacks
+The MIDI callbacks are here to process incoming MIDI messages. There is one general callback
+function `onMessage ()` that is called when any type of MIDI message is received. There is also an array of callbacks for specific MIDI messages. These callbacks are called only when a specific MIDI message is received.
 
-### MIDI
+The callback function is registered by the Electra One Lua interpreter as soon as the callback function defined in the Lua script. Once the callback is defined, the firmware registers an extra hook to run the function. This consumes some of the processing resources. It is advised not to leave empty callback functions in your scripts.
+
+The first parameter of all callback functions is the `midiInput`. The `midiInput` is a data table that describes the origin of the message.
+
+``` lua
+midiInput = {
+  interface = "USB dev",  -- a name of the IO interface where the messages was received
+  port = 0                -- a numeric port identifier
+}
+```
+
+Another important data structure is the `midiMessage` data table. the `midiMessage` carries the information about a MIDI message broken down do individual attributes. Different types of MIDI messages are represented with slightly different format of the `midiMessage` data table. The fields `channel`, `type`, `data1`, `data2` are, however, common to all types of messages.
+
+For example, a Control Change message can be access either as:
+
+``` lua
+midiMessage = {
+    channel = 1,
+    type = CONTROL_CHANGE,
+    data1 = 1,
+    data2 = 127
+}
+```
+
+or
+
+``` lua
+midiMessage = {
+    channel = 1,
+    type = CONTROL_CHANGE,
+    controllerNumber = 1,
+    value = 127
+}
+```
+
+The full description of all `midiMessage` variants is provided later in this document.
+
+#### Functions
+::: functiondesc
+<b>midi.onMessage (midiInput, midiMessage)</b>
+:::
+A callback to handle all types of incoming MIDI messages.
+
+- `midiInput` - data table, information about where the message came from.
+- `midiMessage` - data table, description of the incoming MIDI message
+
+
+::: functiondesc
+<b>midi.onNoteOn (midiInput, channel, noteNumber, velocity)</b>
+:::
+A callback to handle incoming MIDI Note On message.
+
+- `midiInput` - data table, information about where the message came from.
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `noteNumber` - integer, an identifier of the MIDI note (0 .. 127).
+- `velocity` - integer, a velocity (0 .. 127).
+
+
+::: functiondesc
+<b>midi.onNoteOff (midiInput, channel, noteNumber, velocity)</b>
+:::
+A callback to handle incoming MIDI Note Off message.
+
+- `midiInput` - data table, information about where the message came from.
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `noteNumber` - integer, an identifier of the MIDI note (0 .. 127).
+- `velocity` - integer, a velocity (0 .. 127).
+
+
+::: functiondesc
+<b>midi.onControlChange (midiInput, channel, controllerNumber, value)</b>
+:::
+A callback to handle incoming MIDI Control Change (CC) message.
+
+- `midiInput` - data table, information about where the message came from.
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `controllerNumber` - integer, an identifier of the Control Change (0 .. 127).
+- `value` - integer, a value to be sent (0 .. 127).
+
+
+::: functiondesc
+<b>midi.onAfterTouchPoly (midiInput, channel, noteNumber, pressure)</b>
+:::
+A callback to handle incoming MIDI Polyphonic Aftertouch message.
+
+- `midiInput` - data table, information about where the message came from.
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `noteNumber` - integer, an identifier of the MIDI note (0 .. 127).
+- `pressure` - integer, a value representing the pressure applied (0 .. 127).
+
+
+::: functiondesc
+<b>midi.onAfterTouchChannel (midiInput, channel, pressure)</b>
+:::
+A callback to handle incoming MIDI Channel Aftertouch message.
+
+- `midiInput` - data table, information about where the message came from.
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `pressure` - integer, a value representing the pressure applied (0 .. 127).
+
+
+::: functiondesc
+<b>midi.onProgramChange (midiInput, channel, programNumber)</b>
+:::
+A callback to handle incoming MIDI Program change message.
+
+- `midiInput` - data table, information about where the message came from.
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `programNumber` - integer, an identifier of the CC (0 .. 127).
+
+
+::: functiondesc
+<b>midi.onPitchBend (midiInput, channel, value)</b>
+:::
+A callback to handle incoming MIDI Pitch bend message.
+
+- `midiInput` - data table, information about where the message came from.
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `value` - integer, an amount of Pitch Bend to be applied (-8192 .. 8191).
+
+
+::: functiondesc
+<b>midi.onSongSelect (midiInput, songNumber)</b>
+:::
+A callback to handle incoming MIDI Song Select message.
+
+- `midiInput` - data table, information about where the message came from.
+- `songNumber` - integer, a numeric identifier of the song (0 .. 127).
+
+
+::: functiondesc
+<b>midi.onSongPosition (midiInput, position)</b>
+:::
+A callback to handle incoming MIDI Song Position message.
+
+- `midiInput` - data table, information about where the message came from.
+- `songPosition` - integer, a number of beats from start of the song (0 .. 16383).
+
+
+::: functiondesc
+<b>midi.onClock (midiInput)</b>
+:::
+A callback to handle incoming MIDI Clock message. There are 24 Clock messages
+to one quarter note.
+
+- `midiInput` - data table, information about where the message came from.
+
+
+::: functiondesc
+<b>midi.onStart (midiInput)</b>
+:::
+A callback to handle incoming MIDI System real-time Start message.
+
+- `midiInput` - data table, information about where the message came from.
+
+
+::: functiondesc
+<b>midi.onStop (midiInput)</b>
+:::
+A callback to handle incoming MIDI System real-time Stop message.
+
+- `midiInput` - data table, information about where the message came from.
+
+
+::: functiondesc
+<b>midi.onContinue (midiInput)</b>
+:::
+A callback to handle incoming MIDI System real-time Continue message.
+
+- `midiInput` - data table, information about where the message came from.
+
+
+::: functiondesc
+<b>midi.onActiveSensing (midiInput)</b>
+:::
+A callback to handle incoming MIDI Active Sensing message.
+
+- `midiInput` - data table, information about where the message came from.
+
+
+::: functiondesc
+<b>midi.onSystemReset (midiInput)</b>
+:::
+A callback to handle incoming MIDI System Reset message.
+
+- `midiInput` - data table, information about where the message came from.
+
+
+::: functiondesc
+<b>midi.onTuneRequest (midiInput)</b>
+:::
+A callback to handle incoming MIDI Tune Request message.
+
+- `midiInput` - data table, information about where the message came from.
+
+
+::: functiondesc
+<b>midi.onSysex (midiInput, sysexBlock)</b>
+:::
+A callback to handle incoming MIDI SysEx message.
+
+- `midiInput` - data table, information about where the message came from.
+- `sysexBlock` - data table, an object holding the received SysEx message (see below).
+
+
+#### Example script 1
+``` lua
+-- Receiving MIDI messages
+--
+-- Receiving MIDI messages with a generic midi.onMessage() callback
+
+function midi.onMessage (midiInput, midiMessage)
+    if midiMessage.type == SYSEX then
+        print ("sysex message received: interface=" .. midiInput.interface ..
+               " data=[" .. table.concat (midiMessage.data,", ") .. "]")
+    else
+        -- generic approach using the data1 and data2
+        print ("midi message received: interface=" .. midiInput.interface ..
+               " channel=" .. midiMessage.channel ..
+               " type=" .. midiMessage.type ..
+               " data1=" .. midiMessage.data1 ..
+               " data2=" .. midiMessage.data2)
+
+        -- Message type specific attributes
+        if midiMessage.type == NOTE_ON then
+            print ("noteOn received: interface=" .. midiInput.interface ..
+                   " channel=" .. midiMessage.channel ..
+                   " noteNumber=" .. midiMessage.noteNumber ..
+                   " velocity=" .. midiMessage.velocity)
+        end
+    end
+end
+```
+
+#### Example script 2
+``` lua
+-- Receiving MIDI messages
+--
+-- Receiving MIDI messages with callbacks specific to MIDI message type
+
+function midi.onControlChange (midiInput, channel, controllerNumber, value)
+    print ("controlChange received: interface=" .. midiInput.interface ..
+           " channel=" .. channel ..
+           " controllerNumber=" .. controllerNumber .. " value=" .. value)
+end
+
+
+function midi.onNoteOn (midiInput, channel, noteNumber, velocity)
+    print ("noteOn received: interface=" .. midiInput.interface ..
+           " channel=" .. channel ..
+           " noteNumber=" .. noteNumber .. " velocity=" .. velocity)
+end
+
+
+function midi.onNoteOff (midiInput, channel, noteNumber, velocity)
+    print ("noteOff received: interface=" .. midiInput.interface ..
+           " channel=" .. channel ..
+           " noteNumber=" .. noteNumber .. " velocity=" .. velocity)
+end
+
+
+function midi.onAfterTouchPoly (midiInput, channel, noteNumber, pressure)
+    print ("afterTouchPoly received: interface=" .. midiInput.interface ..
+           " channel=" .. channel ..
+           " noteNumber=" .. noteNumber .. " pressure=" .. pressure)
+end
+
+
+function midi.onProgramChange (midiInput, channel, programNumber)
+    print ("programChange received: interface=" .. midiInput.interface ..
+           " channel=" .. channel ..
+           " programNumber=" .. programNumber)
+end
+
+
+function midi.onAfterTouchChannel (midiInput, channel, pressure)
+    print ("afterTouchChannel received: interface=" .. midiInput.interface ..
+           " channel=" .. channel ..
+           " pressure=" .. pressure)
+end
+
+
+function midi.onPitchBendChannel (midiInput, channel, value)
+    print ("pitchBend received: interface=" .. midiInput.interface ..
+           " channel=" .. channel ..
+           " value=" .. value)
+end
+
+
+function midi.onSongSelect (midiInput, songNumber)
+    print ("songSelect received: interface=" .. midiInput.interface ..
+           " songNumber=" .. songNumber)
+end
+
+
+function midi.onSongPosition (midiInput, position)
+    print ("songPosition received: interface=" .. midiInput.interface ..
+           " position=" .. position)
+end
+
+
+function midi.onClock (midiInput)
+    print ("midi clock received: interface=" .. midiInput.interface)
+end
+
+
+function midi.onStart (midiInput)
+    print ("start received: interface=" .. midiInput.interface)
+end
+
+
+function midi.onStop (midiInput)
+    print ("stop received: interface=" .. midiInput.interface)
+end
+
+
+function midi.onContinue (midiInput)
+    print ("continue received: interface=" .. midiInput.interface)
+end
+
+
+function midi.onActiveSensing (midiInput)
+    print ("active sensing received: interface=" .. midiInput.interface)
+end
+
+
+function midi.onSystemReset (midiInput)
+    print ("system reset received: interface=" .. midiInput.interface)
+end
+
+
+function midi.onTuneRequest (midiInput)
+    print ("tune request received: interface=" .. midiInput.interface)
+end
+
+
+function midi.onSysex (midiInput, sysexBlock)
+    print ("sysex message received: interface=" .. midiInput.interface)
+
+    -- print the received data
+    for i = 1, sysexBlock:getLength () do
+        print (string.format ("data[%d] = %d", i, sysexBlock:peek (i)))
+    end
+end
+```
+
+### MIDI functions
 The MIDI library provides functions to send raw MIDI messages. There are two ways of sending MIDI messages out. It can be done either by composing a `midiMessage` data table and passing it to generic `midi.sendMessage ()` function, or by calling functions that send specific types of the MIDI messages, eg. `midi.sendNoteOn ()`.
 
 All functions send MIDI messages to all Electra's interfaces (`USB Dev`, `USB host`, `MIDI IO`). The idea is that this will follow the configuration of the low-level router of the Electra One controller. This might change in near future.
@@ -1648,7 +2001,7 @@ All functions send MIDI messages to all Electra's interfaces (`USB Dev`, `USB ho
 A function to send a MIDI message defined as a `midiMessage` data table.
 
 - `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
-- `midiMessage` - data table, an outgoing MIDI message.
+- `midiMessage` - data table, an outgoing MIDI message (see [Globals](./luaext.html#data-structures) for details).
 
 
 ::: functiondesc
@@ -1740,7 +2093,7 @@ A function to send a Song Select MIDI message.
 A function to send a Song Position MIDI message.
 
 - `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
-- `songNumber` - integer, a number of beats from start of the song (0 .. 16383).
+- `songPosition` - integer, a number of beats from start of the song (0 .. 16383).
 
 
 ::: functiondesc
@@ -2049,7 +2402,6 @@ midi.sendSysex (PORT_1, { 67, 32, 0 })
 ```
 
 
-
 ### Helpers
 The helpers library consists of helper functions to make handling of certain common
 situations easier.
@@ -2091,6 +2443,69 @@ Display bounding boxes of graphical objects.
 bounding boxes shown.
 
 
+### Data structures
+
+#### midiInput
+`midiInput` is a data table that describes the origin of incoming MIDI messages. The consists of information about the MIDI interface and the port identifier.
+
+- `interface` - integer, an identifier of Electra's MIDI interface. (see [Globals](./luaext.html#globals) for details).
+- `port` - integer, a port identifier (see [Globals](./luaext.html#globals) for details).
+
+##### Example
+``` lua
+midiInput = {
+  interface = MIDI_IO,  -- a name of the IO interface where the messages was received
+  port = PORT_1                -- a numeric port identifier
+}
+```
+
+
+#### midiMessage
+The `midiMessage` data table carries the information about a MIDI message broken down do individual attributes. Different types of MIDI messages are represented with slightly different format of the `midiMessage` data table. The fields `channel`, `type`, `data1`, `data2` are, however, common to all types of messages.
+
+For example, a Control Change message can be access either as:
+
+``` lua
+midiMessage = {
+    channel = 1,
+    type = CONTROL_CHANGE,
+    data1 = 1,
+    data2 = 127
+}
+```
+
+or
+
+``` lua
+midiMessage = {
+    channel = 1,
+    type = CONTROL_CHANGE,
+    controllerNumber = 1,
+    value = 127
+}
+```
+
+- `channel` - integer, a numeric representation of the MIDI channel (1 .. 16).
+- `type` - integer, an identifier of the MIDI message type (see [Globals](./luaext.html#globals) for details).
+- `data1` - integer, the first data byte of MIDI message (0 .. 127).
+- `data2` - integer, the second data byte of MIDI message (0 .. 127).
+- MIDI message type specific attrbutes are listed below.
+
+##### Attributes specific to MIDI message types
+
+| MIDI message type | Attributes         |
+|-------------------|--------------------|
+| `NOTE_ON`         |  `noteNumber`<p />`velocity`        |
+| `NOTE_OFF`        |  `noteNumber`<p />`velocity`        |
+| `CONTROL_CHANGE`  |  `controllerNumber`<p />`value`     |
+| `POLY_PRESSURE`   |  `noteNumber`<p />`pressure`        |
+| `CHANNEL_PRESSURE`|  `pressure`                         |
+| `PROGRAM_CHANGE`  |  `programNumber`                    |
+| `PITCH_BEND`      |  `value`                            |
+| `SONG_SELECT`     |  `songNumber`                       |
+| `SONG_POSITION`   |  `songPosition`                     |
+
+
 
 ### Globals
 The global variables are used to identify common constants that can be used instead of numbers.
@@ -2098,115 +2513,107 @@ The global variables are used to identify common constants that can be used inst
 #### Hardware ports
 Identifiers of the MIDI ports.
 
-`PORT_1`
-`PORT_2`
-`PORT_CTRL`
-
+- `PORT_1`
+- `PORT_2`
+- `PORT_CTRL`
 
 
 #### Interfaces
 Types of MIDI interfaces.
 
-`MIDI_IO`
-`USB_DEV`
-`USB_HOST`
-
+- `MIDI_IO`
+- `USB_DEV`
+- `USB_HOST`
 
 
 #### Change origins
 Identifiers of the sources of the MIDI value change. Origin is passed as a parameter of the ParameterMap `onChange` callback.
 
-`INTERNAL`
-`MIDI`
-`LUA`
-
+- `INTERNAL`
+- `MIDI`
+- `LUA`
 
 
 #### Parameter types
 Types of Electra MIDI parameters. These types are higher abstraction of the standard MIDI message types.
 
-`PT_VIRTUAL`
-`PT_CC7`
-`PT_CC14`
-`PT_NRPN`
-`PT_RPN`
-`PT_NOTE`
-`PT_PROGRAM`
-`PT_SYSEX`
-`PT_START`
-`PT_STOP`
-`PT_TUNE`
-`PT_UNKNOWN`
-
+- `PT_VIRTUAL`
+- `PT_CC7`
+- `PT_CC14`
+- `PT_NRPN`
+- `PT_RPN`
+- `PT_NOTE`
+- `PT_PROGRAM`
+- `PT_SYSEX`
+- `PT_START`
+- `PT_STOP`
+- `PT_TUNE`
+- `PT_UNKNOWN`
 
 
 #### Control sets
 Identifiers of the control sets. The control sets are groups of controls assigned to the pots.
 
-`CONTROL_SET_1`
-`CONTROL_SET_2`
-`CONTROL_SET_3`
-
+- `CONTROL_SET_1`
+- `CONTROL_SET_2`
+- `CONTROL_SET_3`
 
 
 #### Pots
 Identifiers of the hardware pots. The pots are the rotary knobs to change the control values.
 
-`POT_1`
-`POT_2`
-`POT_3`
-`POT_4`
-`POT_5`
-`POT_6`
-`POT_7`
-`POT_8`
-`POT_9`
-`POT_10`
-`POT_11`
-`POT_12`
-
+- `POT_1`
+- `POT_2`
+- `POT_3`
+- `POT_4`
+- `POT_5`
+- `POT_6`
+- `POT_7`
+- `POT_8`
+- `POT_9`
+- `POT_10`
+- `POT_11`
+- `POT_12`
 
 
 #### Colors
 Identifiers of standard Electra colors.
 
-`WHITE`
-`RED`
-`ORANGE`
-`BLUE`
-`GREEN`
-`PURPLE`
-
+- `WHITE`
+- `RED`
+- `ORANGE`
+- `BLUE`
+- `GREEN`
+- `PURPLE`
 
 
 #### Bounding box
 Identifiers of individual attributes of the bounding box (bounds).
 
-`X`
-`Y`
-`WIDTH`
-`HEIGHT`
-
+- `X`
+- `Y`
+- `WIDTH`
+- `HEIGHT`
 
 
 #### MIDI message types
 Identifiers of standard MIDI messages.
 
-`CONTROL_CHANGE`
-`NOTE_ON`
-`NOTE_OFF`
-`PROGRAM_CHANGE`
-`POLY_PRESSURE`
-`CHANNEL_PRESSURE`
-`PITCH_BEND`
-`CLOCK`
-`START`
-`STOP`
-`CONTINUE`
-`ACTIVE_SENSING`
-`RESET`
-`SONG_SELECT`
-`SONG_POSITION`
-`TUNE_REQUEST`
-`TIME_CODE_QUARTER_FRAME`
-`SYSEX`
+- `CONTROL_CHANGE`
+- `NOTE_ON`
+- `NOTE_OFF`
+- `PROGRAM_CHANGE`
+- `POLY_PRESSURE`
+- `CHANNEL_PRESSURE`
+- `PITCH_BEND`
+- `CLOCK`
+- `START`
+- `STOP`
+- `CONTINUE`
+- `ACTIVE_SENSING`
+- `RESET`
+- `SONG_SELECT`
+- `SONG_POSITION`
+- `TUNE_REQUEST`
+- `TIME_CODE_QUARTER_FRAME`
+- `SYSEX`
