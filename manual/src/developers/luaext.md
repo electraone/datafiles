@@ -10,20 +10,20 @@ Firmware version 2.0.0 or later is required to use the Electra One Lua Extension
 
 ## A brief overview
 
-The Electra One Preset Lua extension allows you to embed Lua function calls to the preset JSON. Current implementation provides following functionality:
+The Electra One Preset Lua extension allows you to embed Lua function calls to presets. Current implementation provides following functionality:
 
-- Send and receive MIDI messages
-- Trigger Lua functions on control value changes
-- Format control display values
-- Change visibility, location, name, colour of controls
-- Run custom patch dump request calls
-- Implement your own sysex parsers
-- Calculate checksums, SysEx template bytes
+- Sending and receiving MIDI messages
+- Triggering Lua functions on control value changes
+- Formatting display values
+- Changing visibility, location, name, and colour of controls
+- Running custom patch dump request calls
+- Implementing your own SysEx parsers
+- Calculate checksums and custom SysEx template bytes
 - Decode packed and nibbelized SysEx data
 - Trigger Lua functions on MIDI clock and transport control
-- Generate sequences of MIDI data, clock, MIDI LFOs
+- Generate sequences of MIDI data, clock messages, and MIDI LFOs
 
-The main idea here is to have a healthy split between the static data defined with the declarative JSON and the dynamic processing of this data in the run-time with the Lua script. The JSON preset is used to pre-load all pages, lists, devices, groups, and controls. Once, the preset is loaded, the Lua Extension may be used to modify it to fulfill a particular purpose. This is enforced by the fact that the Lua Extension API cannot create new objects. It can, however, modify, move, and change visibility of existing objects.
+The main idea is to have a clear split between the static data defined with the declarative JSON and the dynamic processing of this data in the run-time with the Lua script. The JSON preset is used to pre-load all pages, lists, devices, groups, and controls. Once, the preset is loaded, the Lua Extension can be used to manipulate all objects to fulfill a particular purpose. This is enforced by the fact that the Lua Extension API cannot create new objects. It can, however, modify, move, and change visibility of existing objects.
 
 
 ## Examples
@@ -33,11 +33,11 @@ Examples of presets with the Lua Extensions are available at [Github Electra.One
 ## SysEx Implementation
 
 ### Uploading the scripts
-In order to make a Lua script extension functions accessible from the preset, it needs to be uploaded first. It can be done with the Lua script upload SysEx call. The script is uploaded and assigned to currently active preset. If there already exists a Lua script for given preset, the upload SysEx call will overwrite it.
+In order to make a Lua script extension functions accessible from the preset, the Lua script file needs to be uploaded first. It can be done with the Lua script upload SysEx call. The script is uploaded and assigned to currently active preset. If there already exists a Lua script for given preset, the upload SysEx call will overwrite it.
 
 This effectively means that one preset may have one Lua script assigned. From this perspective a preset can be seen as a combo of the JSON preset .epr file and the Lua script .lua file.
 
-The Lua script can be also uploaded with the [Preset editor](https://beta.electra.one/) or the [Development sandbox tool](https://beta.electra.one/sandbox/).
+The Lua script can be also uploaded with the [Preset editor](https://app.electra.one/) or the [Development sandbox tool](https://app.electra.one/sandbox/).
 
 #### SysEx Request
 ```
@@ -169,7 +169,7 @@ print ("Lua ext initialized")
 
 
 ### The standard callbacks
-The Electra One Lua Extension brings number of predefined event handlers - callbacks. These are called upon specific events and give you way to assign your own functionality to them.
+The Electra One Lua Extension brings number of predefined event handlers - callbacks. These are called upon specific events, such as receiving a MIDI message, and give you way to assign your own functionality to them.
 
 
 ``` lua
@@ -182,7 +182,7 @@ end
 
 
 ### The user functions
-Of course, as a user you can, and actually you are encouraged to, package your functionality to the user functions. These are used to build more complex programatic blocks.
+Of course, as a user you can, and actually you are encouraged to, package your functionality to the user functions. The functions are used to build more complex programatic blocks.
 
 A good example of a user function is a `displayGroup` callback from the above example source code. It a function defined by the user and bound to a function callback hook in the preset JSON.
 
@@ -198,11 +198,13 @@ end
 ## Electra One Lua extension API
 
 ### Logger
-The logging is a key element to understanding what is happening inside the controller. Electra One Lua API provides the `print ()` command that writes texts that can be observed in the ElectraOne Console application. The log messages created with the `print ()` function are always prefixed with the `lua:` text.
+The logging is the key element to understanding what is happening inside the controller. Electra One Lua API provides the `print ()` command that writes texts that can be observed in the ElectraOne Console application. The log messages created with the `print ()` function are always prefixed with the `lua:` text.
 
 The log messages are, in fact, SysEx messages sent to the CTRL port. They carry the timestamp and the text of the message. For more details about the console logs, please review the [Electra's MIDI implementation](./midiimplementation.md)
 
 As the logging relies on the standard SysEx messaging, users can develop their own log viewers or integrate Electra logs to their own applications.
+
+The logger output can be enabled or disabled. When disabled, no log messages are sent over the MIDI. Please refer to [Logger enable / disable](http://docs.electra.one/developers/midiimplementation.html#logger-enable-disable) to get information about managing the logger. The logger is disabled for performance reasons by default.
 
 #### Functions
 ::: functiondesc
